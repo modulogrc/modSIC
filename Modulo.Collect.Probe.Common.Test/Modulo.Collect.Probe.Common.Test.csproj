@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E364628-6531-4BCA-A074-302756CB772D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Modulo.Collect.Probe.Common.Test</RootNamespace>
+    <AssemblyName>Modulo.Collect.Probe.Common.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition, Version=2009.7.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\MEF\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Tamir.SharpSSH">
+      <HintPath>..\libs\SharpSSH\Tamir.SharpSSH.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseObjectCollectorTests.cs" />
+    <Compile Include="Checkers\ItemTypeEntityChecker.cs" />
+    <Compile Include="Checkers\ItemTypeChecker.cs" />
+    <Compile Include="CiscoIOS\ProbeTests\Line\LineItemTypeGeneratorTests.cs" />
+    <Compile Include="CiscoIOS\ProbeTests\Line\LineObjectCollectorTests.cs" />
+    <Compile Include="CiscoIOS\ProbeTests\Line\LineProberTests.cs" />
+    <Compile Include="CiscoIOS\ProbeTests\Version55\Version55ItemTypeGeneratorTests.cs" />
+    <Compile Include="CiscoIOS\ProbeTests\Version55\Version55ObjectCollectorTests.cs" />
+    <Compile Include="CiscoIOS\ProbeTests\Version55\VersionProberTests.cs" />
+    <Compile Include="CommonTests\CollectedObjectTest.cs" />
+    <Compile Include="CommonTests\CollectInfoTest.cs" />
+    <Compile Include="CommonTests\CredentialsTest.cs" />
+    <Compile Include="CommonTests\EntityOperationTest.cs" />
+    <Compile Include="CommonTests\ExecutionLogBuilderTest.cs" />
+    <Compile Include="CommonTests\RegexHelperTests.cs" />
+    <Compile Include="CommonTests\StringExtensionsTests.cs" />
+    <Compile Include="Helpers\LoadOvalDocument.cs" />
+    <Compile Include="Helpers\FileContentLoader.cs" />
+    <Compile Include="Helpers\ProbeHelper.cs" />
+    <Compile Include="Helpers\VariableHelper.cs" />
+    <Compile Include="Independent\PathOperatorEvaluatorTest.cs" />
+    <Compile Include="Independent\Probes\SQL\DbEngineTests.cs" />
+    <Compile Include="Independent\Probes\SQL\Sql57ItemTypeGeneratorTests.cs" />
+    <Compile Include="Independent\Probes\SQL\SqlItemTypeGeneratorTests.cs" />
+    <Compile Include="Independent\Probes\SQL\SqlObjectCollectorTests.cs" />
+    <Compile Include="Independent\Probes\SQL\SqlObjectTests.cs" />
+    <Compile Include="Independent\Probes\SQL\SqlProberTests.cs" />
+    <Compile Include="Independent\Probes\SQL\SqlQueryResultTests.cs" />
+    <Compile Include="Independent\XmlFileContentItemTypeGeneratorTestes.cs" />
+    <Compile Include="ProbeBehaviorCreator.cs" />
+    <Compile Include="ProberTestsBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CommonTests\SystemInformationTest.cs" />
+    <Compile Include="CommonTests\VariableProberTest.cs" />
+    <Compile Include="CommonTests\VariablesEvaluatedTest.cs" />
+    <Compile Include="CommonTests\WQLBuilderTest.cs" />
+    <Compile Include="Solaris\ProberTests\SMF\SMFItemTypeGeneratorTests.cs" />
+    <Compile Include="Solaris\ProberTests\SMF\SMFObjectCollectorTests.cs" />
+    <Compile Include="Solaris\ProberTests\SMF\SMFProberTest.cs" />
+    <Compile Include="Unix\FakeTerminalOutputFactory.cs" />
+    <Compile Include="Unix\ProberTests\EnvironmentVariable\EnvironmentVariableItemTypeGeneratorTest.cs" />
+    <Compile Include="Unix\ProberTests\EnvironmentVariable\EnvironmentVariableObjectCollectorTest.cs" />
+    <Compile Include="Unix\ProberTests\EnvironmentVariable\EnvironmentVariableProberTest.cs" />
+    <Compile Include="Unix\ProberTests\Family\FamilyObjectCollectorTest.cs" />
+    <Compile Include="Unix\ProberTests\Family\FamilyProberTests.cs" />
+    <Compile Include="Unix\ProberTests\File\FileItemTypeGeneratorTests.cs" />
+    <Compile Include="Unix\ProberTests\File\FileObjectCollectorTests.cs" />
+    <Compile Include="Unix\ProberTests\File\FileProberTests.cs" />
+    <Compile Include="Unix\ProberTests\File\UnixFileItemFactoryTests.cs" />
+    <Compile Include="Unix\ProberTests\File\UnixFilepathTests.cs" />
+    <Compile Include="Unix\ProberTests\Linux\RpmInfo\RpmInfoItemTypeGeneratorTests.cs" />
+    <Compile Include="Unix\ProberTests\Linux\RpmInfo\RpmInfoObjectCollectorTests.cs" />
+    <Compile Include="Unix\ProberTests\Linux\RpmInfo\RpmInfoProberTests.cs" />
+    <Compile Include="Unix\ProberTests\Process\ProcessItemTypeGeneratorTests.cs" />
+    <Compile Include="Unix\ProberTests\Process\ProcessObjectCollectorTests.cs" />
+    <Compile Include="Unix\ProberTests\Process\ProcessProberTests.cs" />
+    <Compile Include="Unix\ProberTests\RunLevel\RunLevelItemTypeGeneratorTests.cs" />
+    <Compile Include="Unix\ProberTests\RunLevel\RunlevelObjectCollectorTests.cs" />
+    <Compile Include="Unix\ProberTests\RunLevel\RunLevelProberTests.cs" />
+    <Compile Include="Unix\ProberTests\TextFileContent54\TextFileContentItemTypeGeneratorTests.cs" />
+    <Compile Include="Unix\ProberTests\TextFileContent54\TextFileContentObjectCollectorTests.cs" />
+    <Compile Include="Unix\ProberTests\TextFileContent54\TextFileContentProberUnixTests.cs" />
+    <Compile Include="Unix\ProberTests\Uname\UnameItemTypeGeneratorTests.cs" />
+    <Compile Include="Unix\ProberTests\Uname\UnameObjectCollectorTests.cs" />
+    <Compile Include="Unix\ProberTests\Uname\UnameProberTests.cs" />
+    <Compile Include="Unix\SSHCollectorsTests\FileContentCollectorTests.cs" />
+    <Compile Include="Unix\UnixTerminalParserTests.cs" />
+    <Compile Include="Unix\XmlFileContentProberTests.cs" />
+    <Compile Include="Windows\WindowsFileProviderTest.cs" />
+    <Compile Include="Windows\Factories\Objects\UserObjectFactory.cs" />
+    <Compile Include="Windows\FamilyProberTest.cs" />
+    <Compile Include="Windows\Helpers\SystemDataSourceFactory.cs" />
+    <Compile Include="Windows\Helpers\SystemInformationFactory.cs" />
+    <Compile Include="Windows\Helpers\WindowsTestHelper.cs" />
+    <Compile Include="Windows\Helpers\WmiDataProviderFactory.cs" />
+    <Compile Include="Windows\ItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\AccessToken\AccessTokenItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\AccessToken\AccessTokenObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\AccessToken\AccessTokenProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\AuditEventPolicySubcategories\AuditEventPolicySubcategoriesItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\AuditEventPolicySubcategories\AuditEventPolicySubcategoriesObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\AuditEventPolicySubcategories\AuditEventPolicySubcategoriesProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\AuditEventPolicy\AuditEventPolicyItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\AuditEventPolicy\AuditEventPolicyObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\AuditEventPolicy\AuditEventPolicyProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\FileAuditedPermissions53\FileAuditedPermissionsObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\FileAuditedPermissions53\FileAuditedPermissionsProberTests.cs" />
+    <Compile Include="Windows\ProbeTests\FileContent\FileContentEntityVariableEvaluatorTest.cs" />
+    <Compile Include="Windows\ProbeTests\FileContent\FileContentItemTypeFactoryTest.cs" />
+    <Compile Include="Windows\ProbeTests\FileContent\FileContentObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\FileContent\FileContentProbeTest.cs" />
+    <Compile Include="Windows\ProbeTests\FileContent\FileContentProviderTest.cs" />
+    <Compile Include="Windows\ProbeTests\FileEffectiveRights53\FileEffectiveRights53EntityOperationEvaluatorTest.cs" />
+    <Compile Include="Windows\ProbeTests\FileEffectiveRights53\FileEffectiveRights53EntityVariableEvaluatorTest.cs" />
+    <Compile Include="Windows\ProbeTests\FileEffectiveRights53\FileEffectiveRights53ProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\FileEffectiveRightsObjectTypeFactoryTest.cs" />
+    <Compile Include="Windows\ProbeTests\FileEffectiveRightsProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\FileEffectiveRightsSystemDataSourceTest.cs" />
+    <Compile Include="Windows\ProbeTests\File\FileEntityVariableEvaluatorTest.cs" />
+    <Compile Include="Windows\ProbeTests\File\FileItemTypeFactoryTest.cs" />
+    <Compile Include="Windows\ProbeTests\File\FileObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\File\FileObjectTests.cs" />
+    <Compile Include="Windows\ProbeTests\File\FileObjectTypeFactoryTest.cs" />
+    <Compile Include="Windows\ProbeTests\File\FilePathRegexInformationTest.cs" />
+    <Compile Include="Windows\ProbeTests\File\FileProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\File\FileProberUnitTest.cs" />
+    <Compile Include="Windows\ProbeTests\File\PathLevelWithRegexTest.cs" />
+    <Compile Include="Windows\ProbeTests\GroupSID\GroupSIDItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\GroupSID\GroupSIDProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\GroupSID\GroupSIDSystemObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\Metabase\MetabaseItemTypeGeneratorTests.cs" />
+    <Compile Include="Windows\ProbeTests\Metabase\MetabaseObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\Metabase\MetabaseProberTests.cs" />
+    <Compile Include="Windows\ProbeTests\Metabase\MetabaseSessionConfigurationTests.cs" />
+    <Compile Include="Windows\ProbeTests\Metabase\XmlDocumentNavigatorTests.cs" />
+    <Compile Include="Windows\ProbeTests\PasswordPolicy\PasswordPolicyProberTests.cs" />
+    <Compile Include="Windows\ProbeTests\Registry\RegistryEntityVariableEvaluatorTest.cs" />
+    <Compile Include="Windows\ProbeTests\Registry\RegistryHelperTests.cs" />
+    <Compile Include="Windows\ProbeTests\Registry\RegistryItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\Registry\RegistryObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\Registry\RegistryObjectFactoryTest.cs" />
+    <Compile Include="Windows\ProbeTests\Registry\RegistryObjectTest.cs" />
+    <Compile Include="Windows\ProbeTests\Registry\RegistryProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\Registry\RegistryRegexHelperTest.cs" />
+    <Compile Include="Windows\ProbeTests\RegKeyEffectiveRights\RegKeyEffectiveRightsItemOperationEvaluatorTest.cs" />
+    <Compile Include="Windows\ProbeTests\RegKeyEffectiveRights\RegKeyEffectiveRightsItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\RegKeyEffectiveRights\RegKeyEffectiveRightsObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\RegKeyEffectiveRights\RegKeyEffectiveRightsProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\SID\SIDObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\SID\SIDProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\TextFileContent54\TextFileContentEntityOperationEvaluatorTest.cs" />
+    <Compile Include="Windows\ProbeTests\TextFileContent54\TextFileContentItemTypeFactoryTests.cs" />
+    <Compile Include="Windows\ProbeTests\TextFileContent54\TextFileContentItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\TextFileContent54\TextFileContentObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\TextFileContent54\TextFileContentObjectFactoryTests.cs" />
+    <Compile Include="Windows\ProbeTests\TextFileContent54\TextFileContentProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\TextFileContent54\TextFileContentVariableEvaluatorTest.cs" />
+    <Compile Include="Windows\ProbeTests\UserSID55\UserSID55EntityVariableEvaluatorTest.cs" />
+    <Compile Include="Windows\ProbeTests\UserSID55\UserSID55ItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\UserSID55\UserSID55ObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\UserSID55\UserSID55ProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\UserSID55\UserSIDProberTests.cs" />
+    <Compile Include="Windows\ProbeTests\UserSID55\WindowsUserAccountBuilderTests.cs" />
+    <Compile Include="Windows\ProbeTests\User\UserItemTypeGeneratorTests.cs" />
+    <Compile Include="Windows\ProbeTests\User\UserObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\User\UserProberTests.cs" />
+    <Compile Include="Windows\ProbeTests\WMI\Wmi57\Wmi57ItemTypeGeneratorTests.cs" />
+    <Compile Include="Windows\ProbeTests\WMI\Wmi57\Wmi57ObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\WMI\Wmi57\Wmi57ProberTests.cs" />
+    <Compile Include="Windows\ProbeTests\WMI\WmiItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\WMI\WmiObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\WMI\WMIProberTest.cs" />
+    <Compile Include="Windows\ProbeTests\XmlFileContent\XmlFileContentItemTypeGeneratorTest.cs" />
+    <Compile Include="Windows\ProbeTests\XmlFileContent\XmlFileContentObjectCollectorTests.cs" />
+    <Compile Include="Windows\ProbeTests\XmlFileContent\XmlFileContentProberTests.cs" />
+    <Compile Include="Windows\ProbeTests\_New\FileEffectiveRights\FileEffectiveRights53ObjectCollectorTest.cs" />
+    <Compile Include="Windows\ProbeTests\_New\FileEffectiveRights\FileEffectiveRightsItemTypeGeneratorTests.cs" />
+    <Compile Include="Windows\ProbeTests\_New\FileEffectiveRights\FileEffectiveRightsProberTests.cs" />
+    <Compile Include="Windows\SystemInformationService\WindowsSystemInformationCollectorTest.cs" />
+    <Compile Include="Windows\SystemInformationService\WindowsSystemInformationFactoryTest.cs" />
+    <Compile Include="Windows\WindowsUsersProviderTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Repository\oval_definitions\definitionsWithSet.xml" />
+    <EmbeddedResource Include="Repository\system_characteristics\system_characteristics_with_sets.xml" />
+    <EmbeddedResource Include="Repository\system_characteristics\system_characteristics_with_local_variable.xml" />
+    <EmbeddedResource Include="Repository\oval_definitions\definitionsWithLocalVariable.xml" />
+    <EmbeddedResource Include="Repository\oval_definitions\definitionsSimple.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Repository\oval_definitions\definitionsWithConstantVariable.xml" />
+    <EmbeddedResource Include="Repository\oval_definitions\oval.org.mitre.oval.def.5921.xml" />
+    <EmbeddedResource Include="Repository\oval_definitions\fdcc_xpfirewall_oval_regex_on_value.xml" />
+    <EmbeddedResource Include="Repository\oval_definitions\fdcc_xpfirewall_oval_regex.xml" />
+    <EmbeddedResource Include="Repository\oval_definitions\definitionsWithOnlyObjects.xml" />
+    <EmbeddedResource Include="Repository\oval_definitions\fdcc_xpfirewall_oval.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modulo.Collect.OVAL\Collect.OVAL.csproj">
+      <Project>{B9083752-3405-480B-9362-AD279B221C10}</Project>
+      <Name>Collect.OVAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.CiscoIOS\Modulo.Collect.Probe.CiscoIOS.csproj">
+      <Project>{F5B596BF-9173-4D64-8206-D73275457E7A}</Project>
+      <Name>Modulo.Collect.Probe.CiscoIOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Common\Modulo.Collect.Probe.Common.csproj">
+      <Project>{DF2B4873-DDAB-4F47-9C4F-5B93FE1214CF}</Project>
+      <Name>Modulo.Collect.Probe.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Independent\Modulo.Collect.Probe.Independent.csproj">
+      <Project>{890332AF-A755-40F1-B95A-B20CB45EB465}</Project>
+      <Name>Modulo.Collect.Probe.Independent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Solaris\Modulo.Collect.Probe.Solaris.csproj">
+      <Project>{FBB71CC6-E48C-483D-A3D6-3B19F3FF1FCA}</Project>
+      <Name>Modulo.Collect.Probe.Solaris</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Unix\Modulo.Collect.Probe.Unix.csproj">
+      <Project>{21773E49-CB1C-4346-A598-535F7A96FDB3}</Project>
+      <Name>Modulo.Collect.Probe.Unix</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Windows\Modulo.Collect.Probe.Windows.csproj">
+      <Project>{90AEBC71-27DD-4620-9B3C-234483E6B024}</Project>
+      <Name>Modulo.Collect.Probe.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Repository\oval_definitions\definitions_all_linux.xml" />
+    <EmbeddedResource Include="Repository\oval_definitions\definitions_all_unix.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.VisualBasic.PowerPacks.10.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Visual Basic PowerPacks 10.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\mbSchemaSample.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\metabaseSample.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\metabaseSampleWithIncompleteSessions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Repository\oval_definitions\modulo-ios122-oval.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Windows\ProbeTests\AuditEventPolicySubcategories\AuditEventPolicySubcategories\" />
+    <Folder Include="Windows\ProbeTests\AuditEventPolicy\AuditEventPolicy\" />
+    <Folder Include="Windows\ProbeTests\File\File\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Windows\oval_definitions\oval.org.mitre.oval.def.5921.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

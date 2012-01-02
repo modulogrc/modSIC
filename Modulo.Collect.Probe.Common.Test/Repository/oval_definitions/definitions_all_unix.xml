@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<!-- ========================================= -->
+<!-- ==========  __OS_FULL_NAME__     ========== -->
+<!-- ========================================= -->
+<oval_definitions xsi:schemaLocation=
+                    "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd 
+                      http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd 
+                      http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd 
+									    http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd"
+									  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+									  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+									  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+									  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>Risk Manager</oval:product_name>
+    <oval:product_version>7.0</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2010-01-13T16:29:27.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+
+
+
+  <!-- ========================================= -->
+  <!-- ========== 1. DEFINITIONS      ========== -->
+  <!-- ========================================= -->
+
+
+  <!-- ========================================= -->
+  <!-- ========== 2. TESTS            ========== -->
+  <!-- ========================================= -->
+  <tests>
+    <runlevel_test id="oval:modulo:tst:1" version="1" comment="..." check="at least one" check_existence="at_least_one_exists" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:modulo:obj:1"/>
+      <state state_ref="oval:modulo:ste:1"/>
+    </runlevel_test>
+
+    <file_test id="oval:modulo:tst:2" version="1" comment="..." check="at least one" check_existence="at_least_one_exists" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:modulo:obj:2"/>
+      <state state_ref="oval:modulo:ste:2"/>
+    </file_test>
+    
+    <inetd_test id="oval:modulo:tst:3" version="1" comment="..." check="at least one" check_existence="at_least_one_exists" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:modulo:obj:3"/>
+      <state state_ref="oval:modulo:ste:3"/>
+    </inetd_test>
+    
+    <interface_test id="oval:modulo:tst:4" version="1" comment="..." check="at least one" check_existence="at_least_one_exists" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:modulo:obj:4"/>
+      <state state_ref="oval:modulo:ste:4"/>
+    </interface_test>
+    
+    <password_test id="oval:modulo:tst:5" version="1" comment="..." check="at least one" check_existence="at_least_one_exists" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:modulo:obj:5"/>
+      <state state_ref="oval:modulo:ste:5"/>
+    </password_test>
+    
+    <process_test id="oval:modulo:tst:6" version="1" comment="..." check="at least one" check_existence="at_least_one_exists" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:modulo:obj:6"/>
+      <state state_ref="oval:modulo:ste:6"/>
+    </process_test>
+    
+    <sccs_test id="oval:modulo:tst:7" version="1" comment="..." check="at least one" check_existence="at_least_one_exists" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:modulo:obj:7"/>
+      <state state_ref="oval:modulo:ste:7"/>
+    </sccs_test>
+    
+    <shadow_test id="oval:modulo:tst:8" version="1" comment="..." check="at least one" check_existence="at_least_one_exists" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:modulo:obj:8"/>
+      <state state_ref="oval:modulo:ste:8"/>
+    </shadow_test>
+    
+    <uname_test id="oval:modulo:tst:9" version="1" comment="..." check="at least one" check_existence="at_least_one_exists" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:modulo:obj:9"/>
+      <state state_ref="oval:modulo:ste:9"/>
+    </uname_test>
+    
+    <xinetd_test id="oval:modulo:tst:10" version="1" comment="..." check="at least one" check_existence="at_least_one_exists" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:modulo:obj:10"/>
+      <state state_ref="oval:modulo:ste:10"/>
+    </xinetd_test>
+  </tests>
+
+
+
+  <!-- ========================================= -->
+  <!-- ========== 3. OBJECTS          ========== -->
+  <!-- ========================================= -->
+  <objects>
+    <runlevel_object id="oval:modulo:obj:1" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <service_name>ssh</service_name>
+      <runlevel>1</runlevel>
+    </runlevel_object>
+    <runlevel_object id="oval:modulo:obj:100" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <service_name var_ref="oval:modulo:var:101"/>
+      <runlevel var_ref="oval:modulo:var:102"/>
+    </runlevel_object>
+    <runlevel_object id="oval:modulo:obj:110" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <service_name var_ref="oval:modulo:var:103"/>
+      <runlevel var_ref="oval:modulo:var:104"/>
+    </runlevel_object>
+    <runlevel_object id="oval:modulo:obj:120" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <set set_operator="COMPLEMENT" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <object_reference>oval:modulo:obj:1</object_reference>
+        <object_reference>oval:modulo:obj:100</object_reference>
+      </set>
+    </runlevel_object>
+    <runlevel_object id="oval:modulo:obj:130" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <service_name operation="pattern match">^open.*</service_name>
+      <runlevel var_ref="oval:modulo:var:104"/>
+    </runlevel_object>
+    <runlevel_object id="oval:modulo:obj:140" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <service_name var_ref="oval:modulo:var:105" operation="pattern match"/>
+      <runlevel var_ref="oval:modulo:var:104"/>
+    </runlevel_object>
+    <runlevel_object id="oval:modulo:obj:150" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <service_name var_ref="oval:modulo:var:101" operation="not equal"/>
+      <runlevel var_ref="oval:modulo:var:102"/>
+    </runlevel_object>
+
+    <file_object id="oval:modulo:obj:2" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <path>/home/</path>
+      <filename>file1</filename>
+    </file_object>
+    <file_object id="oval:modulo:obj:2000" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <filepath>/home/Desktop/file1</filepath>
+    </file_object>
+    <file_object id="oval:modulo:obj:2001" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <path>/home/Desktop</path>
+      <filename xsi:nil="true"/>
+    </file_object>
+    <file_object id="oval:gov.irs.rhel5:obj:33" version="1" comment="/lib/modules/.*/kernel/drivers/usb/storage/usb-storage.ko" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <behaviors />
+      <path operation="pattern match">/lib/modules/.*/kernel/drivers/usb/storage</path>
+      <filename>usb-storage.ko</filename>
+    </file_object>
+
+    <inetd_object id="oval:modulo:obj:3" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <protocol>TCP</protocol>
+      <service_name>SSH</service_name>
+    </inetd_object>
+
+    <interface_object id="oval:modulo:obj:4" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <name>eth0</name>
+    </interface_object>
+
+    <password_object id="oval:modulo:obj:5" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <username>root</username>
+    </password_object>
+    
+    <process_object id="oval:modulo:obj:6" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <command>named</command>
+    </process_object>
+    <process_object id="oval:modulo:obj:60" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <command var_ref="oval:modulo:var:60"></command>
+    </process_object>
+    <process_object id="oval:modulo:obj:61" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <command operation="not equal">ftp</command>
+    </process_object>
+    <process_object id="oval:modulo:obj:62" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <command operation="pattern match">.*tp$</command>
+    </process_object>
+    
+    <sccs_object id="oval:modulo:obj:7" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <filepath>/usr/home/file1</filepath>
+    </sccs_object>
+    
+    <shadow_object id="oval:modulo:obj:8" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <username>root</username>
+    </shadow_object>
+    
+    <uname_object id="oval:modulo:obj:9" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+    </uname_object>
+    
+    <xinetd_object id="oval:modulo:obj:10" version="1" comment="..."  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <protocol>UDP</protocol>
+      <service_name>named</service_name>
+    </xinetd_object>
+
+    <textfilecontent54_object id="oval:modulo:obj:20" version="1" comment="..."  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath>/usr/tmp/autorun.sh</filepath>
+      <pattern operation="pattern match">if</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object id="oval:modulo:obj:21" version="1" comment="..."  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>/usr/tmp/</path>
+      <filename>autorun.sh</filename>
+      <pattern operation="pattern match">if</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object id="oval:modulo:obj:22" version="1" comment="..."  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath var_ref="oval:modulo:var:110"/>
+      <pattern operation="pattern match" var_ref="oval:modulo:var:113"/>
+      <instance datatype="int" var_ref="oval:modulo:var:114"/>
+    </textfilecontent54_object>
+    <textfilecontent54_object id="oval:modulo:obj:23" version="1" comment="..."  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path var_ref="oval:modulo:var:111"/>
+      <filename var_ref="oval:modulo:var:112"/>
+      <pattern operation="pattern match" var_ref="oval:modulo:var:113"/>
+      <instance datatype="int" var_ref="oval:modulo:var:114"/>
+    </textfilecontent54_object>
+
+    <xmlfilecontent_object id="oval:modulo:obj:333" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>/tmp</path>
+      <filename>bookstore.xml</filename>
+      <xpath>//bookstore/book/title/text()</xpath>
+    </xmlfilecontent_object>
+
+    <xmlfilecontent_object id="oval:gov.irs.rhel5:obj:99" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>/etc/gconf/gconf.xml.mandatory</path>
+      <filename operation="pattern match">.*</filename>
+      <xpath>/apps/gnome-screensaver/lock_enabled</xpath>
+    </xmlfilecontent_object>
+
+
+    <file_object id="oval:gov.irs.rhel5:obj:15000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <behaviors recurse_direction="down" recurse_file_system="local" />
+      <path>/</path>
+      <filename operation="pattern match">.*</filename>
+    </file_object>
+
+  </objects>
+
+  <!-- ========================================= -->
+  <!-- ========== 4. STATES           ========== -->
+  <!-- ========================================= -->
+  <states>
+    <runlevel_state id="oval:modulo:ste:1" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <service_name>ssh</service_name>
+      <runlevel>1</runlevel>
+      <kill datatype="boolean">1</kill>
+    </runlevel_state>
+
+    <file_state id="oval:modulo:ste:2" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <path>home</path>
+      <filename>file1</filename>
+    </file_state>
+
+    <inetd_state id="oval:modulo:ste:3" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <protocol>TCP</protocol>
+      <service_name>SSH</service_name>
+      <endpoint_type>stream</endpoint_type>
+    </inetd_state>
+
+    <interface_state id="oval:modulo:ste:4" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <name>eth0</name>
+      <broadcast_addr>192.168.255.255</broadcast_addr>
+    </interface_state>
+
+    <password_state id="oval:modulo:ste:5" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <username>root</username>
+      <password>*****</password>
+    </password_state>
+
+    <process_state id="oval:modulo:ste:6" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <command>named</command>
+      <pid datatype="int">4</pid>
+    </process_state>
+
+    <sccs_state id="oval:modulo:ste:7" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <filepath>/usr/home/file1</filepath>
+      <level>3</level>
+    </sccs_state>
+
+    <shadow_state id="oval:modulo:ste:8" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <username>root</username>
+      <chg_allow datatype="int">1</chg_allow>
+    </shadow_state>
+
+    <uname_state id="oval:modulo:ste:9" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <os_name>UNIX</os_name>
+    </uname_state>
+
+    <xinetd_state id="oval:modulo:ste:10" version="1" comment="..."  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <protocol>UDP</protocol>
+      <service_name>named</service_name>
+      <disabled datatype="boolean">1</disabled>
+    </xinetd_state>
+  </states>
+
+  <!-- ========================================= -->
+  <!-- =========== 5. VARIABLES  ============ -->
+  <!-- ========================================= -->
+  <variables>
+    <constant_variable id="oval:modulo:var:101" datatype="string" version="1" comment="...">
+      <value>cups</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:102" datatype="string" version="1" comment="...">
+      <value>5</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:103" datatype="string" version="1" comment="...">
+      <value>ssh</value>
+      <value>cups</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:104" datatype="string" version="1" comment="...">
+      <value>1</value>
+      <value>2</value>
+      <value>3</value>
+      <value>4</value>
+      <value>5</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:105" datatype="string" version="1" comment="...">
+      <value>^open.*</value>
+      <value>*all</value>
+    </constant_variable>
+
+    <constant_variable id="oval:modulo:var:110" datatype="string" version="1" comment="filepath">
+      <value>/usr/tmp/autorun.sh</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:111" datatype="string" version="1" comment="path">
+      <value>/usr/tmp/</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:112" datatype="string" version="1" comment="filename">
+      <value>autorun.sh</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:113" datatype="string" version="1" comment="pattern">
+      <value>if</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:114" datatype="int" version="1" comment="instance">
+      <value>1</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:60" datatype="int" version="1" comment="instance">
+      <value>ssh</value>
+      <value>ftp</value>
+    </constant_variable>
+
+  </variables>
+
+</oval_definitions>

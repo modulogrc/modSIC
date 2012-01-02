@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>The OVAL Repository</oval:product_name>
+    <oval:schema_version>5.5</oval:schema_version>
+    <oval:timestamp>2009-07-20T21:13:42.715-04:00</oval:timestamp>
+  </generator>
+
+<!-- ========================================= -->
+<!-- ========== 1. DEFINITIONS      ========== -->
+<!-- ========================================= -->
+
+  
+<!-- ========================================= -->
+<!-- ========== 2. TESTS            ========== -->
+<!-- ========================================= -->
+
+
+  
+
+<!-- ========================================= -->
+<!-- ========== 3. OBJECTS          ========== -->
+<!-- ========================================= -->
+  <objects>
+    <!--<family_object id="oval:org.mitre.oval:obj:1000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"/> -->
+	<registry_object id="oval:org.mitre.oval:obj:3000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CurrentVersion</key>
+      <name>CurrentVersion</name>
+    </registry_object>
+	<!-- <registry_object id="oval:org.mitre.oval:obj:4000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key var_ref="oval:org.mitre.oval:var:4000"></key>
+      <name>DevicePath</name>
+    </registry_object> -->
+
+</objects>
+</oval_definitions>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:windows-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" xmlns:independent-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd">
+  <generator>
+    <oval:product_name>Risk Manager</oval:product_name>
+    <oval:product_version>7.0</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2011-02-24T16:36:26.896-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+
+  <!-- ========================================= -->
+  <!-- ===========   DEFINITIONS	  ============ -->
+  <!-- ========================================= -->
+  <definitions>
+    <definition class="compliance" id="oval:com.modulo.IIS6:def:68793" version="1">
+      <metadata>
+        <title>The number of simultaneous connections to MS IIS 6.0's WWW service should be limited.</title>
+        <description>The default configuration of MS IIS 6.0 allows an unlimited number of simultaneous connections to its Web sites. Because of that, malicious users may compromise the availability of the server by launching denial of service attacks, flooding the server with an excessive amount of connections. By limiting the maximum amount of simultaneous connections (at the level of the Web site), we protect the server against denial of service attacks and reduce the unnecessary use of its memory. This helps increase its performance.</description>
+      </metadata>
+      <criteria>
+        <criterion negate="true" comment="Checking if there is a web site that allows unlimited connections." test_ref="oval:com.modulo.IIS6:tst:6879301" />
+      </criteria>
+    </definition>
+  </definitions>
+  <!-- ========================================= -->
+  <!-- ============      TESTS	   =========== -->
+  <!-- ========================================= -->
+  <tests>
+    <metabase_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:com.modulo.IIS6:tst:6879301" version="1" comment="Checking if there is a web site that allows unlimited connections." check="at least one" check_existence="at_least_one_exists">
+      <object object_ref="oval:com.modulo.IIS6:obj:6879301" />
+      <state state_ref="oval:com.modulo.IIS6:ste:6879301" />
+    </metabase_test>
+  </tests>
+
+  <!-- ========================================= -->
+  <!-- ==========      OBJECTS		========== -->
+  <!-- ========================================= -->
+  <objects>
+    <metabase_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:com.modulo.IIS6:obj:6879301" version="1" comment="MaxConnections Property">
+      <key operation="pattern match" datatype="string">\/[Ll][Mm]\/[Ww]3[Ss][Vv][Cc]\/[0-9]+\/?$</key>
+      <id datatype="int">1014</id>
+    </metabase_object>
+  </objects>
+
+
+  <!-- ========================================= -->
+  <!-- ==========      STATES		    ========== -->
+  <!-- ========================================= -->
+  <states>
+    <metabase_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:com.modulo.IIS6:ste:6879301" version="1" comment="IIS Metabase uses 4294967295 value to represent unlimited connections.">
+      <data datatype="int">4294967295</data>
+    </metabase_state>
+  </states>
+  
+  <!-- ========================================= -->
+  <!-- ===========    VARIABLES     ============ -->
+  <!-- ========================================= -->
+  
+</oval_definitions>
+

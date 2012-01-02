@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+
+  <Product  Id="50AAAE7A-DA39-48AB-AE28-62C6AB5A086C"
+            Manufacturer="Modulo Security Solutions"
+            Language="1033"
+            Name="modSIC"
+            Version="1.00"
+            UpgradeCode="7D0795D9-5C61-4C29-B298-45BB90A288C0">
+
+    <Package InstallerVersion="200" Compressed="yes" Description="modSIC" Manufacturer="Modulo Security Solutions" InstallPrivileges="elevated" InstallScope="perMachine"/>
+
+    <Media Id="1" Cabinet="file1.cab" EmbedCab="yes" />
+
+    <Property Id="BASEADDRESS" Value=" " Secure="yes"/>
+    <Property Id="MEXADDRESS" Value=" " Secure="yes"/>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLLOCATION" Name="modSIC">
+
+          <Component Id="LicenseFiles" Guid="30DB24C1-F740-4600-B293-F99EFF8966EF" KeyPath="yes">
+            <File Id='modSIC.License.rtf' Name='License.rtf' DiskId='1' Source='$(var.ProjectDir)\License.rtf' />
+            <File Id='modSIC.3P.Licenses.rtf' Name='3P-Licenses.rtf' DiskId='1' Source='$(var.ProjectDir)\3P-Licenses.rtf' />
+          </Component>
+
+          <Directory Id="SamplesFolder" Name="Samples">
+            <Component Id="SampleFiles" Guid="5D7D47BB-31C6-4976-B5F5-92E5E7271590" KeyPath="yes">
+              <File Id='modSIC.OVAL_file.xml' Name='OVAL_file.xml' DiskId='1' Source='$(var.ProjectDir)\Samples\oval_file.xml' />
+              <File Id='modSIC.OVAL_reg.xml' Name='OVAL_reg.xml' DiskId='1' Source='$(var.ProjectDir)\Samples\oval_reg.xml' />
+              <File Id='modSIC.OVAL_sql.xml' Name='OVAL_sql.xml' DiskId='1' Source='$(var.ProjectDir)\Samples\Oval_SQL.xml' />
+              <File Id='modSIC.OVAL_unix.xml' Name='OVAL_unix.xml' DiskId='1' Source='$(var.ProjectDir)\Samples\Oval_Unix.xml' />
+              <File Id='modSIC.OVAL_CCM_Antivir.xml' Name='OVAL_CCM_Antivir.xml' DiskId='1' Source='$(var.ProjectDir)\Samples\OVAL_CCM_Antivir.xml' />
+              <File Id='modSIC.OVAL_CCM_Grub.xml' Name='OVAL_CCM_Grub.xml' DiskId='1' Source='$(var.ProjectDir)\Samples\OVAL_CCM_Grub.xml' />
+            </Component>
+          </Directory>
+
+          <Directory Id="ClientFolder" Name="modSIC Client">
+
+            <Component Id="ClientConsole" Guid="CB3FAE2F-8441-41B7-84E9-CA33AB23E45A" KeyPath="yes">
+              <Shortcut
+                        Id="ModsicGuiDesktopShortcut"
+                        Directory="DesktopFolder"
+                        Name="modSIC Client"
+                        WorkingDirectory="ClientFolder"
+                        Description="Windowed Client for modSIC"
+                        Target="[#modSIC.modsicgui.exe]"
+                        Icon="Icon.exe">
+                <Icon Id="Icon.exe" SourceFile="$(var.Modulo.Collect.GraphicalConsole.TargetDir)modsicgui.exe" />
+              </Shortcut>
+              <File Id='modSIC.modsicgui.exe' Name='modsicgui.exe' DiskId='1' Source='$(var.Modulo.Collect.GraphicalConsole.TargetDir)modsicgui.exe' />
+              <File Id='modSIC.modsicgui.exe.config' Name='modsicgui.exe.config' DiskId='1' Source='$(var.Modulo.Collect.GraphicalConsole.TargetDir)modsicgui.exe.config' />
+              <File Id='modSIC.modsic.exe' Name='modsic.exe' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.TargetDir)modsic.exe'/>
+              <File Id='modSIC.modsic.exe.config' Name='modsic.exe.config' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.TargetDir)modsic.exe.config' />
+              <File Id='_Newtonsoft.Json.dll' Name='Newtonsoft.Json.dll' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.TargetDir)Newtonsoft.Json.dll'/>
+              <File Id='CommandLine.dll' Name='CommandLine.dll' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.TargetDir)CommandLine.dll'/>
+              <File Id='_Modulo.Collect.Service.Contract.dll' Name='Modulo.Collect.Service.Contract.dll' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.TargetDir)Modulo.Collect.Service.Contract.dll'/>
+              <File Id='Modulo.Collect.Service.Client.dll' Name='Modulo.Collect.Service.Client.dll' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.TargetDir)Modulo.Collect.Service.Client.dll'/>
+              <File Id='_Modulo.Collect.OVAL.dll' Name='Modulo.Collect.OVAL.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Modulo.Collect.OVAL.dll' />
+            </Component>
+
+            <Directory Id="XmlFolder" Name="xml">
+              <Component Id="XmlFiles" Guid="CDD2944C-692B-4956-80BD-5A1910591FA2" KeyPath="yes">
+                <File Id='aix_definitions_schema.xsd' Name='aix-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\aix-definitions-schema.xsd' />
+                <File Id='apache_definitions_schema.xsd' Name='apache-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\apache-definitions-schema.xsd' />
+                <File Id='catos_definitions_schema.xsd' Name='catos-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\catos-definitions-schema.xsd' />
+                <File Id='esx_definitions_schema.xsd' Name='esx-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\esx-definitions-schema.xsd' />
+                <File Id='freebsd_definitions_schema.xsd' Name='freebsd-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\freebsd-definitions-schema.xsd' />
+                <File Id='hpux_definitions_schema.xsd' Name='hpux-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\hpux-definitions-schema.xsd' />
+                <File Id='independent_definitions_schema.xsd' Name='independent-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\independent-definitions-schema.xsd' />
+                <File Id='ios_definitions_schema.xsd' Name='ios-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\ios-definitions-schema.xsd' />
+                <File Id='linux_definitions_schema.xsd' Name='linux-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\linux-definitions-schema.xsd' />
+                <File Id='macos_definitions_schema.xsd' Name='macos-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\macos-definitions-schema.xsd' />
+                <File Id='oval_common_schema.xsd' Name='oval-common-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\oval-common-schema.xsd' />
+                <File Id='oval_definitions_schema.xsd' Name='oval-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\oval-definitions-schema.xsd' />
+                <File Id='oval_definitions_schematron.sch' Name='oval-definitions-schematron.sch' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\oval-definitions-schematron.sch' />
+                <File Id='pixos_definitions_schema.xsd' Name='pixos-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\pixos-definitions-schema.xsd' />
+                <File Id='sharepoint_definitions_schema.xsd' Name='sharepoint-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\sharepoint-definitions-schema.xsd' />
+                <File Id='solaris_definitions_schema.xsd' Name='solaris-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\solaris-definitions-schema.xsd' />
+                <File Id='unix_definitions_schema.xsd' Name='unix-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\unix-definitions-schema.xsd' />
+                <File Id='windows_definitions_schema.xsd' Name='windows-definitions-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\windows-definitions-schema.xsd' />
+                <File Id='xmldsig_core_schema.xsd' Name='xmldsig-core-schema.xsd' DiskId='1' Source='$(var.Modulo.Collect.ClientConsole.ProjectDir)\xml\xmldsig-core-schema.xsd' />
+              </Component>
+            </Directory>
+          </Directory>
+
+          <Directory Id="Folder" Name="modSIC Service">
+
+            <Component Id="ServiceHost" Guid="9DB5D7D5-E295-4C14-AA0C-335500A8AA68" KeyPath="yes">
+              <File Id='ServiceExe' Name='modsicsrv.exe' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)modsicsrv.exe'/>
+              <ServiceControl Id="StartService" Start="install" Stop="both" Remove="uninstall" Name="modSIC"/>
+              <File Id='modsicsrv.exe.config' Name='modsicsrv.exe.config' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)modsicsrv.exe.config' />
+
+              <!-- PROBES  -->
+              <File Id='Modulo.Collect.Probe.Independent.dll' Name='Modulo.Collect.Probe.Independent.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Modulo.Collect.Probe.Independent.dll' />
+              <File Id='Modulo.Collect.Probe.Common.dll' Name='Modulo.Collect.Probe.Common.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Modulo.Collect.Probe.Common.dll' />
+              <File Id='Modulo.Collect.Probe.Windows.dll' Name='Modulo.Collect.Probe.Windows.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Modulo.Collect.Probe.Windows.dll' />
+              <File Id='Modulo.Collect.Probe.Unix.dll' Name='Modulo.Collect.Probe.Unix.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Modulo.Collect.Probe.Unix.dll' />
+              <File Id='Modulo.Collect.Probe.Solaris.dll' Name='Modulo.Collect.Probe.Solaris.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Modulo.Collect.Probe.Solaris.dll' />
+              <File Id='Modulo.Collect.Probe.CiscoIOS.dll' Name='Modulo.Collect.Probe.CiscoIOS.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Modulo.Collect.Probe.CiscoIOS.dll' />
+
+              <!-- INTERNAL DEPENDENCIES -->
+              <File Id='Modulo.Collect.Service.Contract.dll' Name='Modulo.Collect.Service.Contract.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Modulo.Collect.Service.Contract.dll'/>
+              <File Id='Modulo.Collect.OVAL.dll' Name='Modulo.Collect.OVAL.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Modulo.Collect.OVAL.dll' />
+              <File Id='UsersSectionBuilder.exe' Name='UsersSectionBuilder.exe' DiskId='1' Source='$(var.UsersSectionBuilder.TargetDir)UsersSectionBuilder.exe' />
+
+              <!-- EXTERNALS LIBS -->
+              <File Id='Thinktecture.IdentityModel.dll' Name='Thinktecture.IdentityModel.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Thinktecture.IdentityModel.dll'/>
+              <File Id='Microsoft.Practices.Unity.dll' Name='Microsoft.Practices.Unity.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Microsoft.Practices.Unity.dll'/>
+              <File Id='log4net.dll' Name='log4net.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)log4net.dll' />
+              <File Id='Newtonsoft.Json.dll' Name='Newtonsoft.Json.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Newtonsoft.Json.dll'/>
+              <File Id='Quartz.dll' Name='Quartz.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Quartz.dll'/>
+              <File Id='Common.Logging.dll' Name='Common.Logging.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Common.Logging.dll'/>
+              <File Id='Mono.Security.dll' Name='Mono.Security.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Independent.TargetDir)Mono.Security.dll'/>
+              <File Id='MySql.Data.dll' Name='MySql.Data.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Independent.TargetDir)MySql.Data.dll'/>
+              <!-- Postgres Driver -->
+              <File Id='Npgsql.dll' Name='Npgsql.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Independent.TargetDir)Npgsql.dll'/>
+
+              <!-- sharpSSH -->
+              <File Id='Tamir.SharpSSH.dll' Name='Tamir.SharpSSH.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Tamir.SharpSSH.dll' />
+              <File Id='Org.Mentalis.Security.dll' Name='Org.Mentalis.Security.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Org.Mentalis.Security.dll' />
+              <File Id='DiffieHellman.dll' Name='DiffieHellman.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)DiffieHellman.dll' />
+
+              <!-- ravenDB -->
+              <File Id='Esent.Interop.dll' Name='Esent.Interop.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Esent.Interop.dll' />
+              <File Id='Raven.Munin.dll' Name='Raven.Munin.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Raven.Munin.dll' />
+              <File Id='Raven.Client.Lightweight.dll' Name='Raven.Client.Lightweight.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Raven.Client.Lightweight.dll' />
+              <File Id='Raven.Database.dll' Name='Raven.Database.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Raven.Database.dll' />
+              <File Id='Raven.Storage.Esent.dll' Name='Raven.Storage.Esent.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Raven.Storage.Esent.dll' />
+              <File Id='Raven.Storage.Managed.dll' Name='Raven.Storage.Managed.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Raven.Storage.Managed.dll' />
+              <File Id='ICSharpCode.NRefactory.dll' Name='ICSharpCode.NRefactory.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)ICSharpCode.NRefactory.dll' />
+              <File Id='Raven.Abstractions.dll' Name='Raven.Abstractions.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Raven.Abstractions.dll' />
+              <File Id='Raven.Client.Embedded.dll' Name='Raven.Client.Embedded.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Raven.Client.Embedded.dll' />
+              <File Id='Lucene.Net.dll2' Name='Lucene.Net.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Lucene.Net.dll' />
+              <File Id='Lucene.Net.Contrib.Spatial.dll' Name='Lucene.Net.Contrib.Spatial.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Lucene.Net.Contrib.Spatial.dll' />
+              <File Id='Lucene.Net.Contrib.SpellChecker.dll' Name='Lucene.Net.Contrib.SpellChecker.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Lucene.Net.Contrib.SpellChecker.dll' />
+              <File Id='NLog.dll' Name='NLog.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)NLog.dll' />
+
+              <!-- Topshelf -->
+              <File Id='Topshelf.dll' Name='Topshelf.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Topshelf.dll' />
+              <File Id='Magnum.dll' Name='Magnum.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Magnum.dll' />
+              <File Id='Stact.dll' Name='Stact.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Stact.dll' />
+
+              <util:XmlFile Id="PutHashCertificate"
+                  File="[Folder]modsicsrv.exe.config"
+                  Action="setValue"
+                  ElementPath="/configuration/certificateReferences/add[\[]@name=&quot;CollectServiceCertificate&quot;[\]]/@findValue"
+                  Value="[CERTHASHCODE]"
+                  Permanent="yes" Sequence="5" SelectionLanguage="XPath"/>
+
+              <util:XmlFile Id="UpdateBaseAddress"
+                  File="[Folder]modsicsrv.exe.config"
+                  Action="setValue"
+                  ElementPath="/configuration/system.serviceModel/services/service/host/baseAddresses/add/@baseAddress"
+                  Value="[BASEADDRESS]"
+                  Permanent="yes" Sequence="1" SelectionLanguage="XPath"/>
+
+              <util:XmlFile Id="UpdateMexAddress"
+                  File="[Folder]modsicsrv.exe.config"
+                  Action="setValue"
+                  ElementPath="/configuration/system.serviceModel/services/service/endpoint[\[]@name=&quot;mexHttpBinding&quot;[\]]/@address"
+                  Value="[MEXADDRESS]"
+                  Permanent="yes" Sequence="2" SelectionLanguage="XPath"/>
+
+              <util:XmlFile Id="UpdateRavenConfiguration"
+                  File="[Folder]modsicsrv.exe.config"
+                  Action="setValue"
+                  ElementPath="/configuration/ServiceConfigurationSection/ravendb/@webUIEnabled"
+                  Value="false"
+                  Permanent="yes" Sequence="3" SelectionLanguage="XPath"/>
+
+              <util:XmlFile Id="UpdateSchematronConfiguration"
+                  File="[Folder]modsicsrv.exe.config"
+                  Action="setValue"
+                  ElementPath="/configuration/ServiceConfigurationSection/schematronValidation/@ValidationEnabled"
+                  Value="false"
+                  Permanent="yes" Sequence="4" SelectionLanguage="XPath"/>
+
+              <util:XmlFile Id="UpdateCliBaseAddress"
+                  File="[ClientFolder]modsic.exe.config"
+                  Action="setValue"
+                  ElementPath="/configuration/ServerSection/modSIC/@address"
+                  Value="[ADDRESS]:[SERVICEPORT]"
+                  Permanent="yes" Sequence="5" SelectionLanguage="XPath"/>
+
+              <util:XmlFile Id="UpdateGuiBaseAddress"
+                  File="[ClientFolder]modsicgui.exe.config"
+                  Action="setValue"
+                  ElementPath="/configuration/ConfigurationSection/server/@Address"
+                  Value="http://[ADDRESS]"
+                  Permanent="yes" Sequence="6" SelectionLanguage="XPath"/>
+
+              <util:XmlFile Id="UpdateGuiPort"
+                  File="[ClientFolder]modsicgui.exe.config"
+                  Action="setValue"
+                  ElementPath="/configuration/ConfigurationSection/server/@Port"
+                  Value="[SERVICEPORT]"
+                  Permanent="yes" Sequence="7" SelectionLanguage="XPath"/>
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="modSIC"/>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop"/>
+    </Directory>
+
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="3090CDBD-B46B-4628-B5D2-062C40D2BABD">
+        <Shortcut Id="ApplicationStartMenuShortcut" 
+          Name="modSIC Client" 
+          Description="Windowed Client for modSIC"
+          Target="[ClientFolder]modsicgui.exe"
+          WorkingDirectory="ClientFolder"/>
+        <Shortcut Id="SamplesStartMenuShortcut"
+          Name="OVAL Samples"
+          Description="Sample OVAL Definitions files for modSIC"
+          Target="[SamplesFolder]" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\Modulo\modSIC" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+
+    <CustomAction Id="InstallCertificate" BinaryKey="CustomAction" DllEntry="InstallCertificate" Impersonate="no" Execute="deferred"/>
+    <CustomAction Id="SetCertificatePath" Property="InstallCertificate" Value="[CERTPATH]|[CERTPASS]" Impersonate="no"/>
+    <CustomAction Id="SelectCertificate" BinaryKey="CustomAction" DllEntry="SelectCertificate" Impersonate="no"/>
+    <CustomAction Id="GetThumbPrint" BinaryKey="CustomAction" DllEntry="GetThumbPrint" Impersonate="no"/>
+    <CustomAction Id="CheckPort" BinaryKey="CustomAction" DllEntry="CheckPort" Impersonate="no"/>
+    <CustomAction Id="CheckAddress" BinaryKey="CustomAction" DllEntry="CheckAddress" Impersonate="no"/>
+    <CustomAction Id="UpdateFQDN" BinaryKey="CustomAction" DllEntry="UpdateFQDN" Impersonate="no"/>
+    <CustomAction Id="UpdateSummary" BinaryKey="CustomAction" DllEntry="UpdateSummary" Impersonate="no"/>
+
+    <CustomAction Id="SetBaseAddress" Property="BASEADDRESS" Value="http://[ADDRESS]:[SERVICEPORT]/CollectService"/>
+    <CustomAction Id="SetMexAddress" Property="MEXADDRESS" Value="http://[ADDRESS]:[SERVICEPORT]/CollectService/mex/"/>
+
+    <CustomAction Id="InstallCollectService" Directory="Folder"
+                  ExeCommand='"[Folder]\modsicsrv.exe" install'
+                  Execute="deferred" Impersonate="no"/>
+
+    <CustomAction Id="UninstallCollectService" Directory="Folder"
+                  ExeCommand='"[Folder]\modsicsrv.exe" uninstall'
+                  Execute="deferred" Impersonate="no"/>
+
+    <Binary Id="CustomAction" SourceFile="Modulo.Collect.Service.CustomAction.CA.dll"/>
+
+    <Feature Id="modSIC" Title="modSIC" Level="1" Display="collapse" ConfigurableDirectory="INSTALLLOCATION" Absent="disallow" AllowAdvertise="no">
+      <ComponentRef Id="LicenseFiles" />
+      <ComponentRef Id="SampleFiles" />
+      <ComponentRef Id="ServiceHost" />
+      <ComponentRef Id="ClientConsole" />
+      <ComponentRef Id="XmlFiles" />
+      <ComponentRef Id="ApplicationShortcut" />
+    </Feature>
+
+    <InstallUISequence>
+      <Show Dialog="ExitDlg" OnExit="success">Not Installed</Show>
+      <Custom Action="UpdateFQDN" Before="FindRelatedProducts">Not Installed</Custom>
+      <Custom Action="UpdateSummary" After="ProgressDlg">Not Installed</Custom>
+    </InstallUISequence>
+
+    <InstallExecuteSequence>
+      <Custom Action="SetCertificatePath" Before="InstallCertificate">Not Installed</Custom>
+      <Custom Action="InstallCertificate" Before="InstallCollectService">Not Installed</Custom>
+      <Custom Action="InstallCollectService" Before="StartServices">Not Installed</Custom>
+
+      <Custom Action="UninstallCollectService" After="StopServices">Installed</Custom>
+    </InstallExecuteSequence>
+
+    <UIRef Id="ModSICCustomUI" />
+  </Product>
+</Wix>

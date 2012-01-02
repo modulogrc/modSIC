@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Modulo.Collect.Service.Entities.CollectResult">
+    <Position X="0.75" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQACAAAEAAAAAAAAAQAAAAAAAAAAAAApAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\CollectResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modulo.Collect.Service.Entities.CollectRequest">
+    <Position X="4" Y="2.25" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QgIACGIEEQAAAgkEAYEgkCQAQBAhAAABAQRBBGSAAAA=</HashCode>
+      <FileName>Entities\CollectRequest.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Result" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Collects" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Modulo.Collect.Service.Entities.CollectExecution">
+    <Position X="7.75" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAACAAAAAAAAAQAAgAAgAAAAAAAAAABAAMAAAAA=</HashCode>
+      <FileName>Entities\CollectExecution.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ProbeExecutions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Modulo.Collect.Service.Entities.ProbeExecution">
+    <Position X="11.25" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CQAAAAAAAAAIAgAAAQAAAAAAAAAAAAAIAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\ProbeExecution.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ExecutionLogs" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Modulo.Collect.Service.Entities.ExecutionLog">
+    <Position X="15" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAABAAABAUAAIAAAAAA=</HashCode>
+      <FileName>Entities\ExecutionLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modulo.Collect.Service.Entities.Target">
+    <Position X="11.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAACEIAAAAIQAAA=</HashCode>
+      <FileName>Entities\Target.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Credential" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Parameters" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Modulo.Collect.Service.Entities.TargetCredential">
+    <Position X="14" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TargetCredential.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modulo.Collect.Service.Entities.TargetParameter">
+    <Position X="6.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TargetParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Modulo.Collect.Service.Entities.CollectPackage">
+    <Position X="0.75" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAABAA=</HashCode>
+      <FileName>Entities\CollectPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

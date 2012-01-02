@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!-- ========================================= -->
+<!-- ==========        FILE       ============ -->
+<!-- ========================================= -->
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd">
+<generator>
+    <oval:product_name>Test Purpose</oval:product_name>
+    <oval:product_version>1</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2011-03-23T15:00:00.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>    
+	<!-- ========================================= -->
+	<!-- ========== 1. DEFINITIONS  ============== -->
+	<!-- ========================================= -->
+	<definitions>
+		<definition id="oval:tutorial:def:1" class="inventory" version="1">
+			<metadata>
+				<title>This is the title of definition</title>
+				<description>
+					This is the description of definition.
+				</description>
+			</metadata>
+			<!-- ========================================= -->
+			<!-- ========== 2.   CRITERIA   ============== -->
+			<!-- ========================================= -->			
+			<criteria>
+				<criterion test_ref="oval:tutorial:tst:1" comment="The file foo.file must exist"/>
+			</criteria>
+		</definition>
+	</definitions>
+	<tests>
+			<!-- ========================================= -->
+       	    <!-- ========== 3.    TESTS     ============== -->
+			<!-- ========================================= -->
+		<file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:tutorial:tst:1" check="all" check_existence="at_least_one_exists" version="1" comment="check if foo.file exist"> 		
+			<object object_ref="oval:tutorial:obj:1"/>	
+		</file_test>
+	</tests>
+	<objects>
+			<!-- ========================================= -->
+			<!-- ========== 4.    OBJECT    ============== -->
+			<!-- ========================================= -->
+		<file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:tutorial:obj:1" version="1">
+			<path var_ref="oval:tutorial:var:1"/>
+			<filename var_ref="oval:tutorial:var:2"/>
+		</file_object>
+	</objects>
+      <!-- ========================================= -->
+      <!-- ========== 5.   VARIABLES     =========== -->
+      <!-- ========================================= -->
+  <variables>
+		<external_variable comment="File Path" id="oval:tutorial:var:1" version="1" datatype="string"/>
+		<external_variable comment="File Name" id="oval:tutorial:var:2" version="1" datatype="string"/>
+	</variables>	
+</oval_definitions>

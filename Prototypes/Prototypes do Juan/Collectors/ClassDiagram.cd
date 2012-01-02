@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FrameworkNG.CollectResult">
+    <Position X="8.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>CollectResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrameworkNG.Collector">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAIAAgAAAAAAAAAAAABAAAIA=</HashCode>
+      <FileName>Collector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrameworkNG.CollectorAuth">
+    <Position X="7.75" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAgABAAACAAAAAAAAAAA=</HashCode>
+      <FileName>CollectorAuth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrameworkNG.CollectorException">
+    <Position X="7.5" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CollectorException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrameworkNG.WinRegCollector">
+    <Position X="5.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAgAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WinRegCollector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrameworkNG.WMICollector">
+    <Position X="2.75" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAgQCAIAAAGIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WMICollector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrameworkNG.WinRegControlSpec">
+    <Position X="5.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAABAAAAACAAAAAAAAAAEAA=</HashCode>
+      <FileName>WinRegControlSpec.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrameworkNG.ControlSpec">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>ControlSpec.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FrameworkNG.WMIControlSpec">
+    <Position X="3.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WMIControlSpec.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

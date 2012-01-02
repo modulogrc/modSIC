@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!-- ========================================= -->
+<!-- ==========  WINDOWS REGISTRY ============ -->
+<!-- ========================================= -->
+<!--In an OVAL Definitions file, the project author, version, date, and description should be provided in this section.-->
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd">
+<generator>
+    <oval:product_name>Test Purpose</oval:product_name>
+    <oval:product_version>1</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2011-03-23T15:00:00.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+	<!-- ========================================= -->
+	<!-- ========== 1. DEFINITIONS  ============== -->
+	<!-- ========================================= -->
+  <!--In this section, a description of what will be verified should be provided (title, platform, and CPE name are optional).-->
+	<definitions>
+		<definition id="oval:tutorial:def:1" class="inventory" version="1">
+			<metadata>
+				<title>This is the title of definition</title>
+				<description>
+					This is the description of definition.
+				</description>
+			</metadata>
+			<!-- ========================================= -->
+			<!-- ========== 2.   CRITERIA   ============== -->
+			<!-- ========================================= -->
+      <!--A test to verify the assessment described above must be linked here.-->
+			<criteria>
+				<criterion test_ref="oval:tutorial:tst:1" comment="the value of the registry key equals Hello World"/>
+			</criteria>
+		</definition>
+	</definitions>
+	<tests>
+			<!-- ========================================= -->
+      <!-- ========== 3.    TESTS     ============== -->
+			<!-- ========================================= -->
+      <!--Each test should be linked to its object and state as well the desired verification method.-->
+		<registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:tutorial:tst:1" check="all" version="1" comment="windows family">
+			<object object_ref="oval:tutorial:obj:1"/>
+			<state state_ref="oval:tutorial:ste:1"/>
+		</registry_test>
+	</tests>
+	<objects>
+			<!-- ========================================= -->
+			<!-- ========== 4.    OBJECT    ============== -->
+			<!-- ========================================= -->
+      <!--The object linked to some of the test entries listed above.-->
+		<registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:tutorial:obj:1" version="1">
+		<hive>HKEY_LOCAL_MACHINE</hive>
+		<key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+		<name>ProductName</name>				
+	</registry_object>
+	</objects>
+	<states>
+			<!-- ========================================= -->
+			<!-- ========== 5.    STATE     ============== -->
+			<!-- ========================================= -->
+      <!--The expected state for one of the above objects. Change the value section with de expected Windows OS version.-->
+		<registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:tutorial:ste:1" version="1">
+			<value>Windows 7 Enterprise</value>
+		</registry_state>
+	</states>	
+</oval_definitions>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="81fc919c-72cc-4863-82b0-3ef2fa7af323" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>true</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1000/CollectService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CollectService.xsd" MetadataType="Schema" ID="24e9adbc-0096-4689-bddf-7e19fed1d0d0" SourceId="1" SourceUrl="http://localhost:1000/CollectService?xsd=xsd2" />
+    <MetadataFile FileName="CollectService1.xsd" MetadataType="Schema" ID="df8c786f-db8d-4cf5-9838-17dcc675f578" SourceId="1" SourceUrl="http://localhost:1000/CollectService?xsd=xsd3" />
+    <MetadataFile FileName="CollectService2.xsd" MetadataType="Schema" ID="30e14863-1812-4b60-a809-d5585caddd50" SourceId="1" SourceUrl="http://localhost:1000/CollectService?xsd=xsd0" />
+    <MetadataFile FileName="CollectService.disco" MetadataType="Disco" ID="16d796fc-480a-481f-b1fe-890427b45dca" SourceId="1" SourceUrl="http://localhost:1000/CollectService?disco" />
+    <MetadataFile FileName="CollectService3.xsd" MetadataType="Schema" ID="3d3136e1-caa9-411d-a62b-8c9f182e3f55" SourceId="1" SourceUrl="http://localhost:1000/CollectService?xsd=xsd4" />
+    <MetadataFile FileName="CollectService4.xsd" MetadataType="Schema" ID="00911863-e5e0-4111-ae81-4c8bf45429a0" SourceId="1" SourceUrl="http://localhost:1000/CollectService?xsd=xsd5" />
+    <MetadataFile FileName="CollectService5.xsd" MetadataType="Schema" ID="97e59b7c-f681-4da6-a665-689cae738016" SourceId="1" SourceUrl="http://localhost:1000/CollectService?xsd=xsd1" />
+    <MetadataFile FileName="CollectService.wsdl" MetadataType="Wsdl" ID="6acec48b-3291-4a61-a8d7-143b66a7703b" SourceId="1" SourceUrl="http://localhost:1000/CollectService?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

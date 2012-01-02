@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_system_characteristics 
+  xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" 
+  xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" 
+  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+  xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation=
+    "http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd 
+     http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd 
+     http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd
+     http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd">
+  <!-- xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" -->
+  <generator>
+    <oval:product_name>OVAL Definition Interpreter</oval:product_name>
+    <oval:product_version>5.5 Build: 23</oval:product_version>
+    <oval:schema_version>5.5</oval:schema_version>
+    <oval:timestamp>2009-08-06T17:13:36</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <system_info>
+    <os_name>unknown Service Pack 1</os_name>
+    <os_version>6.0.6001</os_version>
+    <architecture>INTEL32</architecture>
+    <primary_host_name>mss-rj-007.mss.modulo.com.br</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>Intel(R) 82566DM Gigabit Network Connection</interface_name>
+        <ip_address>172.16.3.33</ip_address>
+        <mac_address>00-1E-C9-1D-72-4E</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+
+  <collected_objects>
+    <object flag="complete" id="oval:modulo:obj:1" version="1">
+      <reference item_ref="1"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:2" version="1">
+      <reference item_ref="2"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:3" version="1">
+      <reference item_ref="3"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:4" version="1">
+      <reference item_ref="4"/>
+    </object>
+  </collected_objects>
+
+  <system_data>
+    <wmi57_item id="1" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <namespace>root\cimv2</namespace>
+      <wql>Select domain, name from Win32_Account</wql>
+      <result datatype="record">
+        <field name="domain" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">company</field>
+        <field name="name" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">admin</field>
+      </result>
+    </wmi57_item>
+    <sql57_item id="2" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+      <engine>sqlserver</engine>
+      <version>2008</version>
+      <connection_string>some connection string</connection_string>
+      <sql>select id, name from customers</sql>
+      <result datatype="record">
+        <field name="id" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">1029</field>
+        <field name="name" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">John Doe</field>
+      </result>
+    </sql57_item>
+    <wmi57_item id="3" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <namespace>root\cimv2</namespace>
+      <wql>Select domain, name from Win32_Account</wql>
+    </wmi57_item>
+
+    <wmi57_item id="4" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <namespace>root\cimv2</namespace>
+      <wql>Select domain, name from Win32_UserAccount</wql>
+      <result datatype="record">
+        <field name="id" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">6</field>
+        <field name="name" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">admin</field>
+      </result>
+    </wmi57_item>
+  </system_data>
+
+</oval_system_characteristics>

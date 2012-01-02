@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!-- ========================================= -->
+<!-- ===========        SQL       ============ -->
+<!-- ========================================= -->
+<!--In an OVAL Definitions file, the project author, version, date, and description should be provided in this section.-->
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd">
+
+	<generator>
+		<oval:product_name>Test Purpose for SQL Assessment</oval:product_name>
+		<oval:product_version>1.0</oval:product_version>
+		<oval:schema_version>5.9</oval:schema_version>
+		<oval:timestamp>2011-09-09T15:00:00.000-03:00</oval:timestamp>
+		<vendor>Modulo Security</vendor>
+	</generator>
+
+<!-- ========================================= -->
+<!-- ========== 1. DEFINITIONS  ============== -->
+<!-- ========================================= -->
+<!--In this section, a description of what will be verified should be provided (title, platform, and CPE name are optional).-->
+
+	<definitions>
+		<definition id="oval:tutorial:def:1" class="inventory" version="1">
+			<metadata>
+				<title>SQL query sample: Verify the existence of a certain database</title>
+				<description>
+					This definition is used to introduce OVAL to individuals interested in writing content in OVAL. This example indicates if a specific database exists in a MySQL installation.
+				</description>
+			</metadata>
+
+<!-- ========================================= -->
+<!-- ========== 2.   CRITERIA   ============== -->
+<!-- ========================================= -->
+<!--A test to verify the assessment described above must be linked here. Write the name of a database in the comment field.-->
+
+			<criteria>
+				<criterion comment="Verify the existence of a database;" test_ref="oval:tutorial:tst:1"/>
+			</criteria>
+		</definition>
+	</definitions>
+	
+	
+<!-- ========================================= -->
+<!-- ========== 3.    TESTS     ============== -->
+<!-- ========================================= -->
+<!--Each test should be linked to its object and state as well the desired verification method. Change the name of the desired database in the comment field.-->
+	
+	<tests>
+		<sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:tutorial:tst:1" comment="SHOW DATABASES like 'test';" check="all" check_existence="all_exist" version="1">
+			<object object_ref="oval:tutorial:obj:1"/>
+		</sql57_test>
+	</tests>
+		
+<!-- ========================================= -->
+<!-- ========== 4.    OBJECT    ============== -->
+<!-- ========================================= -->
+<!--The object linked to some of the test entries listed above. Change de Connection String and the Query to your specific enviroment.-->
+	
+	<objects> 
+		<sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:tutorial:obj:1" version="1">
+			<engine>mysql</engine>
+			<version>5.1</version>
+			<connection_string>Server=SERVER ADDRESS;Database=mysql;user id=USER_NAME;password=PASSWORD;</connection_string>
+			<sql>SHOW DATABASES like 'test';</sql>
+		</sql57_object>
+	</objects>
+
+<!-- ========================================= -->
+<!-- ========== 5.    STATE     ============== -->
+<!-- ========================================= -->
+<!--The expected state for one of the above objects.-->
+
+
+
+<!-- ========================================= -->
+<!-- ========== 6.   VARIABLES     =========== -->
+<!-- ========================================= -->	
+</oval_definitions>

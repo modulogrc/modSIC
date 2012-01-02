@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collectors", "Collectors\Collectors.csproj", "{2C5A4A73-1E92-4FE0-BEC0-87CE8BABE02A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectorsTest", "CollectorsTest\CollectorsTest.csproj", "{CA61439D-0192-4099-A957-CD952E976B51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMIRegistry", "WMIRegistry\WMIRegistry.csproj", "{4B17CD56-F8BF-409F-A80C-FA49F73CD4E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSHGUIExamples", "GUIExamples\SSHGUIExamples.csproj", "{44B33FCF-5672-4B69-9007-A5640F47AAA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalisticTelnet", "MinimalisticTelnet\MinimalisticTelnet.csproj", "{AD79EBB8-1157-4120-99D2-433559991A16}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tango.mss.modulo.com.br:8080/tfs/ngprojects
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Collectors\\Collectors.csproj
+		SccProjectName1 = Collectors
+		SccLocalPath1 = Collectors
+		SccProjectUniqueName2 = CollectorsTest\\CollectorsTest.csproj
+		SccProjectName2 = CollectorsTest
+		SccLocalPath2 = CollectorsTest
+		SccProjectUniqueName3 = WMIRegistry\\WMIRegistry.csproj
+		SccProjectName3 = WMIRegistry
+		SccLocalPath3 = WMIRegistry
+		SccProjectUniqueName4 = GUIExamples\\SSHGUIExamples.csproj
+		SccProjectName4 = GUIExamples
+		SccLocalPath4 = GUIExamples
+		SccProjectUniqueName5 = MinimalisticTelnet\\MinimalisticTelnet.csproj
+		SccProjectName5 = MinimalisticTelnet
+		SccLocalPath5 = MinimalisticTelnet
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C5A4A73-1E92-4FE0-BEC0-87CE8BABE02A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C5A4A73-1E92-4FE0-BEC0-87CE8BABE02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C5A4A73-1E92-4FE0-BEC0-87CE8BABE02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C5A4A73-1E92-4FE0-BEC0-87CE8BABE02A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA61439D-0192-4099-A957-CD952E976B51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA61439D-0192-4099-A957-CD952E976B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA61439D-0192-4099-A957-CD952E976B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA61439D-0192-4099-A957-CD952E976B51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B17CD56-F8BF-409F-A80C-FA49F73CD4E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B17CD56-F8BF-409F-A80C-FA49F73CD4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B17CD56-F8BF-409F-A80C-FA49F73CD4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B17CD56-F8BF-409F-A80C-FA49F73CD4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44B33FCF-5672-4B69-9007-A5640F47AAA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44B33FCF-5672-4B69-9007-A5640F47AAA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44B33FCF-5672-4B69-9007-A5640F47AAA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44B33FCF-5672-4B69-9007-A5640F47AAA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD79EBB8-1157-4120-99D2-433559991A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD79EBB8-1157-4120-99D2-433559991A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD79EBB8-1157-4120-99D2-433559991A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD79EBB8-1157-4120-99D2-433559991A16}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

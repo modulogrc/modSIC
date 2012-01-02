@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd">
+
+  <generator>
+    <oval:product_name>OVAL Definition Interpreter</oval:product_name>
+    <oval:product_version>5.5 Build: 23</oval:product_version>
+    <oval:schema_version>5.5</oval:schema_version>
+    <oval:timestamp>2009-08-06T17:13:36</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <system_info>
+    <os_name>unknown Service Pack 1</os_name>
+    <os_version>6.0.6001</os_version>
+    <architecture>INTEL32</architecture>
+    <primary_host_name>mss-rj-007.mss.modulo.com.br</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>Intel(R) 82566DM Gigabit Network Connection</interface_name>
+        <ip_address>172.16.3.33</ip_address>
+        <mac_address>00-1E-C9-1D-72-4E</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+
+  <collected_objects>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50001" version="1">
+      <reference item_ref="4"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50031" version="1">
+      <reference item_ref="5"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50041" version="1">
+      <reference item_ref="6"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50051" version="1">
+      <reference item_ref="7"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50060" version="1">
+      <reference item_ref="8"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50061" version="1">
+      <reference item_ref="8"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50062" version="1">
+      <reference item_ref="8"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50063" version="1">
+      <reference item_ref="8"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50064" version="1">
+      <reference item_ref="8"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50065" version="1">
+      <reference item_ref="8"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50066" version="1">
+      <reference item_ref="8"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50067" version="1">
+      <reference item_ref="8"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50068" version="1">
+      <reference item_ref="8"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50069" version="1">
+      <reference item_ref="8"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50071" version="1">
+      <reference item_ref="9"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50081" version="1">
+      <reference item_ref="10"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50085" version="1">
+      <reference item_ref="11"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50091" version="1">
+      <reference item_ref="4"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50111" version="1">
+      <reference item_ref="4"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50131" version="1">
+      <reference item_ref="11"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50141" version="1">
+      <reference item_ref="12"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50151" version="1">
+      <reference item_ref="12"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50161" version="1">
+      <reference item_ref="12"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:50171" version="1">
+      <reference item_ref="12"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51001" version="1">
+      <reference item_ref="13"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51011" version="1">
+      <reference item_ref="13"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51031" version="1">
+      <reference item_ref="14"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51041" version="1">
+      <reference item_ref="15"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51051" version="1">
+      <reference item_ref="16"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51060" version="1">
+      <reference item_ref="17"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51061" version="1">
+      <reference item_ref="17"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51062" version="1">
+      <reference item_ref="17"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51063" version="1">
+      <reference item_ref="17"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51064" version="1">
+      <reference item_ref="17"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51065" version="1">
+      <reference item_ref="17"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51066" version="1">
+      <reference item_ref="17"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51067" version="1">
+      <reference item_ref="17"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51068" version="1">
+      <reference item_ref="17"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51069" version="1">
+      <reference item_ref="17"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51071" version="1">
+      <reference item_ref="18"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51081" version="1">
+      <reference item_ref="19"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51091" version="1">
+      <reference item_ref="13"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51111" version="1">
+      <reference item_ref="13"/>
+    </object>
+    <object flag="does not exist" id="oval:gov.nist.fdcc.xpfirewall:obj:51131" version="1">
+      <reference item_ref="20"/>
+    </object>
+    <object comment="Registry key that hold the current windows os version" flag="complete" id="oval:org.mitre.oval:obj:123" version="1">
+      <reference item_ref="3"/>
+    </object>
+    <object comment="This registry key holds the service pack installed on the host if one is present." flag="complete" id="oval:org.mitre.oval:obj:717" version="1">
+      <reference item_ref="2"/>
+    </object>
+    <object comment="This is the default family object. Only one family object should exist." flag="complete" id="oval:org.mitre.oval:obj:99" version="1">
+      <reference item_ref="1"/>
+    </object>
+  </collected_objects>
+
+  <system_data>
+    <registry_item id="4" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</key>
+    </registry_item>
+    <registry_item id="5" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications</key>
+    </registry_item>
+    <registry_item id="6" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\RemoteAdminSettings</key>
+    </registry_item>
+    <registry_item id="7" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\FileAndPrint</key>
+    </registry_item>
+    <registry_item id="8" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\IcmpSettings</key>
+    </registry_item>
+    <registry_item id="9" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\RemoteDesktop</key>
+    </registry_item>
+    <registry_item id="10" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Services\UPnPFramework</key>
+    </registry_item>
+    <registry_item id="11" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts</key>
+    </registry_item>
+    <registry_item id="12" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging</key>
+    </registry_item>
+    <registry_item id="13" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile</key>
+    </registry_item>
+    <registry_item id="14" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications</key>
+    </registry_item>
+    <registry_item id="15" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\RemoteAdminSettings</key>
+    </registry_item>
+    <registry_item id="16" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\FileAndPrint</key>
+    </registry_item>
+    <registry_item id="17" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\IcmpSettings</key>
+    </registry_item>
+    <registry_item id="18" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\RemoteDesktop</key>
+    </registry_item>
+    <registry_item id="19" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\Services\UPnPFramework</key>
+    </registry_item>
+    <registry_item id="20" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key status="does not exist">SOFTWARE\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts</key>
+    </registry_item>
+    <registry_item id="3" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+      <name>CurrentVersion</name>
+      <type>reg_sz</type>
+      <value>6.0</value>
+    </registry_item>
+    <registry_item id="2" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+      <name>CSDVersion</name>
+      <type>reg_sz</type>
+      <value>Service Pack 1</value>
+    </registry_item>
+    <family_item id="1" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+      <family>windows</family>
+    </family_item>
+  </system_data>
+
+</oval_system_characteristics>

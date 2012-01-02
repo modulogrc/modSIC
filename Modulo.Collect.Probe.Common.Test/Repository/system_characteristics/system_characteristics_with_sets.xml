@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_system_characteristics 
+  xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" 
+  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+  xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" 
+  xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows"
+  xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd  http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd">
+
+  <generator>
+    <oval:product_name>OVAL Definition Interpreter</oval:product_name>
+    <oval:product_version>5.6 Build: 1</oval:product_version>
+    <oval:schema_version>5.6</oval:schema_version>
+    <oval:timestamp>2009-11-19T12:24:28</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <system_info>
+    <os_name>unknown Service Pack 1</os_name>
+    <os_version>6.0.6001</os_version>
+    <architecture>INTEL32</architecture>
+    <primary_host_name>mss-rj-215.mss.modulo.com.br</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>Intel(R) 82567LM-3 Gigabit Network Connection</interface_name>
+        <ip_address>172.16.3.15</ip_address>
+        <mac_address>00-23-AE-B6-6F-BF</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+
+  <collected_objects>
+    <object flag="complete" id="oval:modulo:obj:671" version="1">
+      <reference item_ref="4"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:672" version="1">
+      <reference item_ref="5"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:673" version="1">
+      <reference item_ref="4"/>
+      <reference item_ref="5"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:2000" version="1">
+      <reference item_ref="2"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:3000" version="1">
+      <reference item_ref="1"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:4000" version="1">
+      <reference item_ref="1"/>
+      <reference item_ref="3"/>
+      <reference item_ref="2"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:5000" version="1">
+      <reference item_ref="3"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:6000" version="1">
+      <reference item_ref="3"/>
+      <reference item_ref="2"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:7000" version="1">
+      <reference item_ref="1"/>
+      <reference item_ref="3"/>
+    </object>
+
+    <!-- ================================================= -->
+    <!-- ========== RegKeyEffectiveRights Tests ========== -->
+    <!-- ================================================= -->
+    <object flag="complete" id="oval:modulo:obj:750" version="1">
+      <reference item_ref="761"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:751" version="1">
+      <reference item_ref="762"/>
+    </object>
+
+    <!-- ================================================= -->
+    <!-- =============== AccessToken Tests =============== -->
+    <!-- ================================================= -->
+    <object flag="complete" id="oval:modulo:obj:840" version="1">
+      <reference item_ref="840"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:860" version="1">
+      <reference item_ref="860"/>
+    </object>
+
+    <object flag="complete" id="oval:modulo:obj:1001" version="1">
+      <reference item_ref="1001"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:1002" version="1">
+      <reference item_ref="1002"/>
+    </object>
+
+
+    <object flag="complete" id="oval:modulo:obj:6000" version="1">
+      <reference item_ref="2000"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:6001" version="1">
+      <reference item_ref="2001"/>
+    </object>
+    
+    <!-- ================================================= -->
+    <!-- =============== XmlFileContent54 Tests ========== -->
+    <!-- ================================================= -->
+    <object flag="complete" id="oval:modulo:obj:701" version="1">
+      <reference item_ref="11"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:702" version="1">
+      <reference item_ref="12"/>
+    </object>
+    <object flag="complete" id="oval:modulo:obj:700" version="1">
+      <reference item_ref="11"/>
+      <reference item_ref="12"/>
+    </object>
+  </collected_objects>
+
+  <system_data>
+    <file_item id="4" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <path>c:\windows</path>
+      <filename>pardame.txt</filename>
+      <owner>Administrators</owner>
+      <size datatype="int">0</size>
+      <a_time datatype="int">288724807530042199</a_time>
+      <c_time datatype="int">288724807530042199</c_time>
+      <m_time datatype="int">288724807530042199</m_time>
+      <ms_checksum status="error"/>
+      <version datatype="version" status="error"/>
+      <type>FILE_TYPE_DISK</type>
+      <development_class status="error"/>
+      <company status="error"/>
+      <internal_name status="error"/>
+      <language status="error"/>
+      <original_filename status="error"/>
+      <product_name status="error"/>
+      <product_version datatype="version" status="error"/>
+    </file_item>
+    <file_item id="5" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <path>c:\temp</path>
+      <filename>file.txt</filename>
+      <owner>Administrators</owner>
+      <size datatype="int">5</size>
+      <a_time datatype="int">202091807530042199</a_time>
+      <c_time datatype="int">202091807530042199</c_time>
+      <m_time datatype="int">210913807530042199</m_time>
+      <ms_checksum>55889</ms_checksum>
+      <version datatype="version" status="error"/>
+      <type>FILE_TYPE_DISK</type>
+      <development_class status="error"/>
+      <company status="error"/>
+      <internal_name status="error"/>
+      <language status="error"/>
+      <original_filename status="error"/>
+      <product_name status="error"/>
+      <product_version  datatype="version" status="error"/>
+    </file_item>
+    <registry_item id="2" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Modulo</key>
+      <name>Version</name>
+      <type>reg_sz</type>
+      <value>1.0</value>
+    </registry_item>
+    <registry_item id="1" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Modulo</key>
+      <name>ProgramDirs</name>
+      <type>reg_multi_sz</type>
+      <value>c:\Program Files</value>
+      <value>c:\Windows</value>
+      <value>c:\Temp</value>
+    </registry_item>
+    <registry_item id="3" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Modulo</key>
+      <name>TempFile</name>
+      <type>reg_multi_sz</type>
+      <value>c:\Temp</value>
+      <value>c:\windows\Temp</value>
+    </registry_item>
+
+    <!-- ================================================= -->
+    <!-- ========== RegKeyEffectiveRights Tests ========== -->
+    <!-- ================================================= -->
+    <regkeyeffectiverights_item id="761" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Modulo\RiskManager</key>
+      <trustee_name>lfernandes</trustee_name>
+      <standard_delete datatype="boolean">0</standard_delete>
+      <standard_read_control datatype="boolean">0</standard_read_control>
+      <standard_write_dac datatype="boolean">0</standard_write_dac>
+      <standard_write_owner datatype="boolean">0</standard_write_owner>
+      <standard_synchronize datatype="boolean">0</standard_synchronize>
+      <access_system_security datatype="boolean">0</access_system_security>
+      <generic_read datatype="boolean">0</generic_read>
+      <generic_write datatype="boolean">0</generic_write>
+      <generic_execute datatype="boolean">0</generic_execute>
+      <generic_all datatype="boolean">0</generic_all>
+      <key_query_value datatype="boolean">0</key_query_value>
+      <key_set_value datatype="boolean">0</key_set_value>
+      <key_create_sub_key datatype="boolean">0</key_create_sub_key>
+      <key_enumerate_sub_keys datatype="boolean">0</key_enumerate_sub_keys>
+      <key_notify datatype="boolean">0</key_notify>
+      <key_create_link datatype="boolean">0</key_create_link>
+      <key_wow64_64key datatype="boolean">0</key_wow64_64key>
+      <key_wow64_32key datatype="boolean">0</key_wow64_32key>
+      <key_wow64_res datatype="boolean">0</key_wow64_res>
+    </regkeyeffectiverights_item>
+    <regkeyeffectiverights_item id="762" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Modulo\RiskManagerNG</key>
+      <trustee_name>lfernandes</trustee_name>
+      <standard_delete datatype="boolean">0</standard_delete>
+      <standard_read_control datatype="boolean">0</standard_read_control>
+      <standard_write_dac datatype="boolean">0</standard_write_dac>
+      <standard_write_owner datatype="boolean">0</standard_write_owner>
+      <standard_synchronize datatype="boolean">0</standard_synchronize>
+      <access_system_security datatype="boolean">0</access_system_security>
+      <generic_read datatype="boolean">0</generic_read>
+      <generic_write datatype="boolean">0</generic_write>
+      <generic_execute datatype="boolean">0</generic_execute>
+      <generic_all datatype="boolean">0</generic_all>
+      <key_query_value datatype="boolean">1</key_query_value>
+      <key_set_value datatype="boolean">1</key_set_value>
+      <key_create_sub_key datatype="boolean">1</key_create_sub_key>
+      <key_enumerate_sub_keys datatype="boolean">1</key_enumerate_sub_keys>
+      <key_notify datatype="boolean">0</key_notify>
+      <key_create_link datatype="boolean">0</key_create_link>
+      <key_wow64_64key datatype="boolean">0</key_wow64_64key>
+      <key_wow64_32key datatype="boolean">0</key_wow64_32key>
+      <key_wow64_res datatype="boolean">0</key_wow64_res>
+    </regkeyeffectiverights_item>
+
+    <!-- ================================================= -->
+    <!-- =============== AccessToken Tests =============== -->
+    <!-- ================================================= -->
+    <accesstoken_item id="840" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <security_principle>MSS\lfernandes</security_principle>
+      <seassignprimarytokenprivilege datatype="boolean">1</seassignprimarytokenprivilege>
+      <seauditprivilege datatype="boolean">0</seauditprivilege>
+      <sebackupprivilege datatype="boolean">1</sebackupprivilege>
+      <sechangenotifyprivilege datatype="boolean">0</sechangenotifyprivilege>
+      <secreateglobalprivilege datatype="boolean">1</secreateglobalprivilege>
+      <secreatepagefileprivilege datatype="boolean">0</secreatepagefileprivilege>
+      <secreatepermanentprivilege datatype="boolean">1</secreatepermanentprivilege>
+      <secreatesymboliclinkprivilege datatype="boolean">0</secreatesymboliclinkprivilege>
+      <secreatetokenprivilege datatype="boolean">1</secreatetokenprivilege>
+      <sedebugprivilege datatype="boolean">0</sedebugprivilege>
+      <seenabledelegationprivilege datatype="boolean">1</seenabledelegationprivilege>
+      <seimpersonateprivilege datatype="boolean">0</seimpersonateprivilege>
+      <seincreasebasepriorityprivilege datatype="boolean">1</seincreasebasepriorityprivilege>
+      <seincreasequotaprivilege datatype="boolean">0</seincreasequotaprivilege>
+      <seincreaseworkingsetprivilege datatype="boolean">1</seincreaseworkingsetprivilege>
+      <seloaddriverprivilege datatype="boolean">0</seloaddriverprivilege>
+      <selockmemoryprivilege datatype="boolean">1</selockmemoryprivilege>
+      <semachineaccountprivilege datatype="boolean">0</semachineaccountprivilege>
+      <semanagevolumeprivilege datatype="boolean">1</semanagevolumeprivilege>
+      <seprofilesingleprocessprivilege datatype="boolean">0</seprofilesingleprocessprivilege>
+      <serelabelprivilege datatype="boolean">1</serelabelprivilege>
+      <seremoteshutdownprivilege datatype="boolean">0</seremoteshutdownprivilege>
+      <serestoreprivilege datatype="boolean">1</serestoreprivilege>
+      <sesecurityprivilege datatype="boolean">0</sesecurityprivilege>
+      <seshutdownprivilege datatype="boolean">1</seshutdownprivilege>
+      <sesyncagentprivilege datatype="boolean">0</sesyncagentprivilege>
+      <sesystemenvironmentprivilege datatype="boolean">1</sesystemenvironmentprivilege>
+      <sesystemprofileprivilege datatype="boolean">0</sesystemprofileprivilege>
+      <sesystemtimeprivilege datatype="boolean">1</sesystemtimeprivilege>
+      <setakeownershipprivilege datatype="boolean">0</setakeownershipprivilege>
+      <setcbprivilege datatype="boolean">1</setcbprivilege>
+      <setimezoneprivilege datatype="boolean">0</setimezoneprivilege>
+      <seundockprivilege datatype="boolean">1</seundockprivilege>
+      <seunsolicitedinputprivilege datatype="boolean">0</seunsolicitedinputprivilege>
+      <sebatchlogonright datatype="boolean">1</sebatchlogonright>
+      <seinteractivelogonright datatype="boolean">0</seinteractivelogonright>
+      <senetworklogonright datatype="boolean">1</senetworklogonright>
+      <seremoteinteractivelogonright datatype="boolean">0</seremoteinteractivelogonright>
+      <seservicelogonright datatype="boolean">1</seservicelogonright>
+      <sedenybatchLogonright datatype="boolean">0</sedenybatchLogonright>
+      <sedenyinteractivelogonright datatype="boolean">1</sedenyinteractivelogonright>
+      <sedenynetworklogonright datatype="boolean">0</sedenynetworklogonright>
+      <sedenyremoteInteractivelogonright datatype="boolean">1</sedenyremoteInteractivelogonright>
+      <sedenyservicelogonright datatype="boolean">0</sedenyservicelogonright>
+    </accesstoken_item>
+    <accesstoken_item id="860" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <security_principle>ADMINISTRATOR</security_principle>
+      <seassignprimarytokenprivilege datatype="boolean">1</seassignprimarytokenprivilege>
+      <seauditprivilege datatype="boolean">1</seauditprivilege>
+      <sebackupprivilege datatype="boolean">1</sebackupprivilege>
+      <sechangenotifyprivilege datatype="boolean">1</sechangenotifyprivilege>
+      <secreateglobalprivilege datatype="boolean">1</secreateglobalprivilege>
+      <secreatepagefileprivilege datatype="boolean">1</secreatepagefileprivilege>
+      <secreatepermanentprivilege datatype="boolean">1</secreatepermanentprivilege>
+      <secreatesymboliclinkprivilege datatype="boolean">1</secreatesymboliclinkprivilege>
+      <secreatetokenprivilege datatype="boolean">1</secreatetokenprivilege>
+      <sedebugprivilege datatype="boolean">1</sedebugprivilege>
+      <seenabledelegationprivilege datatype="boolean">1</seenabledelegationprivilege>
+      <seimpersonateprivilege datatype="boolean">1</seimpersonateprivilege>
+      <seincreasebasepriorityprivilege datatype="boolean">1</seincreasebasepriorityprivilege>
+      <seincreasequotaprivilege datatype="boolean">1</seincreasequotaprivilege>
+      <seincreaseworkingsetprivilege datatype="boolean">1</seincreaseworkingsetprivilege>
+      <seloaddriverprivilege datatype="boolean">1</seloaddriverprivilege>
+      <selockmemoryprivilege datatype="boolean">1</selockmemoryprivilege>
+      <semachineaccountprivilege datatype="boolean">1</semachineaccountprivilege>
+      <semanagevolumeprivilege datatype="boolean">1</semanagevolumeprivilege>
+      <seprofilesingleprocessprivilege datatype="boolean">1</seprofilesingleprocessprivilege>
+      <serelabelprivilege datatype="boolean">1</serelabelprivilege>
+      <seremoteshutdownprivilege datatype="boolean">1</seremoteshutdownprivilege>
+      <serestoreprivilege datatype="boolean">1</serestoreprivilege>
+      <sesecurityprivilege datatype="boolean">1</sesecurityprivilege>
+      <seshutdownprivilege datatype="boolean">1</seshutdownprivilege>
+      <sesyncagentprivilege datatype="boolean">1</sesyncagentprivilege>
+      <sesystemenvironmentprivilege datatype="boolean">1</sesystemenvironmentprivilege>
+      <sesystemprofileprivilege datatype="boolean">1</sesystemprofileprivilege>
+      <sesystemtimeprivilege datatype="boolean">1</sesystemtimeprivilege>
+      <setakeownershipprivilege datatype="boolean">1</setakeownershipprivilege>
+      <setcbprivilege datatype="boolean">1</setcbprivilege>
+      <setimezoneprivilege datatype="boolean">1</setimezoneprivilege>
+      <seundockprivilege datatype="boolean">1</seundockprivilege>
+      <seunsolicitedinputprivilege datatype="boolean">1</seunsolicitedinputprivilege>
+      <sebatchlogonright datatype="boolean">1</sebatchlogonright>
+      <seinteractivelogonright datatype="boolean">1</seinteractivelogonright>
+      <senetworklogonright datatype="boolean">1</senetworklogonright>
+      <seremoteinteractivelogonright datatype="boolean">1</seremoteinteractivelogonright>
+      <seservicelogonright datatype="boolean">1</seservicelogonright>
+      <sedenybatchLogonright datatype="boolean">1</sedenybatchLogonright>
+      <sedenyinteractivelogonright datatype="boolean">1</sedenyinteractivelogonright>
+      <sedenynetworklogonright datatype="boolean">1</sedenynetworklogonright>
+      <sedenyremoteInteractivelogonright datatype="boolean">1</sedenyremoteInteractivelogonright>
+      <sedenyservicelogonright datatype="boolean">1</sedenyservicelogonright>
+    </accesstoken_item>
+
+
+    <group_sid_item id="1001" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <group_sid>S-1-5-32-500</group_sid>
+      <user_sid>S-1-5-32-500-1</user_sid>
+      <user_sid>S-1-5-32-500-2</user_sid>
+    </group_sid_item>
+    <group_sid_item id="1002" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <group_sid>S-1-5-32-501</group_sid>
+      <user_sid>S-1-5-32-501-1</user_sid>
+      <user_sid>S-1-5-32-501-2</user_sid>
+    </group_sid_item>
+
+    <xmlfilecontent_item id="11" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+      <path>c:\windows</path>
+      <filename>pardame.xml</filename>
+      <xpath>//bookstore/book/title/text()</xpath>
+      <value_of>Learning XPath</value_of>
+    </xmlfilecontent_item>
+    <xmlfilecontent_item id="12" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+      <path>c:\temp</path>
+      <filename>file.txt</filename>
+      <xpath>//bookstore/book/author/text()</xpath>
+      <value_of>Luciano Fernandes</value_of>
+    </xmlfilecontent_item>
+
+    <metabase_item id="2000" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <key>/LM/W3SVC</key>
+      <id datatype="int">6020</id>
+      <name status="not collected" />
+      <user_type>IIS_MD_UT_FILE</user_type>
+      <data_type>STRING_METADATA</data_type>
+      <data>IUSR_OVAL-IIS6-A</data>
+    </metabase_item>
+    <metabase_item id="2001" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <key>/LM/W3SVC</key>
+      <id datatype="int">6020</id>
+      <name status="not collected" />
+      <user_type>IIS_MD_UT_FILE</user_type>
+      <data_type>STRING_METADATA</data_type>
+      <data>IUSR_OVAL-IIS6-A</data>
+    </metabase_item>
+
+
+  </system_data>
+</oval_system_characteristics>

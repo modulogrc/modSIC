@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<oval_system_characteristics
+  xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"
+  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+  xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"
+  xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris solaris-system-characteristics-schema.xsd">
+
+  <generator>
+    <oval:product_name>...</oval:product_name>
+    <oval:product_version>...</oval:product_version>
+    <oval:schema_version>5.6</oval:schema_version>
+    <oval:timestamp>2009-11-19T12:24:28</oval:timestamp>
+  </generator>
+
+  <system_info>
+    <os_name>unknown Service Pack 1</os_name>
+    <os_version>6.0.6001</os_version>
+    <architecture>INTEL32</architecture>
+    <primary_host_name>mss-rj-215.mss.modulo.com.br</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>Intel(R) 82567LM-3 Gigabit Network Connection</interface_name>
+        <ip_address>172.16.3.15</ip_address>
+        <mac_address>00-23-AE-B6-6F-BF</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+
+  <collected_objects>
+    <object id="oval:modulo:obj:1" flag="complete" version="1">
+      <reference item_ref="1"/>
+    </object>
+    <object id="oval:modulo:obj:2" flag="complete" version="1">
+      <reference item_ref="2"/>
+    </object>
+    <object id="oval:modulo:obj:3" flag="complete" version="1">
+      <reference item_ref="3"/>
+    </object>
+    <object id="oval:modulo:obj:4" flag="complete" version="1">
+      <reference item_ref="3"/>
+    </object>
+    <object id="oval:modulo:obj:5" flag="does not exist" version="1">
+      <reference item_ref="4"/>
+    </object>
+
+    <object id="oval:modulo:obj:10" flag="complete" version="1">
+      <reference item_ref="5"/>
+    </object>
+    <object id="oval:modulo:obj:20" flag="complete" version="1">
+      <reference item_ref="6"/>
+    </object>
+    <object id="oval:modulo:obj:30" flag="complete" version="1">
+      <reference item_ref="7"/>
+    </object>
+    <object id="oval:modulo:obj:40" flag="complete" version="1">
+      <reference item_ref="7"/>
+    </object>
+    <object id="oval:modulo:obj:50" flag="complete" version="1">
+      <reference item_ref="8"/>
+    </object>
+  </collected_objects>
+
+  <system_data>
+    <isainfo_item id="1" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">
+      <bits datatype="int">64</bits>
+      <!--<kernel_isa>i386</kernel_isa>
+      <application_isa>i386</application_isa>-->
+    </isainfo_item>
+
+    <package_item id="2" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">
+      <pkginst>inst.1</pkginst>
+      <name>Installer 1</name>
+      <category>Installers</category>
+      <version>1.0.0</version>
+      <vendor>Modulo</vendor>
+      <description>Installion package X</description>
+    </package_item>
+
+    <patch_item id="3" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">
+      <base datatype="int">10</base>
+      <version datatype="int">10019</version>
+    </patch_item>
+
+    <smf_item id="4" status="does not exist" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris"/>
+
+    <isainfo_item id="5" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">
+      <bits datatype="int">32</bits>
+      <kernel_isa>amd64</kernel_isa>
+      <application_isa>amd64</application_isa>
+    </isainfo_item>
+
+    <package_item id="6" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">
+      <pkginst>inst.1</pkginst>
+      <name>Installer 1</name>
+      <category>Installers</category>
+      <version>1.0.0</version>
+      <vendor>Modulo</vendor>
+      <description>Installion package</description>
+    </package_item>
+
+    <patch_item id="7" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">
+      <base datatype="int">10</base>
+      <version datatype="int">1001</version>
+    </patch_item>
+
+    <smf_item id="8" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">
+      <fmri>svc://localhost/system/system-log:default</fmri>
+      <service_name>system-log</service_name>
+      <service_state>ONLINE</service_state>
+      <protocol>tcp</protocol>
+      <server_executable>exe</server_executable>
+      <server_arguements>a r</server_arguements>
+      <exec_as_user>oval</exec_as_user>
+    </smf_item>
+
+  </system_data>
+</oval_system_characteristics>

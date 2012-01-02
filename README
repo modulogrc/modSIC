@@ -1,0 +1,14 @@
+Project Description
+Modulo's Open Distributed SCAP Infrastructure Collector, or modSIC, makes it easier for security analysts to scan an environment vulnerabilities based on OVAL-Definitions. It's an open-source service specialized in distributed network assessments.
+
+Modulo Open Distributed SCAP Infrastructure Collector
+This initiative aims at providing a common platform for collecting security data, making it easier for solutions to automate policy compliance, audits, risk assessments, and more, using the industry-standard Security Content Automation Protocol (SCAP).
+
+Developed by the National Institute of Standards and Technology (NIST), SCAP is a common format for exchanging IT security data and maintaining a standards-based security posture across enterprise systems. By using SCAP-validated products, organizations automate critical tasks such as verifying the presence of patches, checking system security configurations, and examining systems for signs of compromise. SCAP also helps satisfy federal regulation mandates, such as FDCC and FISMA.
+
+Until now, however, the limited availability of SCAP tools has limited its adoption in the broader security and GRC community. Without these tools, organizations have to write their own APIs or export their data to Excel spreadsheets. By opening Modulo Risk Manager’s proven intelligent SCAP collection technology to the broader security and GRC domain, the open source SCAP initiative will provide a common platform that makes it easier for vendors and end-user organizations to create, improve, and test their own automated data collectors, leveraging:
+
+- Standardized formats
+- Distributed architectures
+- Transparent code
+- Crowd testing

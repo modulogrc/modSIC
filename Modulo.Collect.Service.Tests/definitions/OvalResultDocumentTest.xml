@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<!-- ========================================= -->
+<!-- ==========  __OS_FULL_NAME__     ========== -->
+<!-- ========================================= -->
+<oval_definitions xsi:schemaLocation=
+                    "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd 
+                      http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd 
+                      http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd 
+									    http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd"
+									  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+									  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+									  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+									  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>Risk Manager</oval:product_name>
+    <oval:product_version>7.0</oval:product_version>
+    <oval:schema_version>5.6</oval:schema_version>
+    <oval:timestamp>2010-01-13T16:29:27.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+
+
+
+  <!-- ========================================= -->
+  <!-- ========== 1. DEFINITIONS      ========== -->
+  <!-- ========================================= -->
+  <definitions>
+    <definition class="compliance" id ="oval:modulo:def:1" version="1">
+      <metadata>
+        <title>Asserting file path</title>
+        <description>Asserting file path on unix systems.</description>
+      </metadata>
+      <criteria>
+        <criterion test_ref="oval:modulo:tst:1"/>
+      </criteria>
+    </definition>
+  </definitions>
+
+
+  <!-- ========================================= -->
+  <!-- ========== 2. TESTS            ========== -->
+  <!-- ========================================= -->
+  <tests>
+    <textfilecontent54_test id="oval:modulo:tst:1" comment="..." check="at least one" check_existence="at_least_one_exists" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <object object_ref="oval:modulo:obj:1"/>
+      <state state_ref="oval:modulo:ste:1"/>
+    </textfilecontent54_test>
+  </tests>
+
+  <!-- ========================================= -->
+  <!-- ========== 3. OBJECTS          ========== -->
+  <!-- ========================================= -->
+  <objects>
+    <textfilecontent54_object id="oval:modulo:obj:1" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath>c:\windows\win.ini</filepath>
+      <pattern>3gp</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+  </objects>
+
+  <!-- ========================================= -->
+  <!-- ========== 4. STATES           ========== -->
+  <!-- ========================================= -->
+  <states>
+    <textfilecontent54_state id="oval:modulo:ste:1" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <text>3gp</text>
+    </textfilecontent54_state>
+  </states>
+
+  <!-- ========================================= -->
+  <!-- =========== 5. VARIABLES  ============ -->
+  <!-- ========================================= -->
+</oval_definitions>

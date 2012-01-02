@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="http://webservice.model.codecontrol.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://dto.webservice.model.codecontrol.com" xmlns:impl="http://webservice.model.codecontrol.com" targetNamespace="http://webservice.model.codecontrol.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://webservice.model.codecontrol.com">
+      <xsd:import namespace="http://dto.webservice.model.codecontrol.com" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="ArrayOf_xsd_long">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="xsd:long[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOf_tns1_EvidenceDTO">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="tns1:EvidenceDTO[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOf_xsd_string">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="xsd:string[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOf_tns1_ScanResultDTO">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="tns1:ScanResultDTO[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dto.webservice.model.codecontrol.com">
+      <xsd:import namespace="http://webservice.model.codecontrol.com" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="EvidenceDTO">
+        <xsd:sequence>
+          <xsd:element name="details" nillable="true" type="xsd:string" />
+          <xsd:element name="issueId" nillable="true" type="xsd:long" />
+          <xsd:element name="issueType" nillable="true" type="xsd:string" />
+          <xsd:element name="lineNumber" nillable="true" type="xsd:long" />
+          <xsd:element name="programName" nillable="true" type="xsd:string" />
+          <xsd:element name="request" nillable="true" type="xsd:string" />
+          <xsd:element name="riskLevel" nillable="true" type="xsd:decimal" />
+          <xsd:element name="sapModule" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ScanResultDTO">
+        <xsd:sequence>
+          <xsd:element name="evidenceList" nillable="true" type="impl:ArrayOf_tns1_EvidenceDTO" />
+          <xsd:element name="hasIssues" type="xsd:boolean" />
+          <xsd:element name="internalError" type="xsd:boolean" />
+          <xsd:element name="internalErrorMessage" nillable="true" type="xsd:string" />
+          <xsd:element name="parentRequest" nillable="true" type="xsd:string" />
+          <xsd:element name="riskLevel" nillable="true" type="xsd:decimal" />
+          <xsd:element name="scanId" nillable="true" type="xsd:long" />
+          <xsd:element name="status" nillable="true" type="xsd:string" />
+          <xsd:element name="systemId" nillable="true" type="xsd:long" />
+          <xsd:element name="systemType" nillable="true" type="xsd:string" />
+          <xsd:element name="totalIssuesFound" nillable="true" type="xsd:long" />
+          <xsd:element name="totalProgramsScanned" nillable="true" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ScanCriteriaDTO">
+        <xsd:sequence>
+          <xsd:element name="endExecutionDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="hasIssues" nillable="true" type="xsd:boolean" />
+          <xsd:element name="issueIdList" nillable="true" type="impl:ArrayOf_xsd_long" />
+          <xsd:element name="onlyRequests" nillable="true" type="xsd:boolean" />
+          <xsd:element name="programList" nillable="true" type="impl:ArrayOf_xsd_string" />
+          <xsd:element name="requestList" nillable="true" type="impl:ArrayOf_xsd_string" />
+          <xsd:element name="scanIdList" nillable="true" type="impl:ArrayOf_xsd_long" />
+          <xsd:element name="startExecutionDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="systemIdList" nillable="true" type="impl:ArrayOf_xsd_long" />
+          <xsd:element name="verifySinceScanId" nillable="true" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AuthenticationDTO">
+        <xsd:sequence>
+          <xsd:element name="error" type="xsd:boolean" />
+          <xsd:element name="errorMessage" nillable="true" type="xsd:string" />
+          <xsd:element name="token" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="authenticateResponse">
+    <wsdl:part name="authenticateReturn" type="tns1:AuthenticationDTO" />
+  </wsdl:message>
+  <wsdl:message name="findScanRequest">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="scanCriteria" type="tns1:ScanCriteriaDTO" />
+  </wsdl:message>
+  <wsdl:message name="findScanResponse">
+    <wsdl:part name="findScanReturn" type="impl:ArrayOf_tns1_ScanResultDTO" />
+  </wsdl:message>
+  <wsdl:message name="authenticateRequest">
+    <wsdl:part name="login" type="xsd:string" />
+    <wsdl:part name="password" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="scanIssueListBySystemRequest">
+    <wsdl:part name="token" type="xsd:string" />
+    <wsdl:part name="systemId" type="xsd:long" />
+    <wsdl:part name="issueList" type="impl:ArrayOf_xsd_long" />
+  </wsdl:message>
+  <wsdl:message name="scanIssueListBySystemResponse">
+    <wsdl:part name="scanIssueListBySystemReturn" type="tns1:ScanResultDTO" />
+  </wsdl:message>
+  <wsdl:portType name="ScanWS">
+    <wsdl:operation name="scanIssueListBySystem" parameterOrder="token systemId issueList">
+      <wsdl:input name="scanIssueListBySystemRequest" message="impl:scanIssueListBySystemRequest" />
+      <wsdl:output name="scanIssueListBySystemResponse" message="impl:scanIssueListBySystemResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="findScan" parameterOrder="token scanCriteria">
+      <wsdl:input name="findScanRequest" message="impl:findScanRequest" />
+      <wsdl:output name="findScanResponse" message="impl:findScanResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="authenticate" parameterOrder="login password">
+      <wsdl:input name="authenticateRequest" message="impl:authenticateRequest" />
+      <wsdl:output name="authenticateResponse" message="impl:authenticateResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ScanWSSoapBinding" type="impl:ScanWS">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="scanIssueListBySystem">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="scanIssueListBySystemRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.model.codecontrol.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="scanIssueListBySystemResponse">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.model.codecontrol.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findScan">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findScanRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.model.codecontrol.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="findScanResponse">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.model.codecontrol.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authenticate">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="authenticateRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.model.codecontrol.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="authenticateResponse">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.model.codecontrol.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ScanWSService">
+    <wsdl:port name="ScanWS" binding="impl:ScanWSSoapBinding">
+      <wsdlsoap:address location="http://174.143.211.210:8080/CodeControlWeb/services/ScanWS" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<!-- ========================================= -->
+<!-- ==========  __OS_FULL_NAME__     ========== -->
+<!-- ========================================= -->
+<oval_definitions xsi:schemaLocation=
+                   "http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd 
+                    http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd
+									  http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd"
+									  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+									  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+									  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+									  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>Risk Manager</oval:product_name>
+    <oval:product_version>7.0</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2010-01-13T16:29:27.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+
+  <!-- ========================================= -->
+  <!-- ========== 1. DEFINITIONS      ========== -->
+  <!-- ========================================= -->
+
+  <!-- ========================================= -->
+  <!-- ========== 2. TESTS            ========== -->
+  <!-- ========================================= -->
+    
+  <!-- ========================================= -->
+  <!-- ========== 3. OBJECTS          ========== -->
+  <!-- ========================================= -->
+  <objects>
+    <textfilecontent54_object id="oval:modulo:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath>c:\windows\win.ini</filepath>
+      <pattern>.*</pattern>
+      <instance datatype="int" operation="greater than">1</instance>
+    </textfilecontent54_object>
+  </objects>
+
+  <!-- ========================================= -->
+  <!-- ========== 4. STATES           ========== -->
+  <!-- ========================================= -->
+  
+  <!-- ========================================= -->
+  <!-- =========== 5. VARIABLES  ============ -->
+  <!-- ========================================= -->
+</oval_definitions>

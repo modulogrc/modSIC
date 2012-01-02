@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows windows-system-characteristics-schema.xsd">
+
+  <generator>
+    <oval:product_name>OVAL Definition Interpreter</oval:product_name>
+    <oval:product_version>5.6 Build: 1</oval:product_version>
+    <oval:schema_version>5.6</oval:schema_version>
+    <oval:timestamp>2009-09-11T16:42:02</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <system_info>
+    <os_name>unknown Service Pack 1</os_name>
+    <os_version>6.0.6001</os_version>
+    <architecture>INTEL32</architecture>
+    <primary_host_name>mss-rj-215.mss.modulo.com.br</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>Intel(R) 82567LM-3 Gigabit Network Connection</interface_name>
+        <ip_address>172.16.3.70</ip_address>
+        <mac_address>00-23-AE-B6-6F-BF</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+
+  <collected_objects>
+    <object flag="complete" id="oval:org.mitre.oval:obj:1000" version="1">
+      <reference item_ref="1"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:3000" version="1">
+      <reference item_ref="2"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:4000" version="1">
+      <variable_value variable_id="oval:org.mitre.oval:var:4000">Software\Microsoft\Windows NT\CurrentVersion</variable_value>
+      <reference item_ref="3"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:5000" version="1">
+      <reference item_ref="4"/>
+      <reference item_ref="5"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:6000" version="1">
+      <reference item_ref="6"/>
+      <reference item_ref="7"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:7000" version="1">
+      <reference item_ref="8"/>      
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:8000" version="1">
+      <reference item_ref="9"/>
+    </object>
+
+    <object flag="complete" id="oval:org.mitre.oval:obj:10000" version="1">
+      <reference item_ref="10"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:10001" version="1">
+      <reference item_ref="11"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:10002" version="1">
+      <reference item_ref="12"/>    
+      <reference item_ref="13"/>
+    </object>
+
+    <object flag="complete" id="oval:org.mitre.oval:obj:10100" version="1">
+      <reference item_ref="14"/>
+    </object>
+    <object flag="complete" id="oval:org.mitre.oval:obj:10101" version="1">
+      <reference item_ref="15"/>
+    </object>
+  </collected_objects>
+
+  <system_data>
+    <family_item id="1" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+      <family>windows</family>
+    </family_item>
+    <registry_item id="2" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CurrentVersion</key>
+      <name>CurrentVersion</name>
+      <type>reg_sz</type>
+      <value>6.0</value>
+    </registry_item>
+    <registry_item id="3" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CurrentVersion</key>
+      <name>CurrentType</name>
+      <type>reg_sz</type>
+      <value>Multiprocessor Free</value>
+    </registry_item>
+    <registry_item id="4" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CurrentVersion</key>
+      <name>BuildLabEx</name>
+      <type>reg_sz</type>
+      <value>6001.18000.x86fre.longhorn_rtm.080118-1840</value>
+    </registry_item>
+    <registry_item id="5" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CurrentVersion</key>
+      <name>CSDBuildNumber</name>
+      <type>reg_sz</type>
+      <value>1616</value>
+    </registry_item>
+    <registry_item id="6" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CurrentVersion</key>
+      <name>SoftwareType</name>
+      <type>reg_sz</type>
+      <value>System</value>
+    </registry_item>
+    <registry_item id="7" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CurrentVersion</key>
+      <name>SystemRoot</name>
+      <type>reg_sz</type>
+      <value>C:\Windows</value>
+    </registry_item>
+    <registry_item id="8" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CurrentVersion</key>
+      <name>InstallDate</name>
+      <type>reg_sz</type>
+      <value>4a09cda6</value>
+    </registry_item>
+    <registry_item id="9" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CurrentVersion</key>
+      <name>CurrentVersion</name>
+      <type>reg_sz</type>
+      <value>4.0</value>
+    </registry_item>
+    
+    <registry_item id="10" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Modulo</key>
+      <name>StartDate</name>
+      <type>reg_sz</type>
+      <value>25/09/2009</value>
+    </registry_item>
+    <registry_item id="11" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Modulo</key>
+      <name>EndDate</name>
+      <type>reg_sz</type>
+      <value>25/10/2009</value>
+    </registry_item>
+
+    <registry_item id="12" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Modulo</key>
+      <name>EndDate</name>
+      <type>reg_sz</type>
+      <value>25/11/2009</value>
+    </registry_item>
+    
+    <registry_item id="13" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Modulo</key>
+      <name>EndDate</name>
+      <type>reg_sz</type>
+      <value>25/12/2009</value>
+    </registry_item>
+    
+    <sql57_item id="14" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+      <result datatype ="record">
+        <oval-sc:field datatype="int" name="uid">2048</oval-sc:field>
+        <oval-sc:field datatype="string" name="type">TABLE</oval-sc:field>
+      </result>
+    </sql57_item>
+
+    <sql57_item id="15" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+      <result datatype ="record">
+        <oval-sc:field datatype="int" name="uid">2048</oval-sc:field>
+        <oval-sc:field datatype="string" name="type">TABLE</oval-sc:field>
+      </result>
+      <result datatype ="record">
+        <oval-sc:field datatype="int" name="uid">2049</oval-sc:field>
+      </result>
+      <result datatype ="record">
+        <oval-sc:field datatype="int" name="uid">2050</oval-sc:field>
+        <oval-sc:field datatype="string" name="user">admin</oval-sc:field>
+        <oval-sc:field datatype="string" name="type">VIEW</oval-sc:field>
+      </result>
+
+    </sql57_item>
+
+
+
+  </system_data>
+
+</oval_system_characteristics>

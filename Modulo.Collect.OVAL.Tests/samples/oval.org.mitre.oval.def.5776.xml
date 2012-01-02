@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>The OVAL Repository</oval:product_name>
+    <oval:schema_version>5.4</oval:schema_version>
+    <oval:timestamp>2009-07-24T17:01:16.582-04:00</oval:timestamp>
+  </generator>
+  <definitions>
+    <definition id="oval:org.mitre.oval:def:5776" version="1" class="miscellaneous">
+      <metadata>
+        <title>Evaluate to true if the binary datatype is properly supported</title>
+        <description>This definition is intended to evalutate to true if the interpreter properly supports the binary datatype and all of its valid operations.</description>
+        <oval_repository>
+          <dates>
+            <submitted date="2009-04-02T11:21:42">
+              <contributor organization="The MITRE Corporation">Dan Haynes</contributor>
+            </submitted>
+            <status_change date="2009-04-08T14:20:18.583-04:00">DRAFT</status_change>
+            <status_change date="2009-04-27T04:00:12.413-04:00">INTERIM</status_change>
+            <status_change date="2009-05-18T04:00:24.297-04:00">ACCEPTED</status_change>
+          </dates>
+          <status>ACCEPTED</status>
+        </oval_repository>
+      </metadata>
+      <notes>
+        <note/>
+      </notes>
+      <criteria operator="AND">
+        <criteria operator="AND" comment="True if the equals operation is supported">
+          <criterion comment="Check of the equals operation with a single equal binary value." test_ref="oval:org.mitre.oval:tst:9519"/>
+          <criterion negate="true" comment="Check of the equals operation with a single unequal binary value." test_ref="oval:org.mitre.oval:tst:9923"/>
+        </criteria>
+        <criteria operator="AND" comment="True if the not equal operation is supported">
+          <criterion negate="true" comment="Check of the not equal operation with a single equal binary value." test_ref="oval:org.mitre.oval:tst:8943"/>
+          <criterion comment="Check of the not equal operation with a single unequal binary value." test_ref="oval:org.mitre.oval:tst:9667"/>
+        </criteria>
+      </criteria>
+    </definition>
+  </definitions>
+  <tests>
+    <variable_test id="oval:org.mitre.oval:tst:9923" version="1" comment="Check of the equals operation with a single unequal binary value." check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <object object_ref="oval:org.mitre.oval:obj:6536"/>
+      <state state_ref="oval:org.mitre.oval:ste:4857"/>
+    </variable_test>
+    <variable_test id="oval:org.mitre.oval:tst:9667" version="1" comment="Check of the not equal operation with a single unequal binary value." check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <object object_ref="oval:org.mitre.oval:obj:6536"/>
+      <state state_ref="oval:org.mitre.oval:ste:4915"/>
+    </variable_test>
+    <variable_test id="oval:org.mitre.oval:tst:9519" version="1" comment="Check of the equals operation with a single equal binary value." check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <object object_ref="oval:org.mitre.oval:obj:6940"/>
+      <state state_ref="oval:org.mitre.oval:ste:4838"/>
+    </variable_test>
+    <variable_test id="oval:org.mitre.oval:tst:8943" version="1" comment="Check of the not equal operation with a single equal binary value." check_existence="at_least_one_exists" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <object object_ref="oval:org.mitre.oval:obj:6940"/>
+      <state state_ref="oval:org.mitre.oval:ste:4305"/>
+    </variable_test>
+  </tests>
+  <objects>
+    <variable_object id="oval:org.mitre.oval:obj:6536" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <var_ref>oval:org.mitre.oval:var:905</var_ref>
+    </variable_object>
+    <variable_object id="oval:org.mitre.oval:obj:6940" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <var_ref>oval:org.mitre.oval:var:261</var_ref>
+    </variable_object>
+  </objects>
+  <states>
+    <variable_state id="oval:org.mitre.oval:ste:4857" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <value datatype="binary">9F</value>
+    </variable_state>
+    <variable_state id="oval:org.mitre.oval:ste:4915" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <value datatype="binary" operation="not equal">9F</value>
+    </variable_state>
+    <variable_state id="oval:org.mitre.oval:ste:4838" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <value datatype="binary">9F</value>
+    </variable_state>
+    <variable_state id="oval:org.mitre.oval:ste:4305" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <value datatype="binary" operation="not equal">9F</value>
+    </variable_state>
+  </states>
+  <variables>
+    <constant_variable id="oval:org.mitre.oval:var:905" version="1" comment="A single valid binary value" datatype="binary">
+      <value>3A</value>
+    </constant_variable>
+    <constant_variable id="oval:org.mitre.oval:var:261" version="1" comment="A single valid binary value" datatype="binary">
+      <value>9F</value>
+    </constant_variable>
+  </variables>
+</oval_definitions>

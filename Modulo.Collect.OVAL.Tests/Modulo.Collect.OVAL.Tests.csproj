@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DB52A576-494B-4E0B-B365-F93B94BED8DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Modulo.Collect.OVAL.Tests</RootNamespace>
+    <AssemblyName>Modulo.Collect.OVAL.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>false</SignAssembly>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\libs\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="comparators\BinaryComparatorTest.cs" />
+    <Compile Include="comparators\BooleanComparatorTest.cs" />
+    <Compile Include="comparators\EvrStringComparator\Tests\EvrStringComparatorUsingLessThanOrEqualOperationTests.cs" />
+    <Compile Include="comparators\EvrStringComparator\Tests\EvrStringComparatorUsingLessThanOperationTests.cs" />
+    <Compile Include="comparators\EvrStringComparator\Tests\EvrStringComparatorUsingGreaterOrEqualThanOperationTests.cs" />
+    <Compile Include="comparators\EvrStringComparator\Tests\EvrStringComparatorUsingGreaterThanOperationTests.cs" />
+    <Compile Include="comparators\EvrStringComparator\EvrStringComparatorTestsBase.cs" />
+    <Compile Include="comparators\EvrStringComparator\EvrStringComparatorChecker.cs" />
+    <Compile Include="comparators\EvrStringComparator\Tests\EvrStringComparatorUsingNotEqualOperationTests.cs" />
+    <Compile Include="comparators\EvrStringComparator\Tests\EvrStringComparatorUsingEqualsOperationTests.cs" />
+    <Compile Include="comparators\EvrStringComparator\EvrStringTests.cs" />
+    <Compile Include="comparators\FloatComparatorTest.cs" />
+    <Compile Include="comparators\IntegerComparatorTest.cs" />
+    <Compile Include="comparators\StringComparatorTest.cs" />
+    <Compile Include="comparators\VersionComparatorTest.cs" />
+    <Compile Include="EntityBaseTypeFactoryTest.cs" />
+    <Compile Include="External_variableTest.cs" />
+    <Compile Include="helpers\ExternalVariableFactory.cs" />
+    <Compile Include="helpers\OvalVariablesFactory.cs" />
+    <Compile Include="helpers\VariableTypeFactory.cs" />
+    <Compile Include="itemTypeComparator\GenericItemTypeComparatorForLinuxTests.cs" />
+    <Compile Include="itemTypeComparator\GenericItemTypeComparatorForUnixTests.cs" />
+    <Compile Include="OvalEntityComparerTest.cs" />
+    <Compile Include="oval_results_Test.cs" />
+    <Compile Include="helpers\LoadOvalDocument.cs" />
+    <Compile Include="helpers\SetFactory.cs" />
+    <Compile Include="itemTypeComparator\GenericItemTypeComparatorTest.cs" />
+    <Compile Include="ObjectTypeTest.cs" />
+    <Compile Include="oval_system_characteristics_Test.cs" />
+    <Compile Include="oval_definitions_Test.cs" />
+    <Compile Include="DocumentHelpersTest.cs" />
+    <Compile Include="oval_variables_Test.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="results\TestType_Test.cs" />
+    <Compile Include="results\Criteria_Test.cs" />
+    <Compile Include="setEvaluator\ComplementSetOperationTest.cs" />
+    <Compile Include="setEvaluator\FilterEvaluatorTest.cs" />
+    <Compile Include="setEvaluator\IntersectionSetOperationTest.cs" />
+    <Compile Include="setEvaluator\SetEvaluatorTest.cs" />
+    <Compile Include="setEvaluator\UnionSetOperationTest.cs" />
+    <Compile Include="SetTest.cs" />
+    <Compile Include="StateTypeTest.cs" />
+    <Compile Include="state\StateTypeComparatorTest.cs" />
+    <Compile Include="validators\ExternalVariableValidatorTest.cs" />
+    <Compile Include="variables\ConstantVariableTest.cs" />
+    <Compile Include="variables\ExternalVariableEvaluatorTest.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\LocalVariableBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\OvalArithmeticBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\OvalBeginBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\OvalConcatBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\OvalEndBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\OvalEscapeRegexBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\OvalLocalVariableBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\OvalRegexCaptureBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\OvalSplitBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\OvalSubstringBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\Builders\OvalTimeDifferenceBuilder.cs" />
+    <Compile Include="variables\localVariableComponents\functions\ArithmeticFunctionComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\BeginFunctionComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\ConcatFunctionComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\CountFunctionComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\UniqueFunctionComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\EndFunctionComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\OvalConcatFunctionTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\RegexCaptureFunctionTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\EscapeRegexFunctionTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\SplitFunctionComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\SubstringFunctionComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\TimeDifferenceFormatterTest.cs" />
+    <Compile Include="variables\localVariableComponents\functions\TimeDifferenceFunctionComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\LocalVariableComponentsFactoryTest.cs" />
+    <Compile Include="variables\localVariableComponents\LocalVariableLiteralComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\LocalVariableObjectComponentTest.cs" />
+    <Compile Include="variables\localVariableComponents\LocalVariableVariablesComponentTest.cs" />
+    <Compile Include="variables\LocalVariableEvaluatorTest.cs" />
+    <Compile Include="variables\VariableEntityEvaluatorTest.cs" />
+    <Compile Include="variables\VariableEvaluatorTest.cs" />
+    <Compile Include="variables\VariableValueTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="samples\oval.org.mitre.oval.def.5368.xml" />
+    <EmbeddedResource Include="samples\oval.org.mitre.oval.def.5749.xml" />
+    <EmbeddedResource Include="samples\oval.org.mitre.oval.def.5776.xml" />
+    <EmbeddedResource Include="samples\oval.org.mitre.oval.def.5921.xml" />
+    <EmbeddedResource Include="samples\oval.org.mitre.oval.def.6259.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="samples\oval.org.mitre.oval.def.5368.invalid.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="samples\oval.org.mitre.oval.sc.5368.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="samples\oval.org.mitre.oval.sc.5368.invalid.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="samples\fdcc_xpfirewall_oval.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="samples\fdcc_xpfirewall_oval.sc.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\definitionsSimple.xml" />
+    <EmbeddedResource Include="oval_definitions\definitionsWithConstantVariable.xml" />
+    <EmbeddedResource Include="oval_definitions\definitionsWithLocalVariable.xml" />
+    <EmbeddedResource Include="oval_definitions\fdcc_xpfirewall_oval.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="oval_definitions\fdcc_xpfirewall_oval_only_objects.xml" />
+    <EmbeddedResource Include="oval_definitions\fdcc_xpfirewall_oval_regex.xml" />
+    <EmbeddedResource Include="oval_definitions\fdcc_xpfirewall_oval_regex_on_value.xml" />
+    <EmbeddedResource Include="oval_definitions\oval.org.mitre.oval.def.5921.xml" />
+    <EmbeddedResource Include="system_characteristics\system_characteristics_with_local_variable.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\definitionsWithSet.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\system_characteristics_with_sets.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.VisualBasic.PowerPacks.10.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Visual Basic PowerPacks 10.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="samples\oval.org.mitre.oval.results.5368.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\modulo-VISTAUL-oval.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\modulo-VISTAUL-SystemCharacteristics.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\oval_definitions_with_inventory_definition.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\system_characteristics_with_inventory_definition.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\definitions_all_unix.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\definitions_all_linux.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\definitionsWithExternalVariables.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\system_characteristics_with_variables.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\definitionsWithStateWithExternalVariables.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\system_characteristics_with_state_with_external_variables.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\unix-system-characteristics.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\linux-system-characteristics.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\definitions_all_solaris.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\solaris-system-characteristics.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\RM7-scap-rhel5-definitions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\RM7-scap-rhel5-system-characteristics.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\definitions_with_record_type.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\system_characteristics_with_record_type.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modulo.Collect.OVAL\Collect.OVAL.csproj">
+      <Project>{B9083752-3405-480B-9362-AD279B221C10}</Project>
+      <Name>Collect.OVAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\modulo-iis6-lite.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\modulo-iis6-lite-system-characteristics.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\modulo-ios122-oval.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\modulo-ios122-system-characteristics.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="oval_definitions\modulo-Exchange2003-oval.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="system_characteristics\modulo-Exchange2003-sc.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">
+  <generator>
+    <product_name xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">modSIC</product_name>
+    <product_version xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">1.7.0.188</product_version>
+    <schema_version xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">5.9</schema_version>
+    <timestamp xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">2011-11-21T11:52:00.0879139-02:00</timestamp>
+  </generator>
+
+  <system_info>
+    <os_name>Microsoft Windows Server 2003 R2 Enterprise Edition SP2</os_name>
+    <os_version>5.2.3790</os_version>
+    <architecture>INTEL32</architecture>
+    <primary_host_name>oval-w2k3-ms.oval-w2k3-dc.modulo.com</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>Citrix XenServer PV Ethernet Adapter</interface_name>
+        <ip_address>10.1.0.172</ip_address>
+        <mac_address>A2:3D:77:18:12:AE</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+
+  <collected_objects>
+    <object id="oval:com.modulo.exchange2003:obj:1304801" version="1" flag="complete">
+      <reference item_ref="1" />
+    </object>
+  </collected_objects>
+  <system_data>
+    <wmi57_item id="1" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">
+      <namespace>root\MicrosoftExchangeV2</namespace>
+      <wql>Select * from Exchange_PublicFolder</wql>
+      <result>
+        <field name="AddressBookName" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">Internet Newsgroups</field>
+        <field name="AdministrativeNote" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="AdminSecurityDescriptor" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="ADProxyPath" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="AssociatedMessageCount" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="AttachmentCount" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="Caption" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="CategorizationCount" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="Comment" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="ContactCount" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="ContainsRules" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="CreationTime" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">20111103205040.000000+000</field>
+        <field name="DeletedItemLifetime" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="Description" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="FolderTree" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">Exchange_FolderTree.Name="Public Folders",AdministrativeGroup="First Administrative Group"</field>
+        <field name="FriendlyUrl" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">http://oval-w2k3-MS/ExAdmin/Admin/oval-w2k3-dc.modulo.com/Public%20Folders/Internet%20Newsgroups/</field>
+        <field name="HasChildren" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">False</field>
+        <field name="HasLocalReplica" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">False</field>
+        <field name="InstallDate" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="IsMailEnabled" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">False</field>
+        <field name="IsNormalFolder" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="IsPerUserReadDisabled" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="IsSearchFolder" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="IsSecureInSite" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">False</field>
+        <field name="LastAccessTime" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="LastModificationTime" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">20111103205040.000000+000</field>
+        <field name="MaximumItemSize" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="MessageCount" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="MessageWithAttachmentsCount" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="Name" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">Internet Newsgroups</field>
+        <field name="NormalMessageSize" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="OwnerCount" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="ParentFriendlyUrl" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">http://oval-w2k3-MS/ExAdmin/Admin/oval-w2k3-dc.modulo.com/Public%20Folders/</field>
+        <field name="Path" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">/Internet Newsgroups/</field>
+        <field name="ProhibitPostLimit" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="PublishInAddressBook" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="RecipientCountOnAssociatedMessages" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="RecipientCountOnNormalMessages" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="ReplicaAgeLimit" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">7</field>
+        <field name="ReplicaList" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="ReplicationMessagePriority" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="ReplicationSchedule" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="ReplicationStyle" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">6</field>
+        <field name="RestrictionCount" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="SecurityDescriptor" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="Status" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="StorageLimitStyle" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+        <field name="TargetAddress" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">/O=4RT6JU8EXU/OU=137FRGJU9E/CN=RECIPIENTS/CN=INTERNET NEWSGROUPS</field>
+        <field name="TotalMessageSize" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">0</field>
+        <field name="Url" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">http://oval-w2k3-MS/ExAdmin/Admin/oval-w2k3-dc.modulo.com/Public%20Folders/-FlatUrlSpace-/f020d914c926d011a40900c04fd7bd87-ffffffff0003/</field>
+        <field name="UsePublicStoreAgeLimits" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">False</field>
+        <field name="UsePublicStoreDeletedItemLifetime" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">True</field>
+        <field name="WarningLimit" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" />
+      </result>
+    </wmi57_item>
+  </system_data>
+</oval_system_characteristics>

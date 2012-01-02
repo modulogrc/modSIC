@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<oval_definitions 
+xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd" 
+xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>The OVAL Repository</oval:product_name>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2009-07-20T21:13:42.715-04:00</oval:timestamp>
+  </generator>
+
+  <!-- ========================================= -->
+  <!-- ========== 1. DEFINITIONS      ========== -->
+  <!-- ========================================= -->
+
+
+  <!-- ========================================= -->
+  <!-- ========== 2. TESTS            ========== -->
+  <!-- ========================================= -->
+
+
+
+
+  <!-- ========================================= -->
+  <!-- ========== 3. OBJECTS          ========== -->
+  <!-- ========================================= -->
+  <objects>
+    <family_object id="oval:org.mitre.oval:obj:1000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"/>
+	<registry_object id="oval:org.mitre.oval:obj:3000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key var_ref="oval:org.mitre.oval:var:3000"></key>
+      <name>CurrentVersion</name>
+    </registry_object>
+	<file_object id="oval:modulo:obj:1001" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path var_ref="oval:modulo:var:1001"></path>
+      <filename>inetcomm.dll</filename>
+    </file_object>
+	<file_object id="oval:modulo:obj:1002" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <filepath var_ref="oval:modulo:var:1002"></filepath>
+    </file_object>
+	<file_object id="oval:modulo:obj:1003" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path var_ref="oval:modulo:var:1001"></path>
+      <filename var_ref="oval:modulo:var:1002"></filename>
+    </file_object>
+	<file_object id="oval:modulo:obj:1004" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path var_ref="oval:modulo:var:1001"></path>
+      <filename operation ="not equal">file.txt</filename>
+    </file_object>
+	
+	<!-- Values for test Variable Object-->
+    <variable_object id="oval:modulo:obj:4000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <var_ref>oval:modulo:var:1002</var_ref>
+    </variable_object>
+	<textfilecontent_object id="oval:modulo:obj:2000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+	  <path var_ref="oval:modulo:var:2001"></path>
+	  <filename var_ref="oval:modulo:var:2002"></filename>
+	  <line operation="pattern match" var_ref="oval:modulo:var:2003"></line>	  
+	</textfilecontent_object>
+  </objects>
+  
+  <variables>
+    <constant_variable id="oval:org.mitre.oval:var:3000" datatype="string" version="1" comment="xxx">
+      <value>does not care</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2001" datatype="string" version="1" comment="xxx">
+      <value>does not care</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2002" datatype="string" version="1" comment="xxx">
+      <value>does not care</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2003" datatype="string" version="1" comment="xxx">
+      <value>does not care</value>
+    </constant_variable>
+  </variables>
+
+</oval_definitions>

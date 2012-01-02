@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3C466BF5-F078-40C1-AB2E-EA6C14BD55E1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Modulo.Collect.Probe.Unix.Test</RootNamespace>
+    <AssemblyName>Modulo.Collect.Probe.Unix.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Tamir.SharpSSH, Version=1.1.1.13, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\SharpSSH\Tamir.SharpSSH.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FakeTerminalOutputFactory.cs" />
+    <Compile Include="ProberTests\EnvironmentVariable\EnvironmentVariableItemTypeGeneratorTest.cs" />
+    <Compile Include="ProberTests\EnvironmentVariable\EnvironmentVariableProberTest.cs" />
+    <Compile Include="ProberTests\EnvironmentVariable\EnvironmentVariableObjectCollectorTest.cs" />
+    <Compile Include="ProberTests\Family\FamilyObjectCollectorTest.cs" />
+    <Compile Include="ProberTests\Family\FamilyProberTests.cs" />
+    <Compile Include="ProberTests\File\FileItemTypeGeneratorTests.cs" />
+    <Compile Include="ProberTests\File\FileObjectCollectorTests.cs" />
+    <Compile Include="ProberTests\File\FileProberTests.cs" />
+    <Compile Include="ProberTests\File\UnixFileItemFactoryTests.cs" />
+    <Compile Include="ProberTests\File\UnixFilepathTests.cs" />
+    <Compile Include="ProberTests\Linux\RpmInfo\RpmInfoItemTypeGeneratorTests.cs" />
+    <Compile Include="ProberTests\Linux\RpmInfo\RpmInfoObjectCollectorTests.cs" />
+    <Compile Include="ProberTests\Linux\RpmInfo\RpmInfoProberTests.cs" />
+    <Compile Include="ProberTests\Process\ProcessItemTypeGeneratorTests.cs" />
+    <Compile Include="ProberTests\Process\ProcessObjectCollectorTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProberTests\Process\ProcessProberTests.cs" />
+    <Compile Include="ProberTests\RunLevel\RunLevelItemTypeGeneratorTests.cs" />
+    <Compile Include="ProberTests\RunLevel\RunlevelObjectCollectorTests.cs" />
+    <Compile Include="ProberTests\RunLevel\RunLevelProberTests.cs" />
+    <Compile Include="ProberTests\TextFileContent54\TextFileContentItemTypeGeneratorTests.cs" />
+    <Compile Include="ProberTests\TextFileContent54\TextFileContentObjectCollectorTests.cs" />
+    <Compile Include="ProberTests\TextFileContent54\TextFileContentProberUnixTests.cs" />
+    <Compile Include="ProberTests\Uname\UnameItemTypeGeneratorTests.cs" />
+    <Compile Include="ProberTests\Uname\UnameObjectCollectorTests.cs" />
+    <Compile Include="ProberTests\Uname\UnameProberTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SSHCollectorsTests\FileContentCollectorTests.cs" />
+    <Compile Include="UnixTerminalParserTests.cs" />
+    <Compile Include="XmlFileContentProberTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modulo.Collect.OVAL\Collect.OVAL.csproj">
+      <Project>{B9083752-3405-480B-9362-AD279B221C10}</Project>
+      <Name>Collect.OVAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Common.Test\Modulo.Collect.Probe.Common.Test.csproj">
+      <Project>{7E364628-6531-4BCA-A074-302756CB772D}</Project>
+      <Name>Modulo.Collect.Probe.Common.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Common\Modulo.Collect.Probe.Common.csproj">
+      <Project>{DF2B4873-DDAB-4F47-9C4F-5B93FE1214CF}</Project>
+      <Name>Modulo.Collect.Probe.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Independent\Modulo.Collect.Probe.Independent.csproj">
+      <Project>{890332AF-A755-40F1-B95A-B20CB45EB465}</Project>
+      <Name>Modulo.Collect.Probe.Independent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Unix\Modulo.Collect.Probe.Unix.csproj">
+      <Project>{21773E49-CB1C-4346-A598-535F7A96FDB3}</Project>
+      <Name>Modulo.Collect.Probe.Unix</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

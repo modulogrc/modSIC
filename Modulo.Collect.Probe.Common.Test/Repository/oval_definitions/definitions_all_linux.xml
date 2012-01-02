@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<!-- ========================================= -->
+<!-- ==========  __OS_FULL_NAME__     ========== -->
+<!-- ========================================= -->
+<oval_definitions xsi:schemaLocation=
+                   "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd 
+                    http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd 
+									  http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd"
+									  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+									  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+									  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+									  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>Risk Manager</oval:product_name>
+    <oval:product_version>7.0</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2010-01-13T16:29:27.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+
+  <!-- ========================================= -->
+  <!-- ========== 1. DEFINITIONS      ========== -->
+  <!-- ========================================= -->
+
+  <!-- ========================================= -->
+  <!-- ========== 2. TESTS            ========== -->
+  <!-- ========================================= -->
+  <tests>
+    <rpminfo_test id="oval:modulo:tst:1" check="at least one" check_existence="at_least_one_exists" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <object object_ref="oval:modulo:obj:1"/>
+      <state state_ref="oval:modulo:ste:1"/>
+    </rpminfo_test>
+    <dpkginfo_test id="oval:modulo:tst:2" check="at least one" check_existence="at_least_one_exists" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <object object_ref="oval:modulo:obj:2"/>
+      <state state_ref="oval:modulo:ste:2"/>
+    </dpkginfo_test>
+    <inetlisteningservers_test id="oval:modulo:tst:3" check="at least one" check_existence="at_least_one_exists" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <object object_ref="oval:modulo:obj:3"/>
+      <state state_ref="oval:modulo:ste:3"/>
+    </inetlisteningservers_test>
+    <slackwarepkginfo_test id="oval:modulo:tst:4" check="at least one" check_existence="at_least_one_exists" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <object object_ref="oval:modulo:obj:4"/>
+      <state state_ref="oval:modulo:ste:4"/>
+    </slackwarepkginfo_test>
+  </tests>  
+  <!-- ========================================= -->
+  <!-- ========== 3. OBJECTS          ========== -->
+  <!-- ========================================= -->
+  <objects>
+    <rpminfo_object id="oval:modulo:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>firefox</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:modulo:obj:10" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name var_ref="oval:modulo:var:2" />
+    </rpminfo_object>
+    <rpminfo_object id="oval:modulo:obj:11" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name operation="pattern match">libs.*</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:modulo:obj:12" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name var_ref="oval:modulo:var:3" operation="pattern match" />
+    </rpminfo_object>
+    <rpminfo_object id="oval:modulo:obj:13" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name operation="not equal">plymouth-plugin-two-step</name>
+    </rpminfo_object>
+
+    <rpminfo_object id="oval:modulo:obj:100" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <set set_operator="COMPLEMENT" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <object_reference>oval:modulo:obj:1</object_reference>
+        <object_reference>oval:modulo:obj:10</object_reference>
+      </set>
+    </rpminfo_object>
+    
+    <dpkginfo_object id="oval:modulo:obj:2" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>some_package</name>
+    </dpkginfo_object>
+    <inetlisteningservers_object id="oval:modulo:obj:3" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <protocol>TCP</protocol>
+      <local_address>127.0.0.1</local_address>
+      <local_port datatype="int">80</local_port>
+    </inetlisteningservers_object>
+    <slackwarepkginfo_object id="oval:modulo:obj:4" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>doom3</name>
+    </slackwarepkginfo_object>
+  </objects>
+
+  <!-- ========================================= -->
+  <!-- ========== 4. STATES           ========== -->
+  <!-- ========================================= -->
+  <states>
+    <rpminfo_state id="oval:modulo:ste:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>firefox</name>
+      <arch>x86</arch>
+      <epoch>1</epoch>
+      <evr datatype="evr_string">1:2.01</evr>
+      <signature_keyid>12346578123412341234123456789012</signature_keyid>
+    </rpminfo_state>
+    <dpkginfo_state id="oval:modulo:ste:2" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>some_package</name>
+      <arch>x64</arch>
+      <epoch>2</epoch>
+      <evr datatype="evr_string">2:4.08</evr>
+    </dpkginfo_state>
+    <inetlisteningservers_state id="oval:modulo:ste:3" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <protocol>TCP</protocol>
+      <local_address>127.0.0.1</local_address>
+      <local_port datatype="int">80</local_port>
+      <foreign_address>192.168.1.1</foreign_address>
+      <foreign_full_address>http://192.168.1.1:8080/</foreign_full_address>
+      <pid datatype="int">4</pid>
+      <user_id datatype="int">80</user_id>
+    </inetlisteningservers_state>
+    <slackwarepkginfo_state id="oval:modulo:ste:4" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <architecture>amd64</architecture>
+      <revision>1</revision>
+    </slackwarepkginfo_state>
+  </states>
+  
+  
+  <!-- ========================================= -->
+  <!-- =========== 5. VARIABLES  ============ -->
+  <!-- ========================================= -->
+
+  <variables>
+    <constant_variable id="oval:modulo:var:1" datatype="string" version="1" comment="...">
+      <value>c:\temp\definitions\bookstore.xml</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2" datatype="string" version="1" comment="...">
+      <value>chrome</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:3" datatype="string" version="1" comment="...">
+      <value>libs*</value>
+    </constant_variable>
+  </variables>
+
+</oval_definitions>

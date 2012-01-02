@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+                  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+                  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd 
+                  http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd 
+                  http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd 
+                  http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd">
+  <generator>
+    <oval:product_name>Risk Manager</oval:product_name>
+    <oval:product_version>7.4</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2011-11-16T15:00:00.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+  
+  <definitions>
+    <!-- Actual definition id : oval:com.modulo.exchange2003:def:13048 -->
+    <definition class="compliance" id="oval:com.modulo.exchange2003:def:13048001" version="1">
+      <metadata>
+        <title>A storage limit for the room take up by MS Exchange Server 2003 Public Folders should be defined.</title>
+        <description>Some "Public Folders" may contain binary files that are too large, such as digitalized graphs and music files.  The risk of the server disk running out of available space may be mitigated by establishing a space limit for storing each folder. Whenever the folder reaches its storage threshold (in Kbytes), a warning is sent to the folder's proprietary (owner).</description>
+      </metadata>
+      <criteria>
+        <criterion comment="WMI query Storage Limit" test_ref="oval:com.modulo.exchange2003:tst:1304801" />
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:com.modulo.exchange2003:def:13048002" version="1">
+      <metadata>
+        <title>Unit Test.</title>
+        <description>Unit Test.</description>
+      </metadata>
+      <criteria>
+        <criterion comment="WMI query Storage Limit" test_ref="oval:com.modulo.exchange2003:tst:1304802" />
+      </criteria>
+    </definition>
+  </definitions>
+
+  <tests>
+    <wmi57_test id="oval:com.modulo.exchange2003:tst:1304801" check="all" comment="WMI query Storage Limit." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:com.modulo.exchange2003:obj:1304801" />
+      <state state_ref="oval:com.modulo.exchange2003:ste:1304801" />
+    </wmi57_test>
+    <wmi57_test id="oval:com.modulo.exchange2003:tst:1304802" check="all" comment="WMI query Storage Limit." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" >
+      <object object_ref="oval:com.modulo.exchange2003:obj:1304801" />
+      <state state_ref="oval:com.modulo.exchange2003:ste:1304802" />
+    </wmi57_test>
+  </tests>
+  
+  <objects>
+    <wmi57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:com.modulo.exchange2003:obj:1304801" version="1">
+      <namespace>root\MicrosoftExchangeV2</namespace>
+      <wql>Select * from Exchange_PublicFolder</wql>
+    </wmi57_object>
+
+  </objects>
+  <states>
+    <wmi57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:com.modulo.exchange2003:ste:1304801" version="1">
+      <result datatype="record">
+        <oval-def:field name="issecureinsite" datatype="string" var_ref="oval:com.modulo.exchange2003:var:1304801"/>
+      </result>
+    </wmi57_state>
+    <wmi57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:com.modulo.exchange2003:ste:1304802" version="1">
+      <result datatype="record">
+        <oval-def:field name="issecureinsite" datatype="string" var_ref="oval:com.modulo.exchange2003:var:1304802"/>
+      </result>
+    </wmi57_state>
+  </states>
+
+  <variables>
+    <external_variable id="oval:com.modulo.exchange2003:var:1304801" comment="Storage Limit for Public Folders" version="1" datatype="string"/>
+    <external_variable id="oval:com.modulo.exchange2003:var:1304802" comment="Storage Limit for Public Folders" version="1" datatype="string"/>
+  </variables>
+</oval_definitions>

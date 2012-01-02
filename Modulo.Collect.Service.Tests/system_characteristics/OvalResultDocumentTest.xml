@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<oval_system_characteristics xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ind-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5 oval-system-characteristics-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent independent-system-characteristics-schema.xsd">
+
+  <generator>
+    <oval:product_name>OVAL Definition Interpreter</oval:product_name>
+    <oval:product_version>5.7 Build: 1</oval:product_version>
+    <oval:schema_version>5.7</oval:schema_version>
+    <oval:timestamp>2010-10-22T15:56:47</oval:timestamp>
+    <vendor>The MITRE Corporation</vendor>
+  </generator>
+
+  <system_info>
+    <os_name>unknown Professional </os_name>
+    <os_version>6.1.7600</os_version>
+    <architecture>INTEL32</architecture>
+    <primary_host_name>mss-rj-001.mss.modulo.com.br</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>Intel(R) 82566DM-2 Gigabit Network Connection</interface_name>
+        <ip_address>172.16.3.117</ip_address>
+        <mac_address>00-1E-C9-1D-7B-B0</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+
+  <collected_objects>
+    <object comment="..." flag="complete" id="oval:modulo:obj:1" version="1">
+      <reference item_ref="1"/>
+    </object>
+  </collected_objects>
+
+  <system_data>
+    <textfilecontent_item id="1" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+      <filepath>c:\windows\win.ini</filepath>
+      <path>c:\windows\</path>
+      <filename>win.ini</filename>
+      <pattern>3gp</pattern>
+      <instance datatype="int">1</instance>
+      <text>3gp</text>
+    </textfilecontent_item>
+  </system_data>
+
+</oval_system_characteristics>

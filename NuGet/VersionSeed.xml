@@ -1,0 +1,9 @@
+<VersionSeed>
+	<Solution name="Default">
+		<AssemblyVersionPattern>1.7.0.B</AssemblyVersionPattern> 
+		<AssemblyFileVersionPattern>1.7.j.B</AssemblyFileVersionPattern>
+	</Solution>
+  <NuGetPackage id="modSIC.Client">
+    <VersionPattern>1.7.0.B</VersionPattern>
+  </NuGetPackage>
+</VersionSeed>

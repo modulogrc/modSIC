@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!-- ========================================= -->
+<!-- ============ CCM: Antivirus ============= -->
+<!-- ========================================= -->
+<!--In an OVAL Definitions file as an example for modSIC CCM Beta, the project author, version, date, and description should be provided in this section.-->
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+                  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+                  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd             http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd             http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd             http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd">
+	<generator>
+		<oval:product_name>Test Purpose</oval:product_name>
+		<oval:product_version>1</oval:product_version>
+		<oval:schema_version>5.9</oval:schema_version>
+		<oval:timestamp>2011-03-23T15:00:00.000-03:00</oval:timestamp>
+		<vendor>Modulo Security</vendor>
+	</generator>
+
+<!-- ========================================= -->
+<!-- ========== 1. DEFINITIONS  ============== -->
+<!-- ========================================= -->
+<!--In this section, a description of what will be verified should be provided (title, platform, and CPE name are optional).-->
+	<definitions>
+		<definition id="oval:com.modulo.sample.CCM:def:1" class="compliance" version="1">
+			<metadata>
+				<title>Verifies that Anitvirus is installed</title>
+				<description>
+					Works on any Windows platform after Windows XP SP2. This checks if an antivirus is installed. NON-WMI Complaint products needs to be manually added as ORs
+				</description>
+				<affected family="windows">
+					<platform>Microsoft Windows XP</platform>
+					<platform>Microsoft Windows Vista</platform>
+					<platform>Microsoft Windows 7</platform>
+				</affected>
+			</metadata>
+			<criteria operator="AND">
+				<criteria operator="OR">
+					<extend_definition comment="Microsoft Windows XP SP2 is installed" definition_ref="oval:org.mitre.oval:def:754"/>
+					<extend_definition comment="Microsoft Windows XP SP3 is installed" definition_ref="oval:org.mitre.oval:def:5631"/>
+					<extend_definition comment="Microsoft Windows Vista is installed" definition_ref="oval:org.mitre.oval:def:1282"/>
+					<extend_definition comment="Microsoft Windows Vista Service Pack 1 is installed" definition_ref="oval:org.mitre.oval:def:4873"/>
+					<extend_definition comment="Microsoft Windows 7 is installed" definition_ref="oval:org.mitre.oval:def:6165"/>
+				</criteria>
+				<criterion test_ref="oval:org.mitre.oval:tst:7903" comment="Checks that an Anti Virus Product is installed"/>
+			</criteria>
+		</definition>
+		
+<!-- ========================================= -->
+<!-- ======== Inventory DEFINITIONS ========== -->
+<!-- ========================================= -->
+		<definition id="oval:org.mitre.oval:def:754" version="7" class="inventory">
+			<metadata>
+				<title>Microsoft Windows XP SP2 is installed</title>
+				<affected family="windows">
+					<platform>Microsoft Windows XP</platform>
+				</affected>
+				<reference source="CPE" ref_id="cpe:/o:microsoft:windows_xp::sp2:x86"/>
+				<description>
+					A version of Microsoft Windows XP Service Pack 2 is installed.
+				</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99"/>
+				<criterion comment="Windows XP is installed" test_ref="oval:org.mitre.oval:tst:11179"/>
+				<criterion comment="Win2K/XP/2003/Vista/2008 service pack 2 is installed" test_ref="oval:org.mitre.oval:tst:3019"/>
+			</criteria>
+		</definition>
+		<definition id="oval:org.mitre.oval:def:6165" version="3" class="inventory">
+			<metadata>
+				<title>Microsoft Windows 7 is installed</title>
+				<affected family="windows">
+					<platform>Microsoft Windows 7</platform>
+				</affected>
+				<reference source="CPE" ref_id="cpe:/o:microsoft:windows_7:::x86"/>
+				<description>
+					The operating system installed on the system is Microsoft Windows 7
+				</description>
+			</metadata>
+			<criteria>
+				<criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99"/>
+				<criterion comment="Windows 7 is installed" test_ref="oval:org.mitre.oval:tst:10792"/>
+			</criteria>
+		</definition>
+		<definition id="oval:org.mitre.oval:def:5631" version="6" class="inventory">
+			<metadata>
+				<title>Microsoft Windows XP SP3 is installed</title>
+				<affected family="windows">
+					<platform>Microsoft Windows XP</platform>
+				</affected>
+				<reference source="CPE" ref_id="cpe:/o:microsoft:windows_xp::sp3:x86"/>
+				<description>
+					A version of Microsoft Windows XP Service Pack 3 is installed.
+				</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99"/>
+				<criterion comment="Windows XP is installed" test_ref="oval:org.mitre.oval:tst:11179"/>
+				<criterion comment="Win2K/XP/2003 service pack 3 is installed" test_ref="oval:org.mitre.oval:tst:7814"/>
+			</criteria>
+		</definition>
+		<definition id="oval:org.mitre.oval:def:4873" version="6" class="inventory">
+			<metadata>
+				<title>
+					Microsoft Windows Vista Service Pack 1 is installed
+				</title>
+				<affected family="windows">
+					<platform>Microsoft Windows Vista</platform>
+				</affected>
+				<reference source="CPE" ref_id="cpe:/o:microsoft:windows_vista::sp1:x86"/>
+				<description>
+					The operating system installed on the system is Microsoft Windows Vista Service Pack 1
+				</description>
+			</metadata>
+			<criteria>
+				<criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99"/>
+				<criterion comment="Windows Vista is installed" test_ref="oval:org.mitre.oval:tst:7914"/>
+				<criterion comment="Win2K/XP/2003/Vista service pack 1 is installed" test_ref="oval:org.mitre.oval:tst:2843"/>
+			</criteria>
+		</definition>
+		<definition id="oval:org.mitre.oval:def:1282" version="4" class="inventory">
+			<metadata>
+				<title>Microsoft Windows Vista is installed</title>
+				<affected family="windows">
+					<platform>Microsoft Windows Vista</platform>
+				</affected>
+				<reference source="CPE" ref_id="cpe:/o:microsoft:windows_vista:::x86"/>
+				<description>
+					The operating system installed on the system is Microsoft Windows Vista
+				</description>
+			</metadata>
+			<criteria>
+				<criterion comment="the installed operating system is part of the Microsoft Windows family" test_ref="oval:org.mitre.oval:tst:99"/>
+				<criterion comment="Windows Vista is installed" test_ref="oval:org.mitre.oval:tst:7914"/>
+			</criteria>
+		</definition>
+		
+	</definitions>
+
+<!-- ========================================= -->
+<!-- ========== 2.    TEST     =============== -->
+<!-- ========================================= -->
+<!--Each test should be linked to its object and state as well the desired verification method.-->
+	<tests>
+		<wmi57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:tst:7903" version="1" comment="Checks that an Anti Virus Product is installed" check_existence="at_least_one_exists" check="all">
+			<object object_ref="oval:org.mitre.oval:obj:5303"/>
+		</wmi57_test>
+	
+<!-- ========================================= -->
+<!-- ========  Inventory  TESTS  ============= -->
+<!-- ========================================= -->
+		<registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:tst:3019" version="4" comment="Win2K/XP/2003/Vista/2008 service pack 2 is installed" check_existence="at_least_one_exists" check="at least one">
+			<object object_ref="oval:org.mitre.oval:obj:717"/>
+			<state state_ref="oval:org.mitre.oval:ste:2827"/>
+		</registry_test>
+		<registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:tst:10792" version="4" comment="Windows 7 is installed" check_existence="at_least_one_exists" check="at least one">
+			<object object_ref="oval:org.mitre.oval:obj:5590"/>
+			<state state_ref="oval:org.mitre.oval:ste:5027"/>
+		</registry_test>
+		<registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:tst:7814" version="4" comment="Win2K/XP/2003 service pack 3 is installed" check_existence="at_least_one_exists" check="at least one">
+			<object object_ref="oval:org.mitre.oval:obj:717"/>
+			<state state_ref="oval:org.mitre.oval:ste:3794"/>
+		</registry_test>
+		<registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:tst:11179" version="3" comment="Windows XP is installed" check_existence="at_least_one_exists" check="at least one">
+			<object object_ref="oval:org.mitre.oval:obj:5590"/>
+			<state state_ref="oval:org.mitre.oval:ste:5477"/>
+		</registry_test>
+		<registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:tst:2843" version="4" comment="Win2K/XP/2003/Vista service pack 1 is installed" check_existence="at_least_one_exists" check="at least one">
+			<object object_ref="oval:org.mitre.oval:obj:717"/>
+			<state state_ref="oval:org.mitre.oval:ste:2662"/>
+		</registry_test>
+		<family_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval:tst:99" version="1" comment="the installed operating system is part of the Microsoft Windows family" check_existence="at_least_one_exists" check="only one">
+			<object object_ref="oval:org.mitre.oval:obj:99"/>
+			<state state_ref="oval:org.mitre.oval:ste:99"/>
+		</family_test>
+		<registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:tst:7914" version="4" comment="Windows Vista is installed" check_existence="at_least_one_exists" check="at least one">
+			<object object_ref="oval:org.mitre.oval:obj:5590"/>
+			<state state_ref="oval:org.mitre.oval:ste:3828"/>
+		</registry_test>
+	
+	</tests>
+		
+<!-- ========================================= -->
+<!-- ========== 4.    OBJECT    ============== -->
+<!-- ========================================= -->
+<!--The object linked to some of the test entries listed above.-->
+	<objects>
+		<wmi57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:obj:5303" version="1">
+			<namespace>root\SecurityCenter</namespace>
+			<wql>Select instanceGuid from AntiVirusProduct</wql>
+		</wmi57_object>
+	
+<!-- ========================================= -->
+<!-- ========= Inventory OBJECTS ============= -->
+<!-- ========================================= -->
+		<registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:obj:717" version="3" comment="This registry key holds the service pack installed on the host if one is present.">
+			<hive>HKEY_LOCAL_MACHINE</hive>
+			<key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+			<name>CSDVersion</name>
+		</registry_object>
+		<family_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval:obj:99" version="1" comment="This is the default family object. Only one family object should exist."/>
+		<registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:obj:5590" version="1" comment="This registry key identifies the Windows ProductName">
+			<hive>HKEY_LOCAL_MACHINE</hive>
+			<key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+			<name>ProductName</name>
+		</registry_object>
+		<registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:obj:1576" version="1" comment="This registry key identifies the architecture on the system">
+			<hive>HKEY_LOCAL_MACHINE</hive>
+			<key>SYSTEM\CurrentControlSet\Control\Session Manager\Environment</key>
+			<name>PROCESSOR_ARCHITECTURE</name>
+		</registry_object>
+	
+	</objects>
+
+<!-- ========================================= -->
+<!-- =========== 5.    STATE   =============== -->
+<!-- ========================================= -->	
+	<states>
+		<registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:ste:2827" version="2" comment="The registry key has a value of Service Pack 2">
+			<value operation="case insensitive equals">Service Pack 2</value>
+		</registry_state>
+		<registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:ste:5027" version="4" comment="The registry key matches with Windows 7">
+			<value operation="pattern match">^[a-zA-Z0-9\(\)\s]*[Ww][Ii][Nn][Dd][Oo][Ww][Ss] 7[a-zA-Z0-9\(\)\s]*$</value>
+		</registry_state>
+		<registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:ste:3794" version="2" comment="The registry key has a value of Service Pack 3">
+			<value operation="case insensitive equals">Service Pack 3</value>
+		</registry_state>
+		<registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:ste:5477" version="4" comment="The registry key matches with Windows XP">
+			<value operation="pattern match">^[a-zA-Z0-9\(\)\s]*[Ww][Ii][Nn][Dd][Oo][Ww][Ss] [Xx][Pp][a-zA-Z0-9\(\)\s]*$</value>
+		</registry_state>
+		<registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:ste:2662" version="2" comment="The registry key has a value of Service Pack 1">
+			<value operation="case insensitive equals">Service Pack 1</value>
+		</registry_state>
+		<family_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.mitre.oval:ste:99" version="2" comment="Microsoft Windows family">
+			<family operation="case insensitive equals">windows</family>
+		</family_state>
+		<registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" id="oval:org.mitre.oval:ste:3828" version="4" comment="The registry key matches with Vista">
+			<value operation="pattern match">^[a-zA-Z0-9\(\)\s]*[Vv][Ii][Ss][Tt][Aa][a-zA-Z0-9\(\)\s]*$</value>
+		</registry_state>
+
+	</states>
+	
+	
+</oval_definitions>

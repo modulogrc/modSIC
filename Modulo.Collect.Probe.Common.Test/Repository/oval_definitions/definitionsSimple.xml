@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<oval_definitions
+    xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd"
+    xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+    xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    xmlns:win-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"
+    xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix"
+    xmlns:sol-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+  <generator>
+    <oval:product_name>The OVAL Repository</oval:product_name>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2009-07-20T21:13:42.715-04:00</oval:timestamp>
+  </generator>
+
+  <!-- ========================================= -->
+  <!-- ========== 1. DEFINITIONS      ========== -->
+  <!-- ========================================= -->
+
+
+  <!-- ========================================= -->
+  <!-- ========== 2. TESTS            ========== -->
+  <!-- ========================================= -->
+
+
+
+
+  <!-- ========================================= -->
+  <!-- ========== 3. OBJECTS          ========== -->
+  <!-- ========================================= -->
+  <objects>
+    <family_object id="oval:org.mitre.oval:obj:1000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"/>
+
+    <registry_object id="oval:org.mitre.oval:obj:3000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CurrentVersion</key>
+      <name>CurrentVersion</name>
+    </registry_object>
+    <registry_object id="oval:org.mitre.oval:obj:4000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>Software\Microsoft\Windows NT\CSDBuild</key>
+      <name operation="pattern match">^D.*</name>
+    </registry_object>
+
+    <file_object id="oval:modulo:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <filepath>c:\temp\file.txt</filepath>
+    </file_object>
+    <file_object id="oval:modulo:obj:2" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path>c:\temp</path>
+      <filename>file.txt</filename>
+    </file_object>
+    <file_object id="oval:modulo:obj:3" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path var_ref="oval:modulo:var:3"></path>
+      <filename>file.txt</filename>
+    </file_object>
+    <file_object id="oval:modulo:obj:10" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <filepath var_ref="oval:modulo:var:11"></filepath>
+    </file_object>
+    <file_object id="oval:com.modulo.IIS6:obj:6877401" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path var_ref="oval:com.modulo.IIS6:var:687741" />
+      <filename xsi:nil="true" />
+    </file_object>
+
+
+    <user_object id="oval:modulo:obj:4" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <user operation="case insensitive equals">lfernandes</user>
+    </user_object>
+    <user_object id="oval:modulo:obj:5" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <user>lfernandes</user>
+    </user_object>
+    <user_object id="oval:modulo:obj:6" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <user operation="case insensitive not equal">lfernandes</user>
+    </user_object>
+
+
+    <fileeffectiverights_object id="oval:modulo:obj:7" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path>c:\temp</path>
+      <filename>file1.txt</filename>
+      <trustee_name>mss\lfernandes</trustee_name>
+    </fileeffectiverights_object>
+
+
+    <textfilecontent_object id="oval:modulo:obj:9" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>c:\temp</path>
+      <filename>teste.txt</filename>
+      <line operation="pattern match">tes*</line>
+    </textfilecontent_object>
+
+
+    <sid_object id="oval:modulo:obj:8" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <trustee_name>Administrator</trustee_name>
+    </sid_object>
+    <sid_object id="oval:modulo:obj:11" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <trustee_name var_ref="oval:modulo:var:10"></trustee_name>
+    </sid_object>
+    <sid_object id="oval:modulo:obj:12" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <trustee_name operation="pattern match">.*\.*fernandes$</trustee_name>
+    </sid_object>
+    <sid_object id="oval:modulo:obj:99" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <trustee_name var_ref="oval:modulo:var:99" operation="pattern match"></trustee_name>
+    </sid_object>
+
+
+    <sid_sid_object id="oval:modulo:obj:200" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <trustee_sid>S-1-5-20</trustee_sid>
+    </sid_sid_object>
+    <sid_sid_object id="oval:modulo:obj:201" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <trustee_sid var_ref="oval:modulo:var:201"></trustee_sid>
+    </sid_sid_object>
+    <sid_sid_object id="oval:modulo:obj:202" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <trustee_sid operation="pattern match">^S.*-500$</trustee_sid>
+    </sid_sid_object>
+
+
+    <regkeyeffectiverights53_object id="oval:modulo:obj:750" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Modulo\RiskManager</key>
+      <trustee_sid>S-1-5-21-501351562-481299158-1019697294-10279</trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:751" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Modulo\RiskManagerNG</key>
+      <trustee_sid>S-1-5-21-501351562-481299158-1019697294-10279</trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:760" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <set set_operator="UNION" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <object_reference>oval:modulo:obj:750</object_reference>
+        <object_reference>oval:modulo:obj:751</object_reference>
+      </set>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:770" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key var_ref="oval:modulo:var:770"></key>
+      <trustee_sid>S-1-5-21-501351562-481299158-1019697294-10279</trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:771" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key var_ref="oval:modulo:var:770"></key>
+      <trustee_sid var_ref="oval:modulo:var:201"></trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:780" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">SOFTWARE\Modulo\^Risk.*\CurrentVersion</key>
+      <trustee_sid>S-1-5-100-500</trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:790" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="pattern match">SOFTWARE\Modulo\^Risk.*\Info\^Current.*</key>
+      <trustee_sid>S-1-5-100-500</trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:800" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Modulo\RiskManager</key>
+      <trustee_sid operation="pattern match">S-1-5-100.*</trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:810" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key operation="not equal">SOFTWARE\Modulo\RiskManager</key>
+      <trustee_sid>S-1-5-18</trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:820" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Modulo\RiskManager</key>
+      <trustee_sid operation="not equal">S-1-5-18</trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:830" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key var_ref="oval:modulo:var:830" operation="pattern match"></key>
+      <trustee_sid var_ref="oval:modulo:var:831" operation="not equal"></trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:831" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key/>
+      <trustee_sid>S-1-5-18</trustee_sid>
+    </regkeyeffectiverights53_object>
+    <regkeyeffectiverights53_object id="oval:modulo:obj:832" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <hive>HKEY_LOCAL_MACHINE</hive>
+      <key>SOFTWARE\Modulo\modSIC</key>
+      <trustee_sid operation="pattern match">.*</trustee_sid>
+    </regkeyeffectiverights53_object>
+
+    <accesstoken_object id="oval:modulo:obj:840" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <security_principle>mss\lfernandes</security_principle>
+    </accesstoken_object>
+    <accesstoken_object id="oval:modulo:obj:850" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <security_principle operation="pattern match">mss\\.*fernandes$</security_principle>
+    </accesstoken_object>
+    <accesstoken_object id="oval:modulo:obj:860" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <security_principle var_ref="oval:modulo:var:860"></security_principle>
+    </accesstoken_object>
+    <accesstoken_object id="oval:modulo:obj:870" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <security_principle var_ref="oval:modulo:var:10" operation="not equal"></security_principle>
+    </accesstoken_object>
+    <accesstoken_object id="oval:modulo:obj:880" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <set set_operator="UNION" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <object_reference>oval:modulo:obj:840</object_reference>
+        <object_reference>oval:modulo:obj:860</object_reference>
+      </set>
+    </accesstoken_object>
+
+    <textfilecontent54_object	id="oval:modulo:obj:900" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>C:\Windows\System32\drivers\etc</path>
+      <filename>hosts</filename>
+      <pattern operation="pattern match">64.4.20.252 v4.windowsupdate.microsoft.com</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object	id="oval:modulo:obj:910" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <behaviors multiline="true"/>
+      <path var_ref="oval:modulo:var:911"/>
+      <filename>win.ini</filename>
+      <pattern operation="pattern match" var_ref="oval:modulo:var:912"/>
+      <instance datatype="int" var_ref="oval:modulo:var:913"/>
+    </textfilecontent54_object>
+    <textfilecontent54_object	id="oval:modulo:obj:920" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <behaviors multiline="false"/>
+      <filepath>c:\windows\win.ini</filepath>
+      <pattern operation="pattern match">VERSION.*</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object	id="oval:modulo:obj:930" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path var_ref="oval:modulo:var:911"/>
+      <filename var_ref="oval:modulo:var:914"/>
+      <pattern operation="pattern match">VERSION.*</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object	id="oval:modulo:obj:940" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path var_ref="oval:modulo:var:911"/>
+      <filename var_ref="oval:modulo:var:914"/>
+      <pattern operation="pattern match">VERSION.*</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object	id="oval:modulo:obj:950" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath var_ref="oval:modulo:var:915"/>
+      <pattern operation="pattern match">VERSION.*</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object	id="oval:modulo:obj:960" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path var_ref="oval:modulo:var:911"/>
+      <filename var_ref="oval:modulo:var:914"/>
+      <pattern operation="pattern match" var_ref="oval:modulo:var:912"/>
+      <instance datatype="int" var_ref="oval:modulo:var:916"/>
+    </textfilecontent54_object>
+    <textfilecontent54_object id="oval:modulo:obj:970" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path var_ref="oval:modulo:var:911"/>
+      <filename var_ref="oval:modulo:var:914"/>
+      <pattern operation="pattern match">VERSION.*</pattern>
+      <instance datatype="int" operation="greater than">2</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object id="oval:modulo:obj:980" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>c:\windows</path>
+      <filename>win.ini</filename>
+      <pattern operation="pattern match">3gp</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object id="oval:modulo:obj:990" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>c:\windows</path>
+      <filename operation ="pattern match">.ini</filename>
+      <pattern operation="pattern match">3gp</pattern>
+      <instance datatype="int">2</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object id="oval:modulo:obj:991" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path var_ref="oval:modulo:var:911"/>
+      <filename operation ="pattern match">.*.ini</filename>
+      <pattern operation="pattern match">3gp</pattern>
+      <instance datatype="int">2</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object id="oval:modulo:obj:992" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path var_ref="oval:modulo:var:911" />
+      <filename>applicationHost.config</filename>
+      <pattern operation="pattern match">&lt;applicationPools&gt;.*&lt;/applicationPools&gt;</pattern>
+      <instance datatype="int" operation="greater than or equal">1</instance>
+    </textfilecontent54_object>
+
+    <textfilecontent54_object id="oval:modulo:obj:993" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath>c:\windows\win.ini</filepath>
+      <pattern operation="pattern match">^3gp.*</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object id="oval:modulo:obj:994" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>c:\temp</path>
+      <filename>movilog.log</filename>
+      <pattern operation="pattern match">GetConnectionString</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+    <textfilecontent54_object id="oval:modulo:obj:995" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>c:\temp</path>
+      <filename>movilog.log</filename>
+      <pattern operation="pattern match">^Linha.*</pattern>
+      <instance datatype="int" operation="greater than or equal">3</instance>
+    </textfilecontent54_object>
+
+
+    <fileeffectiverights53_object id="oval:modulo:obj:1001" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <set set_operator="COMPLEMENT" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <object_reference>oval:modulo:obj:1000</object_reference>
+        <object_reference>oval:modulo:obj:1010</object_reference>
+      </set>
+    </fileeffectiverights53_object>
+    <fileeffectiverights53_object id="oval:modulo:obj:1000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path>c:\temp</path>
+      <filename>file1.txt</filename>
+      <trustee_sid>S-1-15-18</trustee_sid>
+    </fileeffectiverights53_object>
+    <fileeffectiverights53_object id="oval:modulo:obj:1010" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <filepath var_ref="oval:modulo:var:11"/>
+      <trustee_sid>S-1-15-18</trustee_sid>
+    </fileeffectiverights53_object>
+    <fileeffectiverights53_object id="oval:modulo:obj:1020" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path var_ref="oval:modulo:var:3"></path>
+      <filename>file1.txt</filename>
+      <trustee_sid>S-1-15-18</trustee_sid>
+    </fileeffectiverights53_object>
+    <fileeffectiverights53_object id="oval:modulo:obj:1030" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path>c:\temp</path>
+      <filename var_ref="oval:modulo:var:914"/>
+      <trustee_sid>S-1-15-18</trustee_sid>
+    </fileeffectiverights53_object>
+    <fileeffectiverights53_object id="oval:modulo:obj:1040" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <filepath>c:\temp\file1.ext</filepath>
+      <trustee_sid var_ref="oval:modulo:var:201"/>
+    </fileeffectiverights53_object>
+    <fileeffectiverights53_object id="oval:modulo:obj:1050" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path var_ref="oval:modulo:var:3"/>
+      <filename var_ref="oval:modulo:var:914"/>
+      <trustee_sid var_ref="oval:modulo:var:201"/>
+    </fileeffectiverights53_object>
+
+    <fileeffectiverights53_object id="oval:modulo:obj:1060" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path>c:\temp</path>
+      <filename operation="pattern match">^.*.txt</filename>
+      <trustee_sid>S-1-15-500</trustee_sid>
+    </fileeffectiverights53_object>
+    <fileeffectiverights53_object id="oval:modulo:obj:1070" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <filepath operation="pattern match">c:\windows\.*.ini$</filepath>
+      <trustee_sid operation="pattern match">S-1-15.*</trustee_sid>
+    </fileeffectiverights53_object>
+    <fileeffectiverights53_object id="oval:modulo:obj:1071" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <path var_ref="oval:modulo:var:3"/>
+      <filename xsi:nil="true"/>
+      <trustee_sid>S-1-15-500</trustee_sid>
+    </fileeffectiverights53_object>
+
+    <user_sid55_object id="oval:modulo:obj:1080" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <user_sid>S-1-15-18</user_sid>
+    </user_sid55_object>
+    <user_sid55_object id="oval:modulo:obj:1090" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <user_sid var_ref="oval:modulo:var:201"/>
+    </user_sid55_object>
+    <user_sid55_object id="oval:modulo:obj:1100" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <user_sid operation="pattern match">S-1-5.*</user_sid>
+    </user_sid55_object>
+
+    <user_sid55_object id="oval:modulo:obj:1101" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <user_sid var_ref="oval:modulo:var:1000" operation="pattern match"/>
+    </user_sid55_object>
+    <user_sid_object id="oval:modulo:obj:1102" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <user>S-1-5-21-3547645784-3438639615-1391272690-1015</user>
+    </user_sid_object>
+
+
+    <group_sid_object id="oval:modulo:obj:1110" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <group_sid>S-1-5-32-544</group_sid>
+    </group_sid_object>
+    <group_sid_object id="oval:modulo:obj:1111" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <group_sid var_ref="oval:modulo:var:201"></group_sid>
+    </group_sid_object>
+    <group_sid_object id="oval:modulo:obj:1112" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <group_sid var_ref="oval:modulo:var:831"></group_sid>
+    </group_sid_object>
+    <group_sid_object id="oval:modulo:obj:1113" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <group_sid operation="pattern match">S-1-5-32-.*</group_sid>
+    </group_sid_object>
+    <group_sid_object id="oval:modulo:obj:1114" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <group_sid var_ref="oval:modulo:var:1001" operation="not equal"></group_sid>
+    </group_sid_object>
+
+    <auditeventpolicysubcategories_object id="oval:modulo:obj:2000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    </auditeventpolicysubcategories_object>
+
+    <auditeventpolicy_object id="oval:modulo:obj:2100" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+    </auditeventpolicy_object>
+
+    <wmi_object id="oval:modulo:obj:2200" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <namespace>root\cimv2</namespace>
+      <wql>select caption from Win32_OperatingSystem</wql>
+    </wmi_object>
+    <wmi_object id="oval:modulo:obj:2222" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <namespace var_ref="oval:modulo:var:22221"/>
+      <wql>select caption from Win32_OperatingSystem</wql>
+    </wmi_object>
+    <wmi_object id="oval:modulo:obj:2223" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <namespace>root\default</namespace>
+      <wql var_ref="oval:modulo:var:22222"/>
+    </wmi_object>
+    <wmi_object id="oval:modulo:obj:2224" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <namespace var_ref="oval:modulo:var:22221"/>
+      <wql var_ref="oval:modulo:var:22222"/>
+    </wmi_object>
+
+    <wmi57_object id="oval:modulo:obj:2201" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <namespace>root\cimv2</namespace>
+      <wql>select caption, name from Win32_OperatingSystem</wql>
+    </wmi57_object>
+    <wmi57_object id="oval:modulo:obj:2202" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <namespace var_ref="oval:modulo:var:2202"></namespace>
+      <wql>select caption, name from Win32_OperatingSystem</wql>
+    </wmi57_object>
+    <wmi57_object id="oval:modulo:obj:2203" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <namespace var_ref="oval:modulo:var:2202"></namespace>
+      <wql var_ref="oval:modulo:var:2203"></wql>
+    </wmi57_object>
+
+
+    <xmlfilecontent_object id="oval:modulo:obj:2300" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath>c:\temp\definitions\bookstore.xml</filepath>
+      <xpath>//bookstore/book/title/text()</xpath>
+    </xmlfilecontent_object>
+    <xmlfilecontent_object id="oval:modulo:obj:2310" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath var_ref="oval:modulo:var:2310"></filepath>
+      <xpath>//bookstore/book/price/text()</xpath>
+    </xmlfilecontent_object>
+    <xmlfilecontent_object id="oval:modulo:obj:2315" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath>c:\temp\bools.xml</filepath>
+      <xpath var_ref="oval:modulo:var:2315"></xpath>
+    </xmlfilecontent_object>
+    <xmlfilecontent_object id="oval:modulo:obj:2320" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath operation="pattern match">c:\temp\.*.xml</filepath>
+      <xpath>//bookstore/book/price/text()</xpath>
+    </xmlfilecontent_object>
+    <xmlfilecontent_object id="oval:modulo:obj:2321" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath operation="pattern match">c:\temp\.*\usb\devices.xml</filepath>
+      <xpath>//bookstore/book/price/text()</xpath>
+    </xmlfilecontent_object>
+    <xmlfilecontent_object id="oval:modulo:obj:2322" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>/etc/gconf/gconf.xml.mandatory</path>
+      <filename operation="pattern match">.*</filename>
+      <xpath>/desktop/gnome/volume_manager/automount_media</xpath>
+    </xmlfilecontent_object>
+    <xmlfilecontent_object id="oval:modulo:obj:2350" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <filepath var_ref="oval:modulo:var:2310"></filepath>
+      <xpath var_ref="oval:modulo:var:2315"></xpath>
+    </xmlfilecontent_object>
+    <xmlfilecontent_object id="oval:modulo:obj:2399" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>c:\windows\</path>
+      <filename operation="pattern match">^win*.ini</filename>
+      <xpath>//bookstore/book/author/text()</xpath>
+    </xmlfilecontent_object>
+
+
+    <fileauditedpermissions53_object id="oval:modulo:obj:2400" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <filepath>c:\temp\file1.txt</filepath>
+      <trustee_sid>S-1-1</trustee_sid>
+    </fileauditedpermissions53_object>
+
+    <environmentvariable_object id="oval:modulo:obj:2360" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <name>PATH</name>
+    </environmentvariable_object>
+    <environmentvariable_object id="oval:modulo:obj:2370" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <name var_ref="oval:modulo:var:2370"></name>
+    </environmentvariable_object>
+
+    <runlevel_object id="oval:modulo:obj:2380" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <service_name>ssh</service_name>
+      <runlevel>1</runlevel>
+    </runlevel_object>
+    <runlevel_object id="oval:modulo:obj:2381" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <service_name>ssh</service_name>
+      <runlevel>5</runlevel>
+    </runlevel_object>
+
+    <rpminfo_object id="oval:modulo:obj:2390" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>vbox</name>
+    </rpminfo_object>
+    <rpminfo_object id="oval:modulo:obj:2391" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>firefox</name>
+    </rpminfo_object>
+
+    <smf_object id="oval:modulo:obj:2500" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <fmri>disable svc:/network/rpc/bind:default</fmri>
+    </smf_object>
+    <smf_object id="oval:modulo:obj:2501" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <fmri>enable svc:/network/rpc/bind:default</fmri>
+    </smf_object>
+    <smf_object id="oval:modulo:obj:2503" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <fmri var_ref="oval:modulo:var:2503"></fmri>
+    </smf_object>
+
+    <smf_object id="oval:modulo:obj:2600" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <set set_operator="UNION" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+        <object_reference>oval:modulo:obj:2500</object_reference>
+        <object_reference>oval:modulo:obj:2501</object_reference>
+      </set>
+    </smf_object>
+
+    <smf_object id="oval:modulo:obj:2700" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <fmri var_ref="oval:modulo:var:2700"/>
+    </smf_object>
+
+    <smf_object id="oval:modulo:obj:2800" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <fmri var_ref="oval:modulo:var:2800" operation="not equal"/>
+    </smf_object>
+
+    <smf_object id="oval:modulo:obj:2900" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <fmri var_ref="oval:modulo:var:2900" operation="pattern match"/>
+    </smf_object>
+
+    <textfilecontent54_object id="oval:modulo:obj:3000" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>/etc/security</path>
+      <filename>audit_control</filename>
+      <pattern operation="pattern match">lo</pattern>
+      <instance datatype="int">1</instance>
+    </textfilecontent54_object>
+
+
+    <textfilecontent54_object id="oval:gov.irs.sol10:obj:86" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>/etc/security</path>
+      <filename>audit_control</filename>
+      <pattern operation="pattern match">lo</pattern>
+      <instance datatype="int" operation="greater than or equal">1</instance>
+    </textfilecontent54_object>
+
+    <wmi57_object id="oval:modulo:obj:4000" comment ="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"  >
+      <namespace>root\cimv2</namespace>
+      <wql>Select * from Win32_OperatingSystem</wql>
+    </wmi57_object>
+
+    <sql_object id="oval:modulo:obj:5000" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine>oracle</engine>
+      <version>9</version>
+      <connection_string>DRIVER={Oracle};DATABASE=database;SERVER=server;UID=username;PWD=password;</connection_string>
+      <sql>select id, name from employees</sql>
+    </sql_object>
+    <sql_object id="oval:modulo:obj:5010" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine var_ref="oval:modulo:var:5010"/>
+      <version>9</version>
+      <connection_string>DRIVER={Oracle};DATABASE=database;SERVER=server;UID=username;PWD=password;</connection_string>
+      <sql>select id, name from employees</sql>
+    </sql_object>
+    <sql_object id="oval:modulo:obj:5020" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine>oracle</engine>
+      <version var_ref="oval:modulo:var:5020"/>
+      <connection_string>DRIVER={Oracle};DATABASE=database;SERVER=server;UID=username;PWD=password;</connection_string>
+      <sql>select id, name from employees</sql>
+    </sql_object>
+    <sql_object id="oval:modulo:obj:5030" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine>oracle</engine>
+      <version>9</version>
+      <connection_string var_ref="oval:modulo:var:5030"/>
+      <sql>select id, name from employees</sql>
+    </sql_object>
+    <sql_object id="oval:modulo:obj:5040" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine>oracle</engine>
+      <version>9</version>
+      <connection_string>DRIVER={Oracle};DATABASE=database;SERVER=server;UID=username;PWD=password;</connection_string>
+      <sql var_ref="oval:modulo:var:5040"/>
+    </sql_object>
+    <sql_object id="oval:modulo:obj:5050" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine var_ref="oval:modulo:var:5010"/>
+      <version var_ref="oval:modulo:var:5020"/>
+      <connection_string var_ref="oval:modulo:var:5030"/>
+      <sql var_ref="oval:modulo:var:5040"/>
+    </sql_object>
+
+
+    <sql57_object id="oval:modulo:obj:5100" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine>oracle</engine>
+      <version>9</version>
+      <connection_string>DRIVER={Oracle};DATABASE=database;SERVER=server;UID=username;PWD=password;</connection_string>
+      <sql>select id, name from employees</sql>
+    </sql57_object>
+    <sql57_object id="oval:modulo:obj:5110" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine var_ref="oval:modulo:var:5010"/>
+      <version>9</version>
+      <connection_string>DRIVER={Oracle};DATABASE=database;SERVER=server;UID=username;PWD=password;</connection_string>
+      <sql>select id, name from employees</sql>
+    </sql57_object>
+    <sql57_object id="oval:modulo:obj:5120" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine>oracle</engine>
+      <version var_ref="oval:modulo:var:5020"/>
+      <connection_string>DRIVER={Oracle};DATABASE=database;SERVER=server;UID=username;PWD=password;</connection_string>
+      <sql>select id, name from employees</sql>
+    </sql57_object>
+    <sql57_object id="oval:modulo:obj:5130" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine>oracle</engine>
+      <version>9</version>
+      <connection_string var_ref="oval:modulo:var:5030"/>
+      <sql>select id, name from employees</sql>
+    </sql57_object>
+    <sql57_object id="oval:modulo:obj:5140" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine>oracle</engine>
+      <version>9</version>
+      <connection_string>DRIVER={Oracle};DATABASE=database;SERVER=server;UID=username;PWD=password;</connection_string>
+      <sql var_ref="oval:modulo:var:5040"/>
+    </sql57_object>
+    <sql57_object id="oval:modulo:obj:5150" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine var_ref="oval:modulo:var:5010"/>
+      <version var_ref="oval:modulo:var:5020"/>
+      <connection_string var_ref="oval:modulo:var:5030"/>
+      <sql var_ref="oval:modulo:var:5040"/>
+    </sql57_object>
+
+    <metabase_object id="oval:modulo:obj:6002" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" >
+      <set xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" set_operator="UNION">
+        <object_reference>oval:modulo:obj:6000</object_reference>
+        <object_reference>oval:modulo:obj:6001</object_reference>
+      </set>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6000" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key datatype="string">W3SVC</key>
+      <id datatype="int">6030</id>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6001" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key datatype="string">W3SVC</key>
+      <id datatype="int" var_ref="oval:modulo:var:913"/>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6003" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key datatype="string">W3SVC/1</key>
+      <id datatype="int" var_ref="oval:modulo:var:6003"/>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6004" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key datatype="string" var_ref="oval:modulo:var:3"/>
+      <id datatype="int" var_ref="oval:modulo:var:5020"/>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6005" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key datatype="string" var_ref="oval:modulo:var:6005"/>
+      <id datatype="int" var_ref="oval:modulo:var:5020"/>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6006" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key>/</key>
+      <id datatype="int" operation="not equal">1002</id>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6007" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key>/</key>
+      <id datatype="int" operation="greater than">1002</id>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6008" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key>/</key>
+      <id datatype="int" operation="greater than or equal">1002</id>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6009" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key>/</key>
+      <id datatype="int" operation="less than">1005</id>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6010" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key>/</key>
+      <id datatype="int" operation="less than or equal">1001</id>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6011" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key datatype="string" operation="not equal">/</key>
+      <id datatype="int">1001</id>
+    </metabase_object>
+
+    <metabase_object id="oval:modulo:obj:6012" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" version="1">
+      <key datatype="string" operation="pattern match">\/[Ll][Mm]\/[Ww]3[Ss][Vv][Cc]\/[0-9]+\/$</key>
+      <id datatype="int">5512</id>
+    </metabase_object>
+  </objects>
+
+  <variables>
+    <constant_variable id="oval:modulo:var:3" datatype="string" version="1" comment="...">
+      <value>c:\temp</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:10" datatype="string" version="1" comment="...">
+      <value>mss\lfernandes</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:11" datatype="string" version="1" comment="...">
+      <value>c:\temp\file.txt</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:99" datatype="string" version="1" comment="...">
+      <value>.*\.*fernandes$</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:201" datatype="string" version="1" comment="...">
+      <value>S-1-5-18</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:770" datatype="string" version="1" comment="...">
+      <value>SOFTWARE\Microsoft\Windows NT\CurrentVersion</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:830" datatype="string" version="1" comment="...">
+      <value>SOFTWARE\Modulo\^RiskManager.*</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:831" datatype="string" version="1" comment="...">
+      <value>S-1-5</value>
+      <value>S-1-5-18</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:860" datatype="string" version="1" comment="...">
+      <value>ADMINISTRATOR</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:911" datatype="string" version="1" comment="...">
+      <value>c:\windows</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:912" datatype="string" version="1" comment="...">
+      <value>MAPIXVER</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:913" datatype="int" version="1" comment="...">
+      <value>1</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:914" datatype="string" version="1" comment="...">
+      <value>win.ini</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:915" datatype="string" version="1" comment="...">
+      <value>c:\boot.ini</value>
+      <value>c:\windows\win.ini</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:916" datatype="int" version="1" comment="...">
+      <value>2</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:1000" datatype="string" version="1" comment="...">
+      <value>S-1-5.*</value>
+      <value>S-1-1-.*</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:1001" datatype="string" version="1" comment="...">
+      <value>S-1-1</value>
+    </constant_variable>
+
+    <constant_variable id="oval:modulo:var:22221" datatype="string" version="1" comment="...">
+      <value>root\cimv2</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:22222" datatype="string" version="1" comment="...">
+      <value>select FileSystem from Win32_LogicalDisk where DeviceId = 'C:'</value>
+    </constant_variable>
+
+
+    <constant_variable id="oval:modulo:var:2310" datatype="string" version="1" comment="...">
+      <value>c:\temp\definitions\bookstore.xml</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2315" datatype="string" version="1" comment="...">
+      <value>//bookstore/book/author/text()</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2370" datatype="string" version="1" comment="...">
+      <value>CWD</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2503" datatype="string" version="1" comment="...">
+      <value>enable svc:/network/rpc/bind:default</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2700" datatype="string" version="1" comment="...">
+      <value>disable svc:/network/rpc/bind:default</value>
+      <value>enable svc:/network/rpc/bind:default</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2800" datatype="string" version="1" comment="...">
+      <value>enable svc:/network/rpc/bind:default</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2900" datatype="string" version="1" comment="...">
+      <value>enable svc:/network/rpc/bind:default</value>
+    </constant_variable>
+
+    <constant_variable id="oval:modulo:var:2202" datatype="string" version="1" comment="...">
+      <value>root\default</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:2203" datatype="string" version="1" comment="...">
+      <value>select name, domain from Win32_account</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:5010" datatype="string" version="1" comment="Database engine name.">
+      <value>oracle</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:5020" datatype="string" version="1" comment="Database engine version.">
+      <value>9</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:5030" datatype="string" version="1" comment="Connection string.">
+      <value>DRIVER={Oracle};DATABASE=database;SERVER=server;UID=username;PWD=password;</value>
+    </constant_variable>
+    <constant_variable id="oval:modulo:var:5040" datatype="string" version="1" comment="SQL query.">
+      <value>select id, name from employees</value>
+    </constant_variable>
+
+    <constant_variable id="oval:modulo:var:6003" datatype="int" version="1" comment="metabase IDs">
+      <value>1000</value>
+      <value>1001</value>
+      <value>1002</value>
+    </constant_variable>
+
+    <constant_variable id="oval:modulo:var:6005" datatype="string" version="1" comment="metabase IDs">
+      <value>W3SVC</value>
+      <value>W3SVC/1</value>
+    </constant_variable>
+  </variables>
+</oval_definitions>

@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{40744AE0-A1D6-41CC-963B-9F39001DE114}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Modulo.Collect.Service.Server</RootNamespace>
+    <AssemblyName>modsicsrv</AssemblyName>
+    <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=1.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Quartz\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.Spatial">
+      <HintPath>..\libs\Raven\Lucene.Net.Contrib.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Contrib.SpellChecker">
+      <HintPath>..\libs\Raven\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\libs\Raven\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\libs\Raven\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=1.0.3.3, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Quartz\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Raven\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Embedded, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Raven\Raven.Client.Embedded.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Raven\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Raven\Raven.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Munin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=974fec519e29970d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Raven\Raven.Munin.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Storage.Esent, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Raven\Raven.Storage.Esent.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Storage.Managed, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Raven\Raven.Storage.Managed.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Tamir.SharpSSH, Version=1.1.1.13, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\SharpSSH\Tamir.SharpSSH.dll</HintPath>
+    </Reference>
+    <Reference Include="Thinktecture.IdentityModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Thinktecture.IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Topshelf">
+      <HintPath>..\libs\Topshelf\Topshelf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assemblers\CollectPackageAssembler.cs" />
+    <Compile Include="Assemblers\CollectResultAssembler.cs" />
+    <Compile Include="Assemblers\CompressionExtensions.cs" />
+    <Compile Include="Assemblers\ExecutionLogAssembler.cs" />
+    <Compile Include="Assemblers\ICollectPackageAssembler.cs" />
+    <Compile Include="Assemblers\ICollectResultAssembler.cs" />
+    <Compile Include="Assemblers\IRequestCollectAssembler.cs" />
+    <Compile Include="Assemblers\RequestCollectAssembler.cs" />
+    <Compile Include="Assemblers\TargetAssembler.cs" />
+    <Compile Include="CollectRequestValidator.cs" />
+    <Compile Include="CollectServiceController.cs" />
+    <Compile Include="Controllers\CollectController.cs" />
+    <Compile Include="Controllers\CollectExecutionManager.cs" />
+    <Compile Include="Controllers\CollectExecutionJob.cs" />
+    <Compile Include="Controllers\CollectTimeOutController.cs" />
+    <Compile Include="Controllers\Hash.cs" />
+    <Compile Include="Controllers\IProbeManager.cs" />
+    <Compile Include="Controllers\IScheduleController.cs" />
+    <Compile Include="Controllers\OvalDefinitionDocumentGenerator.cs" />
+    <Compile Include="Controllers\ProbeManager.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\SystemInformationException.cs" />
+    <Compile Include="Controllers\VariableEvaluatorService.cs" />
+    <Compile Include="Data\DataProvider.cs" />
+    <Compile Include="Data\IDataProvider.cs" />
+    <Compile Include="Data\Indexes\CollectRequests_Opened_Or_Executing.cs" />
+    <Compile Include="Data\IRequestCollectRepository.cs" />
+    <Compile Include="Data\ITransaction.cs" />
+    <Compile Include="Data\RequestCollectRepository.cs" />
+    <Compile Include="Data\Transaction.cs" />
+    <Compile Include="Entities\AuthorizationInfo.cs" />
+    <Compile Include="Entities\BaseGuidEntity.cs" />
+    <Compile Include="Entities\CollectExecution.cs" />
+    <Compile Include="Entities\CollectPackage.cs" />
+    <Compile Include="Entities\DefinitionDocument.cs" />
+    <Compile Include="Entities\Factories\CollectFactory.cs" />
+    <Compile Include="Entities\CollectResult.cs" />
+    <Compile Include="Entities\Factories\CollectResultFactory.cs" />
+    <Compile Include="Entities\ExecutionLog.cs" />
+    <Compile Include="Entities\Factories\DefinitionDocumentFactory.cs" />
+    <Compile Include="Entities\Factories\IDefinitionDocumentFactory.cs" />
+    <Compile Include="Entities\Factories\SystemCharacteristicsBuilder.cs" />
+    <Compile Include="Entities\Factories\SystemCharacteristicsFactory.cs" />
+    <Compile Include="Entities\Factories\SystemInfoFactory.cs" />
+    <Compile Include="Entities\LogType.cs" />
+    <Compile Include="Entities\NetworkInfo.cs" />
+    <Compile Include="Entities\OvalResultsDocument.cs" />
+    <Compile Include="Entities\ProbeExecution.cs" />
+    <Compile Include="Entities\ScheduleInformation.cs" />
+    <Compile Include="Entities\SystemInfo.cs" />
+    <Compile Include="Entities\TargetCredential.cs" />
+    <Compile Include="Entities\Interfaces\ICredential.cs" />
+    <Compile Include="Entities\Interfaces\IRequestCollect.cs" />
+    <Compile Include="Entities\Interfaces\ITarget.cs" />
+    <Compile Include="Entities\Interfaces\ITargetParameter.cs" />
+    <Compile Include="Entities\RequestCollect.cs" />
+    <Compile Include="Entities\Target.cs" />
+    <Compile Include="Entities\TargetParameter.cs" />
+    <Compile Include="Exceptions\DuplicatedRequestIDsException.cs" />
+    <Compile Include="Exceptions\InvalidXMLOvalDefinitionsException.cs" />
+    <Compile Include="Exceptions\InvalidXMLOvalSystemCharacteristicsException.cs" />
+    <Compile Include="Exceptions\RequestIDNullException.cs" />
+    <Compile Include="Exceptions\RequestItemNullException.cs" />
+    <Compile Include="Infra\ModSicVersionHelper.cs" />
+    <Compile Include="Infra\Pinger.cs" />
+    <Compile Include="Infra\TargetPlatformDiscoverer.cs" />
+    <Compile Include="InjectFactory.cs" />
+    <Compile Include="CollectService.cs" />
+    <Compile Include="OvalDefinitionsValidator.cs" />
+    <Compile Include="Probes\IProbeCapabilities.cs" />
+    <Compile Include="Probes\ISystemInformationServicePlataform.cs" />
+    <Compile Include="Probes\ProbeCapabilities.cs" />
+    <Compile Include="Probes\SelectedProbe.cs" />
+    <Compile Include="Probes\SystemInformationServicePlataform.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuartzThreadManager.cs" />
+    <Compile Include="Security\CertificateFactory.cs" />
+    <Compile Include="ServiceConfigurationSection.cs" />
+    <Compile Include="UnityJobFactory.cs" />
+    <Compile Include="UsersSection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entities\CollectServiceEntities.cd" />
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modulo.Collect.OVAL\Collect.OVAL.csproj">
+      <Project>{A12EA1DD-0873-42CE-BC20-FE0F0B2D04B9}</Project>
+      <Name>Collect.OVAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.CiscoIOS\Modulo.Collect.Probe.CiscoIOS.csproj">
+      <Project>{F5B596BF-9173-4D64-8206-D73275457E7A}</Project>
+      <Name>Modulo.Collect.Probe.CiscoIOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Common\Modulo.Collect.Probe.Common.csproj">
+      <Project>{DF2B4873-DDAB-4F47-9C4F-5B93FE1214CF}</Project>
+      <Name>Modulo.Collect.Probe.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Independent\Modulo.Collect.Probe.Independent.csproj">
+      <Project>{890332AF-A755-40F1-B95A-B20CB45EB465}</Project>
+      <Name>Modulo.Collect.Probe.Independent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Solaris\Modulo.Collect.Probe.Solaris.csproj">
+      <Project>{FBB71CC6-E48C-483D-A3D6-3B19F3FF1FCA}</Project>
+      <Name>Modulo.Collect.Probe.Solaris</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Unix\Modulo.Collect.Probe.Unix.csproj">
+      <Project>{21773E49-CB1C-4346-A598-535F7A96FDB3}</Project>
+      <Name>Modulo.Collect.Probe.Unix</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Windows\Modulo.Collect.Probe.Windows.csproj">
+      <Project>{90AEBC71-27DD-4620-9B3C-234483E6B024}</Project>
+      <Name>Modulo.Collect.Probe.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Service.Contract\Modulo.Collect.Service.Contract.csproj">
+      <Project>{E5370F91-2744-4A8B-88B3-120BCADF0AAC}</Project>
+      <Name>Modulo.Collect.Service.Contract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

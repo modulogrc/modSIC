@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>modSIC.Client</id>
+    <version>0.0.0.0</version>
+    <authors>Modulo Solutions for GRC</authors>
+    <owners>Modulo Solutions for GRC</owners>
+    <licenseUrl>http://modsic.codeplex.com/license</licenseUrl>
+    <projectUrl>http://modsic.codeplex.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>modSIC .Net Client SDK</description>
+    <language>en-US</language>
+  </metadata>
+  <files>
+    <file src="Modulo.Collect.Service.Client.dll" target="lib\Modulo.Collect.Service.Client.dll" />
+    <file src="Modulo.Collect.Service.Contract.dll" target="lib\Modulo.Collect.Service.Contract.dll" />
+	<file src="Modulo.Collect.OVAL.dll" target="lib\Modulo.Collect.OVAL.dll" />
+  </files>
+</package>

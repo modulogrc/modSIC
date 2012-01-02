@@ -1,0 +1,63 @@
+﻿<Window x:Class="Modulo.Ovedit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="466" Width="653">
+    <Grid Height="418" Width="616">
+        <GroupBox Header="Object" Height="202" HorizontalAlignment="Left" Margin="12,12,0,0" Name="groupBox1" VerticalAlignment="Top" Width="306">
+            <Grid Height="173" Width="284">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*" />
+                    <ColumnDefinition Width="74*" />
+                    <ColumnDefinition Width="210*" />
+                </Grid.ColumnDefinitions>
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="6,29,0,0" Name="cmbHiveValues" VerticalAlignment="Top" Width="262" Grid.ColumnSpan="2" Grid.Column="1">
+                    <ComboBoxItem Content="HKEY_CLASSES_ROOT" />
+                    <ComboBoxItem Content="HKEY_CURRENT_USER" />
+                    <ComboBoxItem Content="HKEY_LOCAL_MACHINE" IsSelected="True" />
+                    <ComboBoxItem Content="HKEY_USERS" />
+                    <ComboBoxItem Content="HKEY_CURRENT_CONFIG" />
+                </ComboBox>
+                <Label Content="Hive" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label1" VerticalAlignment="Top" FontFamily="Hive" IsEnabled="True" Grid.Column="1" />
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="6,82,0,0" Name="txtRegistryKey" VerticalAlignment="Top" Width="262" Text="SOFTWARE\" Grid.ColumnSpan="2" Grid.Column="1" />
+                <Label Content="Key" Height="28" HorizontalAlignment="Left" Margin="6,58,0,0" Name="label2" VerticalAlignment="Top" Grid.Column="1" />
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="6,136,0,0" Name="txtRegistryValue" Text="" VerticalAlignment="Top" Width="262" Grid.ColumnSpan="2" Grid.Column="1" />
+                <Label Content="Value" Height="28" HorizontalAlignment="Left" Margin="6,112,0,0" Name="label3" VerticalAlignment="Top" Grid.Column="1" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="State" Height="202" HorizontalAlignment="Left" Margin="337,12,0,0" Name="grpState" VerticalAlignment="Top" Width="267">
+            <Grid>
+                <Label Content="Data Type" Height="28" HorizontalAlignment="Left" Margin="6,9,0,0" Name="label4" VerticalAlignment="Top" />
+                <Label Content="Data Value" HorizontalAlignment="Left" Margin="6,115,0,36" Name="label5" />
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="12,139,0,0" Name="txtRegistryDataValue" VerticalAlignment="Top" Width="232" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="12,32,0,0" Name="cmbRegistryDataTypes" VerticalAlignment="Top" Width="232">
+                    <ComboBoxItem Content="REG_SZ" />
+                    <ComboBoxItem Content="REG_DWORD" />
+                    <ComboBoxItem Content="REG_MULTI_SZ" />
+                </ComboBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Test Attributes" Height="145" HorizontalAlignment="Left" Margin="6,220,0,0" Name="grpTest" VerticalAlignment="Top" Width="598">
+            <Grid Height="119" Width="582">
+                <Label Content="Check" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label6" VerticalAlignment="Top" />
+                <Label Content="Check Existence" Height="28" HorizontalAlignment="Left" Margin="186,6,0,0" Name="label7" VerticalAlignment="Top" />
+                <Label Content="Comment" Height="28" HorizontalAlignment="Left" Margin="11,59,0,0" Name="label8" VerticalAlignment="Top" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="11,30,0,0" Name="cmbCheck" VerticalAlignment="Top" Width="163">
+                    <ComboBoxItem Content="At Least One" IsSelected="True" />
+                    <ComboBoxItem Content="Only One" />
+                    <ComboBoxItem Content="All" />
+                    <ComboBoxItem Content="None Exist" />
+                    <ComboBoxItem Content="None Satisfy" />
+                </ComboBox>
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="188,30,0,0" Name="cmbCheckExistence" VerticalAlignment="Top" Width="201">
+                    <ComboBoxItem Content="At Least One Exists" IsSelected="True" />
+                    <ComboBoxItem Content="All Exist" />
+                    <ComboBoxItem Content="Any Exist" />
+                    <ComboBoxItem Content="Any Exist" />
+                    <ComboBoxItem Content="Only One Exist" />
+                </ComboBox>
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="11,84,0,0" Name="txtTestComment" VerticalAlignment="Top" Width="564" />
+            </Grid>
+        </GroupBox>
+        <Button Content="Create Test" Height="35" HorizontalAlignment="Left" Margin="443,371,0,0" Name="btnCreateTest" VerticalAlignment="Top" Width="161" FontSize="16" FontWeight="Bold" FontFamily="Trebuchet MS" />
+    </Grid>
+</Window>

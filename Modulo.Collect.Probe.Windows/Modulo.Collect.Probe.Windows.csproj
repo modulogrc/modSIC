@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{90AEBC71-27DD-4620-9B3C-234483E6B024}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Modulo.Collect.Probe.Windows</RootNamespace>
+    <AssemblyName>Modulo.Collect.Probe.Windows</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.ActiveDs, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Dependencies\LinqToAD\bin\Interop.ActiveDs.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessControlListProvider.cs" />
+    <Compile Include="IAccessControlListProvider.cs" />
+    <Compile Include="Probes\AccessToken\AccessTokenHelper.cs" />
+    <Compile Include="Probes\AccessToken\AccessTokenItemTypeBuilder.cs" />
+    <Compile Include="Probes\AccessToken\AccessTokenItemTypeGenerator.cs" />
+    <Compile Include="Probes\AccessToken\AccessTokenProber.cs" />
+    <Compile Include="Probes\AccessToken\AccessTokenProvider.cs" />
+    <Compile Include="Probes\AccessToken\AccessTokenObjectCollector.cs" />
+    <Compile Include="Probes\AccessToken\AccessTokenVariableEvaluator.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights53\FileEffectiveRightsCollector.cs" />
+    <Compile Include="Probes\Metabase\MetabaseItemTypeGenerator.cs" />
+    <Compile Include="Probes\Metabase\MetabaseObjectCollector.cs" />
+    <Compile Include="Probes\Metabase\MetabaseProber.cs" />
+    <Compile Include="Probes\Metabase\XmlDocumentNavigator.cs" />
+    <Compile Include="Probes\PolicyProbes\AuditEventPolicy\AuditEventPolicyConnectionProvider.cs" />
+    <Compile Include="Probes\PolicyProbes\AuditEventPolicy\AuditEventPolicyHelper.cs" />
+    <Compile Include="Probes\PolicyProbes\AuditEventPolicySubcategories\AuditEventPolicySubcategoriesItemTypeGenerator.cs" />
+    <Compile Include="Probes\PolicyProbes\AuditEventPolicySubcategories\AuditEventPolicySubcategoriesProber.cs" />
+    <Compile Include="Probes\PolicyProbes\AuditEventPolicySubcategories\AuditEventPolicySubcategoriesObjectCollector.cs" />
+    <Compile Include="Probes\PolicyProbes\AuditEventPolicy\AuditEventPolicyItemTypeBuilder.cs" />
+    <Compile Include="Probes\PolicyProbes\AuditEventPolicy\AuditEventPolicyItemTypeGenerator.cs" />
+    <Compile Include="Probes\PolicyProbes\AuditEventPolicy\AuditEventPolicyProber.cs" />
+    <Compile Include="Probes\PolicyProbes\AuditEventPolicy\AuditEventPolicyObjectCollector.cs" />
+    <Compile Include="Probes\Family\FamilyCollectorWindows.cs" />
+    <Compile Include="Probes\Family\Infra\NMAPService.cs" />
+    <Compile Include="Probes\FileProbes\FileAuditedPermissions53\FileAuditedPermissions53ObjectFactory.cs" />
+    <Compile Include="Probes\FileProbes\FileAuditedPermissions53\FileAuditedPermissionsItemTypeGenerator.cs" />
+    <Compile Include="Probes\FileProbes\FileAuditedPermissions53\FileAuditedPermissionsProber.cs" />
+    <Compile Include="Probes\FileProbes\FileAuditedPermissions53\FileAuditedPermissionsObjectCollector.cs" />
+    <Compile Include="Probes\FileProbes\FileAuditedPermissions53\FileAuditedPermissionsVariableEvaluator.cs" />
+    <Compile Include="Probes\FileProbes\FileContent\FileContentEntityVariableEvaluator.cs" />
+    <Compile Include="Probes\FileProbes\FileContent\FileContentItemTypeBuilder.cs" />
+    <Compile Include="Probes\FileProbes\FileContent\FileContentItemTypeFactory.cs" />
+    <Compile Include="Probes\FileProbes\FileContent\FileContentItemTypeGenerator.cs" />
+    <Compile Include="Probes\FileProbes\FileContent\FileContentObjectTypeFactory.cs" />
+    <Compile Include="Probes\FileProbes\FileContent\operation\FileContentEntityOperationEvaluator.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights53\FileEffectiveRights53EntityOperationEvaluator.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights53\FileEffectiveRights53EntityVariableEvaluator.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights53\FileEffectiveRights53ItemTypeGenerator.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights53\FileEffectiveRights53ObjectFactory.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights53\FileEffectiveRights53Prober.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights53\FileEffectiveRights53ObjectCollector.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights\FileEffectiveRightsItemTypeFactory.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights\FileEffectiveRightsObjectTypeFactory.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights\FileEffectiveRightsOperationEvaluator.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights\FileEffectiveRightsVariableEvaluator.cs" />
+    <Compile Include="Probes\PolicyProbes\LockoutPolicy\LockoutPolicyItemTypeGenerator.cs" />
+    <Compile Include="Probes\PolicyProbes\PasswordPolicy\PasswordPolicyItemTypeGenerator.cs" />
+    <Compile Include="Probes\UserProbes\UserSID\UserSIDProber.cs" />
+    <Compile Include="Probes\WMI\Wmi57\Wmi57ItemTypeGenerator.cs" />
+    <Compile Include="Probes\WMI\Wmi57\Wmi57ObjectCollector.cs" />
+    <Compile Include="Probes\WMI\Wmi57\Wmi57Prober.cs" />
+    <Compile Include="Probes\_New\FileEffectiveRights53\FileEffectiveRights53ItemTypeGenerator.cs" />
+    <Compile Include="Probes\_New\FileEffectiveRights53\FileEffectiveRights53ObjectCollector.cs" />
+    <Compile Include="Probes\_New\FileEffectiveRights53\FileEffectiveRights53Prober.cs" />
+    <Compile Include="Providers\WindowsUsersProvider.cs" />
+    <Compile Include="WindowsSecurityDescriptorDisassembler.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights\WMIWinACE.cs" />
+    <Compile Include="Probes\Family\Infra\OSGuess.cs" />
+    <Compile Include="Probes\Family\Infra\OSScanResult.cs" />
+    <Compile Include="Probes\UserProbes\GroupSID\GroupSIDEntityVariableEvaluator.cs" />
+    <Compile Include="Probes\UserProbes\GroupSID\GroupSIDItemTypeGenerator.cs" />
+    <Compile Include="Probes\UserProbes\GroupSID\GroupSIDNotFoundException.cs" />
+    <Compile Include="Probes\UserProbes\GroupSID\GroupSIDProber.cs" />
+    <Compile Include="Probes\UserProbes\GroupSID\GroupSIDObjectCollector.cs" />
+    <Compile Include="Probes\UserProbes\GroupSID\WindowsGroupAccount.cs" />
+    <Compile Include="Probes\UserProbes\GroupSID\WindowsGroupAccountProvider.cs" />
+    <Compile Include="Probes\UserProbes\Group\GroupEntityVariableEvaluator.cs" />
+    <Compile Include="Probes\UserProbes\Group\GroupItemTypeGenerator.cs" />
+    <Compile Include="Probes\UserProbes\Group\GroupProber.cs" />
+    <Compile Include="Probes\UserProbes\Group\GroupObjectCollector.cs" />
+    <Compile Include="Helpers\AccManUtils.cs" />
+    <Compile Include="Probes\RegistryProbes\RegistryKeyEffectiveRights53\RegKeyEffectiveRights53ConnectionProvider.cs" />
+    <Compile Include="Probes\RegistryProbes\RegistryKeyEffectiveRights53\RegKeyEffectiveRightsItemTypeBuilder.cs" />
+    <Compile Include="Probes\RegistryProbes\RegistryKeyEffectiveRights53\RegKeyEffectiveRightsItemTypeGenerator.cs" />
+    <Compile Include="Probes\RegistryProbes\RegistryKeyEffectiveRights53\RegKeyEffectiveRightsOperationEvaluator.cs" />
+    <Compile Include="Probes\RegistryProbes\RegistryKeyEffectiveRights53\RegKeyEffectiveRightsObjectCollector.cs" />
+    <Compile Include="Probes\RegistryProbes\RegistryKeyEffectiveRights53\RegKeyEffectiveRightsVariableEvaluator.cs" />
+    <Compile Include="StraightNetworkConnectionProvider.cs" />
+    <Compile Include="Probes\FileProbes\FileContent\FileContentProber.cs" />
+    <Compile Include="Probes\FileProbes\FileContent\FileContentSystemDataSource.cs" />
+    <Compile Include="Probes\FileProbes\FileContent\Helpers\FileContentItemSystemData.cs" />
+    <Compile Include="Helpers\WinNetUtils.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights\FileEffectiveRightsItemTypeGenerator.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights\FileEffectiveRightsProber.cs" />
+    <Compile Include="Probes\FileProbes\FileEffectiveRights\FileEffectiveRightsObjectCollector.cs" />
+    <Compile Include="Probes\FileProbes\File\FileConnectionProvider.cs" />
+    <Compile Include="Probes\FileProbes\File\FileItemSystemData.cs" />
+    <Compile Include="Probes\FileProbes\File\FileItemTypeBuilder.cs" />
+    <Compile Include="Probes\FileProbes\File\FileItemTypeGenerator.cs" />
+    <Compile Include="Probes\FileProbes\File\FileProber.cs" />
+    <Compile Include="Probes\FileProbes\File\FileObjectCollector.cs" />
+    <Compile Include="Probes\FileProbes\File\Helpers\FileMethod.cs" />
+    <Compile Include="Probes\FileProbes\File\Helpers\WMIFileInfo.cs" />
+    <Compile Include="Probes\FileProbes\File\Helpers\WMIWinACE.cs" />
+    <Compile Include="Probes\FileProbes\File\Helpers\WMIWinTrustee.cs" />
+    <Compile Include="Probes\PolicyProbes\LockoutPolicy\LockoutPolicyProber.cs" />
+    <Compile Include="Probes\PolicyProbes\LockoutPolicy\LockoutPolicyObjectCollector.cs" />
+    <Compile Include="Probes\PolicyProbes\PasswordPolicy\PasswordPolicyHelper.cs" />
+    <Compile Include="Probes\PolicyProbes\PasswordPolicy\PasswordPolicyProber.cs" />
+    <Compile Include="Probes\PolicyProbes\PasswordPolicy\PasswordPolicyObjectCollector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Probes\Family\FamilyProberWindows.cs" />
+    <Compile Include="Probes\RegistryProbes\RegistryKeyEffectiveRights53\RegKeyEffectiveRightsProber.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\Exceptions\RegistryItemNotFoundException.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\Exceptions\RegistryKeyNotFoundException.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\Exceptions\RegistryNameNotFoundException.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\variables\operation\RegistryEntityOperationEvaluator.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\RegistryItemTypeFactory.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\RegistryObject.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\RegistryItemTypeGenerator.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\RegistryItemTypeBuilder.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\RegistryConnectionProvider.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\Helpers\RegistryHelper.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\RegistryItemSystemData.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\RegistryObjectFactory.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\RegistryProber.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\RegistryObjectCollector.cs" />
+    <Compile Include="Probes\RegistryProbes\Registry\variables\RegistryEntityVariableEvaluator.cs" />
+    <Compile Include="Probes\UserProbes\SID\SIDEntityVariableEvaluator.cs" />
+    <Compile Include="Probes\UserProbes\SID\SIDItemTypeGenerator.cs" />
+    <Compile Include="Probes\UserProbes\SID\SIDProber.cs" />
+    <Compile Include="Probes\UserProbes\SID\SIDObjectCollector.cs" />
+    <Compile Include="Probes\UserProbes\SID_SID\SID_SIDItemTypeGenerator.cs" />
+    <Compile Include="Probes\UserProbes\SID_SID\SID_SIDProber.cs" />
+    <Compile Include="Probes\UserProbes\SID_SID\SID_SIDObjectCollector.cs" />
+    <Compile Include="Probes\UserProbes\SID_SID\SID_SID_EntityVariableEvaluator.cs" />
+    <Compile Include="Probes\UserProbes\SID_SID\SID_SID_ItemTypeBuilder.cs" />
+    <Compile Include="SystemInformationService\WindowsSystemInformationConnectionProvider.cs" />
+    <Compile Include="SystemInformationService\WindowsSystemInformationFactory.cs" />
+    <Compile Include="SystemInformationService\WindowsSystemInformationCollector.cs" />
+    <Compile Include="SystemInformationService\WindowsSystemInformationService.cs" />
+    <Compile Include="Probes\FileProbes\File\WindowsFileProvider.cs" />
+    <Compile Include="Probes\FileProbes\TextFileContent54\TextFileContentItemTypeBuilder.cs" />
+    <Compile Include="Probes\FileProbes\TextFileContent54\TextFileContentProberWindows.cs" />
+    <Compile Include="Probes\UserProbes\UserSID55\UserSIDNotFoundException.cs" />
+    <Compile Include="Probes\UserProbes\UserSID55\WindowsUserAccountProvider.cs" />
+    <Compile Include="Probes\UserProbes\UserSID55\UserSID55EntityVariableEvaluator.cs" />
+    <Compile Include="Probes\UserProbes\UserSID55\UserSID55ItemTypeBuilder.cs" />
+    <Compile Include="Probes\UserProbes\UserSID55\UserSID55ItemTypeGenerator.cs" />
+    <Compile Include="Probes\UserProbes\UserSID55\UserSID55Prober.cs" />
+    <Compile Include="Probes\UserProbes\UserSID55\UserSID55ObjectCollector.cs" />
+    <Compile Include="Probes\UserProbes\UserSID55\WindowsUserAccount.cs" />
+    <Compile Include="Probes\UserProbes\User\UserEntityVariableEvaluator.cs" />
+    <Compile Include="Probes\UserProbes\User\UserItemTypeBuilder.cs" />
+    <Compile Include="Probes\UserProbes\User\UserItemTypeGenerator.cs" />
+    <Compile Include="Probes\UserProbes\User\UserProber.cs" />
+    <Compile Include="Probes\UserProbes\User\UserObjectCollector.cs" />
+    <Compile Include="WMIConnectionProvider.cs" />
+    <Compile Include="WmiDataProviderFactory.cs" />
+    <Compile Include="WmiInvokeMethodInfo.cs" />
+    <Compile Include="Probes\WMI\WmiDataProvider.cs" />
+    <Compile Include="Probes\WMI\WmiObject.cs" />
+    <Compile Include="Probes\WMI\WQLBuilder.cs" />
+    <Compile Include="Probes\WQL\WmiItemTypeGenerator.cs" />
+    <Compile Include="Probes\WQL\WMIProber.cs" />
+    <Compile Include="Probes\WQL\WMIObjectCollector.cs" />
+    <Compile Include="Probes\WQL\WQLConnectionProvider.cs" />
+    <Compile Include="Probes\FileProbes\XmlFileContent\XmlFileContentProber.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modulo.Collect.OVAL\Collect.OVAL.csproj">
+      <Project>{B9083752-3405-480B-9362-AD279B221C10}</Project>
+      <Name>Collect.OVAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Common\Modulo.Collect.Probe.Common.csproj">
+      <Project>{DF2B4873-DDAB-4F47-9C4F-5B93FE1214CF}</Project>
+      <Name>Modulo.Collect.Probe.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Independent\Modulo.Collect.Probe.Independent.csproj">
+      <Project>{890332AF-A755-40F1-B95A-B20CB45EB465}</Project>
+      <Name>Modulo.Collect.Probe.Independent</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.VisualBasic.PowerPacks.10.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Visual Basic PowerPacks 10.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

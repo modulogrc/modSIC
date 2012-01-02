@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment Id="FragModSICCustomUI">
+
+        <UIRef Id="WixUI_Common" />
+
+        <WixVariable Id="WixUICostingPopupOptOut" Value="0"/>
+        <WixVariable Id="WixUILicenseRtf" Value="License.rtf"/>
+
+        <Property Id="ARPNOREPAIR" Value="0"/>
+        <Property Id="ARPNOMODIFY" Value="0"/>
+        <Property Id="ARPCONTACT" Value="Modulo Security Solutions"/>
+        <Property Id="ARPURLINFOABOUT" Value="http://www.modsic.org"/>
+
+        <Property Id="INSTALLCOLECTOR" Value="1" />
+        <Property Id="Back" Value="Back" />
+        <Property Id="Next" Value="Next" />
+        <Property Id="Cancel" Value="Cancel" />
+        <Property Id="ButtonText_No" Value="No" />
+        <Property Id="ButtonText_Yes" Value="Yes" />
+        <Property Id="CancelText" Value="Are you sure you want to cancel modSIC installation?" />
+        <Property Id="InfoUser" Value="Fill out the fields below" />
+        <Property Id="MODAUTHENTICATION" Value="user"></Property>
+        <Property Id="VALIDCERTIFICATE" Value="0" />
+        <Property Id="VALIDINFOSQL" Value="1" />
+
+        <!-- Properties of tiltes and descriptions for dialogs -->
+        <Property Id="lblTitleCertificate" Value="Custom Setup" />
+        <Property Id="lblDescriptCertificate" Value="Select the certificate, address and a port to be used by modSIC." />
+
+        <Property Id="Finish" Value="Finish" />
+        <Property Id="lblTitleUserExitDlg" Value="Completed the modSIC Setup Wizard" />
+        <Property Id="lblDescriptionUserExitDlg" Value="Click the Finish button to exit the Setup Wizard." />
+        <!-- end -->
+
+        <Property Id="SERVICEPORT" Value="1024"/>
+        <Property Id="ADDRESS" Value="localhost"/>
+        <Property Id="MASK" Hidden="yes">
+            <![CDATA[<#####>]]>
+        </Property>
+
+        <Property Id="CERTHASHCODE" Value=" " Secure="yes"/>
+        <Property Id="CERTPATH" Value=" " Secure="yes"/>
+        <Property Id="CERTPASS" Value=" " Secure="yes"/>
+        <Property Id="CERTRADIO" Value="1" Secure="yes"/>
+
+        <Property Id="SAMPLECERTPATH" Value="sample-08C0FB88-9ABF-4AB5-ADDF-221477CD2B23"/>
+        <Property Id="SAMPLECERTTHUMBPRINT" Value="6511A591E089AABC8195086AAA336427EFE7D125"/>
+        <Property Id="SAMPLECERTPASSWORD" Value="12"/>
+        <Property Id="SAMPLECERTTEXT" Value=
+                  "WARNING: We strongly recommend you do NOT select this option unless your modSIC installation will be used for test or evaluation purposes only. With your own certificate, connecting clients will be able to check the authenticity of the modSIC service and prevent man-in-the-middle attacks that could potentially compromise critical information. Self-signed certificates can be created through Microsoft’s MakeCert tool and converted to PFX format through Windows’ Management Console."/>
+
+        <UI Id="ModSICCustomUI">
+            <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+            <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+            <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+            <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+
+            <DialogRef Id="ErrorDlg" />
+            <DialogRef Id="FatalError" />
+            <DialogRef Id="FilesInUse" />
+            <DialogRef Id="MsiRMFilesInUse" />
+            <DialogRef Id="PrepareDlg" />
+            <DialogRef Id="ProgressDlg" />
+            <DialogRef Id="ResumeDlg" />
+            <DialogRef Id="UserExit" />
+
+            <!--<Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>-->
+            <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
+            <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+
+            <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="CustomizeDlg">LicenseAccepted = "1"</Publish>
+            <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="1">Installed</Publish>
+            <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg" Order="2">NOT Installed</Publish>
+
+            <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="CertificateDialog"></Publish>
+
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="CertificateDialog" Order="1">
+                NOT Installed OR WixUI_InstallMode = "Change"
+            </Publish>
+
+            <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="2">Installed</Publish>
+            <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="ChangeButton" Event="NewDialog" Value="CustomizeDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+            <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+
+            <!--ExitDlg-->
+            <Dialog Id="ExitDlg" Width="370" Height="270" Title="[ProductName] Setup" NoMinimize="yes">
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.InstallDirDlgBannerBitmap)" />
+                <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}[lblTitleUserExitDlg]" />
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="[lblDescriptionUserExitDlg]" />
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+                <Control Id="BackButton" Type="PushButton" X="180" Y="244" Width="56" Height="17" Default="yes" Text="[Back]" Disabled="yes" />
+                <Control Id="FinishButton" Type="PushButton" X="236" Y="244" Width="56" Height="17" Text="[Finish]">
+                    <Publish Event="EndDialog" Value="Exit">1</Publish>
+                </Control>
+
+                <Control Type="PushButton" Id="CancelButton" Width="56" Height="17" X="304" Y="244" Text="[Cancel]" Disabled="yes"/>
+            </Dialog>
+
+            <Dialog Id="CertificateDialog" Width="390" Height="340" Title="[ProductName] Setup" NoMinimize="yes">
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="390" Height="44" TabSkip="no" Text="!(loc.InstallDirDlgBannerBitmap)">
+                </Control>
+                <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="390" Height="0" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}[lblTitleCertificate]" />
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="[lblDescriptCertificate]" />
+                <Control Id="lblPassCert" Type="Text" Text="Password:" Width="46" Height="10" X="35" Y="200" />
+                <Control Id="CertificatePath" Disabled="yes" Type="Edit" Property="FILEPATH" Width="214" Height="15" X="90" Y="175" Indirect="no" />
+                <Control Id="lblCertPath" Type="Text" Text="File path:" Width="49" Height="10" X="35" Y="175" />
+                <Control Id="CertificatePass" Type="Edit" Password="yes" Width="214" Height="15" X="90" Y="200" Disabled="yes" Property="CERTPASSWORD">
+                    <Condition Action="enable"><![CDATA[CERTRADIO = "2"]]></Condition>
+                    <Condition Action="disable"><![CDATA[CERTRADIO = "1"]]></Condition>
+                    <Publish Property="CERTPASS" Value="[CERTPASSWORD]" Order="1">1</Publish>
+                </Control>
+                <Control Id="BrowseCertificate" Type="PushButton" X="311" Y="175" Width="56" Height="17" Text="Browse..." Disabled="yes">
+                    <Condition Action="enable"><![CDATA[CERTRADIO = "2"]]></Condition>
+                    <Condition Action="disable"><![CDATA[CERTRADIO = "1"]]></Condition>
+                    <Publish Event="DoAction" Value="SelectCertificate" Order="1">1</Publish>
+                    <Publish Property="FILEPATH" Value="[CERTPATH]" Order="2">1</Publish>
+                </Control>
+                <Control Id="lblServicePort" Type="Text" Text="Port:" Width="35" Height="10" X="15" Y="275" />
+                <Control Id="edtPort" Type="Edit" Password="no" Width="50" Height="15" Property="SERVICEPORT" X="60" Y="275" />
+                <Control Id="BottomLine" Type="Line" X="0" Y="310" Width="390" Height="0" />
+                <Control Id="BackButtonMain" Type="PushButton" X="193" Y="315" Width="56" Height="17" Text="[Back]">
+                    <Publish Event="NewDialog" Value="CustomizeDlg" />
+                </Control>
+                <Control Id="NextButtonCert" Type="PushButton" X="250" Y="315" Width="56" Height="17" Default="yes" Text="[Next]" Disabled="yes">
+                    <Condition Action="enable"><![CDATA[CERTPATH <> "" OR CERTRADIO = "1"]]></Condition>
+                    <Publish Property="CERTPATH" Value="[SAMPLECERTPATH]">CERTRADIO = 1</Publish>
+                    <Publish Property="CERTPASS" Value="[SAMPLECERTPASSWORD]">CERTRADIO = 1</Publish>
+                    <Publish Property="CERTHASHCODE" Value="[SAMPLECERTTHUMBPRINT]">CERTRADIO = 1</Publish>
+                    <Publish Property="VALIDCERTIFICATE" Value="1">CERTRADIO = 1</Publish>
+                    <Publish Event="DoAction" Value="CheckPort">1</Publish>
+                    <Publish Event="DoAction" Value="GetThumbPrint">CERTRADIO = 2</Publish>
+                    <Publish Event="DoAction" Value="CheckAddress">1</Publish>
+                    <Publish Event="NewDialog" Value="VerifyReadyDlg">VALIDCERTIFICATE = 1 AND VALIDPORT = 1 AND VALIDADDRESS = 1</Publish>
+                    <Publish Event="DoAction" Value="SetBaseAddress">1</Publish>
+                    <Publish Event="DoAction" Value="SetMexAddress">1</Publish>
+                </Control>
+                <Control Id="CancelButtonCert" Type="PushButton" X="325" Y="315" Width="56" Height="17" Text="[Cancel]">
+                    <Publish Event="SpawnDialog" Value="CancelDialog">1</Publish>
+                </Control>
+                <Control Type="Text" Id="address" Width="35" Height="11" X="15" Y="250" Text="Address:" />
+                <Control Type="Edit" Id="edtAddress" Width="214" Height="15" Property="ADDRESS" X="60" Y="250" />
+                <Control Type="RadioButtonGroup" Property="CERTRADIO" Id="radioGroup" Width="343" Height="105" X="20" Y="62">
+                    <RadioButtonGroup Property="CERTRADIO">
+                        <RadioButton Text="Use a sample certificate" Height="17" Value="1" Width="150" X="5" Y="0" />
+                        <RadioButton Text="Select a certificate" Height="17" Value="2" Width="150" X="5" Y="90" />
+                    </RadioButtonGroup>
+                </Control>
+                <Control Type="GroupBox" Id="Group" Width="360" Height="180" X="15" Y="50" />
+                <Control Type="Text" Id="txtSampleCertificate" Width="320" Height="70" X="45" Y="80">
+                    <Text>[SAMPLECERTTEXT]</Text>
+                </Control>
+            </Dialog>
+
+            <!-- Cancel Dialog -->
+            <Dialog Id="CancelDialog" Width="265" Height="85" Title="[ProductName] Setup" NoMinimize="yes">
+                <Control Id="TextInfoCancel" Type="Text" Text="[CancelText]" X="34" Y="15" Width="204" Height="14" />
+                <Control Id="No" Type="PushButton" X="131" Y="56" Width="56" Height="17" Default="yes" Cancel="yes" Text="[ButtonText_No]">
+                    <Publish Event="EndDialog" Value="Return">1</Publish>
+                </Control>
+                <Control Id="Yes" Type="PushButton" X="71" Y="56" Width="56" Height="17" Text="[ButtonText_Yes]">
+                    <Publish Event="EndDialog" Value="Exit">1</Publish>
+                </Control>
+            </Dialog>
+        </UI>
+    </Fragment>
+</Wix>

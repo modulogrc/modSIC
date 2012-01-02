@@ -1,0 +1,261 @@
+LICENSES OF THIRD-PARTY COMPONENTS SHIPPED WITH modSIC, AS ISOLATED BINARIES.
+
+1. Rhino Mocks
+2. RavenDB
+3. SharpSSH
+4. Mentalis.org Security Library
+5. Thinktecture.IdentityModel
+6. Json.NET
+7. Quartz.NET
+8. Log4Net
+9. Microsoft.Practices.Unity
+10. ADO.NET Driver for MySQL 
+11. Topshelf
+
+All product names mentioned here are the trademarks of their respective owners.
+
+########################################################################################
+
+1. RHINO MOCKS LICENSE
+
+It is provided under a BSD style license. 
+
+From: <http://www.ayende.com/projects/projects/licensing.aspx>
+
+========================================================================================
+Copyright (c) 2005, Ayende Rahien (Oren Eini), All Rights Reserves All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+    * Neither the names "Ayende Rahien" or "Oren Eini" nor the names of any other contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+This software is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. in no event shall the copyright owner or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
+
+########################################################################################
+
+2. RAVENDB LICENSE
+
+RavenDB is licensed by the GNU Affero General Public License, with an explicit exception that allows Open Source software with other licenses to include it with their distributions. This, of course, covers modSIC’s own BSD-style license.
+
+==============================================
+Raven DB - A Document Database for the .NET platform
+Copyright (C) 2010 Hibernating rhinos
+==============================================
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+====================
+FOSS License Exception
+====================
+What is the FOSS License Exception?
+
+This Free and Open Source Software ("FOSS") License Exception allows developers of FOSS applications to include RavenDB with their FOSS applications. RavenDB is typically licensed pursuant to version 3 of the Affero General Public License ("AGPL"), but this exception permits distribution of RavenDB with a developer's FOSS applications licensed under the terms of another FOSS license listed below, even though such other FOSS license may be incompatible with the AGPL.
+The following terms and conditions describe the circumstances under which this FOSS License Exception applies.
+
+FOSS License Exception Terms and Conditions
+
+Definitions:
+	* "Derivative Work" means a derivative work, as defined under applicable copyright law, formed entirely from the Program and one or more FOSS Applications.
+	* "FOSS Application" means a free and open source software application distributed subject to a license approved by the Open Source Initiative (OSI) board. A list of applicable licenses appears at: http://www.opensource.org/licenses/category.
+	* "FOSS Notice" means a notice placed by Hibernating Rhinos or the RavenDB author in a copy of the RavenDB library stating that such copy of the RavenDB library may be distributed under Hibernating Rhinos's or RavenDB's FOSS License Exception.
+	* "Independent Work" means portions of the Derivative Work that are not derived from the Program and can reasonably be considered independent and separate works.
+	* "Program" means a copy of Hibernating Rhinos's RavenDB library that contains a FOSS Notice.
+
+A FOSS application developer ("you" or "your") may distribute a Derivative Work provided that you and the Derivative Work meet all of the following conditions:
+
+	* You obey the AGPL in all respects for the Program and all portions (including modifications) of the Program included in the Derivative Work (provided that this condition does not apply to Independent Works);
+	* The Derivative Work does not include any work licensed under the AGPL other than the Program;
+	* You distribute Independent Works subject to a license approved by the OSI which is listed in http://www.opensource.org/licenses/category;
+	* You distribute Independent Works in object code or executable form with the complete corresponding machine-readable source code on the same medium and under the same FOSS license applying to the object code or executable forms;
+	* All works that are aggregated with the Program or the Derivative Work on a medium or volume of storage are not derivative works of the Program, Derivative Work or FOSS Application, and must reasonably be considered independent and separate works.
+	
+Hibernating Rhinos reserves all rights not expressly granted in these terms and conditions. 
+If all of the above conditions are not met, then this FOSS License Exception does not apply to you or your Derivative Work.
+
+===================
+Commercial Licensing
+===================
+In addition to this license, RavenDB is offered under a commerical license. You can learn more about this option by contacting us using: http://hibernatingrhinos.com/contact
+
+########################################################################################
+
+3. SHARPSSH LICENSE
+
+SharpSSH is a port of JCsh to C#. Tamir Gal, SharpSSH's author, says on his project site: (Taken from <http://www.tamirgal.com/blog/page/SharpSSH.aspx>)
+
+"The library is a C# port of the JSch project from JCraft Inc. and is released under BSD style license." (Link to <http://www.jcraft.com/jsch/LICENSE.txt> follows)
+
+========================================================================================
+JSch 0.0.* was released under the GNU LGPL license. Later, we have switched over to a BSD-style license. 
+------------------------------------------------------------------------------
+Copyright (c) 2002,2003,2004,2005,2006,2007,2008 Atsuhiko Yamanaka, JCraft,Inc. 
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+  1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+  3. The names of the authors may not be used to endorse or promote products derived from this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL JCRAFT, INC. OR ANY CONTRIBUTORS TO THIS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+########################################################################################
+
+4. MENTALIS SECURITY LIBRARY LICENSE
+
+SharpSSH uses crypto library from Mentalis. Here is their license:
+
+========================================================================================
+Source Code License
+Copyright © 2002-2007, The Mentalis.org Team
+All rights reserved.
+http://www.mentalis.org/
+
+- Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+- Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+- Neither the name of the Mentalis.org Team, nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+########################################################################################
+
+5. THINKTECTURE IDENTITYMODEL LICENSE
+
+Thinktecture.IdentityModel is, in its author's words, "a little helper library that made [Windows Identity Foundation] common tasks easier to accomplish." It is licensed with the Ms-PL (Microsoft Public License).
+
+See <http://identitymodel.codeplex.com>
+
+========================================================================================
+Microsoft Public License (Ms-PL)
+
+This license governs use of the accompanying software. If you use the software, you accept this license. If you do not accept the license, do not use the software.
+
+1. Definitions
+
+The terms "reproduce," "reproduction," "derivative works," and "distribution" have the same meaning here as under U.S. copyright law.
+
+A "contribution" is the original software or any additions or changes to the software.
+
+A "contributor" is any person that distributes its contribution under this license.
+
+"Licensed patents" are a contributor's patent claims that read directly on its contribution.
+
+2. Grant of Rights
+
+(A) Copyright Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free copyright license to reproduce its contribution, prepare derivative works of its contribution, and distribute its contribution or any derivative works that you create.
+
+(B) Patent Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free license under its licensed patents to make, have made, use, sell, offer for sale, import, and/or otherwise dispose of its contribution in the software or derivative works of the contribution in the software.
+
+3. Conditions and Limitations
+
+(A) No Trademark License- This license does not grant you rights to use any contributors' name, logo, or trademarks.
+
+(B) If you bring a patent claim against any contributor over patents that you claim are infringed by the software, your patent license from such contributor to the software ends automatically.
+
+(C) If you distribute any portion of the software, you must retain all copyright, patent, trademark, and attribution notices that are present in the software.
+
+(D) If you distribute any portion of the software in source code form, you may do so only under this license by including a complete copy of this license with your distribution. If you distribute any portion of the software in compiled or object code form, you may only do so under a license that complies with this license.
+
+(E) The software is licensed "as-is." You bear the risk of using it. The contributors give no express warranties, guarantees or conditions. You may have additional consumer rights under your local laws which this license cannot change. To the extent permitted under your local laws, the contributors exclude the implied warranties of merchantability, fitness for a particular purpose and non-infringement.
+
+########################################################################################
+
+6. JSON.NET LICENSE
+
+A JSON framework for .NET. It is provided under the MIT license.
+
+Source: <http://json.codeplex.com/license>
+
+========================================================================================
+Copyright (c) 2007 James Newton-King
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+########################################################################################
+
+7. QUARTZ.NET LICENSE
+
+A job-scheduling framework for .NET. It is provided under the Apache License, Version 2.0. (In the end of this document)
+
+Source: <http://quartznet.sourceforge.net/license.html>
+The license can be found at <http://www.apache.org/licenses/LICENSE-2.0>.
+
+========================================================================================
+This product includes software developed by the Apache Software Foundation (http://www.apache.org/)
+
+########################################################################################
+
+8. Log4Net
+
+log4net is a tool to help the programmer output log statements to a variety of output targets.
+It is provided under the Apache License, Version 2.0. (in the end of this document).
+
+Source:< http://logging.apache.org/log4net/>
+The license can be found at < http://logging.apache.org/log4net/license.html>.
+
+========================================================================================
+This product includes software developed by The Apache Software Foundation (http://www.apache.org/).
+
+The names "log4net" and "Apache Software Foundation" must not be used to endorse or promote products derived from this software without prior written permission. For written permission, please contact apache@apache.org.
+
+########################################################################################
+
+9. Microsoft.Practices.Unity
+The Unity Application Block (Unity) is a lightweight extensible dependency injection container with support for constructor, property, and method call injection. It is provided under the MS-PL License, already described in this document.
+
+Source: < http://unity.codeplex.com>
+The license can be found at <http://unity.codeplex.com/license>
+
+########################################################################################
+
+10. ADO.NET Driver for MySQL
+
+Connector/Net is a fully-managed ADO.NET driver for MySQL. It is provided under the GNU-GPL v2.
+
+Source: < http://www.mysql.com/downloads/connector/net/>
+The license can be found at <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
+
+========================================================================================
+MySQL Connector/Net
+Oracle's ADO.Net Driver for MySQL
+Copyright (c) 2004, 2010, Oracle and/or its affiliates. All rights reserved.
+
+LICENSE
+
+The MySQL Connector/Net is licensed under the terms of the GPLv2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>, like most MySQL Connectors. There are special exceptions to the terms and conditions of the GPLv2 as it is applied to this software, see the FLOSS License Exception <http://www.mysql.com/about/legal/licensing/foss-exception.html>.
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+
+########################################################################################
+
+11. Topshelf
+
+An easy service hosting framework for building Windows services using .NET. It is provided under the Apache License, Version 2.0. (in the end of this document)
+
+Source: < https://github.com/Topshelf/Topshelf/downloads>
+The license can be found at < https://github.com/Topshelf/Topshelf#readme>
+
+========================================================================================
+Copyright 2007-2011 Travis Smith, Chris Patterson, Dru Sellers, Henrik Feldt et al. All rights reserved
+
+########################################################################################
+
+Appendix: Apache License
+
+Version 2.0, January 2004
+
+http://www.apache.org/licenses/

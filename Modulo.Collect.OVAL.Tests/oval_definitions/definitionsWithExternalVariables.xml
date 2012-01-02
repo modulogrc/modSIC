@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- ========================================= -->
+<!-- ==========  __OS_FULL_NAME__     ========== -->
+<!-- ========================================= -->
+<oval_definitions xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd 
+                                      http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd 
+									  http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd 
+									  http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd"
+									  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+									  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+									  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+									  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>Risk Manager</oval:product_name>
+    <oval:product_version>7.0</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2010-01-13T16:29:27.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+  
+  <definitions>
+    <definition id="oval:modulo:def:1" class="compliance" version="1">
+      <metadata>
+        <title>External Variable Test</title>
+        <description>External Variable Test</description>
+      </metadata>
+      <criteria>
+        <criterion test_ref="oval:modulo:tst:1"/>
+      </criteria>
+    </definition>
+  </definitions>
+  
+  <tests>
+    <xmlfilecontent_test id="oval:modulo:tst:1" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <object object_ref="oval:modulo:obj:1"/>
+      <state state_ref="oval:modulo:ste:1"/>
+    </xmlfilecontent_test>
+  </tests>
+  
+  <objects>
+    <xmlfilecontent_object id="oval:modulo:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>c:\temp\definitions</path>
+      <filename>bookstore.xml</filename>
+      <xpath>//bookstore/book/title/text()</xpath>
+    </xmlfilecontent_object>
+
+<!--     <xmlfilecontent_object id="oval:modulo:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <path>c:\temp\definitions</path>
+      <filename var_ref="oval:modulo:var:1"></filename>
+      <xpath var_ref="oval:modulo:var:2"></xpath>
+    </xmlfilecontent_object>
+ -->  </objects>
+
+  <states>
+    <xmlfilecontent_state id="oval:modulo:ste:1" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <value_of var_ref="oval:modulo:var:3"></value_of>
+    </xmlfilecontent_state>
+  </states>
+  
+  <variables>
+<!--     <external_variable id="oval:modulo:var:1" comment="XML Filename" datatype="string" version="1" />
+    <external_variable id="oval:modulo:var:2" comment="Xpath" datatype="string" version="1" />
+ -->    
+	<constant_variable id="oval:modulo:var:3" comment="Book Title" datatype="string" version="1">
+	  <value>Harry Potter</value>
+	</constant_variable>	
+  </variables>
+</oval_definitions>

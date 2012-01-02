@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+
+<!-- ========================================= -->
+<!-- ===========  Unix CCM Grub   ============ -->
+<!-- ========================================= -->
+<oval_definitions xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:unix-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" xmlns:lin-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd">
+  <generator>
+		<oval:product_name>Test Purpose for CCM: Check a file permissions on Unix</oval:product_name>
+		<oval:product_version>1.0</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2011-09-16T15:00:00.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+
+  <!-- ========================================= -->
+  <!-- ===========  1. DEFINITIONS  ============ -->
+  <!-- ========================================= -->
+  <!--In an OVAL Definitions file, the project author, version, date, and description should be provided in this section.-->
+	<definitions>
+	  <definition class="inventory" id="oval:com.modulo.ccm.unix.sample:def:1" version="1">
+			<metadata>
+				<title>A Unix with GRUB</title>
+				<affected family="unix" />
+				<reference ref_id="cpe:/o:fedora:f13:12" source="CPE" />
+				<description>Installed operating system is part of the unix family and have GRUB as the Boot Manager</description>
+			</metadata>
+			<criteria>
+				<criterion comment="GRUB is the Boot Manager" test_ref="oval:com.modulo.ccm.unix.sample:tst:2" />
+				<criterion comment="Installed operating system is part of the unix family" test_ref="oval:com.modulo.ccm.unix.sample:tst:1" />
+			</criteria>
+		</definition>
+		<definition class="compliance" id="oval:com.modulo.ccm.unix.sample:def:2" version="1">
+			<metadata>
+				<title>File ownership for /etc/grub.conf</title>
+				<affected family="unix" />
+				<reference ref_id="CCE-4197-0" source="CCE" />
+				<description>File ownership for /etc/grub.conf</description>
+			</metadata>
+			<criteria>
+				<criterion comment="File ownership check for /etc/grub.conf" test_ref="oval:com.modulo.ccm.unix.sample:tst:3" />
+				<extend_definition comment="A Unix with GRUB" definition_ref="oval:com.modulo.ccm.unix.sample:def:1" />
+			</criteria>
+		</definition>
+		<definition class="compliance" id="oval:com.modulo.ccm.unix.sample:def:3" version="1">
+			<metadata>
+				<title>File permissions for /etc/grub.conf</title>
+				<affected family="unix" />
+				<reference ref_id="CCE-3923-0" source="CCE" />
+				<description>File permissions for /etc/grub.conf should be set to 600</description>
+			</metadata>
+			<criteria>
+				<criterion comment="File permissions test for /etc/grub.conf" test_ref="oval:com.modulo.ccm.unix.sample:tst:4" />
+				<extend_definition comment="A Unix with GRUB" definition_ref="oval:com.modulo.ccm.unix.sample:def:1" />
+			</criteria>
+		</definition>
+		<definition class="compliance" id="oval:com.modulo.ccm.unix.sample:def:4" version="1">
+			<metadata>
+				<title>File ownership for /etc/grub.conf</title>
+				<affected family="unix" />
+				<reference ref_id="CCE-4144-2" source="CCE" />
+				<description>File ownership for /etc/grub.conf</description>
+			</metadata>
+			<criteria>
+				<criterion comment="File ownership check for /etc/grub.conf" test_ref="oval:com.modulo.ccm.unix.sample:tst:5" />
+				<extend_definition comment="A Unix with GRUB" definition_ref="oval:com.modulo.ccm.unix.sample:def:1" />
+			</criteria>
+		</definition>
+  </definitions>
+
+  <!-- ========================================= -->
+  <!-- ========== 2.    TESTS     ============== -->
+  <!-- ========================================= -->
+  <!--Each test should be linked to its object and state as well the desired verification method.Change the comment field with your OS.-->
+  <tests>
+    <file_test check="all" check_existence="at_least_one_exists" comment="File /etc/grub.conf exists" id="oval:com.modulo.ccm.unix.sample:tst:2" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:com.modulo.ccm.unix.sample:obj:2" />
+    </file_test>
+    <family_test check="only one" check_existence="at_least_one_exists" comment="installed operating system is part of the Unix family" id="oval:com.modulo.ccm.unix.sample:tst:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <object object_ref="oval:com.modulo.ccm.unix.sample:obj:1" />
+      <state state_ref="oval:com.modulo.ccm.unix.sample:ste:1" />
+    </family_test>
+    <file_test check="all" check_existence="all_exist" comment="File permissions test for /etc/grub.conf" id="oval:com.modulo.ccm.unix.sample:tst:3" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:com.modulo.ccm.unix.sample:obj:2" />
+      <state state_ref="oval:com.modulo.ccm.unix.sample:ste:3" />
+    </file_test>
+    <file_test check="all" check_existence="all_exist" comment="File permissions for /etc/grub.conf should be set to 600" id="oval:com.modulo.ccm.unix.sample:tst:4" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:com.modulo.ccm.unix.sample:obj:2" />
+      <state state_ref="oval:com.modulo.ccm.unix.sample:ste:4" />
+    </file_test>
+    <file_test check="all" check_existence="all_exist" comment="File permissions test for /etc/grub.conf" id="oval:com.modulo.ccm.unix.sample:tst:5" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <object object_ref="oval:com.modulo.ccm.unix.sample:obj:2" />
+      <state state_ref="oval:com.modulo.ccm.unix.sample:ste:5" />
+    </file_test>
+  </tests>
+
+  <!-- ========================================= -->
+  <!-- ========== 3.    OBJECT    ============== -->
+  <!-- ========================================= -->
+  <!--The object linked to some of the test entries listed above.-->
+  <objects>
+    <family_object id="oval:com.modulo.ccm.unix.sample:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" />
+    <file_object comment="/etc/grub.conf" id="oval:com.modulo.ccm.unix.sample:obj:2" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <path>/etc</path>
+      <filename>grub.conf</filename>
+    </file_object>
+  </objects>
+  
+  <!-- ========================================= -->
+  <!-- ========== 4.    STATE     ============== -->
+  <!-- ========================================= -->
+  <!--The expected state for one of the above objects.-->
+  <states>
+    <family_state id="oval:com.modulo.ccm.unix.sample:ste:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <family>unix</family>
+    </family_state>
+    <file_state id="oval:com.modulo.ccm.unix.sample:ste:3" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <group_id datatype="int">0</group_id>
+    </file_state>
+    <file_state id="oval:com.modulo.ccm.unix.sample:ste:4" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <uread datatype="boolean">true</uread>
+      <uwrite datatype="boolean">true</uwrite>
+      <uexec datatype="boolean">false</uexec>
+      <gread datatype="boolean">false</gread>
+      <gwrite datatype="boolean">false</gwrite>
+      <gexec datatype="boolean">false</gexec>
+      <oread datatype="boolean">false</oread>
+      <owrite datatype="boolean">false</owrite>
+      <oexec datatype="boolean">false</oexec>
+    </file_state>
+    <file_state id="oval:com.modulo.ccm.unix.sample:ste:5" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+      <user_id datatype="int">0</user_id>
+    </file_state>
+  </states>
+</oval_definitions>

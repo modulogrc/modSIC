@@ -1,0 +1,1 @@
+ilmerge /target:library /out:SharpSSH.dll /v2 Tamir.SharpSSH.dll DiffieHellman.dll Org.Mentalis.Security.dll

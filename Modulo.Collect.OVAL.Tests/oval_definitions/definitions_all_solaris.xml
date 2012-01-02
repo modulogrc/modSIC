@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<!-- ========================================= -->
+<!-- ==========  __OS_FULL_NAME__     ========== -->
+<!-- ========================================= -->
+<oval_definitions xsi:schemaLocation=
+                    "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris solaris-definitions-schema.xsd 
+                      http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd 
+									    http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd"
+									  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+									  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+									  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+									  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>Risk Manager</oval:product_name>
+    <oval:product_version>7.0</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2010-01-13T16:29:27.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+
+
+
+  <!-- ========================================= -->
+  <!-- ========== 1. DEFINITIONS      ========== -->
+  <!-- ========================================= -->
+  <definitions>
+    <definition class="compliance" id ="oval:modulo:def:1" version ="1">
+      <metadata>
+        <title></title>
+        <description></description>
+      </metadata>
+      <criteria>
+        <criterion test_ref ="oval:modulo:tst:1" comment="testing isainfo_object"/>
+      </criteria>
+    </definition>
+
+    <definition class="compliance" id ="oval:modulo:def:2" version ="1" >
+      <metadata>
+        <title></title>
+        <description></description>
+      </metadata>
+      <criteria>
+        <criterion test_ref ="oval:modulo:tst:2" comment="testing package_object"/>
+      </criteria>
+    </definition>
+
+    <definition class="compliance" id ="oval:modulo:def:3" version ="1">
+      <metadata>
+        <title></title>
+        <description></description>
+      </metadata>
+      <criteria>
+        <criterion test_ref ="oval:modulo:tst:3" comment="testing patch_object"/>
+      </criteria>
+    </definition>
+
+    <definition class="compliance" id ="oval:modulo:def:4" version ="1">
+      <metadata>
+        <title></title>
+        <description></description>
+      </metadata>
+      <criteria>
+        <criterion test_ref ="oval:modulo:tst:4"  comment="testing patch54_object"/>
+      </criteria>
+    </definition>
+
+    <definition class="compliance" id ="oval:modulo:def:5" version ="1">
+      <metadata>
+        <title></title>
+        <description></description>
+      </metadata>
+      <criteria>
+        <criterion test_ref ="oval:modulo:tst:5"  comment="testing smf_object"/>
+      </criteria>
+    </definition>
+
+    <definition class="compliance" id ="oval:modulo:def:10" version ="1">
+      <metadata>
+        <title></title>
+        <description></description>
+      </metadata>
+      <criteria>
+        <criterion test_ref ="oval:modulo:tst:10" comment="testing isainfo_object"/>
+      </criteria>
+    </definition>
+
+    <definition class="compliance" id ="oval:modulo:def:20" version ="1" >
+      <metadata>
+        <title></title>
+        <description></description>
+      </metadata>
+      <criteria>
+        <criterion test_ref ="oval:modulo:tst:20" comment="testing package_object"/>
+      </criteria>
+    </definition>
+
+    <definition class="compliance" id ="oval:modulo:def:30" version ="1">
+      <metadata>
+        <title></title>
+        <description></description>
+      </metadata>
+      <criteria>
+        <criterion test_ref ="oval:modulo:tst:30" comment="testing patch_object"/>
+      </criteria>
+    </definition>
+
+    <definition class="compliance" id ="oval:modulo:def:40" version ="1">
+      <metadata>
+        <title></title>
+        <description></description>
+      </metadata>
+      <criteria>
+        <criterion test_ref ="oval:modulo:tst:40"  comment="testing patch54_object"/>
+      </criteria>
+    </definition>
+
+    <definition class="compliance" id ="oval:modulo:def:50" version ="1">
+      <metadata>
+        <title></title>
+        <description></description>
+      </metadata>
+      <criteria>
+        <criterion test_ref ="oval:modulo:tst:50"  comment="testing smf_object"/>
+      </criteria>
+    </definition>
+  </definitions>
+
+
+  <!-- ========================================= -->
+  <!-- ========== 2. TESTS            ========== -->
+  <!-- ========================================= -->
+  <tests>
+    <isainfo_test id="oval:modulo:tst:1" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <object object_ref="oval:modulo:obj:1"/>
+      <state state_ref="oval:modulo:ste:1"/>
+    </isainfo_test>
+
+    <package_test id="oval:modulo:tst:2" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <object object_ref="oval:modulo:obj:2"/>
+      <state state_ref="oval:modulo:ste:2"/>
+    </package_test>
+
+    <patch_test id="oval:modulo:tst:3" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <object object_ref="oval:modulo:obj:3"/>
+      <state state_ref="oval:modulo:ste:3"/>
+    </patch_test>
+
+    <patch54_test id="oval:modulo:tst:4" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <object object_ref="oval:modulo:obj:4"/>
+      <state state_ref="oval:modulo:ste:3"/>
+    </patch54_test>
+
+    <smf_test id="oval:modulo:tst:5" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <object object_ref="oval:modulo:obj:5"/>
+      <state state_ref="oval:modulo:ste:5"/>
+    </smf_test>
+
+    <isainfo_test id="oval:modulo:tst:10" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <object object_ref="oval:modulo:obj:10"/>
+      <state state_ref="oval:modulo:ste:10"/>
+    </isainfo_test>
+
+    <package_test id="oval:modulo:tst:20" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <object object_ref="oval:modulo:obj:20"/>
+      <state state_ref="oval:modulo:ste:20"/>
+    </package_test>
+
+    <patch_test id="oval:modulo:tst:30" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <object object_ref="oval:modulo:obj:30"/>
+      <state state_ref="oval:modulo:ste:30"/>
+    </patch_test>
+
+    <patch54_test id="oval:modulo:tst:40" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <object object_ref="oval:modulo:obj:40"/>
+      <state state_ref="oval:modulo:ste:30"/>
+    </patch54_test>
+
+    <smf_test id="oval:modulo:tst:50" check="at least one" check_existence="at_least_one_exists" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <object object_ref="oval:modulo:obj:50"/>
+      <state state_ref="oval:modulo:ste:50"/>
+    </smf_test>
+  </tests>
+
+  <!-- ========================================= -->
+  <!-- ========== 3. OBJECTS          ========== -->
+  <!-- ========================================= -->
+  <objects>
+    <isainfo_object id="oval:modulo:obj:1" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris"/>
+
+    <package_object id="oval:modulo:obj:2" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <pkginst>inst.1</pkginst>
+    </package_object>
+
+    <patch_object id="oval:modulo:obj:3" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <base datatype="int">10</base>
+    </patch_object>
+
+    <patch54_object id="oval:modulo:obj:4" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <base datatype="int">2000</base>
+      <version datatype="int">20000001</version>
+    </patch54_object>
+
+    <smf_object id="oval:modulo:obj:5" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <fmri>svc://localhost/system/system-log:default</fmri>
+    </smf_object>
+
+    <isainfo_object id="oval:modulo:obj:10" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris"/>
+
+    <package_object id="oval:modulo:obj:20" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <pkginst>inst.1</pkginst>
+    </package_object>
+
+    <patch_object id="oval:modulo:obj:30" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <base datatype="int">10</base>
+    </patch_object>
+
+    <patch54_object id="oval:modulo:obj:40" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <base datatype="int">2000</base>
+      <version datatype="int">20000001</version>
+    </patch54_object>
+
+    <smf_object id="oval:modulo:obj:50" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <fmri>svc://localhost/system/system-log:default</fmri>
+    </smf_object>
+
+  </objects>
+
+  <!-- ========================================= -->
+  <!-- ========== 4. STATES           ========== -->
+  <!-- ========================================= -->
+  <states>
+    <isainfo_state id="oval:modulo:ste:1" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <bits datatype="int">32</bits>
+      <kernel_isa var_ref="oval:modulo:var:1"/>
+      <application_isa var_ref="oval:modulo:var:1"/>
+    </isainfo_state>
+
+    <package_state id="oval:modulo:ste:2" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <pkginst>inst.1</pkginst>
+      <name>Installer 1</name>
+      <category>Installers</category>
+      <version>1.0.0</version>
+      <vendor>Modulo</vendor>
+      <description>Installion package</description>
+    </package_state>
+
+    <patch_state id="oval:modulo:ste:3" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <base datatype="int">10</base>
+      <version datatype="int">1001</version>
+    </patch_state>
+
+    <smf_state id="oval:modulo:ste:5" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <fmri>svc://localhost/system/system-log:default</fmri>
+      <service_name>system-log</service_name>
+      <service_state>ONLINE</service_state>
+      <protocol>tcp</protocol>
+      <server_executable>exe</server_executable>
+      <server_arguements>a r</server_arguements>
+      <exec_as_user>oval</exec_as_user>
+    </smf_state>
+
+    <isainfo_state id="oval:modulo:ste:10" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <bits datatype="int">32</bits>
+      <kernel_isa>amd64</kernel_isa>
+      <application_isa>amd64</application_isa>
+    </isainfo_state>
+
+    <package_state id="oval:modulo:ste:20" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <pkginst>inst.1</pkginst>
+      <name>Installer 1</name>
+      <category>Installers</category>
+      <version>1.0.0</version>
+      <vendor>Modulo</vendor>
+      <description>Installion package</description>
+    </package_state>
+
+    <patch_state id="oval:modulo:ste:30" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <base datatype="int">10</base>
+      <version datatype="int">1001</version>
+    </patch_state>
+
+    <smf_state id="oval:modulo:ste:50" version="1" comment="..." xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris">
+      <fmri>svc://localhost/system/system-log:default</fmri>
+      <service_name>system-log</service_name>
+      <service_state>ONLINE</service_state>
+      <protocol>tcp</protocol>
+      <server_executable>exe</server_executable>
+      <server_arguements>a r</server_arguements>
+      <exec_as_user>oval</exec_as_user>
+    </smf_state>
+  </states>
+
+  <!-- ========================================= -->
+  <!-- =========== 5. VARIABLES  ============ -->
+  <!-- ========================================= -->
+  <variables>
+    <constant_variable id="oval:modulo:var:1" datatype="string" version="1" comment="32-bit acronym">
+      <value>i386</value>
+    </constant_variable>
+    <!--<constant_variable id="oval:modulo:var:10" datatype="string" version="1" comment="64-bit acronym">
+      <value>amd64</value>
+    </constant_variable>-->
+  </variables>
+
+</oval_definitions>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<oval_system_characteristics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">
+  <generator>
+    <product_name xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">Risk Manager</product_name>
+    <product_version xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">1.0.0.0</product_version>
+    <schema_version xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">5.6</schema_version>
+    <timestamp xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">2011-02-23T18:19:02.2894951-03:00</timestamp>
+  </generator>
+  
+  <system_info>
+    <os_name>Linux</os_name>
+    <os_version>2.6.18-128.el5</os_version>
+    <architecture>INTEL32</architecture>
+    <primary_host_name>oval-rhel5</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>lo</interface_name>
+        <ip_address>1</ip_address>
+        <mac_address>00:00:00:00:00:00</mac_address>
+      </interface>
+      <interface>
+        <interface_name>eth0</interface_name>
+        <ip_address>1</ip_address>
+        <mac_address>ca:58:72:f9:b4:09</mac_address>
+      </interface>
+      <interface>
+        <interface_name>sit0</interface_name>
+        <ip_address />
+        <mac_address>0.0.0.0</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+  
+  <collected_objects>
+    <object id="oval:gov.irs.rhel5:obj:10000" version="1" flag="complete">
+      <reference item_ref="1" />
+    </object>
+  </collected_objects>
+  
+  <system_data>
+    <rpminfo_item id="1" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux">
+      <name>redhat-release</name>
+      <arch>i386</arch>
+      <epoch>0</epoch>
+      <release>5.3.0.3</release>
+      <version>5Server</version>
+      <evr datatype="evr_string">5Server-5.3.0.3</evr>
+    </rpminfo_item>
+  </system_data>
+</oval_system_characteristics>

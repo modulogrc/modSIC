@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#sapcode" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#sapcode" elementFormDefault="qualified" version="5.9">
+     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+     <xsd:annotation>
+          <xsd:documentation>The following is a description of the elements, types, and attributes that compose the Linux specific tests found in Open Vulnerability and Assessment Language (OVAL). Each test is an extension of the standard test element defined in the Core Definition Schema. Through extension, each test inherits a set of elements and attributes that are shared amongst all OVAL tests. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.</xsd:documentation>
+          <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+          <xsd:appinfo>
+               <schema>SAP Code Control Definition</schema>
+               <version>5.9</version>
+               <date>11/25/2010 11:01:41 AM</date>
+                <terms_of_use>Copyright (c) 2002-2009, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+               <sch:ns prefix="sapcode-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#sapcode"/>
+               <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+          </xsd:appinfo>
+     </xsd:annotation>
+     <!-- =============================================================================== -->
+     <!-- ==============================  SAPCODE INFO TEST  =============================== -->
+     <!-- =============================================================================== -->
+     <xsd:element name="sapcode_test" substitutionGroup="oval-def:test">
+          <xsd:annotation>
+               <xsd:documentation>The dpkginfo test is used to check information for a given DPKG package. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a dpkginfo_object and the optional state element specifies the data to check. The evaluation of the test is guided by the check attribute that is inherited from the TestType.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-def:TestType">
+                         <xsd:sequence>
+                              <xsd:element name="object" type="oval-def:ObjectRefType" minOccurs="1" maxOccurs="1"/>
+                              <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="sapcode_object" substitutionGroup="oval-def:object">
+          <xsd:annotation>
+               <xsd:documentation>The dpkginfo_object element is used by a dpkginfo test to define the object to be evaluated. Each object extends the standard ObjectType as definied in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+               <xsd:documentation>A dpkginfo object consists of a single name entity that identifies the package being checked.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-def:ObjectType">
+                         <xsd:sequence>
+                              <xsd:choice minOccurs="1" maxOccurs="1">
+                                   <xsd:element ref="oval-def:set"/>
+                                   <xsd:sequence>
+                                        <xsd:element name="system_name" type="oval-def:EntityStateStringType" minOccurs="1" maxOccurs="1">
+                                             <xsd:annotation>
+                                                  <xsd:documentation>This is the sap service name to check.</xsd:documentation>
+                                                  <xsd:appinfo>
+                                                       <sch:pattern id="sapcodeobjname">
+                                                            <sch:rule context="sapcode-def:sapcode_object/sapcode-def:system_name">
+                                                                 <sch:assert test="not(@datatype) or @datatype='int'"><sch:value-of select="../@id"/> - datatype attribute for the system_name entity of a sapcode_object should be 'int'</sch:assert>
+                                                                 <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the system_name entity of a sapcode_object should be 'equals'</sch:assert>
+                                                            </sch:rule>
+                                                       </sch:pattern>
+                                                  </xsd:appinfo>
+                                             </xsd:annotation>
+                                        </xsd:element>
+                                     <xsd:element name="issue" type="oval-def:EntityObjectIntType" minOccurs="1" maxOccurs="1">
+                                       <xsd:annotation>
+                                         <xsd:documentation>This is the code control issue number to check.</xsd:documentation>
+                                         <xsd:appinfo>
+                                           <sch:pattern id="sapcodeobjissue">
+                                             <sch:rule context="sapcode-def:sapcode_object/sapcode-def:issue">
+                                               <sch:assert test="not(@datatype) or @datatype='int'">
+                                                 <sch:value-of select="../@id"/> - datatype attribute for the issue entity of a sapcode_object should be 'int'
+                                               </sch:assert>
+                                               <sch:assert test="not(@operation) or @operation='equals'">
+                                                 <sch:value-of select="../@id"/> - operation attribute for the issue entity of a sapcode_object should be 'equals'
+                                               </sch:assert>
+                                             </sch:rule>
+                                           </sch:pattern>
+                                         </xsd:appinfo>
+                                       </xsd:annotation>
+                                     </xsd:element>
+                                   </xsd:sequence>
+                              </xsd:choice>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="sapcode_state" substitutionGroup="oval-def:state">
+          <xsd:annotation>
+               <xsd:documentation>The dpkginfo_state element defines the different information that can be used to evaluate the specified DPKG package. This includes the architecture, epoch number, release, and version numbers. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-def:StateType">
+                      <xsd:sequence>
+                        <xsd:element name="system_name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                          <xsd:annotation>
+                            <xsd:documentation>This is the sap service name to check.</xsd:documentation>
+                            <xsd:appinfo>
+                              <sch:pattern id="sapcodestename">
+                                <sch:rule context="sapcode-def:sapcode_state/sapcode-def:system_name">
+                                  <sch:assert test="not(@datatype) or @datatype='string'">
+                                    <sch:value-of select="../@id"/> - datatype attribute for the system_name entity of a sapcode_state should be 'string'
+                                  </sch:assert>
+                                  <sch:assert test="not(@operation) or @operation='equals'">
+                                    <sch:value-of select="../@id"/> - operation attribute for the system_name entity of a sapcode_state should be 'equals'
+                                  </sch:assert>
+                                </sch:rule>
+                              </sch:pattern>
+                            </xsd:appinfo>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="issue" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                          <xsd:annotation>
+                            <xsd:documentation>This is the code control issue number to check.</xsd:documentation>
+                            <xsd:appinfo>
+                              <sch:pattern id="sapcodesteissue">
+                                <sch:rule context="sapcode-def:sapcode_state/sapcode-def:issue">
+                                  <sch:assert test="not(@datatype) or @datatype='int'">
+                                    <sch:value-of select="../@id"/> - datatype attribute for the issue entity of a sapcode_state should be 'int'
+                                  </sch:assert>
+                                  <sch:assert test="not(@operation) or @operation='equals'">
+                                    <sch:value-of select="../@id"/> - operation attribute for the issue entity of a sapcode_state should be 'equals'
+                                  </sch:assert>
+                                </sch:rule>
+                              </sch:pattern>
+                            </xsd:appinfo>
+                          </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="total_issues_found" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                          <xsd:annotation>
+                            <xsd:documentation>This is the code control scan errors found.</xsd:documentation>
+                            <xsd:appinfo>
+                              <sch:pattern id="sapcodesteerrors">
+                                <sch:rule context="sapcode-def:sapcode_state/sapcode-def:total_issues_found">
+                                  <sch:assert test="not(@datatype) or @datatype='int'">
+                                    <sch:value-of select="../@id"/> - datatype attribute for the total_issues_found entity of a sapcode_state should be 'int'
+                                  </sch:assert>
+                                  
+                                </sch:rule>
+                              </sch:pattern>
+                            </xsd:appinfo>
+                          </xsd:annotation>
+                        </xsd:element>
+                      </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+    
+     <!-- =============================================================================== -->
+     <!-- =============================================================================== -->
+     <!-- =============================================================================== -->
+</xsd:schema>

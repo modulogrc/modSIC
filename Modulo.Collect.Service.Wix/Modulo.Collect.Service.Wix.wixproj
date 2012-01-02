@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.5</ProductVersion>
+    <ProjectGuid>{279c6ce3-c71e-455b-9056-a67bec887150}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>Modulo.Collect.Service</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+    <SuppressValidation>True</SuppressValidation>
+    <SuppressIces>
+    </SuppressIces>
+    <SuppressAllWarnings>False</SuppressAllWarnings>
+    <Pedantic>True</Pedantic>
+    <VerboseOutput>True</VerboseOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <SuppressIces>
+    </SuppressIces>
+    <SuppressValidation>True</SuppressValidation>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modulo.Collect.Console\Modulo.Collect.ClientConsole.csproj">
+      <Name>Modulo.Collect.ClientConsole</Name>
+      <Project>{5fa7a841-7b55-41a4-891a-bfcee34d6287}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.GraphicalConsole\Modulo.Collect.GraphicalConsole.csproj">
+      <Name>Modulo.Collect.GraphicalConsole</Name>
+      <Project>{a284065f-b6f8-4373-ba92-fabbb483c8fb}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Common.Test\Modulo.Collect.Probe.Common.Test.csproj">
+      <Name>Modulo.Collect.Probe.Common.Test</Name>
+      <Project>{7e364628-6531-4bca-a074-302756cb772d}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Independent\Modulo.Collect.Probe.Independent.csproj">
+      <Name>Modulo.Collect.Probe.Independent</Name>
+      <Project>{890332af-a755-40f1-b95a-b20cb45eb465}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Unix\Modulo.Collect.Probe.Unix.csproj">
+      <Name>Modulo.Collect.Probe.Unix</Name>
+      <Project>{21773e49-cb1c-4346-a598-535f7a96fdb3}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Probe.Windows\Modulo.Collect.Probe.Windows.csproj">
+      <Name>Modulo.Collect.Probe.Windows</Name>
+      <Project>{90aebc71-27dd-4620-9b3c-234483e6b024}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Service.API\Service.Client.csproj">
+      <Name>Service.Client</Name>
+      <Project>{9ed402d7-9753-4198-a97d-dc36253c1fd3}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Service.Contract\Modulo.Collect.Service.Contract.csproj">
+      <Name>Modulo.Collect.Service.Contract</Name>
+      <Project>{64b59d3b-ae0b-472a-8819-b326bd7152a3}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Service.GetCertificateAction\Modulo.Collect.Service.CustomAction.csproj">
+      <Name>Modulo.Collect.Service.CustomAction</Name>
+      <Project>{17030b13-7ad0-48b2-b3d7-9f2ffdef3ae2}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulo.Collect.Service\Modulo.Collect.Service.csproj">
+      <Name>Modulo.Collect.Service</Name>
+      <Project>{40744ae0-a1d6-41cc-963b-9f39001de114}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\UsersSectionBuilder\UsersSectionBuilder.csproj">
+      <Name>UsersSectionBuilder</Name>
+      <Project>{19000e95-aad7-4077-803d-dee8d6d7ee68}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>C:\Program Files (x86)\Windows Installer XML v3.5\bin\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>C:\Program Files (x86)\Windows Installer XML v3.5\bin\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixIIsExtension">
+      <HintPath>C:\Program Files (x86)\Windows Installer XML v3.5\bin\WixIIsExtension.dll</HintPath>
+      <Name>WixIIsExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ModSicCustomUI.wxs" />
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="3P-Licenses.rtf" />
+    <Content Include="License.rtf" />
+    <Content Include="Samples\Oval_CCM_Antivir.xml" />
+    <Content Include="Samples\Oval_CCM_Grub.xml" />
+    <Content Include="Samples\oval_file.xml" />
+    <Content Include="Samples\oval_reg.xml" />
+    <Content Include="Samples\Oval_SQL.xml" />
+    <Content Include="Samples\Oval_Unix.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Samples" />
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

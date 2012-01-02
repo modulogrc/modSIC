@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<oval_definitions 
+  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>The OVAL Repository</oval:product_name>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2009-07-20T21:13:42.715-04:00</oval:timestamp>
+  </generator>
+
+<!-- ========================================= -->
+<!-- ========== 1. DEFINITIONS      ========== -->
+<!-- ========================================= -->
+  <definitions>
+    <definition class="compliance" id="oval:modulo:def:1" version="1">
+      <metadata>
+        <title>Checking wmi57_test</title>
+        <description>wmi57_test (record data type)</description>
+      </metadata>
+      <criteria>
+        <criterion comment="..." test_ref ="oval:modulo:tst:1"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:modulo:def:2" version="1">
+      <metadata>
+        <title>Checking sql57_test</title>
+        <description>sql57_test (record data type)</description>
+      </metadata>
+      <criteria>
+        <criterion comment="..." test_ref ="oval:modulo:tst:2"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:modulo:def:3" version="1">
+      <metadata>
+        <title>Checking wmi57_test</title>
+        <description>wmi57_test (record data type)</description>
+      </metadata>
+      <criteria>
+        <criterion comment="..." test_ref ="oval:modulo:tst:3"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:modulo:def:4" version="1">
+      <metadata>
+        <title>Checking wmi57_test with pattern match operation</title>
+        <description>Checking wmi57_test with pattern match operation</description>
+      </metadata>
+      <criteria>
+        <criterion comment="..." test_ref ="oval:modulo:tst:4"/>
+      </criteria>
+    </definition>
+    <definition class="compliance" id="oval:modulo:def:5" version="1">
+      <metadata>
+        <title>Checking wmi57_test with pattern match operation</title>
+        <description>Checking wmi57_test with pattern match operation</description>
+      </metadata>
+      <criteria>
+        <criterion comment="..." test_ref ="oval:modulo:tst:5"/>
+      </criteria>
+    </definition>
+  </definitions>
+<!-- ========================================= -->
+<!-- ========== 2. TESTS            ========== -->
+<!-- ========================================= -->
+  <tests>
+    <wmi57_test id="oval:modulo:tst:1" check="all" check_existence="all_exist" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:modulo:obj:1"/>
+      <state state_ref="oval:modulo:ste:1"/>
+    </wmi57_test>
+    <sql57_test id="oval:modulo:tst:2" check="all" check_existence="all_exist" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <object object_ref="oval:modulo:obj:2"/>
+      <state state_ref="oval:modulo:ste:2"/>
+    </sql57_test>
+    <wmi57_test id="oval:modulo:tst:3" check="all" check_existence="all_exist" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:modulo:obj:3"/>
+      <state state_ref="oval:modulo:ste:3"/>
+    </wmi57_test>
+    <wmi57_test id="oval:modulo:tst:4" check="all" check_existence="all_exist" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:modulo:obj:4"/>
+      <state state_ref="oval:modulo:ste:4"/>
+    </wmi57_test>
+    <wmi57_test id="oval:modulo:tst:5" check="all" check_existence="all_exist" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <object object_ref="oval:modulo:obj:4"/>
+      <state state_ref="oval:modulo:ste:5"/>
+    </wmi57_test>
+  </tests>
+<!-- ========================================= -->
+<!-- ========== 3. OBJECTS          ========== -->
+<!-- ========================================= -->
+  <objects>
+	  <wmi57_object id="oval:modulo:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <namespace>root\cimv2</namespace>
+      <wql>Select domain, name from Win32_Account</wql>
+    </wmi57_object>
+    <sql57_object id="oval:modulo:obj:2" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <engine>sqlserver</engine>
+      <version>2008</version>
+      <connection_string>some connection string</connection_string>
+      <sql>select id, name from customers</sql>
+    </sql57_object>
+    <wmi57_object id="oval:modulo:obj:3" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <namespace>root\cimv2</namespace>
+      <wql>Select domain, name from Win32_Account</wql>
+    </wmi57_object>
+    <wmi57_object id="oval:modulo:obj:4" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <namespace>root\cimv2</namespace>
+      <wql>Select id, name from Win32_UserAccount</wql>
+    </wmi57_object>
+  </objects>
+
+  <states>
+    <wmi57_state id="oval:modulo:ste:1" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <result datatype="record">
+        <oval-def:field name="domain" datatype="string">acme</oval-def:field>
+        <oval-def:field name="name" datatype="string">admin</oval-def:field>
+      </result>
+    </wmi57_state>
+    <sql57_state id="oval:modulo:ste:2" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+      <result datatype="record">
+        <oval-def:field name="id" datatype="string">1029</oval-def:field>
+        <oval-def:field name="name" datatype="string">John Doe</oval-def:field>
+      </result>
+    </sql57_state>
+    <wmi57_state id="oval:modulo:ste:3" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <result datatype="record">
+        <oval-def:field name="domain" datatype="string">acme</oval-def:field>
+        <oval-def:field name="name" datatype="string">admin</oval-def:field>
+      </result>
+    </wmi57_state>
+    <wmi57_state id="oval:modulo:ste:4" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <result datatype="record">
+        <oval-def:field name="id" datatype="string" operation="pattern match">[0-9]</oval-def:field>
+        <oval-def:field name="name" datatype="string" operation="pattern match">^a.*</oval-def:field>
+      </result>
+    </wmi57_state>
+    <wmi57_state id="oval:modulo:ste:5" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows">
+      <result datatype="record">
+        <oval-def:field name="id" datatype="string" operation="pattern match">[0-9]</oval-def:field>
+        <oval-def:field name="name" datatype="string" operation="pattern match">^guest.*</oval-def:field>
+      </result>
+    </wmi57_state>
+  </states>
+</oval_definitions>

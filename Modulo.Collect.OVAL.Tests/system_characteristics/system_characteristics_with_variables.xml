@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<oval_system_characteristics xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5">
+  <generator>
+    <product_name xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">Risk Manager</product_name>
+    <product_version xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">1.0.0.0</product_version>
+    <schema_version xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">5.6</schema_version>
+    <timestamp xmlns="http://oval.mitre.org/XMLSchema/oval-common-5">2010-09-24T16:41:36.6822213-03:00</timestamp>
+  </generator>
+  <system_info>
+    <os_name>Microsoft Windows 7 Enterprise</os_name>
+    <os_version>6.1.7600</os_version>
+    <architecture>UNKNOWN</architecture>
+    <primary_host_name>mss-rj-001.mss.modulo.com.br</primary_host_name>
+    <interfaces>
+      <interface>
+        <interface_name>Intel(R) 82566DM-2 Gigabit Network Connection</interface_name>
+        <ip_address>172.16.3.117</ip_address>
+        <mac_address>00:1E:C9:1D:7B:B0</mac_address>
+      </interface>
+    </interfaces>
+  </system_info>
+  <collected_objects>
+    <object id="oval:modulo:obj:1" version="1" flag="complete">
+      <reference item_ref="1" />
+    </object>
+  </collected_objects>
+  <system_data>
+    <xmlfilecontent_item id="1" xmlns="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">
+      <filepath>c:\temp\definitions\bookstore.xml</filepath>
+      <path>c:\temp\definitions</path>
+      <filename>bookstore.xml</filename>
+      <xpath>//bookstore/book/title/text()</xpath>
+      <value_of>Everyday Italian</value_of>
+      <value_of>Harry Potter</value_of>
+      <value_of>XQuery Kick Start</value_of>
+      <value_of>Learning XML</value_of>
+    </xmlfilecontent_item>
+  </system_data>
+</oval_system_characteristics>

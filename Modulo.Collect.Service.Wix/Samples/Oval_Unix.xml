@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!-- ========================================= -->
+<!-- ===========   Unix version   ============ -->
+<!-- ========================================= -->
+<!--In an OVAL Definitions file, the project author, version, date, and description should be provided in this section.-->
+
+
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd">
+
+	<generator>
+		<oval:product_name>Test Purpose: Check a Unix version</oval:product_name>
+		<oval:product_version>1.0</oval:product_version>
+		<oval:schema_version>5.9</oval:schema_version>
+		<oval:timestamp>2011-09-16T15:00:00.000-03:00</oval:timestamp>
+		<vendor>Modulo Security</vendor>
+	</generator>
+
+<!-- ========================================= -->
+<!-- ========== 1. DEFINITIONS  ============== -->
+<!-- ========================================= -->
+<!--In this section, a description of what will be verified should be provided (title, platform, and CPE name are optional). Write the discription of the Unix Target machine on metadata section.-->
+	
+	<definitions>
+            <definition class="inventory" version="1" id="oval:com.modulo.sample.unix:def:1">
+                  <metadata>
+                        <title>Ubuntu Linux 10</title>
+                        <affected family="unix">
+                              <platform>Unix</platform>
+                        </affected>
+                        <reference ref_id="cpe:/o:canonical:ubuntu_linux:10.4" source="CPE"/>
+                        <description>The operating system installed on the system is a Ubuntu Linux</description>
+                  </metadata>
+				  
+<!-- ========================================= -->
+<!-- ========== 2.   CRITERIA   ============== -->
+<!-- ========================================= -->
+<!--A test to verify the assessment described above must be linked here. Change the comment field with your OS.-->
+				  
+                  <criteria>
+                        <criterion test_ref="oval:com.modulo.sample.unix:tst:1" comment="Ubuntu Linux is installed"/>
+                  </criteria>
+			</definition>
+    </definitions>
+
+<!-- ========================================= -->
+<!-- ========== 3.    TESTS     ============== -->
+<!-- ========================================= -->
+<!--Each test should be linked to its object and state as well the desired verification method.Change the comment field with your OS.-->
+  
+	<tests>
+            <uname_test check_existence="at_least_one_exists" comment="Ubuntu Linux is installed" version="1" id="oval:com.modulo.sample.unix:tst:1" check="at least one" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+                  <object object_ref="oval:com.modulo.sample.unix:obj:1"/>
+                  <state state_ref="oval:com.modulo.sample.unix:ste:1"/>
+            </uname_test>
+	</tests>		
+
+<!-- ========================================= -->
+<!-- ========== 4.    OBJECT    ============== -->
+<!-- ========================================= -->
+<!--The object linked to some of the test entries listed above.-->
+		
+	<objects>
+            <uname_object version="1" id="oval:com.modulo.sample.unix:obj:1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix"/>
+	</objects>
+
+<!-- ========================================= -->
+<!-- ========== 5.    STATE     ============== -->
+<!-- ========================================= -->
+<!--The expected state for one of the above objects. Change the os_release section with your OS version number.-->
+  
+	<states>
+            <uname_state version="1" id="oval:com.modulo.sample.unix:ste:1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+              <os_name>Linux</os_name>
+              <os_version operation="pattern match">59-Ubuntu</os_version>
+            </uname_state>
+	</states>		
+			
+</oval_definitions>
+			
+			
+			
+			
