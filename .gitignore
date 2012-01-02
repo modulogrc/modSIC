@@ -22,3 +22,4 @@ temp-war-deps
 StyleCop.Cache
 /Server
 App_Data/
+TestResults/
