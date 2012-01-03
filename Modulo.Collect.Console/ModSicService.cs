@@ -97,13 +97,13 @@ namespace Modulo.Collect.ClientConsole
                     if (string.IsNullOrEmpty(statusString))
                     {
                         progressThread.Abort();
-                        Console.WriteLine("\bThe collect has finished.");
+                        Console.WriteLine("The collect has finished.");
                         Console.WriteLine("Trying to get Oval Results...");
                         progressThread = new Thread(new ThreadStart(this.Progress));
                         progressThread.Start();
                         var retVal = _modSicConnection.GetOvalResults(collectRequestID);
                         progressThread.Abort();
-                        Console.Write("\b");
+                        //Console.Write("\b");
                         return retVal;
                     }
 
@@ -114,7 +114,7 @@ namespace Modulo.Collect.ClientConsole
                         statusString = statusString.Substring(foundResched + reschedString.Length);
                         if (statusString != lastReschedStr)
                         {
-                            Console.WriteLine("\bRescheduled. " + statusString);
+                            Console.WriteLine("Rescheduled. " + statusString);
                             lastReschedStr = statusString;
                         }
                     }
@@ -122,7 +122,7 @@ namespace Modulo.Collect.ClientConsole
                     {
                         if (!String.IsNullOrEmpty(lastReschedStr))
                         {
-                            Console.WriteLine("\bCollect resumed.");
+                            Console.WriteLine("Collect resumed.");
                         }
                         lastReschedStr = "";
                     }
@@ -140,7 +140,7 @@ namespace Modulo.Collect.ClientConsole
             while (true)
             {
                 System.Threading.Thread.Sleep(1000);
-                Console.Write("\b");
+                //Console.Write("\b");
                 if (i < StatusChar.Count())
                     Console.Write(StatusChar[i]);
                 i++;
