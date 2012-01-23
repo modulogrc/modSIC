@@ -148,6 +148,10 @@ namespace Modulo.Collect.Probe.CodeControl
             } else if (issueResult.status != "COMPLETE")
             {
                 sapCodeItem.status = StatusEnumeration.error;
+                if (!string.IsNullOrEmpty(issueResult.status))
+                    base.ExecutionLogBuilder.AddInfo("Issue Status: " + issueResult.status);
+                if (!string.IsNullOrEmpty(issueResult.internalErrorMessage))
+                    base.ExecutionLogBuilder.AddInfo("CC Internal Error message: " + issueResult.internalErrorMessage);
             }
             else
             {
