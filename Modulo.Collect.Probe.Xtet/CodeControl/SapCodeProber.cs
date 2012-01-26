@@ -111,7 +111,7 @@ namespace Modulo.Collect.Probe.CodeControl
                     var scanCriteria = new ScanCriteriaDTO() {scanIdList = new[] {issueResult.scanId ?? 0}};
 
                     var waitTime = 0L;
-                    const int timeOut = 600000;
+                    const int timeOut = 3600000; // 1 hour
                     while (((issueResult.status == "AWAITING") || (issueResult.status == "PROCESSING"))
                            && (waitTime <= timeOut)
                         )

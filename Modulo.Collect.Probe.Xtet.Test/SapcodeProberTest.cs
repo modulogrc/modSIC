@@ -51,8 +51,8 @@ namespace Modulo.Collect.Probe.Windows.Test
 
             var sapProber = new SapCodeProberWindows();
 
-            FakeTargetInfo["HostName"] = "http://174.143.211.210:8080/CodeControlWeb/services/ScanWS";
-            FakeTargetInfo.credentials = new Credentials("","modulo","modulo01", null);
+            FakeTargetInfo["HostName"] = " http://patton.mte.modulo.com:8080/CodeControlWeb/services/ScanWS";
+            FakeTargetInfo.credentials = new Credentials("","admin","xtet01", null);
             // Act
             var result = sapProber.Execute(FakeContext, FakeTargetInfo, ProbeHelper.CreateFakeCollectInfo(def.objects, null, null));
 
