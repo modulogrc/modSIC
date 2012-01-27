@@ -111,8 +111,9 @@ namespace Modulo.Collect.Service.Data
                     if (webUIEnabled)
                     {
                         documentStore.Configuration.Port = webUIPort;
-                        var httpServer = new Raven.Database.Server.HttpServer(documentStore.Configuration, documentStore.DocumentDatabase);
-                        httpServer.Start();
+                        var httpServer = new HttpServer(documentStore.Configuration, documentStore.DocumentDatabase);
+                        httpServer.Init();
+                        httpServer.StartListening();
                     }
 
                     isStoreSet = true;
