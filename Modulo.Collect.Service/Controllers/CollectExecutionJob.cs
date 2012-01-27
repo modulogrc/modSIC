@@ -44,6 +44,7 @@ using Quartz;
 using Raven.Client;
 using Modulo.Collect.Service.Infra;
 using NLog;
+using Modulo.Collect.OVAL.Helper;
 
 namespace Modulo.Collect.Service.Controllers
 {

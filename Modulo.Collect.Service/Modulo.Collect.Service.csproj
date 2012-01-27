@@ -205,7 +205,6 @@
     <Compile Include="Exceptions\RequestItemNullException.cs" />
     <Compile Include="Infra\ModSicVersionHelper.cs" />
     <Compile Include="Infra\Pinger.cs" />
-    <Compile Include="Infra\TargetPlatformDiscoverer.cs" />
     <Compile Include="InjectFactory.cs" />
     <Compile Include="CollectService.cs" />
     <Compile Include="OvalDefinitionsValidator.cs" />

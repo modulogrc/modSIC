@@ -203,6 +203,7 @@
     <Compile Include="Definitions\windows\custom\wmi_object.cs" />
     <Compile Include="Definitions\windows\custom\wuaupdatesearcher_object.cs" />
     <Compile Include="Definitions\windows\windows-definitions.cs" />
+    <Compile Include="Helper\TargetPlatformDiscoverer.cs" />
     <Compile Include="Plugins\PluginContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">

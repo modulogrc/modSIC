@@ -35,6 +35,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Modulo.Collect.OVAL.Common;
 using Modulo.Collect.Service.Infra;
 using Modulo.Collect.Service.Tests.Helpers;
+using Modulo.Collect.OVAL.Helper;
 
 namespace Modulo.Collect.Service.Tests
 {

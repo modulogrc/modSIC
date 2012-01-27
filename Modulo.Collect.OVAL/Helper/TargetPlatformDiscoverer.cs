@@ -38,7 +38,7 @@ using System.Xml.Serialization;
 using Modulo.Collect.OVAL.Common;
 using Modulo.Collect.OVAL.Definitions;
 
-namespace Modulo.Collect.Service.Infra
+namespace Modulo.Collect.OVAL.Helper
 {
     /// <summary>
     /// It discovers the platform of a target from its IP Address or host name.
