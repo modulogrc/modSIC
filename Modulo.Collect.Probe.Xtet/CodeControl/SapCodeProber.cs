@@ -111,7 +111,7 @@ namespace Modulo.Collect.Probe.CodeControl
                     var scanCriteria = new ScanCriteriaDTO() {scanIdList = new[] {issueResult.scanId ?? 0}};
 
                     var waitTime = 0L;
-                    const int timeOut = 600000;
+                    const int timeOut = 3600000; // 1 hour
                     while (((issueResult.status == "AWAITING") || (issueResult.status == "PROCESSING"))
                            && (waitTime <= timeOut)
                         )
@@ -148,6 +148,10 @@ namespace Modulo.Collect.Probe.CodeControl
             } else if (issueResult.status != "COMPLETE")
             {
                 sapCodeItem.status = StatusEnumeration.error;
+                if (!string.IsNullOrEmpty(issueResult.status))
+                    base.ExecutionLogBuilder.AddInfo("Issue Status: " + issueResult.status);
+                if (!string.IsNullOrEmpty(issueResult.internalErrorMessage))
+                    base.ExecutionLogBuilder.AddInfo("CC Internal Error message: " + issueResult.internalErrorMessage);
             }
             else
             {

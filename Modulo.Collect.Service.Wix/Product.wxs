@@ -137,11 +137,10 @@
               <File Id='Lucene.Net.Contrib.Spatial.dll' Name='Lucene.Net.Contrib.Spatial.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Lucene.Net.Contrib.Spatial.dll' />
               <File Id='Lucene.Net.Contrib.SpellChecker.dll' Name='Lucene.Net.Contrib.SpellChecker.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Lucene.Net.Contrib.SpellChecker.dll' />
               <File Id='NLog.dll' Name='NLog.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)NLog.dll' />
+              <File Id='Raven.Studio.xap' Name='Raven.Studio.xap' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Raven.Studio.xap' />
 
               <!-- Topshelf -->
               <File Id='Topshelf.dll' Name='Topshelf.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Topshelf.dll' />
-              <File Id='Magnum.dll' Name='Magnum.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Magnum.dll' />
-              <File Id='Stact.dll' Name='Stact.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Stact.dll' />
 
               <util:XmlFile Id="PutHashCertificate"
                   File="[Folder]modsicsrv.exe.config"
