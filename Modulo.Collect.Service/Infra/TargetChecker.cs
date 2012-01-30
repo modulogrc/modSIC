@@ -4,55 +4,26 @@ using System.Linq;
 using System.Text;
 using Modulo.Collect.OVAL.Common;
 using Modulo.Collect.Service.Server.Infra;
+using Modulo.Collect.Probe.Common;
 
 namespace Modulo.Collect.Service.Server
 {
+
     public class TargetChecker
     {
-    }
-
-    public class TargetCheckerFactory
-    {
-        private FamilyEnumeration Family;
-
-        public TargetCheckerFactory(FamilyEnumeration family)
+        public TargetCheckingResult Check(FamilyEnumeration family, TargetInfo targetInfo)
         {
-            this.Family = family;
+            
+            var targetChecker = new TargetCheckerFactory().NewTargetFactoryForFamily(family);
+            return targetChecker.Check(targetInfo);
         }
-
-        public ITargetChecker NewTargetFactory()
-        {
-            switch (this.Family)
-            {
-                case FamilyEnumeration.windows:
-                    return new WindowsTargetChecker();
-                case FamilyEnumeration.unix:
-                    return new UnixTargetChecker();
-                case FamilyEnumeration.ios:
-                    return new CiscoIosChecker();
-                case FamilyEnumeration.undefined:
-                    return new UndefinedTargetChecker();
-                case FamilyEnumeration.catos:
-                case FamilyEnumeration.macos:
-                case FamilyEnumeration.pixos:
-                case FamilyEnumeration.vmware_infrastructure:
-                    break;
-            }
-
-            throw new NotSupportedException(String.Format("{0} platform is not supported currently.", this.Family.ToString()));
-        }
-    
-    }
-
-    public interface ITargetChecker
-    {
-        TargetCheckingResult Check();
     }
 
     public class TargetCheckingResult
     {
-        public Boolean IsTargetAvailable;
-        public String ErrorMessage;
+        public Boolean IsTargetAvailable { get; set; }
+
+        public String ErrorMessage { get; set; }
     }
 }
 

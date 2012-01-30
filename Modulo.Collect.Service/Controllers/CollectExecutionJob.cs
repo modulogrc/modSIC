@@ -196,20 +196,26 @@ namespace Modulo.Collect.Service.Controllers
 
         private TargetInfo GetTargetInformation(Entities.CollectRequest collectRequest)
         {
-            var credentialInfo = collectRequest.Target.Credential.CredentialInfo;
-            var certificate = new CertificateFactory().GetCertificate();
-            
-            var deserializedCredentials = 
-                new CollectServiceCryptoProvider()
-                    .DecryptCredentialBasedOnCertificateOfServer(credentialInfo, certificate);
+            return
+                new Modulo.Collect.Service.Server.TargetInfoExtractor()
+                    .GetTargetInformation(
+                        collectRequest.Target.Credential.CredentialInfo,
+                        collectRequest.Target.Address);
 
-            return 
-                new TargetInfoFactory(
-                    collectRequest.Target.Address,
-                    deserializedCredentials.Domain,
-                    deserializedCredentials.UserName,
-                    deserializedCredentials.Password,
-                    deserializedCredentials.AdministrativePassword).Create();
+            //var credentialInfo = collectRequest.Target.Credential.CredentialInfo;
+            //var certificate = new CertificateFactory().GetCertificate();
+            
+            //var deserializedCredentials = 
+            //    new CollectServiceCryptoProvider()
+            //        .DecryptCredentialBasedOnCertificateOfServer(credentialInfo, certificate);
+
+            //return 
+            //    new TargetInfoFactory(
+            //        collectRequest.Target.Address,
+            //        deserializedCredentials.Domain,
+            //        deserializedCredentials.UserName,
+            //        deserializedCredentials.Password,
+            //        deserializedCredentials.AdministrativePassword).Create();
         }
 
         private void LogErrorOnJobStarting(Exception ex)
