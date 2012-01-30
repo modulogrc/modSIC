@@ -23,3 +23,4 @@ StyleCop.Cache
 /Server
 App_Data/
 TestResults/
+packages/
