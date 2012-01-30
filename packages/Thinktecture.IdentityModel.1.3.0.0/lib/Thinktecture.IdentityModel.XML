@@ -1,0 +1,1368 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Thinktecture.IdentityModel</name>
+    </assembly>
+    <members>
+        <member name="T:Thinktecture.IdentityModel.Claims.AuthenticationInstantClaim">
+            <summary>
+            Helper class to create an authentication instant claim
+            </summary>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Claims.AuthenticationInstantClaim.Now">
+            <summary>
+            Returns an authentication instant claim for the current date/time
+            </summary>
+            <value>authentication instant claim.</value>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Utility.ClaimsViewer">
+            <summary>
+            This class contains helpers to dump an IClaimsPrincipal to various outputs
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.ClaimsViewer.ShowConsole(Microsoft.IdentityModel.Claims.IClaimsPrincipal)">
+            <summary>
+            Dumps an IClaimsPrincipal to the console.
+            </summary>
+            <param name="principal">The principal.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.ClaimsViewer.ShowForm(Microsoft.IdentityModel.Claims.IClaimsPrincipal)">
+            <summary>
+            Dumps an IClaimsPrincipal to a Windows form.
+            </summary>
+            <param name="principal">The principal.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.ClaimsViewer.ShowAspNet(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.Web.UI.Page)">
+            <summary>
+            Dumps an IClaimsPrincipal to an ASP.NET page.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="page">The page.</param>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Extensions.RSAExtensions">
+            <summary>
+            Extension methods for RSACryptoServiceProvider
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.RSAExtensions.GetKeyHash(System.Security.Cryptography.RSA)">
+            <summary>
+            Calculates a hash for an RSA key.
+            </summary>
+            <param name="rsa">The RSA key.</param>
+            <returns>The hash byte array</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.RSAExtensions.GetKeyHashString(System.Security.Cryptography.RSA)">
+            <summary>
+            Calculates a hash string for an RSA key.
+            </summary>
+            <param name="rsa">The RSA key.</param>
+            <returns>The hash string</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.RSAExtensions.GetKeyHashString(System.Security.Cryptography.RSA,System.String)">
+            <summary>
+            Calculates a hash string for an RSA key.
+            </summary>
+            <param name="rsa">The RSA Key</param>
+            <param name="entropy">Additional entropy.</param>
+            <returns>The hash string</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.RSAExtensions.GetKeyHash(System.Security.Cryptography.RSA,System.String)">
+            <summary>
+            Calculates a hash for an RSA key.
+            </summary>
+            <param name="rsa">The RSA key.</param>
+            <param name="entropy">Additional entropy.</param>
+            <returns>The hash byte array</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.EmptyReadOnlyCollection`1">
+            <summary>
+            Represents an empty ReadOnlyCollection
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Thinktecture.IdentityModel.EmptyReadOnlyCollection`1.Instance">
+            <summary>
+            Returns a singleton instance of the EmptyReadOnlyCollection
+            </summary>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Extensions.SecurityTokensExtensions">
+            <summary>
+            Extension methods to convert tokens to string and claims
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.SecurityTokensExtensions.ToSecurityToken(System.IdentityModel.Tokens.GenericXmlSecurityToken)">
+            <summary>
+            Turns a supported generic XML security token to a security token.
+            </summary>
+            <param name="token">The generic XML security token.</param>
+            <returns>A SecurityToken</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.SecurityTokensExtensions.ToSecurityToken(System.IdentityModel.Tokens.GenericXmlSecurityToken,System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Turns a supported generic XML security token to a security token.
+            </summary>
+            <param name="token">The token.</param>
+            <param name="decryptionCertificate">The decryption certificate.</param>
+            <returns>A SecurityToken</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.SecurityTokensExtensions.ToSecurityToken(System.IdentityModel.Tokens.GenericXmlSecurityToken,Microsoft.IdentityModel.Tokens.SecurityTokenHandlerCollection)">
+            <summary>
+            Turns a supported generic XML security token to a security token.
+            </summary>
+            <param name="token">The generic XML security token.</param>
+            <param name="handler">The security token handler.</param>
+            <returns>A SecurityToken</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.SecurityTokensExtensions.ToTokenXmlString(System.IdentityModel.Tokens.GenericXmlSecurityToken)">
+            <summary>
+            Retrieves the XML from a GenericXmlSecurityToken
+            </summary>
+            <param name="token">The token.</param>
+            <returns>The token XML string.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.SecurityTokensExtensions.ToTokenXmlString(System.IdentityModel.Tokens.SecurityToken)">
+            <summary>
+            Converts a supported token to an XML string.
+            </summary>
+            <param name="token">The token.</param>
+            <returns>The token XML string.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.SecurityTokensExtensions.ToTokenXmlString(System.IdentityModel.Tokens.SecurityToken,Microsoft.IdentityModel.Tokens.SecurityTokenHandlerCollection)">
+            <summary>
+            Converts a supported token to an XML string.
+            </summary>
+            <param name="token">The token.</param>
+            <param name="handler">The token handler.</param>
+            <returns>The token XML string.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.SecurityTokensExtensions.ToClaimsPrincipal(System.IdentityModel.Tokens.SecurityToken,System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Converts a SecurityToken to an IClaimsPrincipal.
+            </summary>
+            <param name="token">The token.</param>
+            <param name="signingCertificate">The signing certificate.</param>
+            <returns>An IClaimsPrincipal</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.SecurityTokensExtensions.ToClaimsPrincipal(System.IdentityModel.Tokens.SecurityToken,System.Security.Cryptography.X509Certificates.X509Certificate2,System.String)">
+            <summary>
+            Converts a SecurityToken to an IClaimsPrincipal.
+            </summary>
+            <param name="token">The token.</param>
+            <param name="signingCertificate">The signing certificate.</param>
+            <param name="audienceUri">The audience URI.</param>
+            <returns>An IClaimsPrincipal</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.SecurityTokensExtensions.ToClaimsPrincipal(System.IdentityModel.Tokens.SecurityToken,Microsoft.IdentityModel.Tokens.SecurityTokenHandlerCollection)">
+            <summary>
+            Converts a SecurityToken to an IClaimsPrincipal.
+            </summary>
+            <param name="token">The token.</param>
+            <param name="handler">The handler.</param>
+            <returns>An IClaimsPrincipal</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Claims.ClaimPermissionAttribute">
+            <summary>
+            Permission Attribute for calling ClaimsAuthorizationManager with custom claim types
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermissionAttribute.#ctor(System.Security.Permissions.SecurityAction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Claims.ClaimPermissionAttribute"/> class.
+            </summary>
+            <param name="action">One of the <see cref="T:System.Security.Permissions.SecurityAction"/> values.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermissionAttribute.CreatePermission">
+            <summary>
+            When overridden in a derived class, creates a permission object that can then be serialized into binary form and persistently stored along with the <see cref="T:System.Security.Permissions.SecurityAction"/> in an assembly's metadata.
+            </summary>
+            <returns>
+            A serializable permission object.
+            </returns>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Claims.ClaimPermissionAttribute.ResourceType">
+            <summary>
+            Gets or sets the claim type of the resource.
+            </summary>
+            <value>
+            The claim type of the resource.
+            </value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Claims.ClaimPermissionAttribute.Resource">
+            <summary>
+            Gets or sets the resource name.
+            </summary>
+            <value>
+            The resource name.
+            </value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Claims.ClaimPermissionAttribute.OperationType">
+            <summary>
+            Gets or sets the claim type of the operation.
+            </summary>
+            <value>
+            The claim type of the operation.
+            </value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Claims.ClaimPermissionAttribute.Operation">
+            <summary>
+            Gets or sets the operation name .
+            </summary>
+            <value>
+            The operation name.
+            </value>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Utility.ClaimsViewerForm">
+            <summary>
+            Window forms to show claims
+            </summary>
+        </member>
+        <member name="F:Thinktecture.IdentityModel.Utility.ClaimsViewerForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.ClaimsViewerForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.ClaimsViewerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Utility.CertificateReferenceElement">
+            <summary>
+            Represents a certificate reference
+            </summary>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Utility.CertificateReferenceElement.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Utility.CertificateReferenceElement.Filename">
+            <summary>
+            Gets or sets the filename.
+            </summary>
+            <value>The filename.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Utility.CertificateReferenceElement.FindValue">
+            <summary>
+            Gets or sets the find value.
+            </summary>
+            <value>The find value.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Utility.CertificateReferenceElement.X509FindType">
+            <summary>
+            Gets or sets the search type.
+            </summary>
+            <value>The type of search.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Utility.CertificateReferenceElement.StoreLocation">
+            <summary>
+            Gets or sets the store location.
+            </summary>
+            <value>The store location.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Utility.CertificateReferenceElement.StoreName">
+            <summary>
+            Gets or sets the name of the store.
+            </summary>
+            <value>The name of the store.</value>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions">
+            <summary>
+            Extension methods for IClaimsPrincipal
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.DemandClaim(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.Predicate{Microsoft.IdentityModel.Claims.Claim})">
+            <summary>
+            Demands a specific claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="predicate">The search predicate.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.DemandClaim(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String)">
+            <summary>
+            Demands a specific claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.DemandClaim(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String,System.String)">
+            <summary>
+            Demands a specific claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.DemandClaim(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String,System.String,System.String)">
+            <summary>
+            Demands a specific claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="value">The value.</param>
+            <param name="issuer">The issuer.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.First(Microsoft.IdentityModel.Claims.IClaimsPrincipal)">
+            <summary>
+            Retrieves the first identity of an IClaimsPrincipal.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns>The first IClaimsIdentity</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.GetClaimValue(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String)">
+            <summary>
+            Retrieves the value of a claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.GetClaimValue(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String,System.String)">
+            <summary>
+            Retrieves the value of a claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="issuer">The issuer.</param>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.TryGetClaimValue(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String,System.String@)">
+            <summary>
+            Tries to retrieve the value of a claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="claimValue">The claim value.</param>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.TryGetClaimValue(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String,System.String,System.String@)">
+            <summary>
+            Tries to retrieve the value of a claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="issuer">The issuer.</param>
+            <param name="claimValue">The claim value.</param>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.FindClaims(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.Predicate{Microsoft.IdentityModel.Claims.Claim})">
+            <summary>
+            Finds all instances of the specified claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="predicate">A search predicate.</param>
+            <returns>A list of claims that match the search criteria.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.FindClaims(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String)">
+            <summary>
+            Finds all instances of the specified claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <returns>A list of claims that match the search criteria.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.FindClaims(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String,System.String)">
+            <summary>
+            Finds all instances of the specified claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="issuer">The issuer.</param>
+            <returns>A list of claims that match the search criteria.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.FindClaims(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String,System.String,System.String)">
+            <summary>
+            Finds all instances of the specified claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="issuer">The issuer.</param>
+            <param name="value">The value.</param>
+            <returns>A list of claims that match the search criteria.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.FindClaims(Microsoft.IdentityModel.Claims.IClaimsPrincipal,Microsoft.IdentityModel.Claims.Claim)">
+            <summary>
+            Finds all instances of the specified claim.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claim">The claim.</param>
+            <returns>A list of claims that match the search criteria.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.ClaimExists(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.Predicate{Microsoft.IdentityModel.Claims.Claim})">
+            <summary>
+            Checks whether a given claim exists
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="predicate">The search predicate.</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.ClaimExists(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String)">
+            <summary>
+            Checks whether a given claim exists
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.ClaimExists(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String,System.String)">
+            <summary>
+            Checks whether a given claim exists.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="value">The value.</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsPrincipalExtensions.ClaimExists(Microsoft.IdentityModel.Claims.IClaimsPrincipal,System.String,System.String,System.String)">
+            <summary>
+            Checks whether a given claim exists.
+            </summary>
+            <param name="principal">The principal.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="value">The value.</param>
+            <param name="issuer">The issuer.</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions">
+            <summary>
+            Extension methods for IClaimsIdentity
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.FindClaims(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.Predicate{Microsoft.IdentityModel.Claims.Claim})">
+            <summary>
+            Finds all instances of the specified claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="predicate">The search predicate.</param>
+            <returns>List of claims that match the search criteria</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.FindClaims(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String)">
+            <summary>
+            Finds all instances of the specified claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <returns>List of claims that match the search criteria</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.FindClaims(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String,System.String)">
+            <summary>
+            Finds all instances of the specified claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="issuer">The issuer.</param>
+            <returns>List of claims that match the search criteria</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.FindClaims(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String,System.String,System.String)">
+            <summary>
+            Finds all instances of the specified claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="issuer">The issuer.</param>
+            <param name="value">The value.</param>
+            <returns>List of claims that match the search criteria</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.FindClaims(Microsoft.IdentityModel.Claims.IClaimsIdentity,Microsoft.IdentityModel.Claims.Claim)">
+            <summary>
+            Finds all instances of the specified claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claim">Search claim.</param>
+            <returns>List of claims that match the search criteria</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.GetIssuerName(Microsoft.IdentityModel.Claims.IClaimsIdentity)">
+            <summary>
+                Retrieves the issuer name of an IClaimsIdentity. 
+                The algorithm checks the name claim first, and if no name is found, the first claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <returns>The issuer name</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.ClaimExists(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.Predicate{Microsoft.IdentityModel.Claims.Claim})">
+            <summary>
+            Checks whether a given claim exists
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="predicate">The search predicate.</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.ClaimExists(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String)">
+            <summary>
+            Checks whether a given claim exists
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.ClaimExists(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String,System.String)">
+            <summary>
+            Checks whether a given claim exists
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="value">The value.</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.ClaimExists(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String,System.String,System.String)">
+            <summary>
+            Checks whether a given claim exists
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="value">The value.</param>
+            <param name="issuer">The issuer.</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.GetClaimValue(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String)">
+            <summary>
+            Retrieves the value of a claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.GetClaimValue(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String,System.String)">
+            <summary>
+            Retrieves the value of a claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="issuer">The issuer.</param>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.TryGetClaimValue(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String,System.String@)">
+            <summary>
+            Tries to retrieve the value of a claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="claimValue">The claim value.</param>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.TryGetClaimValue(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String,System.String,System.String@)">
+            <summary>
+            Tries to retrieve the value of a claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="issuer">The issuer.</param>
+            <param name="claimValue">The claim value.</param>
+            <returns>The value</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.DemandClaim(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.Predicate{Microsoft.IdentityModel.Claims.Claim})">
+            <summary>
+            Demands a specific claim.
+            </summary>
+            <param name="identity">The principal.</param>
+            <param name="predicate">The search predicate.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.DemandClaim(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String)">
+            <summary>
+            Demands a specific claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.DemandClaim(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String,System.String)">
+            <summary>
+            Demands a specific claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IClaimsIdentityExtensions.DemandClaim(Microsoft.IdentityModel.Claims.IClaimsIdentity,System.String,System.String,System.String)">
+            <summary>
+            Demands a specific claim.
+            </summary>
+            <param name="identity">The identity.</param>
+            <param name="claimType">Type of the claim.</param>
+            <param name="value">The value.</param>
+            <param name="issuer">The issuer.</param>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Claims.ClaimNotFoundException">
+            <summary>
+            Exception for failed claims search operations
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimNotFoundException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Claims.ClaimNotFoundException"/> class.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimNotFoundException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Claims.ClaimNotFoundException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimNotFoundException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Claims.ClaimNotFoundException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Claims.ClaimNotFoundException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="info"/> parameter is null.
+            </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+            The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
+            </exception>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Utility.CertificateReferenceCollection">
+            <summary>
+            Represents a collection of certificate references
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.CertificateReferenceCollection.CreateNewElement">
+            <summary>
+            When overridden in a derived class, creates a new <see cref="T:System.Configuration.ConfigurationElement"/>.
+            </summary>
+            <returns>
+            A new <see cref="T:System.Configuration.ConfigurationElement"/>.
+            </returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.CertificateReferenceCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            Gets the element key for a specified configuration element when overridden in a derived class.
+            </summary>
+            <param name="element">The <see cref="T:System.Configuration.ConfigurationElement"/> to return the key for.</param>
+            <returns>
+            An <see cref="T:System.Object"/> that acts as the key for the specified <see cref="T:System.Configuration.ConfigurationElement"/>.
+            </returns>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Utility.CertificateReferenceCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets the <see cref="T:Thinktecture.IdentityModel.Utility.CertificateReferenceElement"/> at the specified index.
+            </summary>
+            <value>A certificate reference</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Utility.CertificateReferenceCollection.Item(System.String)">
+            <summary>
+            Gets the <see cref="T:Thinktecture.IdentityModel.Utility.CertificateReferenceElement"/> with the specified name.
+            </summary>
+            <value>A certificate reference</value>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Extensions.IPrincipalExtensions">
+            <summary>
+            Extension methods for IPrincipal
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.IPrincipalExtensions.AsClaimsPrincipal(System.Security.Principal.IPrincipal)">
+            <summary>
+            Casts an IPrincipal to an IClaimsPrincipal.
+            </summary>
+            <param name="principal">The principal.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.SecurityTokenService.TracingSecurityTokenService">
+            <summary>
+            A SecurityTokenService class with hooks for logging the RST, RSTR and issued token
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.SecurityTokenService.TracingSecurityTokenService.#ctor(Microsoft.IdentityModel.Configuration.SecurityTokenServiceConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.SecurityTokenService.TracingSecurityTokenService"/> class.
+            </summary>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.SecurityTokenService.TracingSecurityTokenService.OnTrace(System.Xml.Linq.XElement,System.Xml.Linq.XElement,System.Xml.Linq.XElement)">
+            <summary>
+            Logging extensibility point.
+            </summary>
+            <param name="rst">The RST.</param>
+            <param name="rstr">The RSTR.</param>
+            <param name="token">The token.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.SecurityTokenService.TracingSecurityTokenService.GetResponse(Microsoft.IdentityModel.Protocols.WSTrust.RequestSecurityToken,Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor)">
+            <summary>
+            Creates the token response and invokes the logging callbacks.
+            </summary>
+            <param name="request">The request.</param>
+            <param name="tokenDescriptor">The token descriptor.</param>
+            <returns>A RequestSecurityTokenResponse</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Extensions.XmlExtensions">
+            <summary>
+            Extension methods for XML related tasks
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.XmlExtensions.ToXmlElement(System.Xml.Linq.XElement)">
+            <summary>
+            Converts a XElement to a XmlElement.
+            </summary>
+            <param name="element">The XElement.</param>
+            <returns>A XmlElement</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.XmlExtensions.ToXElement(System.Xml.XmlElement)">
+            <summary>
+            Converts a XmlElement to a XElement.
+            </summary>
+            <param name="element">The XmlElement.</param>
+            <returns>A XElement</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.XmlExtensions.ToXmlDocument(System.Xml.Linq.XDocument)">
+            <summary>
+            Converts a XDocument to a XmlDocument.
+            </summary>
+            <param name="document">The XDocument.</param>
+            <returns>A XmlDocument</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.XmlExtensions.ToXDocument(System.Xml.XmlDocument)">
+            <summary>
+            Converts a XmlDocument to a XDocument.
+            </summary>
+            <param name="document">The XmlDocument.</param>
+            <returns>A XDocument</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.XmlExtensions.AsString(System.Xml.XmlReader)">
+            <summary>
+                Converts an XmlReader to a string.
+            </summary>
+            <param name="reader">The reader.</param>
+            <returns>The converted string</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.XmlExtensions.AsXmlReader(System.String)">
+            <summary>
+            Converts a string to an XmlReader.
+            </summary>
+            <param name="input">The input string.</param>
+            <returns>An XmlReader</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.XmlExtensions.AsXmlReader(System.String,System.Boolean)">
+            <summary>
+            Converts a string to an XmlReader.
+            </summary>
+            <param name="input">The input.</param>
+            <param name="isInteractive">if set to <c>true</c> the reader will be in an interactive state.</param>
+            <returns>An XmlReader</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler">
+            <summary>
+            Generic security token handler for username/password type credentials
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler"/> class.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler.#ctor(Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler.ValidateUserNameCredentialDelegate)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler"/> class.
+            </summary>
+            <param name="validateUserNameCredential">The credential validation callback.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler.ValidateUserNameCredentialCore(System.String,System.String)">
+            <summary>
+            Validates the user name credential core.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="password">The password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler.ValidateToken(System.IdentityModel.Tokens.SecurityToken)">
+            <summary>
+            Validates the username and password.
+            </summary>
+            <param name="token">The token.</param>
+            <returns>A ClaimsIdentityCollection representing the identity in the token</returns>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler.ValidateUserNameCredential">
+            <summary>
+            Gets or sets the credential validation callback
+            </summary>
+            <value>
+            The credential validation callback.
+            </value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler.CanValidateToken">
+            <summary>
+            Gets a value indicating whether this instance can validate a token.
+            </summary>
+            <value>
+            	<c>true</c> if this instance can validate a token; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Tokens.GenericUserNameSecurityTokenHandler.ValidateUserNameCredentialDelegate">
+            <summary>
+            Callback type for validating the credential
+            </summary>
+            <param name="username">The username.</param>
+            <param name="password">The password.</param>
+            <returns>True when the credential could be validated succesfully. Otherwise false.</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.ObfuscatingComparer">
+            <summary>
+            Helper class to do equality checks without leaking timing information
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.ObfuscatingComparer.IsEqual(System.String,System.String)">
+            <summary>
+            Checks two strings for equality without leaking timing information.
+            </summary>
+            <param name="s1">string 1.</param>
+            <param name="s2">string 2.</param>
+            <returns>
+            	<c>true</c> if the specified strings are equal; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Utility.CertificateReferenceSection">
+            <summary>
+            Custom configuration section for certificate references
+            </summary>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Utility.CertificateReferenceSection.CertificateReferences">
+            <summary>
+            Gets the certificate references.
+            </summary>
+            <value>The certificate references.</value>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.IdentityModelConfiguration">
+            <summary>
+            Provides direct access to identity model related configuration
+            </summary>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.IdentityModelConfiguration.ServiceConfiguration">
+            <summary>
+            Gets the current WIF service configuration.
+            </summary>
+            <value>The service configuration.</value>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.HexEncoder">
+            <summary>
+            Helper class for hex-encoding related work
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.HexEncoder.ConvertHexDigit(System.Char)">
+            <summary>
+            Converts hex to digit.
+            </summary>
+            <param name="val">The hex value</param>
+            <returns></returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.HexEncoder.DecodeHexString(System.String)">
+            <summary>
+            Decodes a hex string.
+            </summary>
+            <param name="hexString">The hex string.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.HexEncoder.EncodeHexString(System.Byte[])">
+            <summary>
+            Encodes a hex string.
+            </summary>
+            <param name="sArray">The s array.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.DateTimeFormats">
+            <summary>
+            Represents DateTimeFormats used in tokens and claims
+            </summary>
+        </member>
+        <member name="F:Thinktecture.IdentityModel.DateTimeFormats.Accepted">
+            <summary>
+            Accepted DateTime formats
+            </summary>
+        </member>
+        <member name="F:Thinktecture.IdentityModel.DateTimeFormats.Generated">
+            <summary>
+            Generated DateTime format
+            </summary>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Claims.ClaimsAuthorization">
+            <summary>
+            Provides direct access methods for evaluating authorization policy
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimsAuthorization.CheckAccess(System.String,System.String)">
+            <summary>
+            Checks the authorization policy.
+            </summary>
+            <param name="resource">The resource.</param>
+            <param name="action">The action.</param>
+            <returns>true when authorized, otherwise false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimsAuthorization.CheckAccess(System.String,System.String,Microsoft.IdentityModel.Claims.IClaimsPrincipal)">
+            <summary>
+            Checks the authorization policy.
+            </summary>
+            <param name="resource">The resource.</param>
+            <param name="action">The action.</param>
+            <param name="principal">The principal.</param>
+            <returns>true when authorized, otherwise false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimsAuthorization.CheckAccess(System.Collections.ObjectModel.Collection{Microsoft.IdentityModel.Claims.Claim},System.Collections.ObjectModel.Collection{Microsoft.IdentityModel.Claims.Claim})">
+            <summary>
+            Checks the authorization policy.
+            </summary>
+            <param name="actions">The actions.</param>
+            <param name="resources">The resources.</param>
+            <returns>true when authorized, otherwise false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimsAuthorization.CheckAccess(Microsoft.IdentityModel.Claims.AuthorizationContext)">
+            <summary>
+            Checks the authorization policy.
+            </summary>
+            <param name="context">The authorization context.</param>
+            <returns>true when authorized, otherwise false</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimsAuthorization.DemandAccess(System.String,System.String)">
+            <summary>
+            Checks the authorization policy. Will throw a SecurityException when check fails.
+            </summary>
+            <param name="resource">The resource.</param>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimsAuthorization.DemandAccess(System.String,System.String,Microsoft.IdentityModel.Claims.IClaimsPrincipal)">
+            <summary>
+            Checks the authorization policy. Will throw a SecurityException when check fails.
+            </summary>
+            <param name="resource">The resource.</param>
+            <param name="action">The action.</param>
+            <param name="principal">The principal.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimsAuthorization.DemandAccess(System.Collections.ObjectModel.Collection{Microsoft.IdentityModel.Claims.Claim},System.Collections.ObjectModel.Collection{Microsoft.IdentityModel.Claims.Claim})">
+            <summary>
+            Checks the authorization policy. Will throw a SecurityException when check fails.
+            </summary>
+            <param name="resources">The resources.</param>
+            <param name="actions">The actions.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimsAuthorization.DemandAccess(Microsoft.IdentityModel.Claims.AuthorizationContext)">
+            <summary>
+            Checks the authorization policy. Will throw a SecurityException when check fails.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Claims.ClaimsAuthorization.AuthorizationManager">
+            <summary>
+            Gets the registered authorization manager.
+            </summary>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Claims.ClaimPermission">
+            <summary>
+            Encapsulates calls to ClaimsAuthorizationManager with custom claim types in a CLR permission
+            </summary>
+        </member>
+        <member name="F:Thinktecture.IdentityModel.Claims.ClaimPermission.ActionType">
+            <summary>
+            Default action claim type.
+            </summary>
+        </member>
+        <member name="F:Thinktecture.IdentityModel.Claims.ClaimPermission.ResourceType">
+            <summary>
+            Default resource claim type
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Claims.ClaimPermission"/> class.
+            </summary>
+            <param name="resource">The resource.</param>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Claims.ClaimPermission"/> class.
+            </summary>
+            <param name="resourceType">Type of the resource.</param>
+            <param name="resource">The resource.</param>
+            <param name="actionType">Type of the action.</param>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.Copy">
+            <summary>
+            Creates and returns an identical copy of the current permission.
+            </summary>
+            <returns>
+            A copy of the current permission.
+            </returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.Demand">
+            <summary>
+            Throws a <see cref="T:System.Security.SecurityException"/> at run time if the security requirement is not met.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.CheckAccess(System.String,System.String,Microsoft.IdentityModel.Claims.Claim[])">
+            <summary>
+            Calls ClaimsAuthorizationManager.
+            </summary>
+            <param name="action">The action.</param>
+            <param name="resource">The resource.</param>
+            <param name="additionalResources">Additional resources.</param>
+            <returns>True when access is granted. Otherwise false.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.FromXml(System.Security.SecurityElement)">
+            <summary>
+            Reconstructs a security object with a specified state from an XML encoding.
+            </summary>
+            <param name="e">The XML encoding to use to reconstruct the security object.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.Intersect(System.Security.IPermission)">
+            <summary>
+            Creates and returns a permission that is the intersection of the current permission and the specified permission.
+            </summary>
+            <param name="target">A permission to intersect with the current permission. It must be of the same type as the current permission.</param>
+            <returns>
+            A new permission that represents the intersection of the current permission and the specified permission. This new permission is null if the intersection is empty.
+            </returns>
+            <exception cref="T:System.ArgumentException">The <paramref name="target"/> parameter is not null and is not an instance of the same class as the current permission. </exception>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.IsSubsetOf(System.Security.IPermission)">
+            <summary>
+            Determines whether the current permission is a subset of the specified permission.
+            </summary>
+            <param name="target">A permission that is to be tested for the subset relationship. This permission must be of the same type as the current permission.</param>
+            <returns>
+            true if the current permission is a subset of the specified permission; otherwise, false.
+            </returns>
+            <exception cref="T:System.ArgumentException">The <paramref name="target"/> parameter is not null and is not of the same type as the current permission. </exception>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.IsUnrestricted">
+            <summary>
+            Returns a value indicating whether unrestricted access to the resource protected by the permission is allowed.
+            </summary>
+            <returns>
+            true if unrestricted use of the resource protected by the permission is allowed; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.ToXml">
+            <summary>
+            Creates an XML encoding of the security object and its current state.
+            </summary>
+            <returns>
+            An XML encoding of the security object, including any state information.
+            </returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.ClaimPermission.Union(System.Security.IPermission)">
+            <summary>
+            Creates a permission that is the union of the current permission and the specified permission.
+            </summary>
+            <param name="target">A permission to combine with the current permission. It must be of the same type as the current permission.</param>
+            <returns>
+            A new permission that represents the union of the current permission and the specified permission.
+            </returns>
+            <exception cref="T:System.ArgumentException">The <paramref name="target"/> parameter is not null and is not of the same type as the current permission. </exception>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Extensions.X509CertificateEndpointIdentityExtensions">
+            <summary>
+            Extension methods for X509CertificateEndpointIdentity
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.X509CertificateEndpointIdentityExtensions.GetEndCertificate(System.ServiceModel.X509CertificateEndpointIdentity)">
+            <summary>
+            Finds the leaf certificate on an X509EndpointIdentity
+            </summary>
+            <param name="epi">The epi.</param>
+            <returns>The target site X509 certificate</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Utility.WSTrustClient">
+            <summary>
+            Wrapper for the WIF WSTrustChannelFactory/WSTrustChannel plumbing.
+            This code is mainly for convience and does not provide any optimizations like caching of the channel factory.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.WSTrustClient.Issue(System.ServiceModel.EndpointAddress,System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding,System.ServiceModel.Description.ClientCredentials)">
+            <summary>
+            Requests a bearer token.
+            </summary>
+            <param name="stsAddress">The STS address.</param>
+            <param name="appliesTo">The realm address.</param>
+            <param name="binding">The binding.</param>
+            <param name="credentials">The credentials.</param>
+            <returns>A SecurityToken</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.WSTrustClient.Issue(System.ServiceModel.EndpointAddress,System.ServiceModel.Channels.Binding,System.ServiceModel.Description.ClientCredentials,Microsoft.IdentityModel.Protocols.WSTrust.RequestSecurityToken,Microsoft.IdentityModel.Protocols.WSTrust.RequestSecurityTokenResponse@)">
+            <summary>
+            Requests a token desribed by an RST.
+            </summary>
+            <param name="stsAddress">The STS address.</param>
+            <param name="binding">The binding.</param>
+            <param name="credentials">The credentials.</param>
+            <param name="rst">The RST.</param>
+            <param name="rstr">The RSTR.</param>
+            <returns>A SecurityToken</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Utility.X509Certificates">
+            <summary>
+            Helper class to retrieve certificates from configuration
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.X509Certificates.GetReference(System.String)">
+            <summary>
+            Retrieves a named certificate reference.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>A CertificateReferenceElement containing the certificate reference information</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.X509Certificates.GetCertificate(System.String)">
+            <summary>
+            Retrieves a named certificate.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>A X509Certificate2</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.X509Certificates.GetCertificate(System.String,System.String)">
+            <summary>
+            Retrieves a named certificate.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="password">The password.</param>
+            <returns>A X509Certificate2</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.X509Certificates.DownloadSslCertificate(System.String,System.Int32)">
+            <summary>
+            Downloads the SSL certificate from an SSL site.
+            </summary>
+            <param name="machineName">Name of the machine.</param>
+            <param name="port">The port.</param>
+            <returns>A X509Certificate2</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.X509Certificates.GetCertificateFromStore(System.Security.Cryptography.X509Certificates.StoreLocation,System.Security.Cryptography.X509Certificates.StoreName,System.Security.Cryptography.X509Certificates.X509FindType,System.Object)">
+            <summary>
+            Retrieves a certificate from the certificate store.
+            </summary>
+            <param name="location">The location.</param>
+            <param name="name">The name.</param>
+            <param name="findType">Type of the find.</param>
+            <param name="value">The value.</param>
+            <returns>A X509Certificate2</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.X509Certificates.GetCertificateFromStore(System.String)">
+            <summary>
+            Retrieves a certificate from the current user / personal certificate store.
+            </summary>
+            <param name="subjectDistinguishedName">The subject distinguished name of the certificate.</param>
+            <returns>A X509Certificate2</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.X509Certificates.GetCertificateFromStore(System.String,System.Security.Cryptography.X509Certificates.StoreLocation)">
+            <summary>
+            Retrieves a certificate from the specified personal certificate store.
+            </summary>
+            <param name="subjectDistinguishedName">The subject distinguished name of the certificate.</param>
+            <param name="location">The store location.</param>
+            <returns>A X509Certificate2</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Utility.ConsoleExtensions">
+            <summary>
+            Helper class to write out colored messages to the console
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.ConsoleExtensions.ConsoleGreen(System.String)">
+            <summary>
+            Writes green text to the console.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.ConsoleExtensions.ConsoleRed(System.String)">
+            <summary>
+            Writes red text to the console.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.ConsoleExtensions.ConsoleYellow(System.String)">
+            <summary>
+            Writes yellow text to the console.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Utility.ConsoleExtensions.ColoredWriteLine(System.String,System.ConsoleColor)">
+            <summary>
+            Writes out text with the specified ConsoleColor.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="color">The color.</param>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Extensions.RequestSecurityTokenResponseExtensions">
+            <summary>
+            Extension methods for RequestSecurityTokenResponse
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.RequestSecurityTokenResponseExtensions.ToGenericXmlSecurityToken(Microsoft.IdentityModel.Protocols.WSTrust.RequestSecurityTokenResponse)">
+            <summary>
+            Turns a RSTR into a GenericXmlSecurityToken.
+            </summary>
+            <param name="rstr">The RSTR.</param>
+            <returns>A GenericXmlSecurityToken</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.RequestSecurityTokenResponseExtensions.ToGenericXmlSecurityToken(Microsoft.IdentityModel.Protocols.WSTrust.RequestSecurityTokenResponse,Microsoft.IdentityModel.Protocols.WSTrust.RequestSecurityToken)">
+            <summary>
+            Turns a RST/RSTR pair into a GenericXmlSecurityToken.
+            </summary>
+            <param name="rstr">The RSTR.</param>
+            <param name="rst">The RST.</param>
+            <returns>A GenericXmlSecurityToken</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.RequestSecurityTokenResponseExtensions.ToGenericXmlSecurityToken(Microsoft.IdentityModel.Protocols.WSTrust.RequestSecurityTokenResponse,System.IdentityModel.Tokens.SecurityToken)">
+            <summary>
+            Turns a RST/ProofKey pair into a GenericXmlSecurityToken.
+            </summary>
+            <param name="rstr">The RSTR.</param>
+            <param name="proofKey">The ProofKey.</param>
+            <returns>A GenericXmlSecurityToken</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Extensions.RequestSecurityTokenResponseExtensions.GetProofKey(Microsoft.IdentityModel.Protocols.WSTrust.RequestSecurityTokenResponse,Microsoft.IdentityModel.Protocols.WSTrust.RequestSecurityToken)">
+            <summary>
+            Gets the proof key from an RST/RSTR pair.
+            </summary>
+            <param name="rstr">The RSTR.</param>
+            <param name="rst">The RST.</param>
+            <returns>The proof key.</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.CryptoRandom">
+            <summary>
+            A class that mimics the standard Random class in the .NET Framework - but uses RNGCryptoServiceProvider internally.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.CryptoRandom.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.CryptoRandom"/> class.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.CryptoRandom.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.CryptoRandom"/> class.
+            </summary>
+            <param name="ignoredSeed">seed (ignored)</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.CryptoRandom.Next">
+            <summary>
+            Returns a nonnegative random number.
+            </summary>
+            <returns>
+            A 32-bit signed integer greater than or equal to zero and less than <see cref="F:System.Int32.MaxValue"/>.
+            </returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.CryptoRandom.Next(System.Int32)">
+            <summary>
+            Returns a nonnegative random number less than the specified maximum.
+            </summary>
+            <param name="maxValue">The exclusive upper bound of the random number to be generated. <paramref name="maxValue"/> must be greater than or equal to zero.</param>
+            <returns>
+            A 32-bit signed integer greater than or equal to zero, and less than <paramref name="maxValue"/>; that is, the range of return values ordinarily includes zero but not <paramref name="maxValue"/>. However, if <paramref name="maxValue"/> equals zero, <paramref name="maxValue"/> is returned.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	<paramref name="maxValue"/> is less than zero.
+            </exception>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.CryptoRandom.Next(System.Int32,System.Int32)">
+            <summary>
+            Returns a random number within a specified range.
+            </summary>
+            <param name="minValue">The inclusive lower bound of the random number returned.</param>
+            <param name="maxValue">The exclusive upper bound of the random number returned. <paramref name="maxValue"/> must be greater than or equal to <paramref name="minValue"/>.</param>
+            <returns>
+            A 32-bit signed integer greater than or equal to <paramref name="minValue"/> and less than <paramref name="maxValue"/>; that is, the range of return values includes <paramref name="minValue"/> but not <paramref name="maxValue"/>. If <paramref name="minValue"/> equals <paramref name="maxValue"/>, <paramref name="minValue"/> is returned.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	<paramref name="minValue"/> is greater than <paramref name="maxValue"/>.
+            </exception>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.CryptoRandom.NextDouble">
+            <summary>
+            Returns a random number between 0.0 and 1.0.
+            </summary>
+            <returns>
+            A double-precision floating point number greater than or equal to 0.0, and less than 1.0.
+            </returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.CryptoRandom.NextBytes(System.Byte[])">
+            <summary>
+            Fills the elements of a specified array of bytes with random numbers.
+            </summary>
+            <param name="buffer">An array of bytes to contain random numbers.</param>
+            <exception cref="T:System.ArgumentNullException">
+            	<paramref name="buffer"/> is null.
+            </exception>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Tokens.TestIssuerNameRegistry">
+            <summary>
+            Simple implementation of an issuer registy that returns the certificate issuer name or public key hash as an issuer
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Tokens.TestIssuerNameRegistry.GetIssuerName(System.IdentityModel.Tokens.SecurityToken)">
+            <summary>
+            Gets the name of the issuer.
+            </summary>
+            <param name="securityToken">The security token.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Claims.PpidCalculator">
+            <summary>
+            Calculates PPIDs
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.PpidCalculator.Calculate(System.String,System.Security.Cryptography.X509Certificates.X509Certificate2,System.String)">
+            <summary>
+            Calculates the PPID for the SSL case.
+            </summary>
+            <param name="cardId">The card id.</param>
+            <param name="certificate">The certificate.</param>
+            <param name="entropy">The entropy.</param>
+            <returns>A string containing the calculated PPID</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.PpidCalculator.Calculate(System.String,System.String,System.String)">
+            <summary>
+            Calculates the PPID for the No-SSL case.
+            </summary>
+            <param name="cardId">The card id.</param>
+            <param name="dns">The DNS.</param>
+            <param name="entropy">The entropy.</param>
+            <returns>A string containing the calculated PPID</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.PpidCalculator.CalculatePseudonym(System.String,System.String,System.String)">
+            <summary>
+            Calculates the PPID using the client pseudonym.
+            </summary>
+            <param name="userId">The user id.</param>
+            <param name="clientPseudonym">The client pseudonym.</param>
+            <param name="entropy">The entropy.</param>
+            <returns>A string containing the calculated PPID</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.PpidCalculator.Calculate(System.String,System.Byte[],System.String)">
+            <summary>
+            Calculates the PPID for a given CardId, PPID seed and entropy.
+            </summary>
+            <param name="cardId">The card id.</param>
+            <param name="ppidSeed">The ppid seed.</param>
+            <param name="entropy">The entropy.</param>
+            <returns>A string containing the calculated PPID</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.PpidCalculator.ExtractValues(System.Security.Cryptography.X509Certificates.X509Certificate2,System.String@,System.String@,System.String@,System.String@,System.String@)">
+            <summary>
+            Extracts the O, L, S, C, CN values from a subject name
+            </summary>
+            <param name="certificate">The certificate.</param>
+            <param name="o">The o.</param>
+            <param name="l">The l.</param>
+            <param name="s">The s.</param>
+            <param name="c">The c.</param>
+            <param name="cn">The cn.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Claims.PpidCalculator.GetValueFromSubject(System.String,System.String[])">
+            <summary>
+            Gets a value from a splitted subject.
+            </summary>
+            <param name="part">The part.</param>
+            <param name="segments">The subject segments.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -217,7 +217,11 @@
     <Compile Include="Exceptions\InvalidXMLOvalSystemCharacteristicsException.cs" />
     <Compile Include="Exceptions\RequestIDNullException.cs" />
     <Compile Include="Exceptions\RequestItemNullException.cs" />
-    <Compile Include="Infra\ModSicVersionHelper.cs" />
+    <Compile Include="Infra\CiscoIosChecker.cs" />
+    <Compile Include="Infra\UndefinedTargetChecker.cs" />
+    <Compile Include="Infra\UnixTargetChecker.cs" />
+    <Compile Include="Infra\WindowsTargetChecker.cs" />
+    <Compile Include="ModSicVersionHelper.cs" />
     <Compile Include="Infra\Pinger.cs" />
     <Compile Include="InjectFactory.cs" />
     <Compile Include="CollectService.cs" />
@@ -232,6 +236,7 @@
     <Compile Include="QuartzThreadManager.cs" />
     <Compile Include="Security\CertificateFactory.cs" />
     <Compile Include="ServiceConfigurationSection.cs" />
+    <Compile Include="Infra\TargetChecker.cs" />
     <Compile Include="UnityJobFactory.cs" />
     <Compile Include="UsersSection.cs" />
   </ItemGroup>
