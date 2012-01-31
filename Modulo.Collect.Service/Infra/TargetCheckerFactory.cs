@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Modulo.Collect.OVAL.Common;
+using Modulo.Collect.Service.Contract;
 
 namespace Modulo.Collect.Service.Server.Infra
 {
     public class TargetCheckerFactory
     {
-        public ITargetChecker NewTargetFactoryForFamily(FamilyEnumeration family)
+        public ITargetChecker NewTargetFactoryForFamily(TargetPlatforms family)
         {
             switch (family)
             {
-                case FamilyEnumeration.windows:
+                case TargetPlatforms.windows:
                     return new WindowsTargetChecker();
-                case FamilyEnumeration.unix:
+                case TargetPlatforms.unix:
                     return new UnixTargetChecker();
-                case FamilyEnumeration.ios:
+                case TargetPlatforms.ios:
                     return new CiscoIosChecker();
-                case FamilyEnumeration.undefined:
+                case TargetPlatforms.undefined:
                     return new UndefinedTargetChecker();
-                case FamilyEnumeration.catos:
-                case FamilyEnumeration.macos:
-                case FamilyEnumeration.pixos:
-                case FamilyEnumeration.vmware_infrastructure:
+                case TargetPlatforms.catos:
+                case TargetPlatforms.macos:
+                case TargetPlatforms.pixos:
+                case TargetPlatforms.vmware_infrastructure:
                     break;
             }
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Modulo.Collect.Probe.Common;
 using Tamir.SharpSsh;
+using Modulo.Collect.Service.Contract;
+using Modulo.Collect.Probe.Unix;
 
 namespace Modulo.Collect.Service.Server.Infra
 {
@@ -11,29 +13,44 @@ namespace Modulo.Collect.Service.Server.Infra
     {
         public TargetCheckingResult Check(TargetInfo targetInfo)
         {
-            TargetCheckingResult retVal = new TargetCheckingResult();
-            bool success = false;
-
+            var sshConnectionProvider = new SSHConnectionProvider();
             try
             {
-                string userName = targetInfo.credentials.GetUserName();
-                string passWord = targetInfo.credentials.GetPassword();
-                string hostName = targetInfo.GetAddress();
-                int port = targetInfo.GetPort();
-                SshExec testConn = new SshExec(hostName, userName, passWord);
-                testConn.Connect(port);
-                testConn.Close();
-                success = true;
+                sshConnectionProvider.Connect(targetInfo);
+                return new TargetCheckingResult() { IsTargetAvailable = true };
             }
             catch (Exception ex)
             {
-                retVal.ErrorMessage = ex.Message;
+                return new TargetCheckingResult() { IsTargetAvailable = false, ErrorMessage = ex.Message };
             }
             finally
             {
-                retVal.IsTargetAvailable = success;
+                sshConnectionProvider.Disconnect();
             }
-            return retVal;
+
+            //TargetCheckingResult retVal = new TargetCheckingResult();
+            //bool success = false;
+
+            //try
+            //{
+            //    string userName = targetInfo.credentials.GetUserName();
+            //    string passWord = targetInfo.credentials.GetPassword();
+            //    string hostName = targetInfo.GetAddress();
+            //    int port = targetInfo.GetPort();
+            //    SshExec testConn = new SshExec(hostName, userName, passWord);
+            //    testConn.Connect(port);
+            //    testConn.Close();
+            //    success = true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    retVal.ErrorMessage = ex.Message;
+            //}
+            //finally
+            //{
+            //    retVal.IsTargetAvailable = success;
+            //}
+            //return retVal;
         }
     }
 }

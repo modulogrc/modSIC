@@ -324,6 +324,20 @@ namespace Modulo.Collect.Service.Client
             return String.Format("{0}.{1}", assemblyVersion.Major, assemblyVersion.Minor);
         }
 
+        public virtual TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials)
+        {
+            var token = LogonModSic();
+            try
+            {
+                return ModSicProxyService.CheckTargetAvailability(targetPlatform, address, encryptedCredentials, token);
+            }
+            finally
+            {
+                ModSicProxyService.Logout(token);
+            }
+
+        }
+
         private string LogonModSic()
         {
             loginInfo = this.ModSicProxyService.LoginEx(this.Username, this.Password, this.ClientId, this.RequiredVersion);

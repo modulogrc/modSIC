@@ -96,6 +96,8 @@
     <Compile Include="Request.cs" />
     <Compile Include="ScheduleInformation.cs" />
     <Compile Include="Security\CollectServiceCryptoProvider.cs" />
+    <Compile Include="TargetCheckingResult.cs" />
+    <Compile Include="TargetPlatforms.cs" />
     <Compile Include="UnauthorizedServiceAccessException.cs" />
   </ItemGroup>
   <ItemGroup>

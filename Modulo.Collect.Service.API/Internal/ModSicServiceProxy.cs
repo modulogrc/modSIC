@@ -126,6 +126,11 @@ namespace Modulo.Collect.Service.Client.Internal
                 this.ModSicChannel = new ChannelFactory<ICollectService>(binding, endpoint).CreateChannel();
             }
         }
+
+        public virtual TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials, string token)
+        {
+            return this.ModSicChannel.CheckTargetAvailability(targetPlatform, address, encryptedCredentials, token);
+        }
     }
 
     public class ModSicCallingException : Exception 

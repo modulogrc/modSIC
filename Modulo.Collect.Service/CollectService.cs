@@ -42,6 +42,8 @@ using Modulo.Collect.Service.Data;
 using Modulo.Collect.Service.Entities.Factories;
 using Quartz;
 using Modulo.Collect.Service.Infra;
+using Modulo.Collect.Service.Server;
+using Modulo.Collect.OVAL.Common;
 
 namespace Modulo.Collect.Service
 {
@@ -288,6 +290,22 @@ namespace Modulo.Collect.Service
             catch (Exception ex)
             {
                 throw new FaultException(ex.Message);
+            }
+        }
+
+        public TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials, string token)
+        {
+            try
+            {
+                var targetChecker = new TargetChecker();
+                var credentialsInBytes = System.Text.Encoding.Default.GetBytes(encryptedCredentials);
+                var targetInfo = new TargetInfoExtractor().GetTargetInformation(credentialsInBytes, address);
+
+                return targetChecker.Check(targetPlatform, targetInfo);
+            }
+            catch (Exception ex)
+            {
+                return new TargetCheckingResult() { ErrorMessage = ex.Message, IsTargetAvailable = false };
             }
         }
 
