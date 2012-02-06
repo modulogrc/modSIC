@@ -24,7 +24,18 @@ namespace Modulo.Collect.Probe.CodeControl
         public void Connect(TargetInfo target)
         {
             var binding = new BasicHttpBinding();
-            binding.MaxReceivedMessageSize = 1000000;
+            
+            binding.MaxBufferSize = 2147483647;
+            binding.MaxBufferPoolSize = 2147483647;
+            binding.MaxReceivedMessageSize = 2147483647;
+
+            binding.ReaderQuotas.MaxNameTableCharCount = 2147483647;
+            binding.ReaderQuotas.MaxStringContentLength = 2147483647;
+            binding.ReaderQuotas.MaxArrayLength = 2147483647;
+            
+            //binding.MaxReceivedMessageSize = 1000000;
+
+
             binding.SendTimeout = TimeSpan.FromMinutes(10);
             this.connectionProvider = new ScanWSClient(
                 binding,
