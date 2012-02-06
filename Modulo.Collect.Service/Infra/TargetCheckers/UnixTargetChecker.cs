@@ -27,30 +27,6 @@ namespace Modulo.Collect.Service.Server.Infra
             {
                 sshConnectionProvider.Disconnect();
             }
-
-            //TargetCheckingResult retVal = new TargetCheckingResult();
-            //bool success = false;
-
-            //try
-            //{
-            //    string userName = targetInfo.credentials.GetUserName();
-            //    string passWord = targetInfo.credentials.GetPassword();
-            //    string hostName = targetInfo.GetAddress();
-            //    int port = targetInfo.GetPort();
-            //    SshExec testConn = new SshExec(hostName, userName, passWord);
-            //    testConn.Connect(port);
-            //    testConn.Close();
-            //    success = true;
-            //}
-            //catch (Exception ex)
-            //{
-            //    retVal.ErrorMessage = ex.Message;
-            //}
-            //finally
-            //{
-            //    retVal.IsTargetAvailable = success;
-            //}
-            //return retVal;
         }
     }
 }
