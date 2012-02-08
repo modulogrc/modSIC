@@ -112,16 +112,17 @@ namespace Modulo.Collect.Probe.CodeControl
 
                     var waitTime = 0L;
                     //const int timeOut = 3600000; // 1 hour
-                    const int timeOut = 10800000; // 3 hs
+                    //const int timeOut = 10800000; // 3 hs
+                    const int timeOut = 18000000;
                     while (((issueResult.status == "AWAITING") || (issueResult.status == "PROCESSING"))
                            && (waitTime <= timeOut)
                         )
                     {
-                        Thread.Sleep(1000);
+                        Thread.Sleep(40000);
                         issueResult = connectionProvider.findScan(authResult.token, scanCriteria).FirstOrDefault();
                         // Wait time is desconsidering remote call duration, 
                         // should be done with a stop watch
-                        waitTime += 1000;
+                        waitTime += 40000;
                     }
                 }
 
