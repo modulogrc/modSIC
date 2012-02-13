@@ -10,7 +10,7 @@ namespace Modulo.Collect.Service.Server
 {
     public class TargetInfoExtractor
     {
-        public TargetInfo GetTargetInformation(byte[] credentialInfo, string targetAddress)
+        public TargetInfo GetTargetInformation(byte[] credentialInfo, string targetAddress, string PortNum)
         {
             var certificate = new CertificateFactory().GetCertificate();
 
@@ -24,7 +24,9 @@ namespace Modulo.Collect.Service.Server
                     deserializedCredentials.Domain,
                     deserializedCredentials.UserName,
                     deserializedCredentials.Password,
-                    deserializedCredentials.AdministrativePassword).Create();
+                    deserializedCredentials.AdministrativePassword,
+                    PortNum).Create();
+                    
         }
     }
 }

@@ -299,7 +299,7 @@ namespace Modulo.Collect.Service
             {
                 var targetChecker = new TargetChecker();
                 var credentialsInBytes = System.Text.Encoding.Default.GetBytes(encryptedCredentials);
-                var targetInfo = new TargetInfoExtractor().GetTargetInformation(credentialsInBytes, address);
+                var targetInfo = new TargetInfoExtractor().GetTargetInformation(credentialsInBytes, address, null);
 
                 return targetChecker.Check(targetPlatform, targetInfo);
             }

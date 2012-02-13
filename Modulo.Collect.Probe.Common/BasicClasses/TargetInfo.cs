@@ -112,20 +112,23 @@ namespace Modulo.Collect.Probe.Common
         private string Username;
         private string Password;
         private string AdminPassword;
+        private string PortNum;
         
-        public TargetInfoFactory(String ipAddress, String domain, String username, String password, String administrativePassword = null)
+        public TargetInfoFactory(String ipAddress, String domain, String username, String password, String administrativePassword = null, String portNum = null)
         {
             this.IpAddress = ipAddress;
             this.Domain = domain;
             this.Username = username;
             this.Password = password;
             this.AdminPassword = administrativePassword;
+            this.PortNum = portNum;
         }
 
         public TargetInfo Create()
         {
             var newTargetInfo = new TargetInfo();
             newTargetInfo.Add(TargetParameters.IPAddr.ToString(), this.IpAddress);
+            newTargetInfo.Add(TargetParameters.PortNum.ToString(), this.PortNum);
             newTargetInfo.credentials = new Credentials(this.Domain, this.Username, this.Password, this.AdminPassword);
             
             return newTargetInfo;

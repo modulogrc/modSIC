@@ -50,7 +50,7 @@ namespace Modulo.Collect.Probe.Common.Test.Helpers
             var fakePassword = password ?? "123";
             var fakeDomain = domain ?? "D";
             var fakeHostname = hostname ?? "remotehost";
-
+            
             var fakeCredentials = new Credentials(fakeDomain, fakeUsername, fakePassword, null);
 
             return new TargetInfoFactory(fakeHostname, fakeDomain, fakeUsername, fakePassword).Create();

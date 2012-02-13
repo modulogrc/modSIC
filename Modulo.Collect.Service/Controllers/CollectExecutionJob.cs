@@ -196,11 +196,16 @@ namespace Modulo.Collect.Service.Controllers
 
         private TargetInfo GetTargetInformation(Entities.CollectRequest collectRequest)
         {
+            var portParam = collectRequest.Target.GetTargetParameterByName("SSHPort");
+            var portNum = string.Empty;
+            if (portParam != null && !String.IsNullOrWhiteSpace(portParam.ParameterValue))
+                portNum = portParam.ParameterValue;
+
             return
                 new Modulo.Collect.Service.Server.TargetInfoExtractor()
                     .GetTargetInformation(
                         collectRequest.Target.Credential.CredentialInfo,
-                        collectRequest.Target.Address);
+                        collectRequest.Target.Address, portNum);
 
             //var credentialInfo = collectRequest.Target.Credential.CredentialInfo;
             //var certificate = new CertificateFactory().GetCertificate();
