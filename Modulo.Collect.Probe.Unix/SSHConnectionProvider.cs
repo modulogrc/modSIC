@@ -78,6 +78,7 @@ namespace Modulo.Collect.Probe.Unix
         {
             var credentials = target.credentials;
             this.SSHExec = new SshExec(target.GetAddress(), credentials.GetUserName(), credentials.GetPassword());
+            
         }
 
     }

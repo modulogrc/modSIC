@@ -196,7 +196,7 @@ namespace Modulo.Collect.Service.Controllers
 
         private TargetInfo GetTargetInformation(Entities.CollectRequest collectRequest)
         {
-            var portParam = collectRequest.Target.GetTargetParameterByName("SSHPort");
+            var portParam = collectRequest.Target.GetTargetParameterByName("sshPort");
             var portNum = string.Empty;
             if (portParam != null && !String.IsNullOrWhiteSpace(portParam.ParameterValue))
                 portNum = portParam.ParameterValue;

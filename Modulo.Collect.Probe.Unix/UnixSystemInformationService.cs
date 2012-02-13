@@ -50,7 +50,7 @@ namespace Modulo.Collect.Probe.Unix
         public SystemInformation GetSystemInformationFrom(TargetInfo target)
         {
             var sshExec = new SshExec(target.GetAddress(), target.credentials.GetUserName(), target.credentials.GetPassword());
-            sshExec.Connect(22);
+            sshExec.Connect(target.GetPort());
 
             var collectedUnixSystemInformation = SystemInformationCollector.getSysInfo(sshExec);
             
