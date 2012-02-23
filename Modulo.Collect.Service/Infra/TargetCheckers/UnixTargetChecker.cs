@@ -37,7 +37,7 @@ namespace Modulo.Collect.Service.Server.Infra
                 sshConnectionProvider.Disconnect();
             }
 
-            return new TargetCheckingResult() { IsTargetAvailable = targetAvailable };
+            return new TargetCheckingResult() { IsTargetAvailable = targetAvailable, ErrorMessage = errorMessage };
         }
     }
 }
