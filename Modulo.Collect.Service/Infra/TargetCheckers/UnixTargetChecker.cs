@@ -13,20 +13,31 @@ namespace Modulo.Collect.Service.Server.Infra
     {
         public TargetCheckingResult Check(TargetInfo targetInfo)
         {
+            string errorMessage = null;
+            var targetAvailable = false;
             var sshConnectionProvider = new SSHConnectionProvider();
             try
             {
                 sshConnectionProvider.Connect(targetInfo);
-                return new TargetCheckingResult() { IsTargetAvailable = true };
+                targetAvailable = true;
             }
-            catch (Exception ex)
+            catch (SshConnectingException sshException)
             {
-                return new TargetCheckingResult() { IsTargetAvailable = false, ErrorMessage = ex.Message };
+                errorMessage = sshException.Message;
+            }
+            catch (Exception genericException)
+            {
+                errorMessage =
+                    string.Format(
+                        "An unknown error occurred while trying to connect to host ({0}): '{1}'.",
+                        targetInfo.GetAddress(), genericException.Message);
             }
             finally
             {
                 sshConnectionProvider.Disconnect();
             }
+
+            return new TargetCheckingResult() { IsTargetAvailable = targetAvailable };
         }
     }
 }

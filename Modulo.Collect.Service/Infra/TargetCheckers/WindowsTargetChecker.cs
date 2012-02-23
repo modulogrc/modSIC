@@ -6,6 +6,7 @@ using Modulo.Collect.Probe.Common;
 using System.Management;
 using Modulo.Collect.Service.Contract;
 using Modulo.Collect.Probe.Windows;
+using Modulo.Collect.Probe.Common.Exceptions;
 
 namespace Modulo.Collect.Service.Server.Infra
 {
@@ -13,16 +14,33 @@ namespace Modulo.Collect.Service.Server.Infra
     {
         public TargetCheckingResult Check(TargetInfo targetInfo)
         {
-            var targetAvailable = true;
+            var targetAvailable = false;
             string errorMessage = null;
             try
             {
                 new WMIConnectionProvider("cimv2").Connect(targetInfo);
+                targetAvailable = true;
             }
-            catch (Exception ex)
+            catch (UnauthorizedAccessException)
             {
-                targetAvailable = false;
-                errorMessage = ex.Message;
+                errorMessage =
+                    string.Format(
+                        "Unable to connect to host. The remote machine ({0}) has denied access to the user ('{1}').",
+                        targetInfo.GetAddress(), targetInfo.credentials.GetFullyQualifiedUsername());
+            }
+            catch (CannotConnectToHostException ex)
+            {
+                errorMessage =
+                    string.Format(
+                        "Unable to connect to host. The remote machine ({0}) returned the follow error: '{1}'.",
+                        targetInfo.GetAddress(), ex.Message);
+            }
+            catch (Exception ex1)
+            {
+                errorMessage =
+                    string.Format(
+                        "An unknown error occurred while trying to connect to host ({0}): '{1}'.",
+                        targetInfo.GetAddress(), ex1.Message);
             }
 
             return new TargetCheckingResult() { IsTargetAvailable = targetAvailable, ErrorMessage = errorMessage };

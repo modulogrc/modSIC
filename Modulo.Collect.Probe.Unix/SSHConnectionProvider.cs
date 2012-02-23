@@ -43,7 +43,17 @@ namespace Modulo.Collect.Probe.Unix
         public virtual void Connect(TargetInfo target)
         {
             this.CreateSSHExec(target);
-            this.SSHExec.Connect(target.GetPort());
+            try
+            {
+                this.SSHExec.Connect(target.GetPort());
+            }
+            catch (Tamir.SharpSsh.jsch.JSchException ex)
+            {
+                throw new SshConnectingException(
+                    string.Format(
+                        "Unable to connect to host {0} through port {1} using the user '{2}'. Check the host address, port number and that ssh service is running at host machine.",
+                        target.GetAddress(), target.GetPort(), target.credentials.GetFullyQualifiedUsername()));
+            }
         }
 
         public virtual void Disconnect()
@@ -81,5 +91,10 @@ namespace Modulo.Collect.Probe.Unix
             
         }
 
+    }
+
+    public class SshConnectingException : Exception
+    {
+        public SshConnectingException(string message) : base(message) { }
     }
 }
