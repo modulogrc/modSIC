@@ -141,6 +141,11 @@ namespace Modulo.Collect.ClientConsole
                         certificate);
             }
 
+            Execute(operation);
+        }
+
+        private void Execute(Operation operation)
+        {
             modSICService = new ModSicService(this.server);
             switch (operation)
             {
@@ -158,13 +163,17 @@ namespace Modulo.Collect.ClientConsole
                     {
                         var ovalDefinitions = GetFileContents("Oval Definitions", this.definitionsFilename);
                         var ovalVariables = GetOvalExternalVariablesFile();
+                        Dictionary<string, string> targetParameters = null;
+                        if (!String.IsNullOrEmpty(options.SSHPort))
+                        {
+                            targetParameters = new Dictionary<string, string>();
+                            targetParameters.Add("sshPort", options.SSHPort);
+                        }
 
                         if (ovalDefinitions != null)
                         {
                             view.ShowMessage("Requesting collect...");
-                            var sendCollectResult =
-                                modSICService.SendCollect(
-                                    target.Address, CreateCredentials(), ovalDefinitions, ovalVariables);
+                            var sendCollectResult = modSICService.SendCollect(target.Address, CreateCredentials(), ovalDefinitions, ovalVariables, targetParameters);
 
                             view.ShowMessage(String.Format(COLLECT_WAS_SENT, sendCollectResult.First().Value));
                         }
@@ -180,6 +189,12 @@ namespace Modulo.Collect.ClientConsole
                     {
                         var ovalDefinitions = GetFileContents("Oval Definitions", this.definitionsFilename);
                         var ovalVariables = GetOvalExternalVariablesFile();
+                        Dictionary<string, string> targetParameters = null;
+                        if (!String.IsNullOrEmpty(options.SSHPort))
+                        {
+                            targetParameters = new Dictionary<string, string>();
+                            targetParameters.Add("sshPort", options.SSHPort);
+                        }
 
                         if (ovalDefinitions != null)
                         {
@@ -187,9 +202,7 @@ namespace Modulo.Collect.ClientConsole
 
                             view.ShowMessage("Requesting collect...");
                             var credentials = this.CreateCredentials();
-                            var ovalResults =
-                                modSICService.SendCollectSynchronous(
-                                    target.Address, credentials, ovalDefinitions, out collectRequestID, 10, ovalVariables);
+                            var ovalResults = modSICService.SendCollectSynchronous(target.Address, credentials, ovalDefinitions, out collectRequestID, 10, ovalVariables, targetParameters);
 
                             SaveResults(ovalResults, collectRequestID);
                             view.ShowMessage("[Operation completed]");
@@ -233,7 +246,7 @@ namespace Modulo.Collect.ClientConsole
                 case Operation.ListAllCollectsInExecution:
                     {
                         view.ShowMessage("Trying to get collections in execution...");
-                        var collectsInExecutions = (operation == Operation.ListCollectsInExecution) ? 
+                        var collectsInExecutions = (operation == Operation.ListCollectsInExecution) ?
                             modSICService.GetCollectionsInExecution(options.VerboseOutput) :
                             modSICService.GetAllCollectionsInExecution(options.VerboseOutput);
 

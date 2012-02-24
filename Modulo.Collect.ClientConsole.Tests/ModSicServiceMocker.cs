@@ -29,7 +29,7 @@ namespace Modulo.Collect.ClientConsole.Tests
             
             var api = mocks.DynamicMock<ModSicConnection>(new string[] { "", "", "", "" });
             Expect.Call(
-                api.SendCollect(FAKE_TARGET_ADDRESS, fakeCredentials, FAKE_OVAL_DEFINITIONS, null))
+                api.SendCollect(FAKE_TARGET_ADDRESS, fakeCredentials, FAKE_OVAL_DEFINITIONS, null, null))
                        .IgnoreArguments()
                     .Return(fakeSendCollectResult);
             Expect.Call(
@@ -52,7 +52,7 @@ namespace Modulo.Collect.ClientConsole.Tests
 
             var mocks = new MockRepository();
             var api = mocks.StrictMock<ModSicConnection>(new string[] { "", "", "", "" });
-            Expect.Call(api.SendCollect(null, null, null, null)).IgnoreArguments().Return(fakeSendCollectResult);
+            Expect.Call(api.SendCollect(null, null, null, null, null)).IgnoreArguments().Return(fakeSendCollectResult);
             Expect.Call(api.GetCollectionsInExecution()).Repeat.Times(5).Return(fakeCollectionsInExecution);
             Expect.Call(api.GetCollectionsInExecution()).Return(new CollectInfo[] { fakeCollectInfo2 });
             Expect.Call(api.GetOvalResults(FAKE_COLLECT_REQUEST_ID)).Return(FAKE_OVAL_RESULTS);
@@ -66,7 +66,7 @@ namespace Modulo.Collect.ClientConsole.Tests
             var mocks = new MockRepository();
             var mockAPI = mocks.DynamicMock<ModSicConnection>(new string[] { "", "", "", "" });
             var fakeRequestResultWithErrors = new SendRequestResult() { HasErrors = true };
-            Expect.Call(mockAPI.SendCollect(null, null, null, null)).IgnoreArguments().Return(fakeRequestResultWithErrors);
+            Expect.Call(mockAPI.SendCollect(null, null, null, null, null)).IgnoreArguments().Return(fakeRequestResultWithErrors);
             mocks.ReplayAll();
 
             return new ModSicService(mockAPI);
@@ -76,7 +76,7 @@ namespace Modulo.Collect.ClientConsole.Tests
         {
             var mocks = new MockRepository();
             var mockAPI = mocks.DynamicMock<ModSicConnection>(new string[] { "", "", "", "" });
-            Expect.Call(mockAPI.SendCollect(null, null, null, null)).IgnoreArguments().Throw(new Exception());
+            Expect.Call(mockAPI.SendCollect(null, null, null, null, null)).IgnoreArguments().Throw(new Exception());
             mocks.ReplayAll();
 
             return new ModSicService(mockAPI);

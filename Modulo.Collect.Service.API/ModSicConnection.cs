@@ -35,6 +35,7 @@ using Modulo.Collect.Service.Contract;
 using System.Reflection;
 using Modulo.Collect.Service.Contract.Security;
 using System.Security.Cryptography.X509Certificates;
+using System.Collections.Generic;
 
 namespace Modulo.Collect.Service.Client
 {
@@ -147,9 +148,9 @@ namespace Modulo.Collect.Service.Client
         /// <param name="externalVariables">The optional Oval Variables document.</param>
         /// <returns><see cref="http://modsic.codeplex.com/wikipage?title=Contract&referringTitle=Documentation#sendRequestResult"/></returns>
         public virtual SendRequestResult SendCollect(
-            string targetAddress, Credential targetCredentials, string ovalDefinitions, string externalVariables = null)
+            string targetAddress, Credential targetCredentials, string ovalDefinitions, string externalVariables = null, Dictionary<string, string> targetParameters = null)
         {
-            var newRequest = CreateRequest(targetAddress, targetCredentials, externalVariables);
+            var newRequest = CreateRequest(targetAddress, targetCredentials, externalVariables, targetParameters);
             var package = CreatePackage(ovalDefinitions, newRequest);
             var token = LogonModSic();
             try
@@ -174,7 +175,7 @@ namespace Modulo.Collect.Service.Client
             return package;
         }
 
-        private Request CreateRequest(string targetAddress, Credential credentials, string externalVariables)
+        private Request CreateRequest(string targetAddress, Credential credentials, string externalVariables, Dictionary<string, string> targetParameters = null)
         {
             var encrytedCredentials = this.EncryptCredentials(credentials);
 
@@ -184,7 +185,8 @@ namespace Modulo.Collect.Service.Client
                 Credential = encrytedCredentials,
                 DefinitionId = Guid.NewGuid().ToString(),
                 ExternalVariables = externalVariables,
-                RequestId = Guid.NewGuid().ToString()
+                RequestId = Guid.NewGuid().ToString(),
+                TargetParameters = targetParameters
             };
             return newRequest;
         }

@@ -148,7 +148,7 @@ namespace Modulo.Collect.GraphicalConsole
         private String RequestCollectionSynchronous(string address, Credential credentials, string ovalDefinitions, out string collectRequestId, string externalVariables = null, int interval = 10)
         {
             collectRequestId = null;
-
+        
             var requestResult = modSicConnection.SendCollect(address, credentials, ovalDefinitions, externalVariables);
             if (requestResult.HasErrors)
             {

@@ -140,6 +140,11 @@ namespace Modulo.Collect.ClientConsole
                 HelpText="Root or super user password")]
         public String TargetAdministrativePassword = null;
 
+        [Option("b", "shh-port",
+                Required = false,
+                HelpText = "SSH port for Unix systems")]
+        public String SSHPort = null;
+
         [Option("", "verbose",
                 Required = false,
                 HelpText = "Display additional information in -l and -q")]

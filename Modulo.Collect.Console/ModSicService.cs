@@ -61,9 +61,9 @@ namespace Modulo.Collect.ClientConsole
         }
 
         public virtual Dictionary<String, String> SendCollect(
-            string targetAddres, Credential credentials, string ovalDefinitions, string externalVariables = null)
+            string targetAddres, Credential credentials, string ovalDefinitions, string externalVariables = null, Dictionary<string, string> targetParameters = null)
         {
-            return TryToRequestCollect(targetAddres, credentials, ovalDefinitions, externalVariables);
+            return TryToRequestCollect(targetAddres, credentials, ovalDefinitions, externalVariables, targetParameters);
         }
 
         public virtual String SendCollectSynchronous(
@@ -72,10 +72,11 @@ namespace Modulo.Collect.ClientConsole
             string ovalDefinitions,
             out string collectRequestID,
             int poolingIntervalInSecs = 30,
-            string externalVariables = null)
+            string externalVariables = null,
+            Dictionary<string, string> targetParameters = null)
         {
             var sendCollectResult =
-                TryToRequestCollect(targetAddres, credentials, ovalDefinitions, externalVariables);
+                TryToRequestCollect(targetAddres, credentials, ovalDefinitions, externalVariables, targetParameters);
 
             collectRequestID = sendCollectResult.First().Value;
 
@@ -140,7 +141,7 @@ namespace Modulo.Collect.ClientConsole
             while (true)
             {
                 System.Threading.Thread.Sleep(1000);
-                //Console.Write("\b");
+                Console.Write("\b");
                 if (i < StatusChar.Count())
                     Console.Write(StatusChar[i]);
                 i++;
@@ -229,15 +230,13 @@ namespace Modulo.Collect.ClientConsole
             }
         }
 
-
-
         private Dictionary<String, String> TryToRequestCollect(
-            string targetAddres, Credential credentials, string ovalDefinitions, string externalVariables = null)
+            string targetAddres, Credential credentials, string ovalDefinitions, string externalVariables = null, Dictionary<string, string> targetParameters = null)
         {
             SendRequestResult requestResult = null;
             try
             {
-                requestResult = _modSicConnection.SendCollect(targetAddres, credentials, ovalDefinitions, externalVariables);
+                requestResult = _modSicConnection.SendCollect(targetAddres, credentials, ovalDefinitions, externalVariables, targetParameters);
             }
             catch (Exception ex)
             {

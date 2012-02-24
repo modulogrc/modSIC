@@ -167,10 +167,10 @@ namespace Modulo.Collect.ClientConsole.Tests
             var requestCollectResult =
                 new ModSicService(mockModSicApi)
                     .SendCollectSynchronous(
-                        FakeTargetAddress, fakeCredential, FakeDefinitions, out collectRequestID, 0, null);
+                        FakeTargetAddress, fakeCredential, FakeDefinitions, out collectRequestID, 0, null, null);
 
             Assert.IsFalse(String.IsNullOrEmpty(requestCollectResult), "The result of send collect syncronous cannot be null.");
-            mockModSicApi.AssertWasCalled(api => api.SendCollect(FakeTargetAddress, fakeCredential, FakeDefinitions, null));
+            mockModSicApi.AssertWasCalled(api => api.SendCollect(FakeTargetAddress, fakeCredential, FakeDefinitions, null, null));
             mockModSicApi.AssertWasCalled(api => api.GetCollectionsInExecution(), api => api.Repeat.Times(6));
             mockModSicApi.AssertWasCalled(api => api.GetOvalResults(ModSicServiceMocker.FAKE_COLLECT_REQUEST_ID));
             Assert.AreEqual(ModSicServiceMocker.FAKE_OVAL_RESULTS, requestCollectResult, "Unexpected Oval Results was returned.");

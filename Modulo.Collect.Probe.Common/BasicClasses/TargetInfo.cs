@@ -58,8 +58,10 @@ namespace Modulo.Collect.Probe.Common
         {
             object portno = null;
             this.TryGetValue(TargetParameters.PortNum.ToString(), out portno);
-            if (portno == null)
+            if (String.IsNullOrEmpty(portno as String))
+            {
                 portno = "22";
+            }
 
             return int.Parse(portno.ToString());
         }

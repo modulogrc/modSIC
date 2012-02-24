@@ -72,7 +72,8 @@ namespace Modulo.Collect.Service.API.Tests
                     fakeTargetAddress, 
                     new Credential(), 
                     fakeOvalDefinitions, 
-                    fakeExternalVariables);
+                    fakeExternalVariables,
+                    null);
 
             ModSicLoginMustBeCalling(fakeModSicProxy);
             fakeModSicProxy
