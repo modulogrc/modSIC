@@ -146,7 +146,7 @@ namespace Modulo.Collect.GraphicalConsole
 
         private void lnkWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://modsic.codeplex.com");
+            System.Diagnostics.Process.Start("https://github.com/modulogrc/modSIC");
         }
 
         private void ShowLicenseWindow(string textPath)

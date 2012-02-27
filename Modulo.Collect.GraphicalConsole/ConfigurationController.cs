@@ -111,6 +111,7 @@ namespace Modulo.Collect.GraphicalConsole
                 Section.target.Username = view.Target.Username ?? String.Empty;
                 Section.target.Password = view.Target.Password ?? String.Empty;
                 Section.target.AdministrativePassword = view.Target.AdministrativePassword ?? String.Empty;
+                Section.target.SSHPort = view.Target.SSHPort ?? String.Empty;
 
                 Section.file.SaveFolder = view.DestinationFolder ?? String.Empty;
                 Section.file.DefinitionFilename = view.DefinitionFilename ?? String.Empty;
@@ -154,6 +155,7 @@ namespace Modulo.Collect.GraphicalConsole
                         view.Target.Username = target.Username;
                         view.Target.Password = target.Password;
                         view.Target.AdministrativePassword = target.AdministrativePassword;
+                        view.Target.SSHPort = target.SSHPort;
 
                         var file = section.file;
                         view.DestinationFolder = file.SaveFolder;

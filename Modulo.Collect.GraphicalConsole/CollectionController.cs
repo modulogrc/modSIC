@@ -122,7 +122,15 @@ namespace Modulo.Collect.GraphicalConsole
                 {
                     string collectRequestId;
                     var credentials = CreateCredentials(target);
-                    var ovalResults = RequestCollectionSynchronous(target.Address, credentials, ovalDefinitions, out collectRequestId, e.ExternalVariablesXml);
+
+                    Dictionary<string, string> targetParameters = null;
+                    if (!String.IsNullOrEmpty(target.SSHPort))
+                    {
+                        targetParameters = new Dictionary<string, string>();
+                        targetParameters.Add("sshPort", target.SSHPort);
+                    }
+
+                    var ovalResults = RequestCollectionSynchronous(target.Address, credentials, ovalDefinitions, out collectRequestId, e.ExternalVariablesXml, targetParameters);
                     SaveOvalDocuments(ovalResults, collectRequestId);
                 }
 
@@ -145,11 +153,11 @@ namespace Modulo.Collect.GraphicalConsole
                     };
         }
 
-        private String RequestCollectionSynchronous(string address, Credential credentials, string ovalDefinitions, out string collectRequestId, string externalVariables = null, int interval = 10)
+        private String RequestCollectionSynchronous(string address, Credential credentials, string ovalDefinitions, out string collectRequestId, string externalVariables = null, Dictionary<string, string> targetParameters = null)
         {
             collectRequestId = null;
         
-            var requestResult = modSicConnection.SendCollect(address, credentials, ovalDefinitions, externalVariables);
+            var requestResult = modSicConnection.SendCollect(address, credentials, ovalDefinitions, externalVariables, targetParameters);
             if (requestResult.HasErrors)
             {
                 view.ShowErrorMessage(requestResult.Message);
@@ -162,10 +170,7 @@ namespace Modulo.Collect.GraphicalConsole
 
             while (true)
             {
-                if (interval > 0)
-                {
-                    Sleep(interval);
-                }
+                Sleep(10);
 
                 var statusString = this.IsCollectionInExecution(collectRequestId);
                 if (string.IsNullOrEmpty(statusString))

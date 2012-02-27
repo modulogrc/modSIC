@@ -129,10 +129,10 @@
             this.lnkWebsite.AutoSize = true;
             this.lnkWebsite.Location = new System.Drawing.Point(169, 62);
             this.lnkWebsite.Name = "lnkWebsite";
-            this.lnkWebsite.Size = new System.Drawing.Size(126, 13);
+            this.lnkWebsite.Size = new System.Drawing.Size(94, 13);
             this.lnkWebsite.TabIndex = 25;
             this.lnkWebsite.TabStop = true;
-            this.lnkWebsite.Text = "Visit modSIC at CodePlex";
+            this.lnkWebsite.Text = "Visit modSIC at Git";
             this.lnkWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkWebsite_LinkClicked);
             // 
             // lnkLicense
@@ -141,7 +141,7 @@
             this.lnkLicense.AutoSize = true;
             this.lnkLicense.Location = new System.Drawing.Point(169, 97);
             this.lnkLicense.Name = "lnkLicense";
-            this.lnkLicense.Size = new System.Drawing.Size(165, 13);
+            this.lnkLicense.Size = new System.Drawing.Size(164, 13);
             this.lnkLicense.TabIndex = 26;
             this.lnkLicense.TabStop = true;
             this.lnkLicense.Text = "View modSIC License Agreement";
@@ -152,6 +152,7 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(435, 174);
             this.Controls.Add(this.tableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

@@ -167,7 +167,7 @@ namespace Modulo.Collect.ClientConsole
             help.AdditionalNewLineAfterOption = true;
             help.Copyright = new CopyrightInfo("Modulo Security Solutions", 2011, 2011);
             help.AddPreOptionsLine("This is free software. You may redistribute copies of it under the terms of");
-            help.AddPreOptionsLine("the License <http://modsic.codeplex.com/license>.");
+            help.AddPreOptionsLine("the License <https://github.com/modulogrc/modSIC/blob/master/README>.");
             help.AddPreOptionsLine("");
             help.AddPreOptionsLine(String.Format("Usage: {0} -c -m <server> -u <username> -p <password> -t <target> -y <target-username> -z <target-password>", programName));
             help.AddPreOptionsLine("");

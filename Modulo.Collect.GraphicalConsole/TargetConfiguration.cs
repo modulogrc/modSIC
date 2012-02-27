@@ -44,5 +44,6 @@ namespace Modulo.Collect.GraphicalConsole
         public string Username { get; set; }
         public string Password { get; set; }
         public string AdministrativePassword { get; set; }
+        public String SSHPort { get; set; }
     }
 }

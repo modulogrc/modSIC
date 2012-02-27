@@ -38,6 +38,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using Modulo.Collect.OVAL.Definitions;
+using System.Text;
+using Modulo.Collect.OVAL.Helper;
 
 namespace Modulo.Collect.GraphicalConsole
 {
@@ -69,6 +71,8 @@ namespace Modulo.Collect.GraphicalConsole
         #endregion
 
         #region Private Members
+        Label lbSSHPort = null;
+        TextBox txtSSHPort = null;
         #endregion
 
         #region Constructor
@@ -82,7 +86,62 @@ namespace Modulo.Collect.GraphicalConsole
             lbDefName.ForeColor = Color.Red;
 
             ReadConfiguration();
+            ShowSSHPortWhenNecessary();
         }
+        #endregion
+
+        #region SSH Port
+        private void ShowSSHPortWhenNecessary()
+        {
+            if (IsUnixDefinition(DefinitionFilename))
+            {
+                lbSSHPort = new Label() { Text = Resource.SSHPort, Parent = grTarget, Location = new Point() { X = 19, Y = 112 }, AutoSize = true };
+                txtSSHPort = new TextBox() { Parent = grTarget, Location = new Point() { X = 79, Y = 109 }, Size = new Size() { Width = 128, Height = 20 } };
+                if (!String.IsNullOrEmpty(Target.SSHPort))
+                {
+                    txtSSHPort.Text = Target.SSHPort;
+                }
+                this.Size = new Size() { Width = 520, Height = 460};
+            }
+            else
+            {
+                if (lbSSHPort != null && txtSSHPort != null)
+                {
+                    lbSSHPort.Parent = null;
+                    txtSSHPort.Parent = null;
+
+                    lbSSHPort = null;
+                    txtSSHPort = null;
+
+                    this.Size = new Size() { Width = 520, Height = 437 };
+                }
+            }
+        }
+
+        public bool IsUnixDefinition(string filename)
+        {
+            if (!String.IsNullOrEmpty(filename))
+            {
+                var stream = GetStream(filename);
+                IEnumerable<string> errors = null;
+                var ovalDefinitions = oval_definitions.GetOvalDefinitionsFromStream(stream, out errors);
+                var x = new TargetPlatformDiscoverer(ovalDefinitions.objects);
+                var family = x.Discover();
+                if (family.ToString() == "unix")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public virtual Stream GetStream(string filename)
+        {
+            string fileContent = File.ReadAllText(filename);
+            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(fileContent));
+            return stream;
+        }
+
         #endregion
 
         #region Form Events
@@ -172,6 +231,8 @@ namespace Modulo.Collect.GraphicalConsole
                         ShowSchemaWindow(args);
                     }
                 }
+
+                ShowSSHPortWhenNecessary();
             }
         }
 
@@ -223,7 +284,7 @@ namespace Modulo.Collect.GraphicalConsole
                     Dialog.Error(Resource.InvalidServerConfiguration);
                 }
                 else if (String.IsNullOrEmpty(Target.Address) || String.IsNullOrEmpty(Target.Username)
-                    || String.IsNullOrEmpty(Target.Password))
+                    || String.IsNullOrEmpty(Target.Password) || (txtSSHPort != null && String.IsNullOrEmpty(Target.SSHPort)))
                 {
                     Dialog.Error(Resource.InvalidTargetConfiguration);
                 }
@@ -299,6 +360,29 @@ namespace Modulo.Collect.GraphicalConsole
             }
 
             tbSaveFolder.Text = DestinationFolder ?? String.Empty;
+            if (!ValidateSchema())
+            {
+                DefinitionFilename = String.Empty;               
+            }
+        }
+
+        private void WriteConfiguration()
+        {
+            if (Target != null)
+            {
+                Target.Address = tbTarget.Text;
+                Target.Username = tbTargetUsername.Text;
+                Target.Password = tbTargetPassword.Text;
+                Target.AdministrativePassword = tbAdminPassword.Text;
+                Target.SSHPort = txtSSHPort != null ? txtSSHPort.Text : null;
+            }
+            DestinationFolder = tbSaveFolder.Text;
+
+            OnWriteConfiguration(this, EventArgs.Empty);
+        }
+
+        private bool ValidateSchema()
+        {
             if (File.Exists(DefinitionFilename))
             {
                 var args = new SchemaEventArgs();
@@ -313,26 +397,11 @@ namespace Modulo.Collect.GraphicalConsole
                     if (CheckExternalVariables(DefinitionFilename))
                     {
                         tbOvalDefs.Text = DefinitionFilename;
-                        return;
+                        return true;
                     }
                 }
             }
-
-            DefinitionFilename = String.Empty;
-        }
-
-        private void WriteConfiguration()
-        {
-            if (Target != null)
-            {
-                Target.Address = tbTarget.Text;
-                Target.Username = tbTargetUsername.Text;
-                Target.Password = tbTargetPassword.Text;
-                Target.AdministrativePassword = tbAdminPassword.Text;
-            }
-            DestinationFolder = tbSaveFolder.Text;
-
-            OnWriteConfiguration(this, EventArgs.Empty);
+            return false;
         }
         #endregion
     }

@@ -136,12 +136,13 @@ namespace Modulo.Collect.GraphicalConsole
 
     public class TargetConfigurationElement : ConfigurationElement
     {
-        public TargetConfigurationElement(string address, string username, string password, string administrativePassword)
+        public TargetConfigurationElement(string address, string username, string password, string administrativePassword, string SSHPort = null)
         {
             this.Address = address;
             this.Username = username;
             this.Password = password;
             this.AdministrativePassword = administrativePassword;
+            this.SSHPort = SSHPort;
         }
 
         public TargetConfigurationElement() { }
@@ -195,6 +196,19 @@ namespace Modulo.Collect.GraphicalConsole
             set
             {
                 this["AdministrativePassword"] = value.ToString();
+            }
+        }
+
+        [ConfigurationProperty("SSHPort", IsRequired = false)]
+        public string SSHPort
+        {
+            get
+            {
+                return (string)this["SSHPort"];
+            }
+            set
+            {
+                this["SSHPort"] = value.ToString();
             }
         }
     }

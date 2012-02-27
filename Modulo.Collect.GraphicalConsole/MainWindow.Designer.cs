@@ -29,14 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.chooserOval = new System.Windows.Forms.OpenFileDialog();
+            this.chooserFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btGo = new System.Windows.Forms.Button();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chooserOval = new System.Windows.Forms.OpenFileDialog();
-            this.btGo = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.grTarget = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbAdminPassword = new System.Windows.Forms.TextBox();
@@ -50,30 +55,73 @@
             this.btSaveDir = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.tbSaveFolder = new System.Windows.Forms.TextBox();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
-            this.chooserFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbDefName = new System.Windows.Forms.Label();
             this.btChooseDefs = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tbOvalDefs = new System.Windows.Forms.TextBox();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.grTarget.SuspendLayout();
             this.grResults.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // panel1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(642, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.logoPictureBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(514, 128);
+            this.panel1.TabIndex = 22;
+            // 
+            // logoPictureBox
+            // 
+            this.logoPictureBox.BackColor = System.Drawing.SystemColors.Window;
+            this.logoPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
+            this.logoPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(514, 34);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logoPictureBox.TabIndex = 21;
+            this.logoPictureBox.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.grTarget);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 152);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(514, 257);
+            this.panel2.TabIndex = 24;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.grResults);
+            this.panel3.Controls.Add(this.btGo);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 277);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(514, 132);
+            this.panel3.TabIndex = 25;
+            // 
+            // btGo
+            // 
+            this.btGo.Location = new System.Drawing.Point(404, 85);
+            this.btGo.Name = "btGo";
+            this.btGo.Size = new System.Drawing.Size(100, 30);
+            this.btGo.TabIndex = 23;
+            this.btGo.Text = "Submit";
+            this.btGo.UseVisualStyleBackColor = true;
+            this.btGo.Click += new System.EventHandler(this.btGo_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -113,18 +161,20 @@
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // btGo
+            // menuStrip1
             // 
-            this.btGo.Location = new System.Drawing.Point(521, 275);
-            this.btGo.Name = "btGo";
-            this.btGo.Size = new System.Drawing.Size(99, 33);
-            this.btGo.TabIndex = 21;
-            this.btGo.Text = "Submit";
-            this.btGo.UseVisualStyleBackColor = true;
-            this.btGo.Click += new System.EventHandler(this.btGo_Click);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(514, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // grTarget
             // 
+            this.grTarget.AutoSize = true;
             this.grTarget.Controls.Add(this.label4);
             this.grTarget.Controls.Add(this.tbAdminPassword);
             this.grTarget.Controls.Add(this.label3);
@@ -133,10 +183,10 @@
             this.grTarget.Controls.Add(this.tbTargetUsername);
             this.grTarget.Controls.Add(this.label1);
             this.grTarget.Controls.Add(this.tbTarget);
-            this.grTarget.Location = new System.Drawing.Point(12, 120);
+            this.grTarget.Location = new System.Drawing.Point(6, 0);
             this.grTarget.Name = "grTarget";
-            this.grTarget.Size = new System.Drawing.Size(492, 116);
-            this.grTarget.TabIndex = 16;
+            this.grTarget.Size = new System.Drawing.Size(498, 119);
+            this.grTarget.TabIndex = 25;
             this.grTarget.TabStop = false;
             this.grTarget.Text = " Step 2: Select Target ";
             // 
@@ -212,19 +262,20 @@
             // 
             // grResults
             // 
+            this.grResults.AutoSize = true;
             this.grResults.Controls.Add(this.btSaveDir);
             this.grResults.Controls.Add(this.label6);
             this.grResults.Controls.Add(this.tbSaveFolder);
-            this.grResults.Location = new System.Drawing.Point(12, 242);
+            this.grResults.Location = new System.Drawing.Point(6, 3);
             this.grResults.Name = "grResults";
-            this.grResults.Size = new System.Drawing.Size(492, 66);
-            this.grResults.TabIndex = 17;
+            this.grResults.Size = new System.Drawing.Size(498, 67);
+            this.grResults.TabIndex = 24;
             this.grResults.TabStop = false;
             this.grResults.Text = " Step 3: Choose Where to Save OVAL Results ";
             // 
             // btSaveDir
             // 
-            this.btSaveDir.Location = new System.Drawing.Point(411, 26);
+            this.btSaveDir.Location = new System.Drawing.Point(411, 25);
             this.btSaveDir.Name = "btSaveDir";
             this.btSaveDir.Size = new System.Drawing.Size(75, 23);
             this.btSaveDir.TabIndex = 20;
@@ -249,26 +300,16 @@
             this.tbSaveFolder.Size = new System.Drawing.Size(304, 20);
             this.tbSaveFolder.TabIndex = 18;
             // 
-            // logoPictureBox
-            // 
-            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
-            this.logoPictureBox.Location = new System.Drawing.Point(515, 32);
-            this.logoPictureBox.Name = "logoPictureBox";
-            this.logoPictureBox.Size = new System.Drawing.Size(127, 45);
-            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logoPictureBox.TabIndex = 18;
-            this.logoPictureBox.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lbDefName);
             this.groupBox1.Controls.Add(this.btChooseDefs);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tbOvalDefs);
-            this.groupBox1.Location = new System.Drawing.Point(12, 32);
+            this.groupBox1.Location = new System.Drawing.Point(6, 40);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(492, 82);
-            this.groupBox1.TabIndex = 19;
+            this.groupBox1.Size = new System.Drawing.Size(498, 82);
+            this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " Step 1: Select an OVAL Definitions File ";
             // 
@@ -315,12 +356,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 320);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.logoPictureBox);
-            this.Controls.Add(this.grResults);
-            this.Controls.Add(this.grTarget);
-            this.Controls.Add(this.btGo);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(514, 409);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -329,13 +369,18 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "modSIC";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.grTarget.ResumeLayout(false);
             this.grTarget.PerformLayout();
             this.grResults.ResumeLayout(false);
             this.grResults.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -345,14 +390,19 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.OpenFileDialog chooserOval;
+        private System.Windows.Forms.FolderBrowserDialog chooserFolder;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox logoPictureBox;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btGo;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.OpenFileDialog chooserOval;
-        private System.Windows.Forms.Button btGo;
+        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.GroupBox grTarget;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbAdminPassword;
@@ -366,8 +416,6 @@
         private System.Windows.Forms.Button btSaveDir;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbSaveFolder;
-        private System.Windows.Forms.PictureBox logoPictureBox;
-        private System.Windows.Forms.FolderBrowserDialog chooserFolder;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lbDefName;
         private System.Windows.Forms.Button btChooseDefs;

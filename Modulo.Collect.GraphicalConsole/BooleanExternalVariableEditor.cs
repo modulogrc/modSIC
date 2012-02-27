@@ -28,7 +28,7 @@ namespace Modulo.Collect.GraphicalConsole
 
         private CheckBox ConfigureCheckBox(string value)
         {
-            CheckBox checkBox = new CheckBox() { Text = String.Format("{0}", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.externalVariable.comment)) };
+            CheckBox checkBox = new CheckBox() { Text = String.Format("{0}", this.externalVariable.comment) };
             checkBox.Name = this.externalVariable.id;
             checkBox.AutoSize = true;
 
@@ -50,7 +50,7 @@ namespace Modulo.Collect.GraphicalConsole
             panel.AutoSize = true;
             panel.Name = this.externalVariable.id;
             
-            Label label = new Label() { Text = String.Format("{0}", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.externalVariable.comment)) };
+            Label label = new Label() { Text = String.Format("{0}", this.externalVariable.comment) };
             label.AutoSize = true;
             label.Location = new Point(0, ControlY);
             ControlY += 20;
@@ -66,7 +66,7 @@ namespace Modulo.Collect.GraphicalConsole
                 ControlY += 25;
 
                 radio.Name = String.Format("{0}-{1}", this.externalVariable.id, possibleValue.Value);
-                radio.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(possibleValue.hint);
+                radio.Text = possibleValue.hint;
                 radio.Tag = possibleValue.Value;
 
                 if (possibleValue.Value == value)

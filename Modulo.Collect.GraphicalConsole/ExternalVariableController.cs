@@ -80,7 +80,7 @@ namespace Modulo.Collect.GraphicalConsole
                 }
                 else
                 {
-                    var label = new Label() { Text = String.Format("{0}", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(variable.comment)) };
+                    var label = new Label() { Text = String.Format("{0}", variable.comment) };
                     label.AutoSize = true;
                     Controls.Add(label);
 
