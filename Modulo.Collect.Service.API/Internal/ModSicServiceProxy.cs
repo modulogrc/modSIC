@@ -127,9 +127,9 @@ namespace Modulo.Collect.Service.Client.Internal
             }
         }
 
-        public virtual TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials, string token)
+        public virtual TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials, string sshPort, string token)
         {
-            return this.ModSicChannel.CheckTargetAvailability(targetPlatform, address, encryptedCredentials, token);
+            return this.ModSicChannel.CheckTargetAvailability(targetPlatform, address, encryptedCredentials, sshPort, token);
         }
     }
 

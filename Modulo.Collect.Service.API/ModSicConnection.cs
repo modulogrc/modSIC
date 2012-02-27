@@ -326,12 +326,12 @@ namespace Modulo.Collect.Service.Client
             return String.Format("{0}.{1}", assemblyVersion.Major, assemblyVersion.Minor);
         }
 
-        public virtual TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials)
+        public virtual TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials, string sshPort)
         {
             var token = LogonModSic();
             try
             {
-                return ModSicProxyService.CheckTargetAvailability(targetPlatform, address, encryptedCredentials, token);
+                return ModSicProxyService.CheckTargetAvailability(targetPlatform, address, encryptedCredentials, sshPort, token);
             }
             finally
             {

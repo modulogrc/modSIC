@@ -44,6 +44,7 @@ using Quartz;
 using Modulo.Collect.Service.Infra;
 using Modulo.Collect.Service.Server;
 using Modulo.Collect.OVAL.Common;
+using System.Text;
 
 namespace Modulo.Collect.Service
 {
@@ -293,13 +294,13 @@ namespace Modulo.Collect.Service
             }
         }
 
-        public TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials, string token)
+        public TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials, string sshPort, string token)
         {
             try
             {
                 var targetChecker = new TargetChecker();
-                var credentialsInBytes = System.Text.Encoding.Default.GetBytes(encryptedCredentials);
-                var targetInfo = new TargetInfoExtractor().GetTargetInformation(credentialsInBytes, address, null);
+                var credentialsInBytes = Encoding.Default.GetBytes(encryptedCredentials);
+                var targetInfo = new TargetInfoExtractor().GetTargetInformation(credentialsInBytes, address, sshPort);
 
                 return targetChecker.Check(targetPlatform, targetInfo);
             }

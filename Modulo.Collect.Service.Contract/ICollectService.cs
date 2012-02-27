@@ -83,7 +83,7 @@ namespace Modulo.Collect.Service.Contract
         void Logout(string token);
 
         [OperationContract]
-        TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials, string token);
+        TargetCheckingResult CheckTargetAvailability(TargetPlatforms targetPlatform, string address, string encryptedCredentials, string sshPort, string token);
 
         [OperationContract]
         string Heartbeat();
