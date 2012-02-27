@@ -25,21 +25,21 @@ namespace Modulo.Collect.Service.Server.Infra
             {
                 errorMessage =
                     string.Format(
-                        "Unable to connect to host. The remote machine ({0}) has denied access to the user ('{1}').",
+                        "Unable to connect to host. The target machine ({0}) denied access to the user ({1}).",
                         targetInfo.GetAddress(), targetInfo.credentials.GetFullyQualifiedUsername());
             }
             catch (CannotConnectToHostException ex)
             {
                 errorMessage =
                     string.Format(
-                        "Unable to connect to host. The remote machine ({0}) returned the follow error: '{1}'.",
+                        "Unable to connect to host. The target machine ({0}) returned the following error: {1}.",
                         targetInfo.GetAddress(), ex.Message);
             }
             catch (Exception ex1)
             {
                 errorMessage =
                     string.Format(
-                        "An unknown error occurred while trying to connect to host ({0}): '{1}'.",
+                        "An unknown error occurred while trying to connect to host ({0}): {1}.",
                         targetInfo.GetAddress(), ex1.Message);
             }
 

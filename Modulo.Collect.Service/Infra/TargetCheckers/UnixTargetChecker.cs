@@ -29,7 +29,7 @@ namespace Modulo.Collect.Service.Server.Infra
             {
                 errorMessage =
                     string.Format(
-                        "An unknown error occurred while trying to connect to host ({0}): '{1}'.",
+                        "An unknown error occurred while trying to connect to target machine ({0}): {1}.",
                         targetInfo.GetAddress(), genericException.Message);
             }
             finally

@@ -33,6 +33,7 @@
 using System;
 using Modulo.Collect.Probe.Common;
 using Tamir.SharpSsh;
+using Tamir.SharpSsh.jsch;
 
 namespace Modulo.Collect.Probe.Unix
 {
@@ -47,11 +48,11 @@ namespace Modulo.Collect.Probe.Unix
             {
                 this.SSHExec.Connect(target.GetPort());
             }
-            catch (Tamir.SharpSsh.jsch.JSchException ex)
+            catch (JSchException ex)
             {
                 throw new SshConnectingException(
                     string.Format(
-                        "Unable to connect to host {0} through port {1} using the user '{2}'. Check the host address, port number and that ssh service is running at host machine.",
+                        "Unable to connect to target machine {0} through port {1} using the user {2}. Check the target address (or host name), port number and that ssh service is running at target machine.",
                         target.GetAddress(), target.GetPort(), target.credentials.GetFullyQualifiedUsername()));
             }
         }
