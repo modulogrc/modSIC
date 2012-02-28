@@ -40,6 +40,7 @@ using System.Collections.Generic;
 using Modulo.Collect.OVAL.Definitions;
 using System.Text;
 using Modulo.Collect.OVAL.Helper;
+using System.Xml;
 
 namespace Modulo.Collect.GraphicalConsole
 {
@@ -73,6 +74,7 @@ namespace Modulo.Collect.GraphicalConsole
         #region Private Members
         Label lbSSHPort = null;
         TextBox txtSSHPort = null;
+        bool isUnixDefinition = false;
         #endregion
 
         #region Constructor
@@ -86,62 +88,148 @@ namespace Modulo.Collect.GraphicalConsole
             lbDefName.ForeColor = Color.Red;
 
             ReadConfiguration();
-            ShowSSHPortWhenNecessary();
         }
         #endregion
 
-        #region SSH Port
-        private void ShowSSHPortWhenNecessary()
+        #region Definition
+        private void CreateSSHPortControl()
         {
-            if (IsUnixDefinition(DefinitionFilename))
+            if (isUnixDefinition)
             {
-                lbSSHPort = new Label() { Text = Resource.SSHPort, Parent = grTarget, Location = new Point() { X = 19, Y = 112 }, AutoSize = true };
-                txtSSHPort = new TextBox() { Parent = grTarget, Location = new Point() { X = 79, Y = 109 }, Size = new Size() { Width = 128, Height = 20 } };
-                if (!String.IsNullOrEmpty(Target.SSHPort))
+                if (lbSSHPort == null && txtSSHPort == null)
                 {
-                    txtSSHPort.Text = Target.SSHPort;
+                    lbSSHPort = new Label() { Text = Resource.SSHPort, Parent = grTarget, Location = new Point() { X = 19, Y = 112 }, AutoSize = true };
+                    txtSSHPort = new TextBox() { Parent = grTarget, Location = new Point() { X = 79, Y = 109 }, Size = new Size() { Width = 128, Height = 20 } };
+                    if (!String.IsNullOrEmpty(Target.SSHPort))
+                    {
+                        txtSSHPort.Text = Target.SSHPort;
+                    }
+                    this.Size = new Size() { Width = 520, Height = 460 };                   
                 }
-                this.Size = new Size() { Width = 520, Height = 460};
             }
             else
             {
                 if (lbSSHPort != null && txtSSHPort != null)
                 {
-                    lbSSHPort.Parent = null;
-                    txtSSHPort.Parent = null;
+                    lbSSHPort.Visible = false;
+                    txtSSHPort.Visible = false;
+
+                    this.Controls.Remove(lbSSHPort);
+                    this.Controls.Remove(txtSSHPort);
 
                     lbSSHPort = null;
                     txtSSHPort = null;
 
                     this.Size = new Size() { Width = 520, Height = 437 };
+                    this.Refresh();
                 }
             }
         }
 
-        public bool IsUnixDefinition(string filename)
+        private Dictionary<string, string> GetExternalVariablesDefaultValuesFromDefinition(string definitions)
         {
-            if (!String.IsNullOrEmpty(filename))
+            var doc = new XmlDocument();
+            doc.LoadXml(definitions);
+            var nodes = doc.SelectSingleNode("//*[local-name()='default_values']");
+
+            if (nodes == null)
             {
-                var stream = GetStream(filename);
-                IEnumerable<string> errors = null;
-                var ovalDefinitions = oval_definitions.GetOvalDefinitionsFromStream(stream, out errors);
-                var x = new TargetPlatformDiscoverer(ovalDefinitions.objects);
-                var family = x.Discover();
-                if (family.ToString() == "unix")
-                {
-                    return true;
-                }
+                return null;
             }
+
+            Dictionary<string, string> externalVariableDefaultValue = new Dictionary<string, string>();
+            foreach (XmlNode node in nodes.ChildNodes)
+            {
+                externalVariableDefaultValue.Add(node.Attributes["id"].Value.ToString(), node.InnerXml);
+            }
+
+            return externalVariableDefaultValue;
+        }
+
+        private bool CheckExternalVariables(string filename, out string errors)
+        {
+            errors = null;
+
+            if (filename == null)
+            {
+                errors = Resource.EmptyDefinitionFilename;
+                return false;
+            }
+
+            if (!File.Exists(filename))
+            {
+                errors = Resource.OVALDefinitionsFileNotFound;
+                return false;
+            }
+
+            var helper = new ExternalVariableHelper();
+            var definitions = helper.GetOvalDefinitionsFromFile(filename, out errors);
+            if (definitions != null)
+            {
+                var platform = new TargetPlatformDiscoverer(definitions.objects);
+                var family = platform.Discover();
+                isUnixDefinition = (family.ToString() == "unix");
+
+                if (definitions.variables != null)
+                {
+                    ExternalVariables = definitions.variables.OfType<Modulo.Collect.OVAL.Definitions.VariablesTypeVariableExternal_variable>();
+                    ExternalVariablesValues = GetExternalVariablesDefaultValuesFromDefinition(definitions.GetDefinitionsXml());
+                }
+
+                return true;
+            }
+
             return false;
         }
 
-        public virtual Stream GetStream(string filename)
+        private void CheckDefinition(string filename, bool verbose = false)
         {
-            string fileContent = File.ReadAllText(filename);
-            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(fileContent));
-            return stream;
-        }
+            this.Cursor = Cursors.WaitCursor;
 
+            try
+            {
+                ExternalVariablesValues = null;
+                ExternalVariables = null;
+                DefinitionFilename = String.Empty;
+
+                var args = new SchemaEventArgs() { DefinitionFilename = filename };
+                OnValidateSchema(this, args);
+                if (args.Result)
+                {
+                    string errors;
+                    if (CheckExternalVariables(filename, out errors))
+                    {
+                        tbOvalDefs.Text = filename;
+                        DefinitionFilename = filename;
+                        lbDefName.Text = Path.GetFileName(filename);
+                        lbDefName.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        if (verbose)
+                        {
+                            ShowErrorMessage(errors);
+                        }
+                    }
+                }
+                else
+                {
+                    lbDefName.Text = args.ShortErrorMessage;
+                    lbDefName.ForeColor = Color.Red;
+                    if (args.LongErrorMessage != null)
+                    {
+                        ShowSchemaWindow(args);
+                    }
+                }
+
+                CreateSSHPortControl();
+
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
         #endregion
 
         #region Form Events
@@ -206,55 +294,7 @@ namespace Modulo.Collect.GraphicalConsole
             if (res == DialogResult.OK)
             {
                 tbOvalDefs.Text = chooserOval.FileName;
-
-                var args = new SchemaEventArgs();
-                args.DefinitionFilename = tbOvalDefs.Text;
-                OnValidateSchema(this, args);
-
-                ExternalVariablesValues = new Dictionary<string, string>();
-                ExternalVariables = null;
-                DefinitionFilename = String.Empty;
-
-                if (args.Result)
-                {
-                    if (CheckExternalVariables(tbOvalDefs.Text, true))
-                    {
-                        DefinitionFilename = tbOvalDefs.Text;
-                    }
-                }
-                else
-                {
-                    lbDefName.Text = args.ShortErrorMessage;
-                    lbDefName.ForeColor = Color.Red;
-                    if (args.LongErrorMessage != null)
-                    {
-                        ShowSchemaWindow(args);
-                    }
-                }
-
-                ShowSSHPortWhenNecessary();
-            }
-        }
-
-        private bool CheckExternalVariables(string path, bool verbose = false)
-        {
-            string errors;
-
-            ExternalVariables = new ExternalVariableHelper().GetExternalVariablesFromFile(path, out errors);
-
-            if (!String.IsNullOrEmpty(errors))
-            {
-                if (verbose)
-                {
-                    ShowErrorMessage(errors);                   
-                } 
-                return false;
-            }
-            else
-            {
-                lbDefName.Text = Path.GetFileName(path);
-                lbDefName.ForeColor = Color.Black;
-                return true;
+                CheckDefinition(chooserOval.FileName, true);
             }
         }
 
@@ -283,14 +323,14 @@ namespace Modulo.Collect.GraphicalConsole
                 {
                     Dialog.Error(Resource.InvalidServerConfiguration);
                 }
+                else if (String.IsNullOrEmpty(DefinitionFilename))
+                {
+                    Dialog.Error(Resource.EmptyDefinitionFilename);
+                }
                 else if (String.IsNullOrEmpty(Target.Address) || String.IsNullOrEmpty(Target.Username)
                     || String.IsNullOrEmpty(Target.Password) || (txtSSHPort != null && String.IsNullOrEmpty(Target.SSHPort)))
                 {
                     Dialog.Error(Resource.InvalidTargetConfiguration);
-                }
-                if (String.IsNullOrEmpty(DefinitionFilename))
-                {
-                    Dialog.Error(Resource.EmptyDefinitionFilename);
                 }
                 else if (String.IsNullOrEmpty(DestinationFolder))
                 {
@@ -360,10 +400,7 @@ namespace Modulo.Collect.GraphicalConsole
             }
 
             tbSaveFolder.Text = DestinationFolder ?? String.Empty;
-            if (!ValidateSchema())
-            {
-                DefinitionFilename = String.Empty;               
-            }
+            CheckDefinition(DefinitionFilename, false);
         }
 
         private void WriteConfiguration()
@@ -379,29 +416,6 @@ namespace Modulo.Collect.GraphicalConsole
             DestinationFolder = tbSaveFolder.Text;
 
             OnWriteConfiguration(this, EventArgs.Empty);
-        }
-
-        private bool ValidateSchema()
-        {
-            if (File.Exists(DefinitionFilename))
-            {
-                var args = new SchemaEventArgs();
-                args.DefinitionFilename = DefinitionFilename;
-                OnValidateSchema(this, args);
-
-                ExternalVariablesValues = new Dictionary<string, string>();
-                ExternalVariables = null;
-
-                if (args.Result)
-                {
-                    if (CheckExternalVariables(DefinitionFilename))
-                    {
-                        tbOvalDefs.Text = DefinitionFilename;
-                        return true;
-                    }
-                }
-            }
-            return false;
         }
         #endregion
     }

@@ -130,7 +130,7 @@ namespace Modulo.Collect.GraphicalConsole
         {
             var args = new CreateControlsEventArgs();
             args.Variables = mainWindow.ExternalVariables;
-            args.Values = mainWindow.ExternalVariablesValues;
+            args.Values = mainWindow.ExternalVariablesValues ?? new Dictionary<string, string>();
 
             this.OnCreateControls(this, args);
             if (args.Result)
