@@ -42,7 +42,8 @@ namespace Modulo.Collect.Probe.CiscoIOS
 
         public virtual void Connect(TargetInfo target)
         {
-            this.TelnetConnection = new TelnetConnection(target.GetAddress(), target.GetPort());
+            var connectionPort = target.GetPort(ConnectionType.Telnet);
+            this.TelnetConnection = new TelnetConnection(target.GetAddress(), connectionPort);
             this.TelnetConnection.TimeOutLoginMs = 1000;
             this.TelnetConnection.TimeOutReadMs = 30000;
             this.TelnetConnection.CiscoLogin(target.credentials.GetUserName(), target.credentials.GetPassword());

@@ -37,6 +37,8 @@ namespace Modulo.Collect.Probe.Common
 {
     public enum TargetParameters { HostName, IPAddr, PortNum };
 
+    public enum ConnectionType { SSH, Telnet };
+
     public class TargetInfo : Dictionary<string, object>
     {
 
@@ -54,13 +56,13 @@ namespace Modulo.Collect.Probe.Common
                 return representation.ToString();
         }
 
-        public int GetPort()
+        public int GetPort(ConnectionType connectionType = ConnectionType.SSH)
         {
             object portno = null;
             this.TryGetValue(TargetParameters.PortNum.ToString(), out portno);
             if (String.IsNullOrEmpty(portno as String))
             {
-                portno = "22";
+                portno = connectionType == ConnectionType.SSH ? "22" : "23";
             }
 
             return int.Parse(portno.ToString());
