@@ -49,7 +49,16 @@ namespace Modulo.Collect.Probe.CiscoIOS
     {
         public SystemInformation GetSystemInformationFrom(TargetInfo target)
         {
-            target.Add("PortNum", "23");
+            if (target.ContainsKey("PortNum"))
+            {
+                target["PortNum"] = "23";
+            }
+            else
+            {
+                target.Add("PortNum", "23");
+                
+            } 
+            
             CiscoIOSConnectionProvider connectionProvider = new CiscoIOSConnectionProvider();
             connectionProvider.Connect(target);
             CiscoIOSVersion myVersion = CiscoIOSHelper.CiscoGetVersion(connectionProvider.TelnetConnection);
