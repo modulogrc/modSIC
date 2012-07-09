@@ -67,11 +67,19 @@ namespace Modulo.Collect.Service.Contract.Security
             if (encryptCredential == null)
                 return new Credential();
 
-            RSACryptoServiceProvider privateKeyProvider = (RSACryptoServiceProvider)certificate.PrivateKey;
+            var privateKeyProvider = (RSACryptoServiceProvider)certificate.PrivateKey;
+            if (privateKeyProvider == null)
+                throw new NoPrivateKeyException();
+
             var serializedCredentials = privateKeyProvider.Decrypt(encryptCredential, false);
             var serializedCredentialsAsString = Encoding.Default.GetString(serializedCredentials);
 
             return JsonConvert.DeserializeObject<Credential>(serializedCredentialsAsString);
         }
+    }
+
+    public class NoPrivateKeyException:  Exception
+    {
+        public NoPrivateKeyException(): base("No private key was found in server certificate. Check the certificate private key permission or that certificate is valid.") { }
     }
 }

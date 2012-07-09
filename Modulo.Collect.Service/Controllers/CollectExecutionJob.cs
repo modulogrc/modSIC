@@ -206,21 +206,6 @@ namespace Modulo.Collect.Service.Controllers
                     .GetTargetInformation(
                         collectRequest.Target.Credential.CredentialInfo,
                         collectRequest.Target.Address, portNum);
-
-            //var credentialInfo = collectRequest.Target.Credential.CredentialInfo;
-            //var certificate = new CertificateFactory().GetCertificate();
-            
-            //var deserializedCredentials = 
-            //    new CollectServiceCryptoProvider()
-            //        .DecryptCredentialBasedOnCertificateOfServer(credentialInfo, certificate);
-
-            //return 
-            //    new TargetInfoFactory(
-            //        collectRequest.Target.Address,
-            //        deserializedCredentials.Domain,
-            //        deserializedCredentials.UserName,
-            //        deserializedCredentials.Password,
-            //        deserializedCredentials.AdministrativePassword).Create();
         }
 
         private void LogErrorOnJobStarting(Exception ex)

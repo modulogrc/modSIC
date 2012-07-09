@@ -288,7 +288,7 @@
       <Name>Modulo.Collect.Probe.Windows</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modulo.Collect.Service.Contract\Modulo.Collect.Service.Contract.csproj">
-      <Project>{E5370F91-2744-4A8B-88B3-120BCADF0AAC}</Project>
+      <Project>{64B59D3B-AE0B-472A-8819-B326BD7152A3}</Project>
       <Name>Modulo.Collect.Service.Contract</Name>
     </ProjectReference>
   </ItemGroup>

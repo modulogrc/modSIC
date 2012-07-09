@@ -35,12 +35,20 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Modulo.Collect.Service.Contract.Security;
 using Modulo.Collect.Service.Tests.Helpers;
+using System.Text;
 
 namespace Modulo.Collect.Service.Tests
 {
     [TestClass]
     public class CollectServiceCryptoProviderTest
     {
+        private byte[] EncryptedCredentialInBytes;
+
+        public CollectServiceCryptoProviderTest()
+        {
+            this.EncryptedCredentialInBytes = Encoding.Default.GetBytes(new CredentialFactory().GetEncryptCredentialInString());            
+        }
+
         [TestMethod, Owner("lcosta")]
         public void Should_be_possible_to_encrypt_credential_based_on_certificate_of_server()
         {
@@ -56,11 +64,10 @@ namespace Modulo.Collect.Service.Tests
         [TestMethod, Owner("lcosta")]
         public void Should_be_possible_to_decrypt_credential_based_on_certificate_of_server()
         {
-            var encryptCredential = System.Text.Encoding.Default.GetBytes(new CredentialFactory().GetEncryptCredentialInString());            
             var credential = 
                 new CollectServiceCryptoProvider()
                     .DecryptCredentialBasedOnCertificateOfServer(
-                        encryptCredential, 
+                        this.EncryptedCredentialInBytes, 
                         new CertificateHelper().GetCertificateOfServer());
 
             Assert.IsNotNull(credential);
@@ -94,6 +101,24 @@ namespace Modulo.Collect.Service.Tests
             Assert.IsNull(credential.Password, "The Password field must be null.");
             Assert.IsNull(credential.AdministrativePassword, "The AdministrativePassword field must be null.");
         }
+
+        [TestMethod, Owner("lfernandes")]
+        [ExpectedException(typeof(NoPrivateKeyException))]
+        public void Should_throw_a_typed_exception_when_no_private_key_was_found()
+        {
+            var certificateWithNoPrivateKey = CreateCertificateWithNoPrivateKey();
+
+            new CollectServiceCryptoProvider().DecryptCredentialBasedOnCertificateOfServer(this.EncryptedCredentialInBytes, certificateWithNoPrivateKey);
+        }
+
+        private X509Certificate2 CreateCertificateWithNoPrivateKey()
+        {
+            var certificateInBytes = new CertificateHelper().GetCertificateOfServer().Export(X509ContentType.Cert);
+            var certificate = new X509Certificate2(certificateInBytes);
+            certificate.PrivateKey = null;
+            return certificate;
+        }
+
         
     }
 }
