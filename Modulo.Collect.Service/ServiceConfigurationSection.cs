@@ -116,7 +116,16 @@ namespace Modulo.Collect.Service
             get { return (Boolean)this["SchedulerIntervalEnabled"]; }
             set { this["SchedulerIntervalEnabled"] = value.ToString(); }
         }
+
+        [ConfigurationProperty("CollectionTimeoutInMinutes", IsRequired = false)]
+        public int CollectionTimeoutInMinutes
+        {
+            get { return (int)this["CollectionTimeoutInMinutes"]; }
+            set { this["CollectionTimeoutInMinutes"] = value; }
+        }
     }
+
+    
 
     public class ModsicConfigurationHelper
     {
@@ -142,6 +151,21 @@ namespace Modulo.Collect.Service
                 return serviceConfigurationSection.scheduler.SchedulerIntervalEnabled;
 
             return false;
+        }
+
+        public static int? GetCollectionTimeout()
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var serviceConfigurationSection = config.GetSection("ServiceConfigurationSection") as ServiceConfigurationSection;
+            var schedulerSectionIsDefined = (serviceConfigurationSection != null && serviceConfigurationSection.scheduler != null);
+            if (schedulerSectionIsDefined)
+            {
+                var timeoutSection = serviceConfigurationSection.scheduler.CollectionTimeoutInMinutes;
+                if (timeoutSection > 0)
+                    return timeoutSection;
+            }
+
+            return null;
         }
     }
 }

@@ -94,9 +94,13 @@ namespace Modulo.Collect.Service.Controllers
 
             if (!this.ScheduleController.ReschedulingAlreadyExecuted)
                 this.ReScheduleCollectRequestWasNotExecuted();
+            else
+                this.CheckForTimeout();
+
 
             ReadUsersSection();
         }
+
 
         /// <summary>
         /// Requests the service to execute the collect and return the data of requested collect. 
@@ -279,8 +283,6 @@ namespace Modulo.Collect.Service.Controllers
             }
         }
 
-
-
         private Dictionary<string, string> SaveListOfCollectRequest(IDocumentSession session, CollectPackage collectPackage, Request[] collectRequests, DefinitionInfo[] definitions, string clientId)
         {
             var identifiers = new Dictionary<string, string>();
@@ -302,8 +304,6 @@ namespace Modulo.Collect.Service.Controllers
 
             return identifiers;
         }
-
-
 
         /// <summary>
         /// Schedules the execution using schedule information from CollectPackage.
@@ -493,5 +493,85 @@ namespace Modulo.Collect.Service.Controllers
 
             }
         }
+
+        private void CheckForTimeout()
+        {
+            try
+            {
+                var collectiontimeout = ModsicConfigurationHelper.GetCollectionTimeout();
+                if (collectiontimeout != null)
+                {
+                    using (var session = Repository.GetSession())
+                    {
+                        var collectRequestsInExecution = session.Query<CollectRequest>().Where(x => x.Status == CollectRequestStatus.Executing).ToList();
+                        var runningCollections = this.ScheduleController.GetCollectRequestIdRunning().ToList();
+                        foreach (var collectRequest in collectRequestsInExecution)
+                        {
+                            if (!runningCollections.Contains(collectRequest.Oid))
+                            {
+                                var collectionStartDate = GetCollectionStartDate(session, collectRequest);
+                                var collectionDurationInMinutes = GetCollectionDurationInMinutes(collectionStartDate);
+                                if (collectionDurationInMinutes > collectiontimeout)
+                                {
+                                    Log("The {0} timeout expired ({1} minutes) and it will be reschedule...\r\nCurrent time: {2}\r\nCollection started on {3}",
+                                        collectRequest.Oid,
+                                        collectionDurationInMinutes,
+                                        String.Format("{0} ( {1} )", DateTime.UtcNow.ToLongDateString(), DateTime.UtcNow.ToLongTimeString()),
+                                        String.Format("{0} ( {1} )", collectionStartDate.ToLongDateString(), collectionStartDate.ToLongTimeString()));
+
+                                    this.ScheduleController.CancelCollection(collectRequest.Oid);
+                                    this.ScheduleController.ScheduleCollection(collectRequest.Oid, collectRequest.Target.Address, DateTime.UtcNow);
+                                    Log("  The {0} was scheduled.", collectRequest.Oid);
+                                    System.Threading.Thread.Sleep(5000);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log("An error occurred while trying to check timeout: '{0}'\r\nStack:\r\n{1}", ex.Message, ex.StackTrace);
+            }
+        }
+
+        private DateTime GetCollectionStartDate(IDocumentSession session, CollectRequest collectRequest)
+        {
+            var firstExecution = collectRequest.GetCollectExecutions(session).FirstOrDefault();
+            if (firstExecution != null)
+                return firstExecution.StartDate.ToUniversalTime();
+            
+            var collectPackage = Repository.GetCollectPackages(session, new[] { collectRequest.CollectPackageId }).First();
+            return collectPackage.ScheduleInformation.ExecutionDate;
+        }
+
+        private void Log(string message, params object[] args)
+        {
+            try
+            {
+                var logMessage = String.Format(message, args);
+                var logFilepath = "c:\\temp\\modsicGlobalLog.log";
+                System.IO.File.AppendAllText(logFilepath, Environment.NewLine);
+                System.IO.File.AppendAllText(logFilepath, Environment.NewLine);
+                System.IO.File.AppendAllText(logFilepath, logMessage);
+                System.IO.File.AppendAllText(logFilepath, Environment.NewLine);
+                System.IO.File.AppendAllText(logFilepath, Environment.NewLine);
+            }
+            catch
+            {
+            }
+        }
+
+
+        private static int GetCollectionDurationInMinutes(DateTime collectionStartDate)
+        {
+            var utcNow = DateTime.UtcNow;
+            var utcNowSpan = new TimeSpan(utcNow.Hour, utcNow.Minute, utcNow.Second);
+            var collectionStartSpan = new TimeSpan(collectionStartDate.Hour, collectionStartDate.Minute, collectionStartDate.Second);
+            var collectionTimeSpan = utcNowSpan.Subtract(collectionStartSpan);
+            var collectionDurationInMinutes = Convert.ToInt32(collectionTimeSpan.TotalMinutes);
+            return collectionDurationInMinutes;
+        }
+
     }
 }
