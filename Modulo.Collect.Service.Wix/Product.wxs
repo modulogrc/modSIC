@@ -138,7 +138,8 @@
               <File Id='Lucene.Net.Contrib.SpellChecker.dll' Name='Lucene.Net.Contrib.SpellChecker.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Lucene.Net.Contrib.SpellChecker.dll' />
               <File Id='NLog.dll' Name='NLog.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)NLog.dll' />
               <File Id='Raven.Studio.xap' Name='Raven.Studio.xap' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Raven.Studio.xap' />
-
+              <File Id='NLog.config' Name='NLog.config' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)NLog.config' />
+              
               <!-- Topshelf -->
               <File Id='Topshelf.dll' Name='Topshelf.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Topshelf.dll' />
 
