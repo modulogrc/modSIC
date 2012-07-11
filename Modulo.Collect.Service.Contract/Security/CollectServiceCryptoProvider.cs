@@ -80,6 +80,6 @@ namespace Modulo.Collect.Service.Contract.Security
 
     public class NoPrivateKeyException:  Exception
     {
-        public NoPrivateKeyException(): base("No private key was found in server certificate. Check the certificate private key permission or that certificate is valid.") { }
+        public NoPrivateKeyException() : base("The private key for the certificate could not be obtained. Check the permissions for the private key and make sure the certificate is valid.") { }
     }
 }
