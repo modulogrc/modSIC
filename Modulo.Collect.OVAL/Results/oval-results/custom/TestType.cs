@@ -41,6 +41,7 @@ using Modulo.Collect.OVAL.Helpers;
 using Modulo.Collect.OVAL.SystemCharacteristics;
 using Modulo.Collect.OVAL.Definitions.VariableEvaluators;
 using Modulo.Collect.OVAL.Definitions.variableEvaluator;
+using System;
 
 namespace Modulo.Collect.OVAL.Results
 {
@@ -249,13 +250,8 @@ namespace Modulo.Collect.OVAL.Results
                 {
                     foreach (var state in testStates)
                     {
-
                         var evaluatedVariables = CreateEvalutedVariablesFromStateType(state, results);
-
-                        var tempResult =
-                            new StateTypeComparator(state, collectedItem, evaluatedVariables)
-                                .IsEquals() ? ResultEnumeration.@true : ResultEnumeration.@false;
-                        
+                        var tempResult = ExecuteStateComparator(collectedItem, state, evaluatedVariables);
                         stateResults.Add(tempResult);
                     }
 
@@ -268,6 +264,23 @@ namespace Modulo.Collect.OVAL.Results
             stateResult = oval_results.CombineResultsByCheck(itemsResults, check);
 
         	return stateResult;
+        }
+
+        private ResultEnumeration ExecuteStateComparator(ItemType collectedItem, StateType state, VariablesEvaluated evaluatedVariables)
+        {
+            try
+            {
+                var stateComparator = new StateTypeComparator(state, collectedItem, evaluatedVariables);
+                if (stateComparator.IsEquals())
+                    return ResultEnumeration.@true;
+
+                return ResultEnumeration.@false;
+            }
+            catch (NotSupportedException)
+            {
+                return ResultEnumeration.unknown;
+            }
+            
         }
 
 

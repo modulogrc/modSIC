@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<!-- ========================================= -->
+<!-- ==========  __OS_FULL_NAME__     ========== -->
+<!-- ========================================= -->
+<oval_definitions xsi:schemaLocation=
+                   "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux linux-definitions-schema.xsd 
+                    http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd 
+									  http://oval.mitre.org/XMLSchema/oval-common-5 oval-common-schema.xsd"
+									  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+									  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+									  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+									  xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <generator>
+    <oval:product_name>Risk Manager</oval:product_name>
+    <oval:product_version>7.0</oval:product_version>
+    <oval:schema_version>5.9</oval:schema_version>
+    <oval:timestamp>2010-01-13T16:29:27.000-03:00</oval:timestamp>
+    <vendor>Modulo Security</vendor>
+  </generator>
+
+  <!-- ========================================= -->
+  <!-- ========== 1. DEFINITIONS      ========== -->
+  <!-- ========================================= -->
+  <definitions>
+    <definition id="oval:modulo:def:1" version="1" class="compliance">
+      <metadata>
+        <title/>
+        <description/>
+      </metadata>
+      <criteria>
+        <criterion comment="..." test_ref="oval:modulo:tst:1"/>
+      </criteria>
+    </definition>
+
+    
+  </definitions>
+  <!-- ========================================= -->
+  <!-- ========== 2. TESTS            ========== -->
+  <!-- ========================================= -->
+  <tests>
+    <rpminfo_test id="oval:modulo:tst:1" check="at least one" check_existence="at_least_one_exists" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <object object_ref="oval:modulo:obj:1"/>
+      <state state_ref="oval:modulo:ste:1"/>
+    </rpminfo_test>
+  </tests>  
+  <!-- ========================================= -->
+  <!-- ========== 3. OBJECTS          ========== -->
+  <!-- ========================================= -->
+  <objects>
+    <rpminfo_object id="oval:modulo:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>firefox</name>
+    </rpminfo_object>
+  </objects>
+
+  <!-- ========================================= -->
+  <!-- ========== 4. STATES           ========== -->
+  <!-- ========================================= -->
+  <states>
+    <rpminfo_state id="oval:modulo:ste:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+      <name>firefox</name>
+      <arch var_ref="oval:modulo:var:1"/>
+      <epoch>1</epoch>
+      <evr datatype="evr_string">1:2.01</evr>
+      <signature_keyid>12346578123412341234123456789012</signature_keyid>
+    </rpminfo_state>
+  </states>
+  
+  
+  <!-- ========================================= -->
+  <!-- =========== 5. VARIABLES  ============ -->
+  <!-- ========================================= -->
+
+  <variables>
+    <constant_variable id="oval:modulo:var:1" datatype="string" version="1" comment="...">
+      <value>x86</value>
+      <value>x64</value>
+    </constant_variable>
+  </variables>
+
+</oval_definitions>

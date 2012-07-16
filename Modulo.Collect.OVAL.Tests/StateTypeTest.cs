@@ -38,6 +38,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Modulo.Collect.OVAL.Definitions;
 using Modulo.Collect.OVAL.Tests.helpers;
 using System.Reflection;
+using Modulo.Collect.OVAL.Results;
 
 namespace Modulo.Collect.OVAL.Tests
 {
@@ -110,6 +111,19 @@ namespace Modulo.Collect.OVAL.Tests
             var result = someList.FirstOrDefault();
 
             Assert.IsNull(result);
+        }
+
+        [TestMethod, Owner("lfernandes")]
+        public void Should_be_possible_to_handle_with_state_referencing_a_variable_with_multiple_values()
+        {
+            var ovalDefinitions = new OvalDocumentLoader().GetFakeOvalDefinitions("definitions_all_linux_with_state_referencing_variable_with_multi_values.xml");
+            var ovalSystemCharacteristics = new OvalDocumentLoader().GetFakeOvalSystemCharacteristics("system_characteristics_with_state_referencing_variable_with_multi_values.xml");
+            var ovalResults = oval_results.CreateFromDocuments(ovalDefinitions, ovalSystemCharacteristics, null);
+
+            ovalResults.Analyze();
+
+            var firstDefinition = ovalResults.results.First().definitions.First();
+            Assert.AreEqual(ResultEnumeration.unknown, firstDefinition.result);
 
         }
        
