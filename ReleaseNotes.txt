@@ -1,0 +1,14 @@
+modSIC 1.7.4
+============
+- [Bug Fix] Add treatment for state referencing a variable with multiple values.
+Now, a test that reference a state that point to a variable with
+multiple values will be answered as unknown.
+- Added Release Notes file.
+
+
+modSIC 1.7.3
+============
+
+ - Now, modSIC will restart a collection that is taking too long.
+ - An nlog.config file was added to the installer, enabling verbose logging.
+ - Treatment was developed for a certificate in which the private key could not be obtained.
