@@ -360,8 +360,12 @@ namespace Modulo.Collect.Probe.Common
                 output = output.Substring(0, endpos + 1);
             }
 
-            if (isLoginAttempt && promptChar != '>')
-                throw new ApplicationException("Failed to login: no '>' prompt received after terminal setup");
+            if (isLoginAttempt)
+            {
+                var loginSuccessfully = (promptChar == '>' || promptChar == '#');
+                if (!loginSuccessfully)
+                    throw new ApplicationException("Failed to login: no '>' prompt received after terminal setup");
+            }
 
             return output;
         }
