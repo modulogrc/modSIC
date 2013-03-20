@@ -1,3 +1,7 @@
+modSIC 1.7.5
+============
+- Bug Fix - Added support to collect Cisco iOS with disclaimer on login.
+
 modSIC 1.7.4
 ============
 - [Bug Fix] Add treatment for state referencing a variable with multiple values.
