@@ -52,10 +52,9 @@ namespace Modulo.Collect.Probe.Unix.Probes.FileProbes.XmlFileContent
 
         protected override void InitializeCustomFileProvider()
         {
-            var sshExec = ((SSHConnectionProvider)ConnectionProvider).SSHExec;
-            var newSSHProvider = new SSHProvider(sshExec);
-            var newFileContentCollector = new FileContentCollector(newSSHProvider);
-            var newFileCollector = new FileCollector() { LsCommand = new LsCommand(sshExec) };
+            var commandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner;
+            var newFileContentCollector = new FileContentCollector(commandRunner);
+            var newFileCollector = new FileCollector() { LsCommand = new LsCommand(commandRunner) };
             var newUnixFileProvider = new UnixFileProvider(newFileContentCollector, newFileCollector);
 
             CustomFileProvider = newUnixFileProvider;

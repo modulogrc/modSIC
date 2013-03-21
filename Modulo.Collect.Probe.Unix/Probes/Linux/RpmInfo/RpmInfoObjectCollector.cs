@@ -32,16 +32,12 @@
  * */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Modulo.Collect.OVAL.SystemCharacteristics;
+using Modulo.Collect.OVAL.SystemCharacteristics.Linux;
 using Modulo.Collect.Probe.Common;
 using Modulo.Collect.Probe.Common.BasicClasses;
-using Modulo.Collect.OVAL.SystemCharacteristics.Unix;
-using Modulo.Collect.OVAL.SystemCharacteristics.Linux;
 using Modulo.Collect.Probe.Common.Helpers;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
-using Tamir.SharpSsh;
-using Modulo.Collect.OVAL.SystemCharacteristics;
 
 namespace Modulo.Collect.Probe.Linux.RPMInfo
 {
@@ -53,8 +49,6 @@ namespace Modulo.Collect.Probe.Linux.RPMInfo
         {
             throw new NotImplementedException();
         }
-
-
 
         protected override IEnumerable<CollectedItem> collectDataForSystemItem(ItemType systemItem)
         {

@@ -41,7 +41,6 @@ using Modulo.Collect.Probe.Common.Test.Checkers;
 using Modulo.Collect.OVAL.SystemCharacteristics.Linux;
 using Modulo.Collect.Probe.Common;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
-using Tamir.SharpSsh;
 using Rhino.Mocks;
 using Modulo.Collect.OVAL.SystemCharacteristics;
 

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
+
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
@@ -28,11 +29,41 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
     public class ProcessInfoCollector
     {
-        private SshExec exec;
+        private SshCommandLineRunner CommandLineRunner;
 
-        public ProcessInfoCollector(SshExec sshExec)
+        public ProcessInfoCollector(SshCommandLineRunner commandLineRunner)
         {
-            this.exec = sshExec;
+            this.CommandLineRunner = commandLineRunner;
+        }
+
+        public virtual IEnumerable<UnixProcessInfo> GetProcessInfo()
+        {
+
+            var allTargetProcesses = TryToGetProcessInfo(true);
+            if (allTargetProcesses == null)
+            {
+                // Try without the "class" keyword if error
+                allTargetProcesses = TryToGetProcessInfo(false);
+            }
+
+            return allTargetProcesses;
+        }
+
+
+        private IEnumerable<UnixProcessInfo> TryToGetProcessInfo(Boolean withClassArgument)
+        {
+            //"ps -A -o 'pid uid ppid pri pid time etime tty args' || echo ERROR"
+            var argument = withClassArgument ? "class" : "pid";
+            var commandText = String.Format("ps -A -o 'pid uid ppid pri {0} time etime tty args' || echo ERROR", argument);
+            var cmdOutput = CommandLineRunner.ExecuteCommand(commandText);
+            var commandLines = cmdOutput.SplitStringByDefaultNewLine();
+            var baseTime = DateTime.Now;
+            
+            if (commandLines.Last() == "ERROR")
+                return null;
+            
+            var targetProcessInfo = commandLines.Select(cmdLine => parseProcessInfo(cmdLine, baseTime));
+            return targetProcessInfo.Where(procInfo => procInfo != null).ToList();
         }
 
         private long psTime2Secs(string psTime)
@@ -84,43 +115,6 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
             retInfo.StartTime = baseTime.AddSeconds(-psTime2Secs(ffields[6]));
 
             return retInfo;
-        }
-
-        public virtual List<UnixProcessInfo> getProcessInfo()
-        {
-            List<UnixProcessInfo> retList = new List<UnixProcessInfo>();
-            string cmdOutput = exec.RunCommand("ps -A -o 'pid uid ppid pri class time etime tty args' || echo ERROR");
-            char[] lineseps = { '\r', '\n' };
-            string[] lines = cmdOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            DateTime baseTime = DateTime.Now;
-
-            if (lines[lines.GetUpperBound(0)] != "ERROR")
-            {
-                foreach (string line in lines)
-                {
-                    UnixProcessInfo thisInfo = parseProcessInfo(line, baseTime);
-                    if (thisInfo != null)
-                        retList.Add(thisInfo);
-                }
-            }
-            else
-            {
-                // Try without the "class" keyword if error
-                cmdOutput = exec.RunCommand("ps -A -o 'pid uid ppid pri pid time etime tty args' || echo ERROR");
-                lines = cmdOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-                baseTime = DateTime.Now;
-                if (lines[lines.GetUpperBound(0)] != "ERROR")
-                {
-                    foreach (string line in lines)
-                    {
-                        UnixProcessInfo thisInfo = parseProcessInfo(line, baseTime);
-                        if (thisInfo != null)
-                            retList.Add(thisInfo);
-                    }
-                }
-            }
-
-            return retList;
         }
     }
 }

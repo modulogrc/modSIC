@@ -51,6 +51,12 @@ namespace Modulo.Collect.Probe.Common.Extensions
             return new List<String>(new String[] { sourceString });
         }
 
-        
+        public static IEnumerable<String> SplitStringByDefaultNewLine(this String commandReturn)
+        {
+            if (String.IsNullOrWhiteSpace(commandReturn))
+                return null;
+
+            return commandReturn.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries); 
+        }
     }
 }

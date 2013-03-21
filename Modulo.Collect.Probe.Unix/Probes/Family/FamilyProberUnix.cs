@@ -67,8 +67,8 @@ namespace Modulo.Collect.Probe.Unix.Family
 
         private IFamilyCollector CreateFamilyCollectorForUnix()
         {
-            var SSHExec = ((SSHConnectionProvider)base.ConnectionProvider).SSHExec;
-            return new FamilyCollectorUnix() { SSHExec = SSHExec };
+            var sshCommandRunner = ((SSHConnectionProvider)base.ConnectionProvider).SshCommandLineRunner;
+            return new FamilyCollectorUnix() { CommandRunner = sshCommandRunner };
         }
 
         protected override set GetSetElement(Definitions.ObjectType objectType)

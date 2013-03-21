@@ -36,7 +36,6 @@ using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
-using Tamir.SharpSsh;
 using Rhino.Mocks;
 
 namespace Modulo.Collect.Probe.Unix.Test.SSHCollectorsTests
@@ -83,18 +82,19 @@ namespace Modulo.Collect.Probe.Unix.Test.SSHCollectorsTests
             Assert.AreEqual(FAKE_PATTERN, textFileContent.Text);
         }
 
-        private SSHProvider CreateFakeSSHProvider()
+        private SshCommandLineRunner CreateFakeSSHProvider()
         {
             var mocks = new MockRepository();
             var fakeAWKReturn = GetFakeAWKReturn();
-            var fakeSSHProvider = mocks.DynamicMock<SSHProvider>(new SshExec(string.Empty, string.Empty));
-            
-            Expect.Call(fakeSSHProvider.ExecuteCommand("awk '/title/ {print}' </tmp/app"))
+            var fakeSshCommandRunner = mocks.DynamicMock<SshCommandLineRunner>();
+            Expect
+                .Call(fakeSshCommandRunner.ExecuteCommand("awk '/title/ {print}' </tmp/app"))
+                .IgnoreArguments()
                 .Return(fakeAWKReturn);
             
             mocks.ReplayAll();
 
-            return fakeSSHProvider;
+            return fakeSshCommandRunner;
         }
 
         private string GetFakeAWKReturn()

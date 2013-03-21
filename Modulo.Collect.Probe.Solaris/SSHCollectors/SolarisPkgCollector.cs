@@ -34,7 +34,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
+
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
@@ -70,21 +71,21 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
     public class SolarisPkgCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
-        public Dictionary<string, string> getAllPkgProps(string pkg)
+        public Dictionary<string, string> CollectAllPackages(string pkg)
         {
-            Dictionary<string, string> retList = new Dictionary<string, string>();
-            string cmdOutput = SSHExec.RunCommand("pkginfo -l '" + pkg + "'");
-            char[] lineseps = { '\r', '\n' };
-            string[] lines = cmdOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
+            var retList = new Dictionary<string, string>();
+            var cmdText = String.Format("pkginfo -l '{0}'", pkg);
+            var cmdOutput = CommandRunner.ExecuteCommand(cmdText).SplitStringByDefaultNewLine();
+            foreach (var line in cmdOutput)
             {
-                string[] comps = line.Split(new char[] { ' ', '\t' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                var comps = line.Split(new char[] { ' ', '\t' }, 2, StringSplitOptions.RemoveEmptyEntries);
                 if (comps.Length == 2)
                 {
                     if (comps[0].EndsWith(":"))
                         comps[0] = comps[0].Remove(comps[0].Length - 1);
+
                     retList[comps[0]] = comps[1];
                 }
             }
@@ -92,10 +93,10 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
             return retList;
         }
 
-        public SolarisPkgInfo getPkgInfo(string pkg)
+        public SolarisPkgInfo CollectPackageInfo(string pkg)
         {
             string tmpVal;
-            Dictionary<string, string> allProps = getAllPkgProps(pkg);
+            Dictionary<string, string> allProps = CollectAllPackages(pkg);
             SolarisPkgInfo retVal = new SolarisPkgInfo() { PkgInst = pkg };
             allProps.TryGetValue("NAME", out tmpVal);
             retVal.Name = tmpVal;

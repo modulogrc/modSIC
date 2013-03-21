@@ -34,7 +34,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
@@ -52,21 +52,22 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
     public class SolarisIsaCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
-        public SolarisIsaInfo getIsaInfo()
+        public SolarisIsaInfo CollectIsaInfo()
         {
-            SolarisIsaInfo retVal = null;
-            string cmdOutput = SSHExec.RunCommand("isainfo -b && isainfo -k && isainfo -n");
-            string[] comps = cmdOutput.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            if (comps.Length == 3)
+            var cmdOutput = CommandRunner.ExecuteCommand("isainfo -b && isainfo -k && isainfo -n").SplitStringByDefaultNewLine();
+            if (cmdOutput.Count() == 3)
             {
-                retVal = new SolarisIsaInfo();
-                retVal.Bits = comps[0];
-                retVal.KernelIsa = comps[1];
-                retVal.ApplicationIsa = comps[2];
+                return new SolarisIsaInfo()
+                {
+                    Bits = cmdOutput.ElementAt(0),
+                    KernelIsa = cmdOutput.ElementAt(1),
+                    ApplicationIsa = cmdOutput.ElementAt(2)
+                };
             }
-            return retVal;
+
+            return null;
         }
     }
 }

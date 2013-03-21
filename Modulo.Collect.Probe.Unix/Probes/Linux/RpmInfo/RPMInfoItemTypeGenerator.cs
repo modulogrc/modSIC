@@ -31,25 +31,23 @@
  * POSSIBILITY OF SUCH DAMAGE.
  * */
 using System.Collections.Generic;
-using Modulo.Collect.OVAL.Definitions.Unix;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Modulo.Collect.OVAL.Common;
+using Modulo.Collect.OVAL.Definitions;
 using Modulo.Collect.OVAL.Definitions.Linux;
 using Modulo.Collect.OVAL.Definitions.variableEvaluator;
 using Modulo.Collect.OVAL.SystemCharacteristics;
-using Modulo.Collect.OVAL.SystemCharacteristics.Unix;
 using Modulo.Collect.OVAL.SystemCharacteristics.Linux;
 using Modulo.Collect.Probe.Common;
-using Modulo.Collect.OVAL.Definitions;
-using Tamir.SharpSsh;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
-using Modulo.Collect.OVAL.Common;
-using System.Text.RegularExpressions;
-using System.Linq;
+using Modulo.Collect.Probe.Unix;
 
 namespace Modulo.Collect.Probe.Linux.RPMInfo
 {
     public class RPMInfoItemTypeGenerator : IItemTypeGenerator
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
         public RPMInfoCollector RpmInfoCollector { get; set; }
 
@@ -101,7 +99,7 @@ namespace Modulo.Collect.Probe.Linux.RPMInfo
         private IEnumerable<string> GetAllRpmInfoOnTarget()
         {
             if (this.RpmInfoCollector == null)
-                this.RpmInfoCollector = new RPMInfoCollector() { SSHExec = this.SSHExec };
+                this.RpmInfoCollector = new RPMInfoCollector() { CommandRunner = this.CommandRunner };
             
             return this.RpmInfoCollector.GetAllTargetRpmNames();
         }

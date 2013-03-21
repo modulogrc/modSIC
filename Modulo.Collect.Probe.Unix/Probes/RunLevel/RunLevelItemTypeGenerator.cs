@@ -32,21 +32,20 @@
  * */
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Modulo.Collect.OVAL.Common;
 using Modulo.Collect.OVAL.Definitions;
 using Modulo.Collect.OVAL.Definitions.Unix;
 using Modulo.Collect.OVAL.Definitions.variableEvaluator;
 using Modulo.Collect.OVAL.SystemCharacteristics;
 using Modulo.Collect.OVAL.SystemCharacteristics.Unix;
 using Modulo.Collect.Probe.Common;
-using Modulo.Collect.OVAL.Common;
-using Tamir.SharpSsh;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
 
 namespace Modulo.Collect.Probe.Unix.RunLevel
 {
     public class RunLevelItemTypeGenerator : IItemTypeGenerator
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandLineRunner { get; set; }
 
         public RunLevelCollector RunLevelCollector { get; set; }
 
@@ -90,9 +89,9 @@ namespace Modulo.Collect.Probe.Unix.RunLevel
         private IEnumerable<string> GetServiceUniverse()
         {
             if (this.RunLevelCollector == null)
-                this.RunLevelCollector = new RunLevelCollector();
+                this.RunLevelCollector = new RunLevelCollector() { CommandLineRunner = CommandLineRunner };
 
-            return this.RunLevelCollector.GetTargetServices(SSHExec);
+            return this.RunLevelCollector.GetTargetServices();
         }
 
         private IEnumerable<string> NotEqualOperation(IEnumerable<string> serviceNameValues, IEnumerable<string> universe)

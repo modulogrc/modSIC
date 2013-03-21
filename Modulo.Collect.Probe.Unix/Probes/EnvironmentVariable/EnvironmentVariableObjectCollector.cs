@@ -39,7 +39,6 @@ using Modulo.Collect.Probe.Common.BasicClasses;
 using Modulo.Collect.OVAL.SystemCharacteristics;
 using Modulo.Collect.Probe.Common.Helpers;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
-using Tamir.SharpSsh;
 
 namespace Modulo.Collect.Probe.Unix.EnvironmentVariable
 {

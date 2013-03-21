@@ -34,7 +34,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
@@ -51,7 +51,7 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
     public class SolarisPatchCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
         private static SolarisPatchInfo parsePatchInfo(string myLine)
         {
@@ -85,18 +85,22 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
         public Dictionary<ulong, SolarisPatchInfo> getPatchInfo()
         {
-            Dictionary<ulong, SolarisPatchInfo> retList = new Dictionary<ulong, SolarisPatchInfo>();
-            string cmdOutput = SSHExec.RunCommand("showrev -p");
-            char[] lineseps = { '\r', '\n' };
-            string[] lines = cmdOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
-            {
-                SolarisPatchInfo thisInfo = parsePatchInfo(line);
-                if (thisInfo != null)
-                    retList[thisInfo.Base] = thisInfo;
-            }
+            var commandOutputLines = CommandRunner.ExecuteCommand("showrev -p").SplitStringByDefaultNewLine();
+            var allPatchInfo = commandOutputLines.Select(cmd => parsePatchInfo(cmd));
+            return allPatchInfo.Where(info => info != null).ToDictionary(x => x.Base, x => x);
+            
+            //Dictionary<ulong, SolarisPatchInfo> retList = new Dictionary<ulong, SolarisPatchInfo>();
+            //string cmdOutput = SSHExec.RunCommand();
+            //char[] lineseps = { '\r', '\n' };
+            //string[] lines = cmdOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
+            //foreach (string line in lines)
+            //{
+            //    SolarisPatchInfo thisInfo = parsePatchInfo(line);
+            //    if (thisInfo != null)
+            //        retList[thisInfo.Base] = thisInfo;
+            //}
 
-            return retList;
+            //return retList;
         }
     }
 }

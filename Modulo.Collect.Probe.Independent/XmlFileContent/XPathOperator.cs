@@ -59,7 +59,7 @@ namespace Modulo.Collect.Probe.Independent.XmlFileContent
             return this.applyXpath(xmlFileContent, xPathExpression, returnOuterXml);
         }
 
-        private string[] getFileLinesContent(string xmlFilepath)
+        private IEnumerable<String> getFileLinesContent(string xmlFilepath)
         {
             return this.FileContentProvider.GetFileLinesContentFromHost(xmlFilepath);
         }

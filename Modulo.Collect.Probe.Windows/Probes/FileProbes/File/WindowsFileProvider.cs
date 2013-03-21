@@ -64,9 +64,8 @@ namespace Modulo.Collect.Probe.Windows.File
             this.WmiDataProvider = wmiDataProvider;
         }
 
-        public virtual string[] GetFileLinesContentFromHost(string localFilepath)
+        public virtual IEnumerable<String> GetFileLinesContentFromHost(string localFilepath)
         {
-            //var remoteUNC = TargetInfo.GetRemoteUNC();
             var adminShareFilePath = this.GetAdministrativeSharePathFromLocalFilepath(TargetInfo.GetAddress(), localFilepath);
             if (string.IsNullOrWhiteSpace(adminShareFilePath))
                 return new string[] { };

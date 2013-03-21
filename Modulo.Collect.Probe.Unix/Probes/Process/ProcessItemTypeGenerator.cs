@@ -31,7 +31,7 @@ namespace Modulo.Collect.Probe.Unix.Probes.Process
 
         private IEnumerable<OVAL.SystemCharacteristics.ItemType> ProcessEntityOperation(String entityValue, EntityObjectStringType entity)
         {
-            var allTargetProcesses = this.ProcessCollector.getProcessInfo();
+            var allTargetProcesses = this.ProcessCollector.GetProcessInfo();
             var processResult = new List<OVAL.SystemCharacteristics.ItemType>();
             var comparator = new OvalComparatorFactory().GetComparator(SimpleDatatypeEnumeration.@string);
             foreach (var targetProcess in allTargetProcesses)

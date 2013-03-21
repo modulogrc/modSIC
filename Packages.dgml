@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Installer\Modulo.Collect.ClientConsole" Label="Modulo.Collect.ClientConsole" Category="Project" />
+    <Node Id="CommandLineParser 1.8.0.7" Label="CommandLineParser 1.8.0.7" Category="Package" />
+    <Node Id="Tests\Modulo.Collect.GraphicalConsole.Tests" Label="Modulo.Collect.GraphicalConsole.Tests" Category="Project" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="Tests\Modulo.Collect.ClientConsole.Tests" Label="Modulo.Collect.ClientConsole.Tests" Category="Project" />
+    <Node Id="CommandLineParser 1.8.0.7" Label="CommandLineParser 1.8.0.7" Category="Package" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="Tests\Modulo.Collect.Service.API.Tests" Label="Modulo.Collect.Service.API.Tests" Category="Project" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="Tests\Modulo.Collect.OVAL.Tests" Label="Modulo.Collect.OVAL.Tests" Category="Project" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="Tests\Modulo.Collect.Service.Tests" Label="Modulo.Collect.Service.Tests" Category="Project" />
+    <Node Id="Common.Logging 1.2.0" Label="Common.Logging 1.2.0" Category="Package" />
+    <Node Id="CommonServiceLocator 1.0" Label="CommonServiceLocator 1.0" Category="Package" />
+    <Node Id="Newtonsoft.Json 4.0.5" Label="Newtonsoft.Json 4.0.5" Category="Package" />
+    <Node Id="NLog 2.0.0.2000" Label="NLog 2.0.0.2000" Category="Package" />
+    <Node Id="Quartz 1.0.3" Label="Quartz 1.0.3" Category="Package" />
+    <Node Id="RavenDB-Embedded 1.0.573" Label="RavenDB-Embedded 1.0.573" Category="Package" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="Tamir.SharpSSH 1.1.1.13" Label="Tamir.SharpSSH 1.1.1.13" Category="Package" />
+    <Node Id="Unity 2.1.505.0" Label="Unity 2.1.505.0" Category="Package" />
+    <Node Id="Tests\Modulo.Collect.Probe.Common.Test" Label="Modulo.Collect.Probe.Common.Test" Category="Project" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="Tamir.SharpSSH 1.1.1.13" Label="Tamir.SharpSSH 1.1.1.13" Category="Package" />
+    <Node Id="Service\Modulo.Collect.Service" Label="Modulo.Collect.Service" Category="Project" />
+    <Node Id="Common.Logging 1.2.0" Label="Common.Logging 1.2.0" Category="Package" />
+    <Node Id="CommonServiceLocator 1.0" Label="CommonServiceLocator 1.0" Category="Package" />
+    <Node Id="log4net 1.2.10" Label="log4net 1.2.10" Category="Package" />
+    <Node Id="Newtonsoft.Json 4.0.5" Label="Newtonsoft.Json 4.0.5" Category="Package" />
+    <Node Id="NLog 2.0.0.2000" Label="NLog 2.0.0.2000" Category="Package" />
+    <Node Id="Quartz 1.0.3" Label="Quartz 1.0.3" Category="Package" />
+    <Node Id="RavenDB-Embedded 1.0.573" Label="RavenDB-Embedded 1.0.573" Category="Package" />
+    <Node Id="Tamir.SharpSSH 1.1.1.13" Label="Tamir.SharpSSH 1.1.1.13" Category="Package" />
+    <Node Id="Thinktecture.IdentityModel 1.3.0.0" Label="Thinktecture.IdentityModel 1.3.0.0" Category="Package" />
+    <Node Id="Topshelf 2.2.2.0" Label="Topshelf 2.2.2.0" Category="Package" />
+    <Node Id="Unity 2.1.505.0" Label="Unity 2.1.505.0" Category="Package" />
+    <Node Id="Service\Modulo.Collect.Service.Contract" Label="Modulo.Collect.Service.Contract" Category="Project" />
+    <Node Id="Newtonsoft.Json 4.0.5" Label="Newtonsoft.Json 4.0.5" Category="Package" />
+    <Node Id="Probes\Modulo.Collect.Probe.Solaris" Label="Modulo.Collect.Probe.Solaris" Category="Project" />
+    <Node Id="Tamir.SharpSSH 1.1.1.13" Label="Tamir.SharpSSH 1.1.1.13" Category="Package" />
+    <Node Id="Probes\Modulo.Collect.Probe.Independent" Label="Modulo.Collect.Probe.Independent" Category="Project" />
+    <Node Id="MySql.Data 6.4.4" Label="MySql.Data 6.4.4" Category="Package" />
+    <Node Id="Npgsql 2.0.11" Label="Npgsql 2.0.11" Category="Package" />
+    <Node Id="Probes\Modulo.Collect.Probe.Unix" Label="Modulo.Collect.Probe.Unix" Category="Project" />
+    <Node Id="Tamir.SharpSSH 1.1.1.13" Label="Tamir.SharpSSH 1.1.1.13" Category="Package" />
+  </Nodes>
+  <Links>
+    <Link Source="Installer\Modulo.Collect.ClientConsole" Target="CommandLineParser 1.8.0.7" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.GraphicalConsole.Tests" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.ClientConsole.Tests" Target="CommandLineParser 1.8.0.7" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.ClientConsole.Tests" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.Service.API.Tests" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.OVAL.Tests" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="Quartz 1.0.3" Target="Common.Logging 1.2.0" Category="Package Dependency" />
+    <Link Source="RavenDB-Embedded 1.0.573" Target="NLog 2.0.0.2000" Category="Package Dependency" />
+    <Link Source="RavenDB-Embedded 1.0.573" Target="Newtonsoft.Json 4.0.5" Category="Package Dependency" />
+    <Link Source="Unity 2.1.505.0" Target="CommonServiceLocator 1.0" Category="Package Dependency" />
+    <Link Source="Tests\Modulo.Collect.Service.Tests" Target="Quartz 1.0.3" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.Service.Tests" Target="RavenDB-Embedded 1.0.573" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.Service.Tests" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.Service.Tests" Target="Tamir.SharpSSH 1.1.1.13" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.Service.Tests" Target="Unity 2.1.505.0" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.Probe.Common.Test" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="Tests\Modulo.Collect.Probe.Common.Test" Target="Tamir.SharpSSH 1.1.1.13" Category="Installed Package" />
+    <Link Source="Quartz 1.0.3" Target="Common.Logging 1.2.0" Category="Package Dependency" />
+    <Link Source="RavenDB-Embedded 1.0.573" Target="NLog 2.0.0.2000" Category="Package Dependency" />
+    <Link Source="RavenDB-Embedded 1.0.573" Target="Newtonsoft.Json 4.0.5" Category="Package Dependency" />
+    <Link Source="Topshelf 2.2.2.0" Target="log4net 1.2.10" Category="Package Dependency" />
+    <Link Source="Unity 2.1.505.0" Target="CommonServiceLocator 1.0" Category="Package Dependency" />
+    <Link Source="Service\Modulo.Collect.Service" Target="Quartz 1.0.3" Category="Installed Package" />
+    <Link Source="Service\Modulo.Collect.Service" Target="RavenDB-Embedded 1.0.573" Category="Installed Package" />
+    <Link Source="Service\Modulo.Collect.Service" Target="Tamir.SharpSSH 1.1.1.13" Category="Installed Package" />
+    <Link Source="Service\Modulo.Collect.Service" Target="Thinktecture.IdentityModel 1.3.0.0" Category="Installed Package" />
+    <Link Source="Service\Modulo.Collect.Service" Target="Topshelf 2.2.2.0" Category="Installed Package" />
+    <Link Source="Service\Modulo.Collect.Service" Target="Unity 2.1.505.0" Category="Installed Package" />
+    <Link Source="Service\Modulo.Collect.Service.Contract" Target="Newtonsoft.Json 4.0.5" Category="Installed Package" />
+    <Link Source="Probes\Modulo.Collect.Probe.Solaris" Target="Tamir.SharpSSH 1.1.1.13" Category="Installed Package" />
+    <Link Source="Probes\Modulo.Collect.Probe.Independent" Target="MySql.Data 6.4.4" Category="Installed Package" />
+    <Link Source="Probes\Modulo.Collect.Probe.Independent" Target="Npgsql 2.0.11" Category="Installed Package" />
+    <Link Source="Probes\Modulo.Collect.Probe.Unix" Target="Tamir.SharpSSH 1.1.1.13" Category="Installed Package" />
+  </Links>
+  <Categories>
+    <Category Id="Project" />
+    <Category Id="Package" />
+  </Categories>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Project" ValueLabel="True">
+      <Condition Expression="HasCategory('Project')" />
+      <Setter Property="Background" Value="Blue" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Package Dependency" ValueLabel="True">
+      <Condition Expression="HasCategory('Package Dependency')" />
+      <Setter Property="Background" Value="Yellow" />
+    </Style>
+  </Styles>
+</DirectedGraph>

@@ -34,7 +34,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
@@ -63,39 +63,39 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
     public class ApacheCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
-        public List<ApacheInfo> getApacheInfo()
+        public IEnumerable<ApacheInfo> getApacheInfo()
         {
-            List<ApacheInfo> retList = new List<ApacheInfo>();
-            List<string> pathList = Util.getPath(SSHExec);
-            Util.AddIfUnique<string>(pathList, "/sbin");
-            Util.AddIfUnique<string>(pathList, "/usr/sbin");
-            Util.AddIfUnique<string>(pathList, "/usr/local/sbin");
-            Util.AddIfUnique<string>(pathList, "/usr/local/apache/bin");
-            Util.AddIfUnique<string>(pathList, "/usr/local/apache/sbin");
-            Util.AddIfUnique<string>(pathList, "/usr/local/apache2/bin");
-            Util.AddIfUnique<string>(pathList, "/usr/local/apache2/sbin");
-            Util.AddIfUnique<string>(pathList, "/usr/local/httpd/bin");
-            Util.AddIfUnique<string>(pathList, "/usr/local/httpd/sbin");
+            var pathList = Util.GetPath(CommandRunner);
+            pathList.AddIfUnique("/sbin");
+            pathList.AddIfUnique("/usr/sbin");
+            pathList.AddIfUnique("/usr/local/sbin");
+            pathList.AddIfUnique("/usr/local/apache/bin");
+            pathList.AddIfUnique("/usr/local/apache/sbin");
+            pathList.AddIfUnique("/usr/local/apache2/bin");
+            pathList.AddIfUnique("/usr/local/apache2/sbin");
+            pathList.AddIfUnique("/usr/local/httpd/bin");
+            pathList.AddIfUnique("/usr/local/httpd/sbin");
 
-            foreach (string pathComp in pathList)
+            var allApacheInfo = new List<ApacheInfo>();
+            foreach (var pathComp in pathList)
             {
-                ApacheInfo thisInfo = new ApacheInfo { Path = pathComp, BinaryName = "httpd" };
-                string cmdOutput = SSHExec.RunCommand(thisInfo.FullBinaryPath + " -v || echo ERROR");
-                string[] lines = cmdOutput.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                if ((lines.Length >= 2) && (lines[lines.Length - 1] != "ERROR"))
+                var apacheInfo = new ApacheInfo { Path = pathComp, BinaryName = "httpd" };
+                var commandText = String.Format("{0} -v || echo ERROR", apacheInfo.FullBinaryPath);
+                var commandResultLines = CommandRunner.ExecuteCommand(commandText).SplitStringByDefaultNewLine();
+                if (commandResultLines.Count() >= 2 && commandResultLines.Last() != "ERROR")
                 {
-                    string[] versComps = lines[0].Split(new char[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                    var versComps = commandResultLines.First().Split(new [] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
                     if (versComps.Length == 2)
                     {
-                        thisInfo.Version = versComps[1].Trim();
-                        retList.Add(thisInfo);
+                        apacheInfo.Version = versComps.Last().Trim();
+                        allApacheInfo.Add(apacheInfo);
                     }
                 }
             }
 
-            return retList;
+            return allApacheInfo;
         }
     }
 }

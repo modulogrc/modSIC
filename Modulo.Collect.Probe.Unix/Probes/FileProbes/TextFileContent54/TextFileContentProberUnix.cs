@@ -216,10 +216,9 @@ namespace Modulo.Collect.Probe.Unix.TextFileContent54
         {
             if (base.ObjectCollector == null)
             {
-                var sshExec = ((SSHConnectionProvider)ConnectionProvider).SSHExec;
-                var newSSHProvider = new SSHProvider(sshExec);
-                var newFileContentCollector =  new FileContentCollector(newSSHProvider);
-                var newFileCollector = new FileCollector() { LsCommand = new LsCommand(sshExec) };
+                var commandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner;
+                var newFileContentCollector = new FileContentCollector(commandRunner);
+                var newFileCollector = new FileCollector() { LsCommand = new LsCommand(commandRunner) };
                 var newUnixFileProvider = new UnixFileProvider(newFileContentCollector, newFileCollector);
                 
                 base.ObjectCollector = 

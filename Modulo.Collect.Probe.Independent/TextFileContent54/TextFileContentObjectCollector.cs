@@ -96,7 +96,7 @@ namespace Modulo.Collect.Probe.Independent.TextFileContent54
                 var fileContentLines = this.FileContentProvider.GetFileLinesContentFromHost(filepath);
                 
 
-                return this.GetMatchInstances(fileContentLines, pattern, instance, multiline);
+                return this.GetMatchInstances(fileContentLines.ToArray(), pattern, instance, multiline);
             //}
             //catch (Exception ex)
             //{

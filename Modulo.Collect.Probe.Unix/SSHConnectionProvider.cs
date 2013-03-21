@@ -32,28 +32,27 @@
  * */
 using System;
 using Modulo.Collect.Probe.Common;
-using Tamir.SharpSsh;
-using Tamir.SharpSsh.jsch;
+using Renci.SshNet;
 
 namespace Modulo.Collect.Probe.Unix
 {
     public class SSHConnectionProvider: IConnectionProvider
     {
-        public SshExec SSHExec { get; private set; }
+        public SshCommandLineRunner SshCommandLineRunner { get; private set; }
         
         public virtual void Connect(TargetInfo target)
         {
-            this.CreateSSHExec(target);
+            this.SshCommandLineRunner = CreateSshCommandLineRunner(target);
             try
             {
-                this.SSHExec.Connect(target.GetPort());
+                this.SshCommandLineRunner.Connect();
             }
-            catch (JSchException ex)
+            catch (Exception ex)
             {
                 throw new SshConnectingException(
                     string.Format(
-                        "Unable to connect to target machine {0} through port {1} using the user {2}. Check the target address (or host name), port number and that ssh service is running at target machine.",
-                        target.GetAddress(), target.GetPort(), target.credentials.GetFullyQualifiedUsername()));
+                        "Unable to connect to target machine {0} through port {1} using the user {2}. Check the target address (or host name), port number and that ssh service is running at target machine. Error Message: '{3}'",
+                        target.GetAddress(), target.GetPort(), target.credentials.GetFullyQualifiedUsername(), ex.Message));
             }
         }
 
@@ -61,7 +60,7 @@ namespace Modulo.Collect.Probe.Unix
         {
             try
             {
-                this.SSHExec.Close();
+                this.SshCommandLineRunner.Disconnect();
             }
             catch (Exception)
             {
@@ -85,11 +84,14 @@ namespace Modulo.Collect.Probe.Unix
             }
         }
 
-        private void CreateSSHExec(TargetInfo target)
+        private SshCommandLineRunner CreateSshCommandLineRunner(TargetInfo target)
         {
-            var credentials = target.credentials;
-            this.SSHExec = new SshExec(target.GetAddress(), credentials.GetUserName(), credentials.GetPassword());
-            
+            var hostAddress = target.GetAddress();
+            var sshPort = target.GetPort();
+            var username = target.credentials.GetUserName();
+            var password = target.credentials.GetPassword();
+
+            return new SshCommandLineRunner(hostAddress, username, password, sshPort);
         }
 
     }

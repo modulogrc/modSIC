@@ -37,10 +37,6 @@ using Modulo.Collect.Probe.Common;
 using Modulo.Collect.Probe.Common.BasicClasses;
 using Modulo.Collect.Probe.Common.Services;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
-using Tamir.SharpSsh;
-
-
-
 
 namespace Modulo.Collect.Probe.Unix
 {
@@ -49,12 +45,13 @@ namespace Modulo.Collect.Probe.Unix
     {
         public SystemInformation GetSystemInformationFrom(TargetInfo target)
         {
-            var sshExec = new SshExec(target.GetAddress(), target.credentials.GetUserName(), target.credentials.GetPassword());
-            sshExec.Connect(target.GetPort());
+            var hostAddress = target.GetAddress();
+            var username = target.credentials.GetUserName();
+            var password = target.credentials.GetPassword();
 
-            var collectedUnixSystemInformation = SystemInformationCollector.getSysInfo(sshExec);
-            
-            return this.CreateSystemInformationInstance(collectedUnixSystemInformation);
+            var commandRunner = new SshCommandLineRunner(hostAddress, username, password, target.GetPort());
+            var collectedUnixSystemInformation = SystemInformationCollector.getSysInfo(commandRunner);
+            return CreateSystemInformationInstance(collectedUnixSystemInformation);
         }
 
         private SystemInformation CreateSystemInformationInstance(SysInfo collectedUnixSystemInformation)

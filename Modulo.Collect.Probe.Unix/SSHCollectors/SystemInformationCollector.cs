@@ -33,7 +33,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
@@ -52,15 +52,14 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
             return null;
         }
 
-        private static void getInterfacesLinux(SshExec exec, SysInfo mySysInfo)
+        private static void getInterfacesLinux(SshCommandLineRunner commandRunner, SysInfo mySysInfo)
         {
             uint ifIndex = 0;
             InterfaceState curif = null;
-            char[] lineseps = { '\r', '\n' };
             char[] fieldseps = { ' ', '\t' };
-            string output = exec.RunCommand("/sbin/ip addr show");
-            string[] lines = output.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
+            
+            var output = commandRunner.ExecuteCommand("/sbin/ip addr show").SplitStringByDefaultNewLine();
+            foreach (var line in output)
             {
                 if ((line[0] >= '0') && (line[0] <= '9'))
                 {
@@ -69,7 +68,7 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
                     curif = new InterfaceState();
                     curif.InetAddr = new List<InterfaceState.IPInfo>();
                     curif.Index = ifIndex++;
-                    string[] ifields = line.Split(fieldseps, StringSplitOptions.RemoveEmptyEntries);
+                    var ifields = line.Split(fieldseps, StringSplitOptions.RemoveEmptyEntries);
                     curif.Name = ifields[1].Replace(":", "");
                 }
                 else
@@ -145,31 +144,30 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
                 mySysInfo.Interfaces.Add(curif);
         }
 
-        private static void getInterfacesMacOSX(SshExec exec, SysInfo mySysInfo)
+        private static void getInterfacesMacOSX(SshCommandLineRunner commandRunner, SysInfo mySysInfo)
         {
             throw new NotImplementedException("Obtaining interfaces for Mac OS not yet implemented");
         }
 
-        private static void getInterfacesBSD(SshExec exec, SysInfo mySysInfo)
+        private static void getInterfacesBSD(SshCommandLineRunner commandRunner, SysInfo mySysInfo)
         {
             throw new NotImplementedException("Obtaining interfaces for BSD not yet implemented");
         }
 
-        private static void getInterfacesSolaris(SshExec exec, SysInfo mySysInfo)
+        private static void getInterfacesSolaris(SshCommandLineRunner commandRunner, SysInfo mySysInfo)
         {
             uint ifIndex = 0;
             InterfaceState curif = null;
-            char[] lineseps = { '\r', '\n' };
             char[] fieldseps = { ' ', '\t' };
-            string output = exec.RunCommand("/sbin/ifconfig -a");
-            string[] lines = output.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
+            var commandOutputLines = commandRunner.ExecuteCommand("/sbin/ifconfig -a").SplitStringByDefaultNewLine();
+
+            foreach (var line in commandOutputLines)
             {
                 if (!char.IsWhiteSpace(line[0]))
                 {
                     if (curif != null)
                     {
-                        getMACAIX(exec, curif);
+                        getMACAIX(commandRunner, curif);
                         mySysInfo.Interfaces.Add(curif);
                     }
                     curif = new InterfaceState();
@@ -243,14 +241,13 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
                 mySysInfo.Interfaces.Add(curif);
         }
 
-        private static void getMACAIX(SshExec exec, InterfaceState curif)
+        private static void getMACAIX(SshCommandLineRunner commandRunner, InterfaceState curif)
         {
-            char[] lineseps = { '\r', '\n' };
             char[] fieldseps = { ' ', '\t' };
             char[] onlydot = { '.' };
-            string output = exec.RunCommand("netstat -I " + curif.Name);
-            string[] lines = output.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
+            var commandOutputLines = commandRunner.ExecuteCommand("netstat -I " + curif.Name).SplitStringByDefaultNewLine();
+
+            foreach (var line in commandOutputLines)
             {
                 string[] pfields = line.Split(fieldseps, StringSplitOptions.RemoveEmptyEntries);
                 if (pfields.GetUpperBound(0) >= 3)
@@ -278,21 +275,19 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
             }
         }
 
-        private static void getInterfacesAIX(SshExec exec, SysInfo mySysInfo)
+        private static void getInterfacesAIX(SshCommandLineRunner commandRunner, SysInfo mySysInfo)
         {
             uint ifIndex = 0;
             InterfaceState curif = null;
-            char[] lineseps = { '\r', '\n' };
             char[] fieldseps = { ' ', '\t' };
-            string output = exec.RunCommand("ifconfig -a");
-            string[] lines = output.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
+            var output = commandRunner.ExecuteCommand("ifconfig -a").SplitStringByDefaultNewLine();
+            foreach (var line in output)
             {
                 if (!char.IsWhiteSpace(line[0]))
                 {
                     if (curif != null)
                     {
-                        getMACAIX(exec, curif);
+                        getMACAIX(commandRunner, curif);
                         mySysInfo.Interfaces.Add(curif);
                     }
                     curif = new InterfaceState();
@@ -349,13 +344,13 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
                 mySysInfo.Interfaces.Add(curif);
         }
 
-        public static SysInfo getSysInfo(SshExec exec)
+        public static SysInfo getSysInfo(SshCommandLineRunner commandRunner)
         {
             string arch;
-            SysInfo mySysInfo = new SysInfo();
-            char[] separators = { ' ', '\t' };
-            string output = exec.RunCommand("uname -a");
-            string[] unameparts = output.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            var mySysInfo = new SysInfo();
+            
+            var output = commandRunner.ExecuteCommand("uname -a");
+            var unameparts = output.Split(new[] { ' ', '\t' } , StringSplitOptions.RemoveEmptyEntries);
             mySysInfo.OS = unameparts[0];
             mySysInfo.Hostname = unameparts[1];
 
@@ -364,28 +359,28 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
             {
                 case "Linux":
                     mySysInfo.OSVersion = unameparts[2];
-                    arch = exec.RunCommand("uname -m").Trim();
-                    getInterfacesLinux(exec, mySysInfo);
+                    arch = commandRunner.ExecuteCommand("uname -m").Trim();
+                    getInterfacesLinux(commandRunner, mySysInfo);
                     break;
                 case "Darwin":
                     mySysInfo.OSVersion = unameparts[2];
-                    arch = exec.RunCommand("uname -m").Trim();
-                    getInterfacesMacOSX(exec, mySysInfo);
+                    arch = commandRunner.ExecuteCommand("uname -m").Trim();
+                    getInterfacesMacOSX(commandRunner, mySysInfo);
                     break;
                 case "FreeBSD":
                     mySysInfo.OSVersion = unameparts[2];
-                    arch = exec.RunCommand("uname -m").Trim();
-                    getInterfacesBSD(exec, mySysInfo);
+                    arch = commandRunner.ExecuteCommand("uname -m").Trim();
+                    getInterfacesBSD(commandRunner, mySysInfo);
                     break;
                 case "SunOS":
                     mySysInfo.OSVersion = unameparts[2];
-                    arch = exec.RunCommand("uname -p").Trim();
-                    getInterfacesSolaris(exec, mySysInfo);
+                    arch = commandRunner.ExecuteCommand("uname -p").Trim();
+                    getInterfacesSolaris(commandRunner, mySysInfo);
                     break;
                 case "AIX":
                     mySysInfo.OSVersion = unameparts[3] + "." + unameparts[2];
-                    arch = exec.RunCommand("uname -p").Trim();
-                    getInterfacesAIX(exec, mySysInfo);
+                    arch = commandRunner.ExecuteCommand("uname -p").Trim();
+                    getInterfacesAIX(commandRunner, mySysInfo);
                     break;
                 default:
                     throw new Exception(String.Format("Unsupported OS {0}", mySysInfo.OS));

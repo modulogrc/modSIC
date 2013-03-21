@@ -63,7 +63,7 @@ namespace Modulo.Collect.Probe.Solaris.Probes.smf
 
 
             if (base.ObjectCollector == null)
-                base.ObjectCollector = new SMFObjectCollector() { SSHExec = ((SSHConnectionProvider)ConnectionProvider).SSHExec };
+                base.ObjectCollector = new SMFObjectCollector() { CommandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner };
         }
 
         protected override IEnumerable<Definitions.ObjectType> GetObjectsOfType(IEnumerable<Definitions.ObjectType> objectTypes)

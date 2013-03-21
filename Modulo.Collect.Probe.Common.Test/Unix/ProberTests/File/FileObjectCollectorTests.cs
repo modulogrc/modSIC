@@ -34,11 +34,11 @@ using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Modulo.Collect.OVAL.SystemCharacteristics;
-//using Modulo.Collect.OVAL.SystemCharacteristics.Unix;
+
 using Modulo.Collect.Probe.Common;
 using Modulo.Collect.Probe.Unix.File;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
-using Tamir.SharpSsh;
+
 using Rhino.Mocks;
 using Modulo.Collect.Probe.Common.Test.Checkers;
 

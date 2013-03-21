@@ -60,7 +60,7 @@ namespace Modulo.Collect.Probe.Unix.Probes.Uname
         {
             if (base.ObjectCollector == null)
             {
-                var unameCollector = new UnameCollector() { SSHExec = ((SSHConnectionProvider)ConnectionProvider).SSHExec };
+                var unameCollector = new UnameCollector() { CommandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner };
                 base.ObjectCollector = new UnameObjectCollector() { UnameCollector = unameCollector };
             }
 

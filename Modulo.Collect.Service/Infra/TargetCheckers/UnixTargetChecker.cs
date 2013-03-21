@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Modulo.Collect.Probe.Common;
-using Tamir.SharpSsh;
 using Modulo.Collect.Service.Contract;
 using Modulo.Collect.Probe.Unix;
 

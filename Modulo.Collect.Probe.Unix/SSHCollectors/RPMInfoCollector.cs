@@ -34,22 +34,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
     public class RPMInfoCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
         public virtual LinuxPackageInfo GetTargetRPMByPackageName(string packageName)
         {
-            string lsOutput = SSHExec.RunCommand("rpm -q --qf '%{NAME}\t%{VERSION}\t%{RELEASE}\t%{ARCH}\t%{EPOCH}\n' " + packageName);
-            char[] lineseps = { '\r', '\n' };
-            string[] lines = lsOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
+            var commandText = "rpm -q --qf '%{NAME}\t%{VERSION}\t%{RELEASE}\t%{ARCH}\t%{EPOCH}\n' " + packageName;
+            var commandResultLines = CommandRunner.ExecuteCommand(commandText).SplitStringByDefaultNewLine();
+            foreach (var line in commandResultLines)
             {
-                LinuxPackageInfo thisInfo = parseRedHatPackage(line);
+                var thisInfo = parseRedHatPackage(line);
                 if (thisInfo != null)
                     if (thisInfo.Name == packageName)
                         return thisInfo;
@@ -60,18 +59,17 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
         public virtual IEnumerable<string> GetAllTargetRpmNames()
         {
             var rpmNames = new List<String>();
-            string lsOutput = SSHExec.RunCommand("rpm -qa --qf '%{NAME}\t%{VERSION}\t%{RELEASE}\t%{ARCH}\t%{EPOCH}\n'");
-            char[] lineseps = { '\r', '\n' };
-            string[] lines = lsOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            
-            foreach (string line in lines)
-            {
-                LinuxPackageInfo thisInfo = parseRedHatPackage(line);
-                if (thisInfo != null)
-                    rpmNames.Add(thisInfo.Name);
-            }
+            var commandResultLines = CommandRunner.ExecuteCommand("rpm -qa --qf '%{NAME}\t%{VERSION}\t%{RELEASE}\t%{ARCH}\t%{EPOCH}\n'").SplitStringByDefaultNewLine();
+            var allLinuxPackageInfo = commandResultLines.Select(cmdLine => parseRedHatPackage(cmdLine));
+            return allLinuxPackageInfo.Where(info => info != null).Select(pkg => pkg.Name);
+            //foreach (string line in lines)
+            //{
+            //    LinuxPackageInfo thisInfo = parseRedHatPackage(line);
+            //    if (thisInfo != null)
+            //        rpmNames.Add(thisInfo.Name);
+            //}
 
-            return rpmNames;
+            //return rpmNames;
         }
 
 

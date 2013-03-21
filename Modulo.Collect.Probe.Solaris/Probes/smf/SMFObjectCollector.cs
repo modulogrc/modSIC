@@ -35,19 +35,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Modulo.Collect.Probe.Common;
-using Tamir.SharpSsh;
 using Modulo.Collect.Probe.Common.BasicClasses;
 using Modulo.Collect.OVAL.SystemCharacteristics;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
 using Modulo.Collect.OVAL.SystemCharacteristics.Solaris;
 using Modulo.Collect.Probe.Common.Helpers;
 using Modulo.Collect.OVAL.Common;
+using Modulo.Collect.Probe.Common.Extensions;
+using Modulo.Collect.Probe.Unix;
 
 namespace Modulo.Collect.Probe.Solaris.Probes.smf
 {
     public class SMFObjectCollector: BaseObjectCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
         public SolarisSmfCollector SMFCollector { get; set; }
 
@@ -96,7 +97,7 @@ namespace Modulo.Collect.Probe.Solaris.Probes.smf
         private void CreateSMFCollectorInstance()
         {
             if (this.SMFCollector == null)
-                this.SMFCollector = new SolarisSmfCollector() { SSHExec = this.SSHExec };
+                this.SMFCollector = new SolarisSmfCollector() { CommandRunner = this.CommandRunner };
         }
     }
 }

@@ -62,15 +62,18 @@ namespace Modulo.Collect.Probe.Unix.RunLevel
         {
             if (base.ObjectCollector == null)
             {
-                var SSHExec = ((SSHConnectionProvider)ConnectionProvider).SSHExec;
-                var newRunLevelCollector = new RunLevelCollector() { SSHExec = SSHExec };
+                var sshCommandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner;
+                var newRunLevelCollector = new RunLevelCollector() { CommandLineRunner = sshCommandRunner };
 
                 base.ObjectCollector =
                     new RunLevelObjectCollector() { RunLevelsCollector = newRunLevelCollector };
             }
 
             if (base.ItemTypeGenerator == null)
-                base.ItemTypeGenerator = new RunLevelItemTypeGenerator() { SSHExec = ((RunLevelObjectCollector)base.ObjectCollector).RunLevelsCollector.SSHExec };
+            {
+                var commandRunner = ((RunLevelObjectCollector)base.ObjectCollector).RunLevelsCollector.CommandLineRunner;
+                base.ItemTypeGenerator = new RunLevelItemTypeGenerator() { CommandLineRunner = commandRunner };
+            }
         }
 
         protected override ItemType CreateItemTypeWithErrorStatus(string errorMessage)

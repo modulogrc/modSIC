@@ -62,8 +62,8 @@ namespace Modulo.Collect.Probe.Linux.RPMInfo
         {
             if (base.ObjectCollector == null)
             {
-                var SSHExec = ((SSHConnectionProvider)ConnectionProvider).SSHExec;
-                var newRPMInfoCollector = new RPMInfoCollector() { SSHExec = SSHExec };
+                var commandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner;
+                var newRPMInfoCollector = new RPMInfoCollector() { CommandRunner = commandRunner };
 
                 base.ObjectCollector =
                     new RPMInfoObjectCollector() { RPMInfosCollector = newRPMInfoCollector };

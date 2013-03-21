@@ -35,28 +35,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
-    public class SSHProvider
-    {
-        private SshExec SSHExec;
-
-        public SSHProvider(SshExec sshExec)
-        {
-            this.SSHExec = sshExec;
-        }
-
-        public virtual String ExecuteCommand(string commandString)
-        {
-            if (!this.SSHExec.Connected)
-                this.SSHExec.Connect();
-
-            return this.SSHExec.RunCommand(commandString);
-        }
-    }
-
     public class TextFileContent
     {
         public string FileName { get; set; }
@@ -80,47 +62,41 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
     public class FileContentCollector
     {
-        public SSHProvider SSHProvider { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
 
-        public FileContentCollector(SSHProvider sshProvider)
+        public FileContentCollector(SshCommandLineRunner sshCommandRunner)
         {
-            this.SSHProvider = sshProvider;
+            this.CommandRunner = sshCommandRunner;
         }
 
         public virtual string GetTextFileFullContent(string pathspec)
         {
-            var cmd = String.Format("cat {0}", pathspec);
-            var output = SSHProvider.ExecuteCommand(cmd);
-
-            return output;
+            var commandText = String.Format("cat {0}", pathspec);
+            return CommandRunner.ExecuteCommand(commandText);
         }
 
-        public virtual string[] GetTextFileFullContentInLines(string pathspec)
+        public virtual IEnumerable<String> GetTextFileFullContentInLines(string pathspec)
         {
-            var content = GetTextFileFullContent(pathspec);
-            var lines = splitTextByLines(content);
-            return lines;
+            var fileLines = GetTextFileFullContent(pathspec).SplitStringByDefaultNewLine();
+            if (fileLines == null)
+                return new string[] { };
+
+            return fileLines;
         }
 
-        private string[] splitTextByLines(string content)
-        {
-            char[] lineseps = { '\r', '\n' };
-            string[] lines = content.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            return lines;
-        }
 
         public virtual List<TextFileContent> GetTextFileContent(string pathspec, string pattern)
         {
             var retList = new List<TextFileContent>();
+            
             var cookedPattern = pattern.Replace("\\", "\\\\");
             cookedPattern = cookedPattern.Replace("/", "\\/");
             cookedPattern = cookedPattern.Replace("'", "'\"'\"'");
-            var command = "awk '/" + cookedPattern + "/ {print}' <" + pathspec;
-            
-            var output = SSHProvider.ExecuteCommand(command);
-            
-            string[] lines = splitTextByLines(output);
+            //var command = "awk '/" + cookedPattern + "/ {print}' <" + pathspec;
+
+            var commandText = "awk '/" + cookedPattern + "/ {print}' <" + pathspec; ; // String.Format(@"awk '/{0}/ {print}' <{1}", cookedPattern, pathspec);
+            var output = CommandRunner.ExecuteCommand(commandText).SplitStringByDefaultNewLine();
             string dir, fname;
             uint instance = 0;
             int whereSlash = pathspec.LastIndexOf('/');
@@ -141,7 +117,7 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
                 fname = pathspec;
             }
 
-            foreach (string line in lines)
+            foreach (var line in output)
             {
                 var retPartialList = parseMatches(dir, fname, line, cookedPattern, ref instance);
                 retList.AddRange(retPartialList);

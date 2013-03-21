@@ -32,15 +32,12 @@
  * */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Modulo.Collect.OVAL.SystemCharacteristics;
+using Modulo.Collect.OVAL.SystemCharacteristics.Unix;
 using Modulo.Collect.Probe.Common;
 using Modulo.Collect.Probe.Common.BasicClasses;
-using Modulo.Collect.OVAL.SystemCharacteristics;
 using Modulo.Collect.Probe.Common.Helpers;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
-using Tamir.SharpSsh;
-using Modulo.Collect.OVAL.SystemCharacteristics.Unix;
 
 namespace Modulo.Collect.Probe.Unix.Password
 {

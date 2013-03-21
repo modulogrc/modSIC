@@ -38,7 +38,6 @@ using Modulo.Collect.Probe.Independent.TextFileContent54;
 using Modulo.Collect.Probe.Independent.Common;
 using Modulo.Collect.Probe.Common;
 using Modulo.Collect.Probe.Common.Extensions;
-using Tamir.SharpSsh;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
 using Modulo.Collect.Probe.Independent.Common.File;
 
@@ -55,12 +54,12 @@ namespace Modulo.Collect.Probe.Unix.TextFileContent54
             this.UnixFileCollector = unixFileCollector;
         }
 
-        public string[] GetFileLinesContentFromHost(string localFilepath)
+        public IEnumerable<String> GetFileLinesContentFromHost(string localFilepath)
         {
             return UnixFileContentCollector.GetTextFileFullContentInLines(localFilepath.ToUnixPath());
         }
 
-        public IEnumerable<string> GetFileChildren(string parentDirectory)
+        public IEnumerable<String> GetFileChildren(string parentDirectory)
         {
             var initialSlash = parentDirectory.Trim().StartsWith("/") ? string.Empty : "/";
             var endingSlash = parentDirectory.Trim().EndsWith("/") ? string.Empty : "/";

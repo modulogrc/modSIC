@@ -34,25 +34,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
+
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
     public static class Util
     {
-        public static void AddIfUnique<T>(List<T> myList, T myItem)
+        public static List<String> GetPath(SshCommandLineRunner commandRunner)
         {
-            if (!myList.Contains(myItem))
-                myList.Add(myItem);
-        }
+            var commandResultLines = commandRunner.ExecuteCommand("echo $PATH").SplitStringByDefaultNewLine().Take(2);
+            return commandResultLines.First().Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-        public static List<string> getPath(SshExec exec)
-        {
-            List<string> retVal = new List<string>();
-            string cmdOutput = exec.RunCommand("echo $PATH");
-            string[] lines = cmdOutput.Split(new char[] { '\r', '\n' }, 2, StringSplitOptions.RemoveEmptyEntries);
-            retVal.AddRange(lines[0].Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries));
-            return retVal;
+            //List<string> retVal = new List<string>();
+            //string cmdOutput = exec.ExecuteCommand();
+            //string[] lines = cmdOutput.Split(new [] { '\r', '\n' }, 2, StringSplitOptions.RemoveEmptyEntries);
+            //retVal.AddRange(lines[0].Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries));
+            //return retVal;
         }
     }
 }

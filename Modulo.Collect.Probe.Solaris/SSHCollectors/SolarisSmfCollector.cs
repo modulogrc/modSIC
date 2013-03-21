@@ -34,7 +34,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
@@ -84,7 +84,7 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
     public class SolarisSmfCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
         public static SolarisSvcPropInfo parsePropInfo(string line)
         {
@@ -104,17 +104,17 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
         public Dictionary<string, SolarisSvcPropInfo> getAllProps(string frmi)
         {
             Dictionary<string, SolarisSvcPropInfo> retList = new Dictionary<string, SolarisSvcPropInfo>();
-            string cmdOutput = SSHExec.RunCommand("svcprop '" + frmi + "'");
-            char[] lineseps = { '\r', '\n' };
-            string[] lines = cmdOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
-            {
-                SolarisSvcPropInfo thisInfo = parsePropInfo(line);
-                if (thisInfo != null)
-                    retList[thisInfo.Name] = thisInfo;
-            }
+            var cmdOutputLines = CommandRunner.ExecuteCommand("svcprop '" + frmi + "'").SplitStringByDefaultNewLine();
+            var allSolarisSvcInfo = cmdOutputLines.Select(cmd => parsePropInfo(cmd));
+            return allSolarisSvcInfo.Where(info => info != null).ToDictionary(x => x.Name, x => x);
+            //foreach (string line in cmdOutputLines)
+            //{
+            //    SolarisSvcPropInfo thisInfo = parsePropInfo(line);
+            //    if (thisInfo != null)
+            //        retList[thisInfo.Name] = thisInfo;
+            //}
 
-            return retList;
+            //return retList;
         }
 
         public virtual SolarisSmfInfo GetSmfInfo(string frmi)

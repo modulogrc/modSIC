@@ -34,18 +34,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
 using Modulo.Collect.Probe.Unix.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
     public class UnameCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
         public virtual String RunUnameCommand()
         {
-            return SSHExec.UnameCommand();
+            return CommandRunner.SshClient.UnameCommand();
         }
     }
 }

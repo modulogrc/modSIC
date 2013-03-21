@@ -59,8 +59,8 @@ namespace Modulo.Collect.Probe.Unix.EnvironmentVariable
         {
             if (base.ObjectCollector == null)
             {
-                var SSHExec = ((SSHConnectionProvider)ConnectionProvider).SSHExec;
-                var newEnvironVarCollector = new EnvironmentVariableCollector() { SSHExec = SSHExec };
+                var sshCommandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner;
+                var newEnvironVarCollector = new EnvironmentVariableCollector() { CommandRunner = sshCommandRunner };
 
                 base.ObjectCollector =
                     new EnvironmentVariableObjectCollector() { EnvironmentVariablesCollector = newEnvironVarCollector };

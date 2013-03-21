@@ -104,7 +104,7 @@ namespace Modulo.Collect.Probe.Unix.Test.ProberTests.Process
         {
             var mocks = new MockRepository();
             var fakeProcessCollector = mocks.DynamicMock<ProcessInfoCollector>(new object[] { null } );
-            Expect.Call(fakeProcessCollector.getProcessInfo()).Return(this.FakeProcessInfoList);
+            Expect.Call(fakeProcessCollector.GetProcessInfo()).Return(this.FakeProcessInfoList);
             mocks.ReplayAll();
 
             return new ProcessItemTypeGenerator() { ProcessCollector = fakeProcessCollector };

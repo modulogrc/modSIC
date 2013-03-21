@@ -59,14 +59,14 @@ namespace Modulo.Collect.Probe.Unix.File
         {
             if (base.ObjectCollector == null)
             {
-                var SSHExec = ((SSHConnectionProvider)ConnectionProvider).SSHExec;
-                var newFileCollector = new FileCollector() { LsCommand = new LsCommand(SSHExec) };
+                var sshCommandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner;
+                var newFileCollector = new FileCollector() { LsCommand = new LsCommand(sshCommandRunner) };
 
                 base.ObjectCollector = new FileObjectCollector(newFileCollector);
 
                 if (base.ItemTypeGenerator == null)
                 {
-                    var fileContentProvider = new FileContentCollector(new SSHProvider(SSHExec));
+                    var fileContentProvider = new FileContentCollector(sshCommandRunner);
                     var unixFileProvider = new UnixFileProvider(fileContentProvider, newFileCollector);
                     base.ItemTypeGenerator = new FileItemTypeGenerator()
                     {

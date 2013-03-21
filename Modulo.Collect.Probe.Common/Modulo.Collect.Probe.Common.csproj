@@ -79,6 +79,7 @@
     <Compile Include="BasicClasses\SysInfoDTO.cs" />
     <Compile Include="Extensions\DictionaryExtension.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\ItemTypeHelper.cs" />
     <Compile Include="Interfaces\IItemTypeGenerator.cs" />

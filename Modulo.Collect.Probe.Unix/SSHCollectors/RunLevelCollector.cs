@@ -33,8 +33,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Tamir.SharpSsh;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
@@ -54,31 +52,31 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
     public class RunLevelCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandLineRunner { get; set; }
 
-        public virtual List<string> GetTargetServices(SshExec exec)
+        public virtual List<String> GetTargetServices()
         {
-            string cmdOutput = exec.RunCommand("ls -l /etc/init.d/ 2>/dev/null | grep '^-..x'");
+            var cmdOutput = CommandLineRunner.ExecuteCommand("ls -l /etc/init.d/ 2>/dev/null | grep '^-..x'");
             return UnixTerminalParser.GetServicesFromTerminalOutput(cmdOutput).ToList();
         }
 
-        public virtual Dictionary<string, RunLevelInfo> GetTargetRunLevelInfo(string runLevel)
+        public virtual Dictionary<String, RunLevelInfo> GetTargetRunLevelInfo(string runLevel)
         {
-            Dictionary<string, RunLevelInfo> retList = new Dictionary<string, RunLevelInfo>();
-            string cmdOutput = SSHExec.RunCommand(String.Format("ls /etc/rc{0}.d", runLevel));
-            char[] lineseps = { '\r', '\n' };
-            string[] lines = cmdOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
+            var targetRunlevelInfo = new Dictionary<string, RunLevelInfo>();
+            var commandText = String.Format("ls /etc/rc{0}.d", runLevel);
+            var cmdOutput = CommandLineRunner.ExecuteCommand(commandText);
+            var commandLines = cmdOutput.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string line in commandLines)
             {
-                RunLevelInfo thisInfo = parseRunLevelInfo(line, runLevel);
-                if (thisInfo != null)
-                    retList[thisInfo.Service] = thisInfo;
+                var runlevelInfo = GetRunLevelInfo(line, runLevel);
+                if (runlevelInfo != null)
+                    targetRunlevelInfo[runlevelInfo.Service] = runlevelInfo;
             }
 
-            return retList;
+            return targetRunlevelInfo;
         }
 
-        private RunLevelInfo parseRunLevelInfo(string line, string runLevel)
+        private RunLevelInfo GetRunLevelInfo(string line, string runLevel)
         {
             RunLevelInfo retInfo = null;
 

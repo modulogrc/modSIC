@@ -38,7 +38,7 @@ namespace Modulo.Collect.Probe.Independent.Common.File
 {
     public interface IFileProvider
     {
-        string[] GetFileLinesContentFromHost(string localFilepath);
+        IEnumerable<String> GetFileLinesContentFromHost(string localFilepath);
 
         IEnumerable<String> GetFileChildren(string parentDirectory);
 

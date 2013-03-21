@@ -34,23 +34,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
 using Modulo.Collect.Probe.Unix.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
     public class LsCommand
     {
-        public SshExec SshExec { get; private set; }
+        public SshCommandLineRunner CommandRunner { get; private set; }
 
-        public LsCommand(SshExec sshExec)
+        public LsCommand(SshCommandLineRunner commandRunner)
         {
-            this.SshExec = sshExec;
+            this.CommandRunner = commandRunner;
         }
 
         public virtual String Run(string pathSpec)
         {
-            return this.SshExec.LsCommand(pathSpec);
+            return CommandRunner.SshClient.LsCommand(pathSpec);
         }
     }
 }

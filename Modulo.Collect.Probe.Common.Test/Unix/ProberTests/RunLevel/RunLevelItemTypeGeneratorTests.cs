@@ -41,7 +41,6 @@ using Modulo.Collect.Probe.Common.Test.Checkers;
 using Modulo.Collect.OVAL.SystemCharacteristics.Unix;
 using Modulo.Collect.OVAL.Definitions.variableEvaluator;
 using Rhino.Mocks;
-using Tamir.SharpSsh;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
 
 namespace Modulo.Collect.Probe.Unix.Test.ProberTests.RunLevel
@@ -173,15 +172,16 @@ namespace Modulo.Collect.Probe.Unix.Test.ProberTests.RunLevel
         private RunLevelItemTypeGenerator CreateMockedItemTypeGenerator()
         {
             var mocks = new MockRepository();
-            var fakeSSHExec = mocks.DynamicMock<SshExec>(string.Empty, string.Empty);
             var fakeRunLevelCollector = mocks.DynamicMock<RunLevelCollector>();
-            Expect.Call(fakeRunLevelCollector.GetTargetServices(null))
+//            fakeRunLevelCollector.CommandLineRunner = 
+
+            Expect.Call(fakeRunLevelCollector.GetTargetServices())
                 .IgnoreArguments()
                     .Return(FAKE_SERVICES.ToList());
             
             mocks.ReplayAll();
 
-            return new RunLevelItemTypeGenerator() { RunLevelCollector = fakeRunLevelCollector, SSHExec = fakeSSHExec };
+            return new RunLevelItemTypeGenerator() { RunLevelCollector = fakeRunLevelCollector };
         }
 
         private VariablesEvaluated CreateFakeEvaluatedVariablesWithMultiValues(string objectID = "oval:modulo:obj:110")

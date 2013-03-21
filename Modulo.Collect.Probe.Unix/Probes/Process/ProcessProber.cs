@@ -30,8 +30,8 @@ namespace Modulo.Collect.Probe.Unix.Probes.Process
         {
             if (this.ItemTypeGenerator == null)
             {
-                var sshExec = ((SSHConnectionProvider)ConnectionProvider).SSHExec;
-                this.ItemTypeGenerator = new ProcessItemTypeGenerator() { ProcessCollector = new ProcessInfoCollector(sshExec) };
+                var commandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner;
+                this.ItemTypeGenerator = new ProcessItemTypeGenerator() { ProcessCollector = new ProcessInfoCollector(commandRunner) };
             }
 
             if (this.ObjectCollector == null)

@@ -34,7 +34,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
+using Modulo.Collect.Probe.Common.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
@@ -51,24 +51,24 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
     public class EnvironmentVariableCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
-        public virtual Dictionary<string, string> GetTargetEnvironmentVariables()
+        public virtual Dictionary<String, String> GetTargetEnvironmentVariables()
         {
             var retList = new Dictionary<string, string>();
-            var lineseps = new char[] { '\r', '\n' };
-            
-            var cmdOutput = this.SSHExec.RunCommand("set");
-            var lines = cmdOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            
-            foreach (string line in lines)
-            {
-                EnvVarInfo thisInfo = this.ParseEnvVarInfo(line);
-                if (thisInfo != null)
-                    retList[thisInfo.Name] = thisInfo.Value;
-            }
+            var commandResultLines = CommandRunner.ExecuteCommand("set").SplitStringByDefaultNewLine();
+            var allInfo = commandResultLines.Select(cmdLine => ParseEnvVarInfo(cmdLine));
+            return allInfo.Where(info => info != null).ToDictionary(x => x.Name, x => x.Value);
 
-            return retList;
+
+            //foreach (string line in lines)
+            //{
+            //    EnvVarInfo thisInfo = this.ParseEnvVarInfo(line);
+            //    if (thisInfo != null)
+            //        retList[thisInfo.Name] = thisInfo.Value;
+            //}
+
+            //return retList;
         }
 
         private EnvVarInfo ParseEnvVarInfo(string line)

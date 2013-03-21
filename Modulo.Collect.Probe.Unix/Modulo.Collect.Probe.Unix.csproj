@@ -37,6 +37,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\SharpSSH\DiffieHellman.dll</HintPath>
     </Reference>
+    <Reference Include="Renci.SshNet">
+      <HintPath>..\packages\SSH.NET.2013.1.27\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -44,9 +47,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tamir.SharpSSH, Version=1.1.1.13, Culture=neutral">
-      <HintPath>..\packages\Tamir.SharpSSH.1.1.1.13\lib\Tamir.SharpSSH.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\SshExecExtensions.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="SSHCollectors\SystemInformationCollector.cs" />
     <Compile Include="SSHCollectors\UnameCollector.cs" />
     <Compile Include="SSHCollectors\Util.cs" />
+    <Compile Include="SshCommandLineRunner.cs" />
     <Compile Include="SSHConnectionProvider.cs" />
     <Compile Include="Probes\FileProbes\TextFileContent54\UnixFileProvider.cs" />
     <Compile Include="Probes\FileProbes\TextFileContent54\TextFileContentProberUnix.cs" />

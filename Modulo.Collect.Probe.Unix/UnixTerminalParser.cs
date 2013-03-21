@@ -36,19 +36,18 @@ using System.Linq;
 using System.Text;
 using Modulo.Collect.Probe.Common;
 using Modulo.Collect.OVAL.SystemCharacteristics.Unix;
+using Modulo.Collect.Probe.Common.Extensions;
 
 namespace Modulo.Collect.Probe.Unix
 {
     public class UnixTerminalParser
     {
-        private static char[] LINE_SEPARATOR = new char[2] { '\r', '\n' };
         private static char[] FIELD_SEPARATOR = new char[2] { '\t', ' ' };
 
         public static IEnumerable<string> GetServicesFromTerminalOutput(string terminalOutput)
         {
-            IList<string> services = new List<string>();
-
-            var lines = terminalOutput.Split(LINE_SEPARATOR, StringSplitOptions.RemoveEmptyEntries);
+            var services = new List<string>();
+            var lines = terminalOutput.SplitStringByDefaultNewLine();
             foreach (string line in lines)
             {
                 var tokens = line.Split(FIELD_SEPARATOR, StringSplitOptions.RemoveEmptyEntries);
@@ -62,7 +61,7 @@ namespace Modulo.Collect.Probe.Unix
 
         public static void MapUnameCommandOutputToUnameItem(uname_item item, string terminalOutput)
         {
-            var unameParts = terminalOutput.Split(LINE_SEPARATOR, StringSplitOptions.RemoveEmptyEntries);
+            var unameParts = terminalOutput.SplitStringByDefaultNewLine().ToArray();
 
             item.os_name = OvalHelper.CreateItemEntityWithStringValue(unameParts[0]);
             item.node_name = OvalHelper.CreateItemEntityWithStringValue(unameParts[1]);

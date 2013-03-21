@@ -41,7 +41,6 @@ using Modulo.Collect.OVAL.SystemCharacteristics.Solaris;
 using Modulo.Collect.Probe.Common.Test.Helpers;
 using Modulo.Collect.OVAL.Definitions.variableEvaluator;
 using Rhino.Mocks;
-using Tamir.SharpSsh;
 using Modulo.Collect.Probe.Unix.SSHCollectors;
 using Modulo.Collect.OVAL.SystemCharacteristics;
 using Modulo.Collect.OVAL.Common;

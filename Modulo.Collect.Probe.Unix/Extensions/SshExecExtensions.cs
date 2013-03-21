@@ -34,21 +34,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Tamir.SharpSsh;
+using Renci.SshNet;
+
 
 namespace Modulo.Collect.Probe.Unix.Extensions
 {
-    public static class SshExecExtensions
+    public static class SshClientExtensions
     {
-        public static string UnameCommand(this SshExec sshExec)
+        public static string UnameCommand(this SshClient sshClient)
         {
-            return sshExec.RunCommand("uname -s ; uname -n ; uname -r ; uname -v ; uname -m ; uname -p");
+            return ExecuteCommand(sshClient, "uname -s ; uname -n ; uname -r ; uname -v ; uname -m ; uname -p");
         }
 
-        public static string LsCommand(this SshExec sshExec, string pathSpec)
+        public static string LsCommand(this SshClient sshClient, string pathSpec)
         {
             var lsCommand = string.Format("LANG=C /bin/ls -lndL {0}", pathSpec);
-            return sshExec.RunCommand(lsCommand);
+            return ExecuteCommand(sshClient, lsCommand);
+        }
+
+        private static String ExecuteCommand(SshClient sshClient, String command)
+        {
+            if (!sshClient.IsConnected)
+                sshClient.Connect();
+
+            return sshClient.CreateCommand(command).Execute();
         }
     }
 }

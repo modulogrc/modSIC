@@ -32,9 +32,8 @@
  * */
 using System;
 using System.Collections.Generic;
+using Modulo.Collect.Probe.Common.Extensions;
 using System.Linq;
-using System.Text;
-using Tamir.SharpSsh;
 
 namespace Modulo.Collect.Probe.Unix.SSHCollectors
 {
@@ -56,7 +55,7 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
     public class PasswordCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
         private PasswdInfo parsePasswdInfo(string line)
         {
@@ -79,18 +78,18 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
         public virtual Dictionary<string, PasswdInfo> GetTargetPasswdInfo()
         {
-            Dictionary<string, PasswdInfo> retList = new Dictionary<string, PasswdInfo>();
-            string cmdOutput = SSHExec.RunCommand("cat /etc/passwd");
-            char[] lineseps = { '\r', '\n' };
-            string[] lines = cmdOutput.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
-            {
-                PasswdInfo thisInfo = parsePasswdInfo(line);
-                if (thisInfo != null)
-                    retList[thisInfo.UserName] = thisInfo;
-            }
+            var commandResultLines = CommandRunner.ExecuteCommand("cat /etc/passwd").SplitStringByDefaultNewLine();
+            var allPasswordInfo = commandResultLines.Select(cmdLine => parsePasswdInfo(cmdLine));
+            return allPasswordInfo.Where(pwdInfo => pwdInfo != null).ToDictionary(x => x.UserName, x => x);
+            
+            //foreach (string line in commandResultLines)
+            //{
+            //    PasswdInfo thisInfo = parsePasswdInfo(line);
+            //    if (thisInfo != null)
+            //        retList[thisInfo.UserName] = thisInfo;
+            //}
 
-            return retList;
+            //return retList;
         }
     }
 }

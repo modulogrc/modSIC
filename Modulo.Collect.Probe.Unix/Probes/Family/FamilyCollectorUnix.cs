@@ -33,24 +33,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Modulo.Collect.Probe.Independent.Family;
-using Tamir.SharpSsh;
-using Modulo.Collect.Probe.Unix.SSHCollectors;
 using Modulo.Collect.Probe.Unix.Extensions;
+using Modulo.Collect.Probe.Common.Extensions;
 
 namespace Modulo.Collect.Probe.Unix.Family
 {
     public class FamilyCollectorUnix: IFamilyCollector
     {
-        public SshExec SSHExec { get; set; }
+        public SshCommandLineRunner CommandRunner { get; set; }
 
         public virtual string GetOperatingSystemFamily()
         {
             // Due to be ovalDI compliant the Family Collector always returns "unix"
             try
             {
-                SSHExec.UnameCommand();
+                CommandRunner.SshClient.UnameCommand();
                 return "unix";
             }
             catch (Exception ex)
@@ -66,48 +64,28 @@ namespace Modulo.Collect.Probe.Unix.Family
             //-r release
             //-v version
             // uname -s ou uname -sr
-            var lineseps = new char[] { '\r', '\n' };
-            List<string> distributions = new List<string>() { "fedora", "redhat", "debian", "slackware" };
-            string stdOut = string.Empty;
-            string stdErr = string.Empty;
-            string command;
-            int status;
 
+            var distributions = new[] { "fedora", "redhat", "debian", "slackware" };
             foreach (var distribution in distributions)
             {
-                command = string.Format("[ -e /etc/{0}-release ]", distribution);
-                status = this.SSHExec.RunCommand(command, ref stdOut, ref stdErr);
-                if (status == 0)
+                var commandText = String.Format("[ -e /etc/{0}-release ]", distribution);
+                var commandResult = CommandRunner.ExecuteCommand(commandText);
+                if (CommandRunner.LastCommandExitCode == 0)
                 {
-                    command = string.Format("cat /etc/{0}-release", distribution);
-                    status = this.SSHExec.RunCommand(command, ref stdOut, ref stdErr);
-
-                    var lines = stdOut.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-                    return lines.FirstOrDefault();
+                    commandText = String.Format("cat /etc/{0}-release", distribution);
+                    return CommandRunner.ExecuteCommand(commandText).SplitStringByDefaultNewLine().FirstOrDefault();
                 }
             }
 
             //  Ubuntu
-            status = this.SSHExec.RunCommand("lsb_release -d", ref stdOut, ref stdErr);
-            if (status == 0)
-            {
-                var lines = stdOut.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-                if (lines.Length > 0)
-                {
-                    string line = lines[0];
-                    return line.Replace("Description:", "").Trim();
-                }
-            }
-            else
-            {
-                status = this.SSHExec.RunCommand("uname -sv", ref stdOut, ref stdErr);
-                if (status == 0)
-                {
-                    var lines = stdOut.Split(lineseps, StringSplitOptions.RemoveEmptyEntries);
-                    return lines.FirstOrDefault();
-                }
-            }
-
+            var command1stLine = CommandRunner.ExecuteCommand("lsb_release -d").SplitStringByDefaultNewLine().FirstOrDefault();
+            if (CommandRunner.LastCommandExitCode == 0 && command1stLine != null)
+                return command1stLine.Replace("Description:", String.Empty).Trim();
+            
+            var commandResultLines = CommandRunner.ExecuteCommand("uname -sv").SplitStringByDefaultNewLine();
+            if (CommandRunner.LastCommandExitCode == 0)
+                return commandResultLines.FirstOrDefault();
+            
             return string.Empty;
         }
     }

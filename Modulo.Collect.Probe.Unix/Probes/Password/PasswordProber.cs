@@ -29,7 +29,8 @@ namespace Modulo.Collect.Probe.Unix.Probes.Password
         {
             if (base.ObjectCollector == null)
             {
-                var newItemsCollector = new PasswordCollector() { SSHExec = ((SSHConnectionProvider)ConnectionProvider).SSHExec };
+                var commandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner;
+                var newItemsCollector = new PasswordCollector() { CommandRunner = commandRunner };
                 ObjectCollector = new PasswordObjectCollector() { PasswordItemsCollector = newItemsCollector };
                 ItemTypeGenerator = new PasswordItemTypeGenerator();
             }
