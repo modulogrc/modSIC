@@ -117,11 +117,11 @@
               <File Id='MySql.Data.dll' Name='MySql.Data.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Independent.TargetDir)MySql.Data.dll'/>
               <!-- Postgres Driver -->
               <File Id='Npgsql.dll' Name='Npgsql.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Independent.TargetDir)Npgsql.dll'/>
-
-              <!-- sharpSSH -->
+              <File Id='Renci.SshNet' Name='Renci.SshNet.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Unix.TargetDir)Renci.SshNet.dll'/>
+              <!-- sharpSSH --><!--
               <File Id='Tamir.SharpSSH.dll' Name='Tamir.SharpSSH.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Tamir.SharpSSH.dll' />
               <File Id='Org.Mentalis.Security.dll' Name='Org.Mentalis.Security.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Org.Mentalis.Security.dll' />
-              <File Id='DiffieHellman.dll' Name='DiffieHellman.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)DiffieHellman.dll' />
+              <File Id='DiffieHellman.dll' Name='DiffieHellman.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)DiffieHellman.dll' />-->
 
               <!-- ravenDB -->
               <File Id='Esent.Interop.dll' Name='Esent.Interop.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Esent.Interop.dll' />
