@@ -124,7 +124,7 @@ namespace Modulo.Collect.Probe.Independent.TextFileContent54
             if (multiline)
             {
                 var fileContent = string.Join(Environment.NewLine, fileContentLines);
-                var regexResult = new Regex(patternValue, RegexOptions.Singleline).Matches(fileContent);
+                var regexResult = new Regex(patternValue, RegexOptions.Multiline).Matches(fileContent);
                 foreach (Match matchItem in regexResult)
                     if (matchItem.Success)
                         matchLines.Add(matchItem.Value);

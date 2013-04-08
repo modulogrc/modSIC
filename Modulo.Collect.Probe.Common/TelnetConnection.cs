@@ -298,8 +298,8 @@ namespace Modulo.Collect.Probe.Common
         public void CiscoLogin(string userName, string passWord)
         {
             string retString = this.Login(userName, passWord);
-            if (!retString.EndsWith(">"))
-                throw new ApplicationException("Failed to login: no '>' prompt received after login");
+            if (!(retString.EndsWith(">") || retString.EndsWith("#")))
+                throw new ApplicationException("Failed to login: no '>' or '#' prompt received after login");
 
             this.CiscoCommand("terminal length 0", true);
         }
