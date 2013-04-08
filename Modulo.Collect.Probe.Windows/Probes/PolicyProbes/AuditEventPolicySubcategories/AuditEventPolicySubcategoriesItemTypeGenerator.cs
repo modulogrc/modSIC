@@ -74,7 +74,6 @@ namespace Modulo.Collect.Probe.Windows.AuditEventPolicySubcategories
                 ipsec_extended_mode = new EntityItemAuditType(),
                 ipsec_main_mode = new EntityItemAuditType(),
                 ipsec_quick_mode = new EntityItemAuditType(),
-                kerberos_ticket_events = new EntityItemAuditType(),
                 kernel_object = new EntityItemAuditType(),
                 logoff = new EntityItemAuditType(),
                 logon = new EntityItemAuditType(),
@@ -98,7 +97,11 @@ namespace Modulo.Collect.Probe.Windows.AuditEventPolicySubcategories
                 sensitive_privilege_use = new EntityItemAuditType(),
                 special_logon = new EntityItemAuditType(),
                 system_integrity = new EntityItemAuditType(),
-                user_account_management = new EntityItemAuditType()
+                user_account_management = new EntityItemAuditType(),
+                detailed_file_share = new EntityItemAuditType(),
+                network_policy_server = new EntityItemAuditType(),
+                kerberos_authentication_service = new EntityItemAuditType(),
+                kerberos_service_ticket_operations = new EntityItemAuditType(),
                 #endregion
             };
         }

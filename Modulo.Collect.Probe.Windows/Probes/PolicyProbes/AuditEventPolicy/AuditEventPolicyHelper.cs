@@ -36,6 +36,8 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 using Modulo.Collect.Probe.Common;
+using System.Diagnostics;
+using System.IO;
 
 namespace Modulo.Collect.Probe.Windows.AuditEventPolicy
 {
@@ -348,62 +350,6 @@ namespace Modulo.Collect.Probe.Windows.AuditEventPolicy
 
         #endregion
 
-        #region Subcategories Dictionary
-        private Dictionary<string, AuditEventSubcategories> subcategoriesDictionary = new Dictionary<string, AuditEventSubcategories>()
-        {  
-            { "Account Lockout", AuditEventSubcategories.account_lockout },
-            { "Application Generated", AuditEventSubcategories.application_generated },
-            { "Application Group Management", AuditEventSubcategories.application_group_management },
-            { "Audit Policy Change", AuditEventSubcategories.audit_policy_change },
-            { "Authentication Policy Change", AuditEventSubcategories.authentication_policy_change },
-            { "Authorization Policy Change", AuditEventSubcategories.authorization_policy_change },
-            { "Certification Services", AuditEventSubcategories.certification_services },
-            { "Computer Account Management", AuditEventSubcategories.computer_account_management },
-            { "Credential Validation", AuditEventSubcategories.credential_validation },
-            { "Detailed Directory Service Replication", AuditEventSubcategories.detailed_directory_service_replication },
-            { "Directory Service Access", AuditEventSubcategories.directory_service_access },
-            { "Directory Service Changes", AuditEventSubcategories.directory_service_changes },
-            { "Directory Service Replication", AuditEventSubcategories.directory_service_replication },
-            { "Distribution Group Management", AuditEventSubcategories.distribution_group_management },
-            { "DPAPI Activity", AuditEventSubcategories.dpapi_activity },
-            { "File Share", AuditEventSubcategories.file_share },
-            { "File System", AuditEventSubcategories.file_system },
-            { "Filtering Platform Connection", AuditEventSubcategories.filtering_platform_connection },
-            { "Filtering Platform Packet Drop", AuditEventSubcategories.filtering_platform_packet_drop },
-            { "Filtering Platform Policy Change", AuditEventSubcategories.filtering_platform_policy_change },
-            { "Handle Manipulation", AuditEventSubcategories.handle_manipulation },
-            { "IPsec Driver", AuditEventSubcategories.ipsec_driver },
-            { "IPsec Extended Mode", AuditEventSubcategories.ipsec_extended_mode },
-            { "IPsec Main Mode", AuditEventSubcategories.ipsec_main_mode },
-            { "IPsec Quick Mode", AuditEventSubcategories.ipsec_quick_mode },
-            { "Kerberos Service Ticket Operations", AuditEventSubcategories.kerberos_ticket_events },
-            { "Kernel Object", AuditEventSubcategories.kernel_object },
-            { "Logoff", AuditEventSubcategories.logoff },
-            { "Logon", AuditEventSubcategories.logon },
-            { "MPSSVC Rule-Level Policy Change", AuditEventSubcategories.mpssvc_rule_level_policy_change },
-            { "Non Sensitive Privilege Use", AuditEventSubcategories.non_sensitive_privilege_use },
-            { "Other Account Logon Events", AuditEventSubcategories.other_account_logon_events },
-            { "Other Account Management Events", AuditEventSubcategories.other_account_management_events },
-            { "Other Logon/Logoff Events", AuditEventSubcategories.other_logon_logoff_events },
-            { "Other Object Access Events", AuditEventSubcategories.other_object_access_events },
-            { "Other Policy Change Events", AuditEventSubcategories.other_policy_change_events },
-            { "Other Privilege Use Events", AuditEventSubcategories.other_privilege_use_events },
-            { "Other System Events", AuditEventSubcategories.other_system_events },
-            { "Process Creation", AuditEventSubcategories.process_creation },
-            { "Process Termination", AuditEventSubcategories.process_termination },
-            { "Registry", AuditEventSubcategories.registry },
-            { "RPC Events", AuditEventSubcategories.rpc_events },
-            { "SAM", AuditEventSubcategories.sam },
-            { "Security Group Management", AuditEventSubcategories.security_group_management },
-            { "Security State Change", AuditEventSubcategories.security_state_change },
-            { "Security System Extension", AuditEventSubcategories.security_system_extension },
-            { "Sensitive Privilege Use", AuditEventSubcategories.sensitive_privilege_use },
-            { "Special Logon", AuditEventSubcategories.special_logon },
-            { "System Integrity", AuditEventSubcategories.system_integrity },
-            { "User Account Management", AuditEventSubcategories.user_account_management }
-        };
-        #endregion
-
         public static LSA_UNICODE_STRING string2LSAUS(string myString)
         {
             LSA_UNICODE_STRING retStr = new LSA_UNICODE_STRING();
@@ -497,135 +443,268 @@ namespace Modulo.Collect.Probe.Windows.AuditEventPolicy
 
         public virtual Dictionary<AuditEventSubcategories, AuditEventStatus> GetAuditEventSubcategoriesPolicy(TargetInfo targetInfo)
         {
-            Dictionary<AuditEventSubcategories, AuditEventStatus> retList = new Dictionary<AuditEventSubcategories, AuditEventStatus>();
+            var policyData = GetPolAdtEv(targetInfo);
+            var structure = GetPositionValue(policyData, 8);
+            Dictionary<AuditEventSubcategories, int> positionsMap;
 
-            string target = @"\\" + targetInfo.GetAddress();
-            LSA_UNICODE_STRING systemName = string2LSAUS(target);
-            LSA_OBJECT_ATTRIBUTES objAttrs = new LSA_OBJECT_ATTRIBUTES();
-
-            IntPtr policyHandle = IntPtr.Zero;
-            IntPtr pAuditEventsInfo = IntPtr.Zero;
-            IntPtr pAuditCategoryId = IntPtr.Zero;
-            IntPtr pAuditSubCategoryGuids = IntPtr.Zero;
-            IntPtr pAuditPolicies = IntPtr.Zero;
-
-            UInt32 lretVal = LsaOpenPolicy(ref systemName, ref objAttrs, POLICY_VIEW_AUDIT_INFORMATION, out policyHandle);
-            UInt32 retVal = LsaNtStatusToWinError(lretVal);
-
-            if (retVal == (UInt32)0)
+            switch (structure)
             {
-                try
-                {
-                    lretVal = LsaQueryInformationPolicy(policyHandle, POLICY_INFORMATION_CLASS.PolicyAuditEventsInformation, out pAuditEventsInfo);
-                    retVal = LsaNtStatusToWinError(lretVal);
-
-                    if (retVal == 0)
-                    {
-                        POLICY_AUDIT_EVENTS_INFO myAuditEventsInfo = new POLICY_AUDIT_EVENTS_INFO();
-                        myAuditEventsInfo = (POLICY_AUDIT_EVENTS_INFO)Marshal.PtrToStructure(pAuditEventsInfo, myAuditEventsInfo.GetType());
-
-                        for (var policyAuditEventType = 0; policyAuditEventType < myAuditEventsInfo.MaximumAuditEventCount; policyAuditEventType++)
-                        {
-                            pAuditCategoryId = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(GUID)));
-                            if (!AuditLookupCategoryGuidFromCategoryId((POLICY_AUDIT_EVENT_TYPE)policyAuditEventType, pAuditCategoryId))
-                            {
-                                int causingError = GetLastError();
-                                throw new System.ComponentModel.Win32Exception(causingError);
-                            }
-
-                            UInt32 nSubCats = 0;
-                            pAuditSubCategoryGuids = IntPtr.Zero;
-                            if (!AuditEnumerateSubCategories(pAuditCategoryId, false, ref pAuditSubCategoryGuids, out nSubCats))
-                            {
-                                int causingError = GetLastError();
-                                throw new System.ComponentModel.Win32Exception(causingError);
-                            }
-
-                            Marshal.FreeHGlobal(pAuditCategoryId);
-                            pAuditCategoryId = IntPtr.Zero;
-
-                            pAuditPolicies = IntPtr.Zero;
-                            if (nSubCats > 0)
-                            {
-
-                                if (!AuditQuerySystemPolicy(pAuditSubCategoryGuids, nSubCats, out pAuditPolicies))
-                                {
-                                    int causingError = GetLastError();
-                                    throw new System.ComponentModel.Win32Exception(causingError);
-                                }
-
-                                for (var subcategoryIndex = 0; subcategoryIndex < nSubCats; subcategoryIndex++)
-                                {
-                                    AUDIT_POLICY_INFORMATION currentPolicy = new AUDIT_POLICY_INFORMATION();
-
-                                    IntPtr itemPtr = new IntPtr(pAuditPolicies.ToInt64() + (Int64)subcategoryIndex * (Int64)Marshal.SizeOf(currentPolicy));
-                                    currentPolicy = (AUDIT_POLICY_INFORMATION)Marshal.PtrToStructure(itemPtr, currentPolicy.GetType());
-
-                                    String subCategoryName = String.Empty;
-                                    Marshal.StructureToPtr(currentPolicy, itemPtr, true);
-                                    AuditLookupSubCategoryName(itemPtr, ref subCategoryName);
-
-                                    AuditEventSubcategories value;
-                                    if (subcategoriesDictionary.TryGetValue(subCategoryName, out value))
-                                    {
-                                        retList.Add(value, (AuditEventStatus)(currentPolicy.AuditingInformation & 0x3));
-                                    }
-                                }
-
-                                if (pAuditPolicies != IntPtr.Zero)
-                                {
-                                    AuditFree(pAuditPolicies);
-                                    pAuditPolicies = IntPtr.Zero;
-                                }
-                            }
-
-                            if (pAuditSubCategoryGuids != IntPtr.Zero)
-                            {
-                                AuditFree(pAuditSubCategoryGuids);
-                                pAuditSubCategoryGuids = IntPtr.Zero;
-                            }
-
-                            nSubCats = 0;
-                        }
-                    }
-                    else
-                    {
-                        throw new System.ComponentModel.Win32Exception((int)retVal);
-                    }
-                }
-                finally
-                {
-                    if (pAuditPolicies != IntPtr.Zero)
-                    {
-                        AuditFree(pAuditPolicies);
-                        pAuditPolicies = IntPtr.Zero;
-                    }
-
-                    if (pAuditSubCategoryGuids != IntPtr.Zero)
-                    {
-                        AuditFree(pAuditSubCategoryGuids);
-                        pAuditSubCategoryGuids = IntPtr.Zero;
-                    }
-
-                    if (pAuditEventsInfo != IntPtr.Zero)
-                    {
-                        LsaFreeMemory(pAuditEventsInfo);
-                    }
-
-                    if (pAuditCategoryId != IntPtr.Zero)
-                    {
-                        Marshal.FreeHGlobal(pAuditCategoryId);
-                    }
-
-                    LsaClose(policyHandle);
-                }
-            }
-            else
-            {
-                throw new System.ComponentModel.Win32Exception((int)retVal);
+                // Windows 2008 x86 & Vista
+                case 0x76:
+                    positionsMap = GetStructure76SubcategoriesPositions();
+                    break;
+                // Windows 7 & 2008 x64
+                case 0x78:
+                    positionsMap = GetStructure78SubcategoriesPositions();
+                    break;
+                // Windows 8
+                case 0x7E:
+                    positionsMap = GetStructure7ESubcategoriesPositions();
+                    break;
+                default:
+                    throw new Exception("Unexpected subcategories data");
             }
 
-            return retList;
+            return GetSubcategoriesStatus(policyData, positionsMap);
+        }
+
+        private string GetPolAdtEv(TargetInfo targetInfo)
+        {
+            string build = @"QUERY \\" + targetInfo.GetAddress() + @"\HKLM\Security\Policy\PolAdtEv\";
+            string parms = @build;
+            string output = string.Empty;
+            string error = string.Empty;
+
+            ProcessStartInfo psi = new ProcessStartInfo("reg.exe", parms);
+
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardError = true;
+            psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            psi.UseShellExecute = false;
+            var reg = Process.Start(psi);
+            using (StreamReader myOutput = reg.StandardOutput)
+            {
+                output = myOutput.ReadToEnd();
+            }
+            using (StreamReader myError = reg.StandardError)
+            {
+                error = myError.ReadToEnd();
+            }
+
+            if (error != string.Empty)
+                throw new Exception(error);
+
+            output = output.Replace(@"HKEY_LOCAL_MACHINE\Security\Policy\PolAdtEv", string.Empty);
+            output = output.Replace("(Default)", string.Empty);
+            output = output.Replace("REG_NONE", string.Empty);
+            output = output.Replace(Environment.NewLine, string.Empty);
+
+            return output.Trim();
+        }
+
+        private short GetPositionValue(string policyData, int position)
+        {
+            const int chunkSize = 2;
+            var strVal = policyData.Substring(position * chunkSize, chunkSize);
+            return Convert.ToInt16(strVal, 16);
+        }
+
+        private Dictionary<AuditEventSubcategories, int> GetStructure76SubcategoriesPositions()
+        {
+            return new Dictionary<AuditEventSubcategories, int>
+            {
+                { AuditEventSubcategories.security_state_change, 12 },
+                { AuditEventSubcategories.security_system_extension, 14 },
+                { AuditEventSubcategories.system_integrity, 16 },
+                { AuditEventSubcategories.ipsec_driver, 18 },
+                { AuditEventSubcategories.other_system_events, 20 },
+                { AuditEventSubcategories.logon, 22 },
+                { AuditEventSubcategories.logoff, 24 },
+                { AuditEventSubcategories.account_lockout, 26 },
+                { AuditEventSubcategories.ipsec_main_mode, 28 },
+                { AuditEventSubcategories.special_logon, 30 },
+                { AuditEventSubcategories.ipsec_quick_mode, 32 },
+                { AuditEventSubcategories.ipsec_extended_mode, 34 },
+                { AuditEventSubcategories.other_logon_logoff_events, 36 },
+                { AuditEventSubcategories.network_policy_server, 38 },
+                { AuditEventSubcategories.file_system, 40 },
+                { AuditEventSubcategories.registry, 42 },
+                { AuditEventSubcategories.kernel_object, 44 },
+                { AuditEventSubcategories.sam, 46 },
+                { AuditEventSubcategories.other_object_access_events, 48 },
+                { AuditEventSubcategories.certification_services, 50 },
+                { AuditEventSubcategories.application_generated, 52 },
+                { AuditEventSubcategories.handle_manipulation, 54 },
+                { AuditEventSubcategories.file_share, 56 },
+                { AuditEventSubcategories.filtering_platform_packet_drop, 58 },
+                { AuditEventSubcategories.filtering_platform_connection, 60 },
+
+                { AuditEventSubcategories.sensitive_privilege_use, 62 },
+                { AuditEventSubcategories.non_sensitive_privilege_use, 64 },
+                { AuditEventSubcategories.other_privilege_use_events, 66 },
+                { AuditEventSubcategories.process_creation, 68 },
+                { AuditEventSubcategories.process_termination, 70 },
+                { AuditEventSubcategories.dpapi_activity, 72 },
+                { AuditEventSubcategories.rpc_events, 74 },
+                { AuditEventSubcategories.audit_policy_change, 76 },
+                { AuditEventSubcategories.authentication_policy_change, 78 },
+                { AuditEventSubcategories.authorization_policy_change, 80 },
+                { AuditEventSubcategories.mpssvc_rule_level_policy_change, 82 },
+                { AuditEventSubcategories.filtering_platform_policy_change, 84 },
+                { AuditEventSubcategories.other_policy_change_events, 86 },
+                { AuditEventSubcategories.user_account_management, 88 },
+                { AuditEventSubcategories.computer_account_management, 90 },
+                { AuditEventSubcategories.security_group_management, 92 },
+                { AuditEventSubcategories.distribution_group_management, 94 },
+                { AuditEventSubcategories.application_group_management, 96 },
+                { AuditEventSubcategories.other_account_management_events, 98 },
+                { AuditEventSubcategories.directory_service_access, 100 },
+                { AuditEventSubcategories.directory_service_changes, 102 },
+                { AuditEventSubcategories.directory_service_replication, 104 },
+                { AuditEventSubcategories.detailed_directory_service_replication, 106 },
+                { AuditEventSubcategories.credential_validation, 108 },
+                { AuditEventSubcategories.kerberos_service_ticket_operations, 110 },
+                { AuditEventSubcategories.other_account_logon_events, 112 },
+                { AuditEventSubcategories.kerberos_authentication_service, 114 },
+            };
+        }
+
+        private Dictionary<AuditEventSubcategories, int> GetStructure78SubcategoriesPositions()
+        {
+            return new Dictionary<AuditEventSubcategories, int>
+            {
+                { AuditEventSubcategories.security_state_change, 12 },
+                { AuditEventSubcategories.security_system_extension, 14 },
+                { AuditEventSubcategories.system_integrity, 16 },
+                { AuditEventSubcategories.ipsec_driver, 18 },
+                { AuditEventSubcategories.other_system_events, 20 },
+                { AuditEventSubcategories.logon, 22 },
+                { AuditEventSubcategories.logoff, 24 },
+                { AuditEventSubcategories.account_lockout, 26 },
+                { AuditEventSubcategories.ipsec_main_mode, 28 },
+                { AuditEventSubcategories.special_logon, 30 },
+                { AuditEventSubcategories.ipsec_quick_mode, 32 },
+                { AuditEventSubcategories.ipsec_extended_mode, 34 },
+                { AuditEventSubcategories.other_logon_logoff_events, 36 },
+                { AuditEventSubcategories.network_policy_server, 38 },
+                { AuditEventSubcategories.file_system, 40 },
+                { AuditEventSubcategories.registry, 42 },
+                { AuditEventSubcategories.kernel_object, 44 },
+                { AuditEventSubcategories.sam, 46 },
+                { AuditEventSubcategories.other_object_access_events, 48 },
+                { AuditEventSubcategories.certification_services, 50 },
+                { AuditEventSubcategories.application_generated, 52 },
+                { AuditEventSubcategories.handle_manipulation, 54 },
+                { AuditEventSubcategories.file_share, 56 },
+                { AuditEventSubcategories.filtering_platform_packet_drop, 58 },
+                { AuditEventSubcategories.filtering_platform_connection, 60 },
+
+                { AuditEventSubcategories.detailed_file_share, 62 },
+
+                { AuditEventSubcategories.sensitive_privilege_use, 64 },
+                { AuditEventSubcategories.non_sensitive_privilege_use, 66 },
+                { AuditEventSubcategories.other_privilege_use_events, 68 },
+                { AuditEventSubcategories.process_creation, 70 },
+                { AuditEventSubcategories.process_termination, 72 },
+                { AuditEventSubcategories.dpapi_activity, 74 },
+                { AuditEventSubcategories.rpc_events, 76 },
+                { AuditEventSubcategories.audit_policy_change, 78 },
+                { AuditEventSubcategories.authentication_policy_change, 80 },
+                { AuditEventSubcategories.authorization_policy_change, 82 },
+                { AuditEventSubcategories.mpssvc_rule_level_policy_change, 84 },
+                { AuditEventSubcategories.filtering_platform_policy_change, 86 },
+                { AuditEventSubcategories.other_policy_change_events, 88 },
+                { AuditEventSubcategories.user_account_management, 90 },
+                { AuditEventSubcategories.computer_account_management, 92 },
+                { AuditEventSubcategories.security_group_management, 94 },
+                { AuditEventSubcategories.distribution_group_management, 96 },
+                { AuditEventSubcategories.application_group_management, 98 },
+                { AuditEventSubcategories.other_account_management_events, 100 },
+                { AuditEventSubcategories.directory_service_access, 102 },
+                { AuditEventSubcategories.directory_service_changes, 104 },
+                { AuditEventSubcategories.directory_service_replication, 106 },
+                { AuditEventSubcategories.detailed_directory_service_replication, 108 },
+                { AuditEventSubcategories.credential_validation, 110 },
+                { AuditEventSubcategories.kerberos_service_ticket_operations, 112 },
+                { AuditEventSubcategories.other_account_logon_events, 114 },
+                { AuditEventSubcategories.kerberos_authentication_service, 116 },
+            };
+        }
+
+        private Dictionary<AuditEventSubcategories, int> GetStructure7ESubcategoriesPositions()
+        {
+            return new Dictionary<AuditEventSubcategories, int>
+            {
+                { AuditEventSubcategories.security_state_change, 12 },
+                { AuditEventSubcategories.security_system_extension, 14 },
+                { AuditEventSubcategories.system_integrity, 16 },
+                { AuditEventSubcategories.ipsec_driver, 18 },
+                { AuditEventSubcategories.other_system_events, 20 },
+                { AuditEventSubcategories.logon, 22 },
+                { AuditEventSubcategories.logoff, 24 },
+                { AuditEventSubcategories.account_lockout, 26 },
+                { AuditEventSubcategories.ipsec_main_mode, 28 },
+                { AuditEventSubcategories.special_logon, 30 },
+                { AuditEventSubcategories.ipsec_quick_mode, 32 },
+                { AuditEventSubcategories.ipsec_extended_mode, 34 },
+                { AuditEventSubcategories.other_logon_logoff_events, 36 },
+                { AuditEventSubcategories.network_policy_server, 38 },
+                // 40: User / Device Claims (Win 8)
+                { AuditEventSubcategories.file_system, 42 },
+                { AuditEventSubcategories.registry, 44 },
+                { AuditEventSubcategories.kernel_object, 46 },
+                { AuditEventSubcategories.sam, 48 },
+                { AuditEventSubcategories.other_object_access_events, 50 },
+                { AuditEventSubcategories.certification_services, 52 },
+                { AuditEventSubcategories.application_generated, 54 },
+                { AuditEventSubcategories.handle_manipulation, 56 },
+                { AuditEventSubcategories.file_share, 58 },
+                { AuditEventSubcategories.filtering_platform_packet_drop, 60 },
+                { AuditEventSubcategories.filtering_platform_connection, 62 },
+                { AuditEventSubcategories.detailed_file_share, 64 },
+                // 66: Removable Storage (Win 8)
+                // 68: Central Access Policy Staging (Win 8)
+                { AuditEventSubcategories.sensitive_privilege_use, 70 },
+                { AuditEventSubcategories.non_sensitive_privilege_use, 72 },
+                { AuditEventSubcategories.other_privilege_use_events, 74 },
+                { AuditEventSubcategories.process_creation, 76 },
+                { AuditEventSubcategories.process_termination, 78 },
+                { AuditEventSubcategories.dpapi_activity, 80 },
+                { AuditEventSubcategories.rpc_events, 82 },
+                { AuditEventSubcategories.audit_policy_change, 84 },
+                { AuditEventSubcategories.authentication_policy_change, 86 },
+                { AuditEventSubcategories.authorization_policy_change, 88 },
+                { AuditEventSubcategories.mpssvc_rule_level_policy_change, 90 },
+                { AuditEventSubcategories.filtering_platform_policy_change, 92 },
+                { AuditEventSubcategories.other_policy_change_events, 94 },
+                { AuditEventSubcategories.user_account_management, 96 },
+                { AuditEventSubcategories.computer_account_management, 98 },
+                { AuditEventSubcategories.security_group_management, 100 },
+                { AuditEventSubcategories.distribution_group_management, 102 },
+                { AuditEventSubcategories.application_group_management, 104 },
+                { AuditEventSubcategories.other_account_management_events, 106 },
+                { AuditEventSubcategories.directory_service_access, 108 },
+                { AuditEventSubcategories.directory_service_changes, 110 },
+                { AuditEventSubcategories.directory_service_replication, 112 },
+                { AuditEventSubcategories.detailed_directory_service_replication, 114 },
+                { AuditEventSubcategories.credential_validation, 116 },
+                { AuditEventSubcategories.kerberos_service_ticket_operations, 118 },
+                { AuditEventSubcategories.other_account_logon_events, 120 },
+                { AuditEventSubcategories.kerberos_authentication_service, 122 },
+            };
+        }
+
+        public Dictionary<AuditEventSubcategories, AuditEventStatus> GetSubcategoriesStatus(string policyData, Dictionary<AuditEventSubcategories, int> positionsMap)
+        {
+            var items = new Dictionary<AuditEventSubcategories, AuditEventStatus>();
+
+            foreach (var positionItem in positionsMap)
+            {
+                var status = (AuditEventStatus) GetPositionValue(policyData, positionItem.Value);
+                items.Add(positionItem.Key, status);
+            }
+
+            return items;
         }
 
         public TargetInfo TargetInfo { get; private set; }
@@ -709,6 +788,10 @@ namespace Modulo.Collect.Probe.Windows.AuditEventPolicy
         sensitive_privilege_use,
         special_logon,
         system_integrity,
-        user_account_management
+        user_account_management,
+        detailed_file_share,
+        network_policy_server,
+        kerberos_authentication_service,
+        kerberos_service_ticket_operations,
     }
 }
