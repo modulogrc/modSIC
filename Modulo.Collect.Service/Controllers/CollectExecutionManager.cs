@@ -130,8 +130,10 @@ namespace Modulo.Collect.Service.Controllers
 
                     session.SaveChanges();
                 }
-                catch (SystemInformationException)
+                catch (SystemInformationException ex)
                 {
+                    var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                    Logger.Error(logMessage);
                     collectRequest.SetResultError();
                     collectRequest.Close();
                     anErrorOccured = true;

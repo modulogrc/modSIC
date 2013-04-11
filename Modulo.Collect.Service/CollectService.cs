@@ -45,6 +45,7 @@ using Modulo.Collect.Service.Infra;
 using Modulo.Collect.Service.Server;
 using Modulo.Collect.OVAL.Common;
 using System.Text;
+using NLog;
 
 namespace Modulo.Collect.Service
 {
@@ -58,6 +59,10 @@ namespace Modulo.Collect.Service
         private static ScheduleController ScheduleController = null;
         private static IUnityContainer SchedulerContainer = null;
         private static object ScheduleInitLock = new object();
+
+        private const string EXECUTION_ERROR_MESSAGE =
+            "[CollectService] - An error occurred collection execution:\r\nMessage:'{0}'\r\nStack:\r\n{1}\r\n\r\n";
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
         
         public CollectService()
         {
@@ -107,6 +112,8 @@ namespace Modulo.Collect.Service
             }
             catch (Exception ex)
             {
+                var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                Logger.Error(logMessage);
                 result.HasErrors = true;
                 result.Message = ex.Message;
             }
@@ -127,6 +134,8 @@ namespace Modulo.Collect.Service
             }
             catch (Exception ex)
             {
+                var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                Logger.Error(logMessage);
                 throw new FaultException(ex.Message);
             }
         }
@@ -144,6 +153,8 @@ namespace Modulo.Collect.Service
             }
             catch (Exception ex)
             {
+                var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                Logger.Error(logMessage);
                 throw new FaultException(ex.Message);
             }
         }
@@ -161,6 +172,8 @@ namespace Modulo.Collect.Service
             }
             catch (Exception ex)
             {
+                var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                Logger.Error(logMessage);
                 throw new FaultException(ex.Message);
             }
         }
@@ -178,6 +191,8 @@ namespace Modulo.Collect.Service
             }
             catch (Exception ex)
             {
+                var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                Logger.Error(logMessage);
                 throw new FaultException(ex.Message);
             }
         }
@@ -195,6 +210,8 @@ namespace Modulo.Collect.Service
             }
             catch (Exception ex)
             {
+                var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                Logger.Error(logMessage);
                 throw new FaultException(ex.Message);
             }
         }
@@ -212,6 +229,8 @@ namespace Modulo.Collect.Service
             }
             catch (Exception ex)
             {
+                var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                Logger.Error(logMessage);
                 throw new FaultException(ex.Message);
             }
         }
@@ -229,6 +248,8 @@ namespace Modulo.Collect.Service
             }
             catch (Exception ex)
             {
+                var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                Logger.Error(logMessage);
                 throw new FaultException(ex.Message);
             }
         }
@@ -290,6 +311,8 @@ namespace Modulo.Collect.Service
             }
             catch (Exception ex)
             {
+                var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                Logger.Error(logMessage);
                 throw new FaultException(ex.Message);
             }
         }
@@ -306,6 +329,8 @@ namespace Modulo.Collect.Service
             }
             catch (Exception ex)
             {
+                var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                Logger.Error(logMessage);
                 return new TargetCheckingResult() { ErrorMessage = ex.Message, IsTargetAvailable = false };
             }
         }
