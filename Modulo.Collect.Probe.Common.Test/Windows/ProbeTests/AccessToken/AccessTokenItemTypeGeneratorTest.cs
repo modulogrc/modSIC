@@ -101,15 +101,13 @@ namespace Modulo.Collect.Probe.Windows.Test.AccessToken
 
             var generatedItems = itemTypeGenerator.GetItemsToCollect(objectType, fakeVariables);
 
-            this.DoBasicAssert(generatedItems, 6);
+            this.DoBasicAssert(generatedItems, 4);
             generatedItems = generatedItems.OrderBy(item => ((accesstoken_item)item).security_principle.Value);
 
-            this.AssertGeneratedAccessTokenItem(generatedItems.ElementAt(0), "Group1");
-            this.AssertGeneratedAccessTokenItem(generatedItems.ElementAt(1), "Group2");
-            this.AssertGeneratedAccessTokenItem(generatedItems.ElementAt(2), "Guest");
-            this.AssertGeneratedAccessTokenItem(generatedItems.ElementAt(3), "LAB\\admin");
-            this.AssertGeneratedAccessTokenItem(generatedItems.ElementAt(4), "mss\\bfernandes");
-            this.AssertGeneratedAccessTokenItem(generatedItems.ElementAt(5), "mss\\lfernandesa");
+            this.AssertGeneratedAccessTokenItem(generatedItems.ElementAt(0), "Guest");
+            this.AssertGeneratedAccessTokenItem(generatedItems.ElementAt(1), "LAB\\admin");
+            this.AssertGeneratedAccessTokenItem(generatedItems.ElementAt(2), "mss\\bfernandes");
+            this.AssertGeneratedAccessTokenItem(generatedItems.ElementAt(3), "mss\\lfernandesa");
 
         }
 
@@ -129,6 +127,7 @@ namespace Modulo.Collect.Probe.Windows.Test.AccessToken
                 }
 
                 Expect.Call(fakeAccountProvider.GetAllGroupByUsers()).IgnoreArguments().Return(fakeWindowsAccount);
+                Expect.Call(fakeAccountProvider.GetAllGroupsAndUsers()).IgnoreArguments().Return(fakeWindowsAccount);
             }
             else
                 Expect.Call(fakeAccountProvider.GetAllGroupByUsers()).IgnoreArguments().Throw(exceptionToThrow);

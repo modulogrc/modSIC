@@ -76,7 +76,6 @@ namespace Modulo.Collect.Probe.Windows.Test.AuditEventPolicySubcategories
             Assert.IsNotNull(itemToAssert.ipsec_extended_mode);
             Assert.IsNotNull(itemToAssert.ipsec_main_mode);
             Assert.IsNotNull(itemToAssert.ipsec_quick_mode);
-            Assert.IsNotNull(itemToAssert.kerberos_ticket_events);
             Assert.IsNotNull(itemToAssert.kernel_object);
             Assert.IsNotNull(itemToAssert.logoff);
             Assert.IsNotNull(itemToAssert.logon);
@@ -101,6 +100,10 @@ namespace Modulo.Collect.Probe.Windows.Test.AuditEventPolicySubcategories
             Assert.IsNotNull(itemToAssert.special_logon);
             Assert.IsNotNull(itemToAssert.system_integrity);
             Assert.IsNotNull(itemToAssert.user_account_management);
+            Assert.IsNotNull(itemToAssert.kerberos_authentication_service);
+            Assert.IsNotNull(itemToAssert.kerberos_service_ticket_operations);
+            Assert.IsNotNull(itemToAssert.detailed_file_share);
+            Assert.IsNotNull(itemToAssert.network_policy_server);
         }
     }
 }

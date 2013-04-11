@@ -118,18 +118,9 @@ namespace Modulo.Collect.Probe.Windows.AccessToken
         private IEnumerable<String> getAllSecurityPrinciples()
         {
             var allSecurityPrinciples = new List<String>();
-            var allUsers = this.WindowsAccountProvider.GetAllGroupByUsers();
+            var allGroupsAndUsers = this.WindowsAccountProvider.GetAllGroupsAndUsers();
 
-            foreach (var userAccount in allUsers)
-            {
-                allSecurityPrinciples.Add(userAccount.Name);
-                if (userAccount.Members != null)
-                    foreach (var userGroup in userAccount.Members)
-                        allSecurityPrinciples.Add(userGroup.Name);
-            }
-
-            return allSecurityPrinciples.Distinct();
-
+            return allGroupsAndUsers.Select(a => a.Name);
         }
     }
 }

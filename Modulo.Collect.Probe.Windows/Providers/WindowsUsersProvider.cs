@@ -59,6 +59,42 @@ namespace Modulo.Collect.Probe.Windows.Providers
         }
 
         /// <summary>
+        /// Gets all groups and users from target.
+        /// </summary>
+        /// <returns>
+        /// It returns a list of WindowsAccount struct where each element represents a user or group account.
+        /// </returns>
+        public virtual IEnumerable<WindowsAccount> GetAllGroupsAndUsers()
+        {
+            var allUsers = new Dictionary<string, WindowsAccount>();
+            var allLocalGroups = GetAllUsersByGroup();
+
+            foreach (var group in allLocalGroups)
+            {
+                allUsers.Add(group.Name, group);
+
+                if (group.Members == null)
+                    continue;
+
+                foreach (var user in group.Members)
+                {
+                    if (!allUsers.ContainsKey(user.Name))
+                    {
+                        var newUserAccount = new WindowsAccount(user.Name, user.Enabled, user.AccountSID, AccountType.User);
+                        allUsers.Add(user.Name, newUserAccount);
+                    }
+                }
+            }
+
+            var allBuiltinAccounts = this.GetAllBuiltinAccounts();
+            foreach (var builtinAccount in allBuiltinAccounts)
+                if (!allUsers.ContainsKey(builtinAccount.Name))
+                    allUsers.Add(builtinAccount.Name, builtinAccount);
+
+            return allUsers.Select(user => user.Value);
+        }
+
+        /// <summary>
         /// It gets all local users (and its groups) from target.
         /// </summary>
         /// <returns>

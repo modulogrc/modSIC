@@ -89,7 +89,6 @@ namespace Modulo.Collect.Probe.Windows.Test.AuditEventPolicySubcategories
 
             Assert.AreEqual(AUDIT_FAILURE, this.GetSubcategoryValue(itemToAssert, AuditEventSubcategories.handle_manipulation), UNEXPECTED_SUBCATEGORY_VALUE_ASSERT_FAILED_MSG);
             Assert.AreEqual(AUDIT_NONE, this.GetSubcategoryValue(itemToAssert, AuditEventSubcategories.ipsec_driver), UNEXPECTED_SUBCATEGORY_VALUE_ASSERT_FAILED_MSG);
-            Assert.AreEqual(AUDIT_SUCCESS, this.GetSubcategoryValue(itemToAssert, AuditEventSubcategories.kerberos_ticket_events), UNEXPECTED_SUBCATEGORY_VALUE_ASSERT_FAILED_MSG);
             Assert.AreEqual(AUDIT_SUCCESS_FAILURE, this.GetSubcategoryValue(itemToAssert, AuditEventSubcategories.mpssvc_rule_level_policy_change), UNEXPECTED_SUBCATEGORY_VALUE_ASSERT_FAILED_MSG);
 
             Assert.AreEqual(AUDIT_FAILURE, this.GetSubcategoryValue(itemToAssert, AuditEventSubcategories.other_object_access_events), UNEXPECTED_SUBCATEGORY_VALUE_ASSERT_FAILED_MSG);
@@ -141,7 +140,6 @@ namespace Modulo.Collect.Probe.Windows.Test.AuditEventPolicySubcategories
 
             result.Add(AuditEventSubcategories.handle_manipulation, AuditEventStatus.AUDIT_FAILURE);
             result.Add(AuditEventSubcategories.ipsec_driver, AuditEventStatus.AUDIT_NONE);
-            result.Add(AuditEventSubcategories.kerberos_ticket_events, AuditEventStatus.AUDIT_SUCCESS);
             result.Add(AuditEventSubcategories.mpssvc_rule_level_policy_change, AuditEventStatus.AUDIT_SUCCESS_FAILURE);
 
             result.Add(AuditEventSubcategories.other_object_access_events, AuditEventStatus.AUDIT_FAILURE);
