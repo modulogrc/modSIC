@@ -53,7 +53,8 @@ namespace Modulo.Collect.Probe.Independent.TextFileContent54
         filepath,
         pattern,
         instance,
-        multiline
+        multiline,
+        singleline
     };
 
     public class TextFileContentObjectCollector : BaseObjectCollector
@@ -69,13 +70,15 @@ namespace Modulo.Collect.Probe.Independent.TextFileContent54
             string filepath,
             string pattern,
             int instance,
-            bool multiline = true)
+            bool multiline = true,
+            bool singleline = false)
         {
             var parameters = new Dictionary<String, Object>();
             parameters.Add(SearchTextFileContentParameters.filepath.ToString(), filepath);
             parameters.Add(SearchTextFileContentParameters.instance.ToString(), instance);
             parameters.Add(SearchTextFileContentParameters.pattern.ToString(), pattern);
             parameters.Add(SearchTextFileContentParameters.multiline.ToString(), multiline);
+            parameters.Add(SearchTextFileContentParameters.singleline.ToString(), singleline);
             return parameters;
         }
 
@@ -87,16 +90,18 @@ namespace Modulo.Collect.Probe.Independent.TextFileContent54
                 var instanceParamName = SearchTextFileContentParameters.instance.ToString();
                 var patternParamName = SearchTextFileContentParameters.pattern.ToString();
                 var multilineParamName = SearchTextFileContentParameters.multiline.ToString();
+                var singlelineParamName = SearchTextFileContentParameters.singleline.ToString();
             
                 var filepath = parameters[filepathParamName].ToString();
                 var pattern = parameters[patternParamName].ToString();
                 var instance = (int)parameters[instanceParamName];
                 var multiline = (bool)parameters[multilineParamName];
+                var singleline = (bool)parameters[singlelineParamName];
 
                 var fileContentLines = this.FileContentProvider.GetFileLinesContentFromHost(filepath);
                 
 
-                return this.GetMatchInstances(fileContentLines.ToArray(), pattern, instance, multiline);
+                return this.GetMatchInstances(fileContentLines.ToArray(), pattern, instance, multiline, singleline);
             //}
             //catch (Exception ex)
             //{
@@ -118,23 +123,23 @@ namespace Modulo.Collect.Probe.Independent.TextFileContent54
         }
 
 
-        private string[] GetMatchInstances(string[] fileContentLines, string patternValue, int instance, bool multiline)
+        private string[] GetMatchInstances(string[] fileContentLines, string patternValue, int instance, bool multiline, bool singleline)
         {
-            var matchLines = new List<String>();
+            var regexopt = RegexOptions.None;
+
             if (multiline)
-            {
-                var fileContent = string.Join(Environment.NewLine, fileContentLines);
-                var regexResult = new Regex(patternValue, RegexOptions.Multiline).Matches(fileContent);
-                foreach (Match matchItem in regexResult)
-                    if (matchItem.Success)
-                        matchLines.Add(matchItem.Value);
-            }
-            else
-            {
-                foreach (var line in fileContentLines)
-                    if (Regex.IsMatch(line, patternValue, RegexOptions.Singleline))
-                        matchLines.Add(line);
-            }
+                regexopt |= RegexOptions.Multiline;
+
+            if (singleline)
+                regexopt |= RegexOptions.Singleline;
+
+            var matchLines = new List<String>();
+            
+            var fileContent = string.Join(Environment.NewLine, fileContentLines);
+            var regexResult = new Regex(patternValue, regexopt).Matches(fileContent);
+            foreach (Match matchItem in regexResult)
+                if (matchItem.Success)
+                    matchLines.Add(matchItem.Value);
 
             if (instance <= 0)
                 return matchLines.ToArray();
@@ -143,7 +148,7 @@ namespace Modulo.Collect.Probe.Independent.TextFileContent54
             for (int i = 0; i < matchLines.Count; i++)
                 if (i.Equals(instance - 1))
                     result.Add(matchLines.ElementAt(i));
-            
+
             return result.ToArray();
         }
 

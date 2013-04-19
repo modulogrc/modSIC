@@ -133,12 +133,13 @@ namespace Modulo.Collect.Probe.Independent.TextFileContent54
             var pattern = ((EntityObjectStringType)fileContentObject.GetItemValue(textfilecontent54_ItemsChoices.pattern)).Value;
             var instance = ((EntitySimpleBaseType)fileContentObject.GetItemValue(textfilecontent54_ItemsChoices.instance)).Value;
             var multilineBehavior = fileContentObject.IsMultiline();
+            var singlelineBehavior = fileContentObject.IsSingleline();
             
             foreach (var filepath in completePaths)
             {
                 var parameters =
                     TextFileContentObjectCollector.GetDictionaryWithParametersToSearchTextFileConten(
-                        filepath, pattern, Int32.Parse(instance), multilineBehavior);
+                        filepath, pattern, Int32.Parse(instance), multilineBehavior, singlelineBehavior);
 
                 result.Add(this.CollectItem(parameters));
                 

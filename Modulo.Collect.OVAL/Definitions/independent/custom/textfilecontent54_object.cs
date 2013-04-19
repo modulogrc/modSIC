@@ -153,5 +153,14 @@ namespace Modulo.Collect.OVAL.Definitions.Independent
 
             return true;
         }
+
+        public bool IsSingleline()
+        {
+            foreach (var item in this.Items)
+                if (item is Textfilecontent54Behaviors)
+                    return ((Textfilecontent54Behaviors)item).singleline;
+
+            return true;
+        }
     }
 }

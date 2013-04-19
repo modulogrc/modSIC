@@ -37,6 +37,6 @@ namespace Modulo.Collect.Service.Controllers
 {
     public class SystemInformationException : Exception
     {
-        public SystemInformationException(string exceptionMessage) : base(exceptionMessage) { }
+        public SystemInformationException(string exceptionMessage, Exception innerException) : base(exceptionMessage, innerException) { }
     }
 }

@@ -61,6 +61,9 @@ namespace Modulo.Collect.Service.Controllers
         private const string EXECUTION_ERROR_MESSAGE =
             "[CollectExecutionManager] - An error occurred collection execution:\r\nMessage:'{0}'\r\nStack:\r\n{1}\r\n\r\n";
 
+        private const string EXECUTION_ERROR_MESSAGE_WITH_INNER_EXCEPTION =
+            "[CollectExecutionManager] - An error occurred collection execution:\r\nMessage:'{0}'\r\nInnerException Stack:\r\n{1}\r\nStack:\r\n{2}\r\n\r\n";
+
         private CollectFactory collectFactory;
         private VariableEvaluatorService variableEvaluatorService;
         private CollectTimeOutController collectTimeOut;
@@ -132,7 +135,15 @@ namespace Modulo.Collect.Service.Controllers
                 }
                 catch (SystemInformationException ex)
                 {
-                    var logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                    string logMessage;
+                    if (ex.InnerException == null)
+                    {
+                        logMessage = String.Format(EXECUTION_ERROR_MESSAGE, ex.Message, ex.StackTrace);
+                    }
+                    else
+                    {
+                        logMessage = String.Format(EXECUTION_ERROR_MESSAGE_WITH_INNER_EXCEPTION, ex.Message, ex.InnerException.StackTrace, ex.StackTrace);
+                    }
                     Logger.Error(logMessage);
                     collectRequest.SetResultError();
                     collectRequest.Close();
@@ -250,13 +261,13 @@ namespace Modulo.Collect.Service.Controllers
                         collectExecution.SetDateStartCollect();
                         this.ConfigureTheCollectRequestWithAnErrorProbeExecute(collectRequest, "SystemInformation", collectExecution, ex, executionLog);
                         session.SaveChanges();
-                        throw new SystemInformationException(ex.Message);
+                        throw new SystemInformationException(ex.Message, ex);
                     }
                     catch (Exception ex)
                     {
                         CreateCollectionExcutionWithError(session, collectRequest, "SystemInformation", ex, executionLog);
                         session.SaveChanges();
-                        throw new SystemInformationException(ex.Message);
+                        throw new SystemInformationException(ex.Message, ex);
                     }
 
                 }

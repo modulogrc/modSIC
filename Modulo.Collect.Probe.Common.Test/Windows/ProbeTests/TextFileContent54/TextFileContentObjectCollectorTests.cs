@@ -112,7 +112,7 @@ namespace Modulo.Collect.Probe.Windows.Test.ProbeTests.TextFileContent54
         public void Should_be_possible_to_get_more_than_one_line_with_pattern_match()
         {
             var fileContentSearchingParameters =
-                TextFileContentObjectCollector.GetDictionaryWithParametersToSearchTextFileConten("c:\\windows\\win.ini", @"MAPI.*CMC=1", 1);
+                TextFileContentObjectCollector.GetDictionaryWithParametersToSearchTextFileConten("c:\\windows\\win.ini", @"MAPI.*CMC=1", 1, true, true);
             var textFileContentObjectCollector =
                 new TextFileContentObjectCollector() { FileContentProvider = CreateFakeFileContentProvider(CreateFakeFileContent()) };
 
@@ -142,7 +142,7 @@ namespace Modulo.Collect.Probe.Windows.Test.ProbeTests.TextFileContent54
         public void Should_be_possible_to_get_xml_entries_with_pattern_match()
         {
             var fileContentSearchingParameters =
-                  TextFileContentObjectCollector.GetDictionaryWithParametersToSearchTextFileConten("c:\\windows\\win.ini", @"<book>.*?</book>", 1);
+                  TextFileContentObjectCollector.GetDictionaryWithParametersToSearchTextFileConten("c:\\windows\\win.ini", @"<book>.*?</book>", 1, true, true);
             var textFileContentObjectCollector =
                 new TextFileContentObjectCollector() { FileContentProvider = CreateFakeFileContentProvider(GetFakeLines()) };
 

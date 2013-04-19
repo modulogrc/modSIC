@@ -138,7 +138,7 @@ namespace Modulo.Collect.Probe.Unix.Test.ProberTests.TextFileContent54
             var fakeFileLines = GetFakeFileContent();
             var objectCollector = GetTextFileContentObjectCollectorWithMockBehavior(fakeFileLines);
             var regex = @"^\s*net\.ipv4\.conf\.all\.accept_redirects\s*=\s*0\s*(#.*)?$";
-            var parameters = GetSearchParametersFileLines(1, regex, false);
+            var parameters = GetSearchParametersFileLines(1, regex, true);
 
             var result = objectCollector.GetValues(parameters);
 
@@ -176,13 +176,14 @@ namespace Modulo.Collect.Probe.Unix.Test.ProberTests.TextFileContent54
             return fakeFileLines.ToArray();
         }
 
-        private Dictionary<string, object> GetSearchParametersFileLines(int instanceLine, string regex = @"Line.*?\r\n", bool multiline = true)
+        private Dictionary<string, object> GetSearchParametersFileLines(int instanceLine, string regex = @"Line.*?\r\n", bool multiline = true, bool singleline = false)
         {
             var parameters = new Dictionary<string, object>();
             parameters.Add(SearchTextFileContentParameters.filepath.ToString(), "/temp");
             parameters.Add(SearchTextFileContentParameters.pattern.ToString(), regex);
             parameters.Add(SearchTextFileContentParameters.instance.ToString(), instanceLine);
             parameters.Add(SearchTextFileContentParameters.multiline.ToString(), multiline);
+            parameters.Add(SearchTextFileContentParameters.singleline.ToString(), singleline);
             
             return parameters;
         }
