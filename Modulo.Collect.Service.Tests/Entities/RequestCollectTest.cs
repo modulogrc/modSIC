@@ -311,6 +311,24 @@ namespace Modulo.Collect.Service.Tests.Entities
             Assert.IsTrue(completeLog.Count() > 0, "the quantity of executionLogs is not expected");
         }
 
+        [TestMethod, Owner("lfernandes")]
+        public void Should_be_possible_to_check_that_all_object_types_is_being_referenced_by_variable()
+        {
+            var fakeSession = this.GetSession();
+            var collectRequest = new CollectRequestFactory().CreateCollectRequestWithSpecificDefinitions(fakeSession, "public.microsoft.windows.xp_only_objects.xml");
+            foreach (var @object in collectRequest.GetObjectTypes(fakeSession))
+            {
+                try
+                {
+                    @object.HasReferenceForVariable("");
+                }
+                catch (Exception ex)
+                {
+                    Assert.Fail("It was not possible to evaluate {0} type. Error: {1}({2})", @object.ComponentString, ex.Message, ex.GetType().FullName);
+                }
+            }
+        }
+
         private IDocumentSession GetSession()
         {
             return dataprovider.GetSession();

@@ -71,6 +71,7 @@
     <Compile Include="Definitions\helpers\RegexHelper.cs" />
     <Compile Include="Definitions\helpers\StateTypeComparator.cs" />
     <Compile Include="Definitions\helpers\XmlSignatureHelper.cs" />
+    <Compile Include="Definitions\independent\custom\environmentvariable58_object.cs" />
     <Compile Include="Definitions\independent\custom\environmentvariable_object.cs" />
     <Compile Include="Definitions\independent\custom\family_object.cs" />
     <Compile Include="Definitions\independent\custom\filehash_object.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Definitions\windows\custom\regkeyeffectiverights53_object.cs" />
     <Compile Include="Definitions\windows\custom\regkeyeffectiverights_object.cs" />
     <Compile Include="Definitions\windows\custom\serviceeffectiverights_object.cs" />
+    <Compile Include="Definitions\windows\custom\service_object.cs" />
     <Compile Include="Definitions\windows\custom\sharedresource_object.cs" />
     <Compile Include="Definitions\windows\custom\sid_object.cs" />
     <Compile Include="Definitions\windows\custom\sid_sid_object.cs" />
