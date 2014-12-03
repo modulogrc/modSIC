@@ -30,6 +30,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Modulo.Collect.OVAL.Common;
@@ -116,19 +117,28 @@ namespace Modulo.Collect.Probe.Unix.TextFileContent54
                         .GetDictionaryWithParametersToSearchTextFileConten(
                             filepath, pattern, int.Parse(instance), fileObject.IsMultiline());
 
-                var matchLines = ObjectCollector.GetValues(fileContentSearchParameters);
-                if (matchLines == null || matchLines.Count <= 0)
+                try
                 {
-                    var newNotExistsItem = CreateTextFileContentItem(filepath, "", "", pattern, instance, null);
-                    newNotExistsItem.status = StatusEnumeration.doesnotexist;
-                    itemsToCollect.Add(newNotExistsItem);
+                    var matchLines = ObjectCollector.GetValues(fileContentSearchParameters);
+                    if (matchLines == null || matchLines.Count <= 0)
+                    {
+                        var newNotExistsItem = CreateTextFileContentItem(filepath, "", "", pattern, instance, null);
+                        newNotExistsItem.status = StatusEnumeration.doesnotexist;
+                        itemsToCollect.Add(newNotExistsItem);
+                    }
+                    else
+                    {
+                        var newCollectedItem = CreateTextFileContentItem(filepath, "", "", pattern, instance, null);
+                        var result = string.Join(System.Environment.NewLine, matchLines);
+                        ((textfilecontent_item)newCollectedItem).text = new EntityItemAnySimpleType() { Value = result };
+                        itemsToCollect.Add(newCollectedItem);
+                    }
                 }
-                else
+                catch (UnauthorizedAccessException)
                 {
-                    var newCollectedItem = CreateTextFileContentItem(filepath, "", "", pattern, instance, null);
-                    var result = string.Join(System.Environment.NewLine, matchLines);
-                    ((textfilecontent_item)newCollectedItem).text = new EntityItemAnySimpleType() { Value = result };
-                    itemsToCollect.Add(newCollectedItem);
+                    var newNotCollectedItem = CreateTextFileContentItem(filepath, "", "", pattern, instance, null);
+                    newNotCollectedItem.status = StatusEnumeration.notcollected;
+                    itemsToCollect.Add(newNotCollectedItem);
                 }
             }           
 

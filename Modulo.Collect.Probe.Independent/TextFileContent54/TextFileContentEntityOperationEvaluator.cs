@@ -179,9 +179,16 @@ namespace Modulo.Collect.Probe.Independent.TextFileContent54
                     CleanTextFileContentItem(collectedItem);
                     return collectedItem;
                 }
+                /* else if (ex is UnauthorizedAccessException)
+                {
+                    var collectedItem = (textfilecontent_item)CreateTextFileContentItemType(filepath, string.Empty, 0, string.Empty);
+                    collectedItem.status = StatusEnumeration.notcollected;
+                    CleanTextFileContentItem(collectedItem);
+                    return collectedItem;
+                } */
                 else
                 {
-                    var errorMessage = string.Format(ERROR_MESSAGE, ex.Message);
+                    var errorMessage = string.Format(ERROR_MESSAGE, ex.GetType().Name + ": " + ex.Message);
                     return new textfilecontent_item() { status = StatusEnumeration.error, message = MessageType.FromErrorString(errorMessage) };
                 }
             }

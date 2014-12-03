@@ -6,8 +6,8 @@
   <Product  Id="50AAAE7A-DA39-48AB-AE28-62C6AB5A086C"
             Manufacturer="Modulo Security Solutions"
             Language="1033"
-            Name="modSIC 1.8.5"
-            Version="1.8.5"
+            Name="modSIC 1.8.6"
+            Version="1.8.6"
             UpgradeCode="7D0795D9-5C61-4C29-B298-45BB90A288C0">
 
     <Package InstallerVersion="200" Compressed="yes" Description="modSIC" Manufacturer="Modulo Security Solutions" InstallPrivileges="elevated" InstallScope="perMachine"/>

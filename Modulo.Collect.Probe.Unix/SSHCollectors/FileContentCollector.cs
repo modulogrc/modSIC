@@ -72,8 +72,18 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
 
         public virtual string GetTextFileFullContent(string pathspec)
         {
-            var commandText = String.Format("cat {0}", pathspec);
-            return CommandRunner.ExecuteCommand(commandText);
+            var commandText = String.Format("cat {0} 2>&1", pathspec);
+            string retVal = CommandRunner.ExecuteCommand(commandText);
+
+            if (CommandRunner.LastCommandExitCode > 0)
+            {
+                // if (retVal.Contains("Permis"))
+                    throw new UnauthorizedAccessException("Access denied to '" + pathspec + "'");
+                // else
+                //     throw new ApplicationException(retVal);
+            }
+
+            return retVal;
         }
 
         public virtual IEnumerable<String> GetTextFileFullContentInLines(string pathspec)
@@ -95,8 +105,18 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
             cookedPattern = cookedPattern.Replace("'", "'\"'\"'");
             //var command = "awk '/" + cookedPattern + "/ {print}' <" + pathspec;
 
-            var commandText = "awk '/" + cookedPattern + "/ {print}' <" + pathspec; ; // String.Format(@"awk '/{0}/ {print}' <{1}", cookedPattern, pathspec);
-            var output = CommandRunner.ExecuteCommand(commandText).SplitStringByDefaultNewLine();
+            var commandText = "awk '/" + cookedPattern + "/ {print}' <" + pathspec + " 2>&1"; ; // String.Format(@"awk '/{0}/ {print}' <{1}", cookedPattern, pathspec);
+
+            string outputStr = CommandRunner.ExecuteCommand(commandText);
+            var output = outputStr.SplitStringByDefaultNewLine();
+            if (CommandRunner.LastCommandExitCode > 0)
+            {
+                // if (outputStr.Contains("Permis"))
+                    throw new UnauthorizedAccessException("Access denied to '" + pathspec + "'");
+                // else
+                //     throw new ApplicationException(outputStr);
+            }
+
             string dir, fname;
             uint instance = 0;
             int whereSlash = pathspec.LastIndexOf('/');
