@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Modulo Security Solutions")]
 [assembly: AssemblyProduct("modSIC GUI Console")]
-[assembly: AssemblyCopyright("Copyright © 2011-2014 Modulo Security Solutions")]
+[assembly: AssemblyCopyright("Copyright © 2011-2014-2014 Modulo Security Solutions")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
