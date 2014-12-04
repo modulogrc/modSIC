@@ -255,9 +255,13 @@ namespace Modulo.Collect.Probe.CiscoIOS
             CiscoIOSVersion retVal = null;
             string output = tc.CiscoCommand("show version");
             string[] lines = output.Split('\r', '\n');
+            retVal = new CiscoIOSVersion();
+            retVal.VersionString = "0.0";
+            retVal.HostName = retVal.Architecture = "undefined";
+
             foreach (string line in lines)
             {
-                if (line.StartsWith("IOS"))
+                if (line.StartsWith("IOS") || line.StartsWith("Cisco IOS"))
                 {
                     string verString = " Version ";
                     int posVer = line.IndexOf(verString, StringComparison.OrdinalIgnoreCase);
@@ -266,7 +270,6 @@ namespace Modulo.Collect.Probe.CiscoIOS
                         posVer += verString.Length;
                         verString = line.Substring(posVer);
                         string[] verStringCut = verString.Split(' ', '\t', ',');
-                        retVal = new CiscoIOSVersion();
                         retVal.VersionString = verStringCut[0];
                         retVal.OSName = "IOS";
                     }
@@ -275,28 +278,17 @@ namespace Modulo.Collect.Probe.CiscoIOS
                 if (line.IndexOf(" uptime is ", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     int posSpace = line.IndexOfAny(new char[] { ' ', '\t' });
-                    retVal.HostName = line.Substring(0, posSpace);
+                    retVal.HostName = posSpace != 0 ? line.Substring(0, posSpace) : "unknown";
                 }
 
-                if ((line.IndexOf(" processor ", StringComparison.OrdinalIgnoreCase) >= 0) && 
-                    String.IsNullOrEmpty(retVal.Architecture))
+                if ((line.IndexOf(" bytes of memory", StringComparison.OrdinalIgnoreCase) >= 0))
                 {
-                    string[] tokens = line.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int i = 0; i < tokens.Length; i++)
-                    {
-                        if (String.Equals(tokens[i], "processor", StringComparison.OrdinalIgnoreCase) && (i > 0))
-                        {
-                            string cpuStr = tokens[i - 1];
-                            int lenCpuStr = cpuStr.Length;
-                            if ((cpuStr[0] == '(') && (cpuStr[lenCpuStr - 1] == ')'))
-                                cpuStr = cpuStr.Substring(1, lenCpuStr - 2);
-                            retVal.Architecture = cpuStr;
-                            break;
-                        }
-                    }
+                    retVal.Architecture = line;
                 }
             }
+
             return retVal;
         }
+
     }
 }

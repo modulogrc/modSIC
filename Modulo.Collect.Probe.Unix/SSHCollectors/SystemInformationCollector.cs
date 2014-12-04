@@ -246,7 +246,8 @@ namespace Modulo.Collect.Probe.Unix.SSHCollectors
             char[] fieldseps = { ' ', '\t' };
             char[] onlydot = { '.' };
             var commandOutputLines = commandRunner.ExecuteCommand("netstat -I " + curif.Name).SplitStringByDefaultNewLine();
-
+            if (commandOutputLines == null)
+                return;
             foreach (var line in commandOutputLines)
             {
                 string[] pfields = line.Split(fieldseps, StringSplitOptions.RemoveEmptyEntries);
