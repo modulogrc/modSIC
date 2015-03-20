@@ -1,7 +1,7 @@
 /*
  * Modulo Open Distributed SCAP Infrastructure Collector (modSIC)
  * 
- * Copyright (c) 2011-2014, Modulo Solutions for GRC.
+ * Copyright (c) 2011-2015, Modulo Solutions for GRC.
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -39,9 +39,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("Modulo.Collect.Service.CustomAction")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("Modulo.Collect.Service.CustomAction")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2010")]
+[assembly: AssemblyCompany("Modulo Security Solutions")]
+[assembly: AssemblyCopyright("Copyright © 2011-2015 Modulo Security Solutions")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

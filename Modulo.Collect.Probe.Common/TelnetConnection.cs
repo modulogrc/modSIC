@@ -1,7 +1,7 @@
 ﻿/*
  * Modulo Open Distributed SCAP Infrastructure Collector (modSIC)
  * 
- * Copyright (c) 2011-2014, Modulo Solutions for GRC.
+ * Copyright (c) 2011-2015, Modulo Solutions for GRC.
  * All rights reserved.
  * 
  * Based on:

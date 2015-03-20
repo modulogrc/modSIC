@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 /*
  * Modulo Open Distributed SCAP Infrastructure Collector (modSIC)
  * 
- * Copyright (c) 2011-2014, Modulo Solutions for GRC.
+ * Copyright (c) 2011-2015, Modulo Solutions for GRC.
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
