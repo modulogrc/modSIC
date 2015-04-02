@@ -3,14 +3,33 @@
      xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
      xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
 
-  <Product  Id="50AAAE7A-DA39-48AB-AE28-62C6AB5A086C"
-            Manufacturer="Modulo Security Solutions"
-            Language="1033"
-            Name="modSIC 1.9.1"
-            Version="1.9.1"
-            UpgradeCode="7D0795D9-5C61-4C29-B298-45BB90A288C0">
+  <?define ProductName = "modSIC"?>
+  <?define ProductCode = "50AAAE7A-DA39-48AB-AE28-62C6AB5A086C"?>
+  <?define UpgradeCode = "7D0795D9-5C61-4C29-B298-45BB90A288C0"?>
+  <?define ProductVersion = "1.9.1.3"?>
+  <?define RTMProductVersion = "1.8.0.0"?>
+  <?define ProductManufacturer = "Modulo Security Solutions"?>
+  
+  <Product Id="$(var.ProductCode)"
+           Name="$(var.ProductName)"
+           Language="1033"
+           Version="$(var.ProductVersion)"
+           Manufacturer="$(var.ProductManufacturer)"
+           UpgradeCode="$(var.UpgradeCode)">
 
-    <Package InstallerVersion="200" Compressed="yes" Description="modSIC" Manufacturer="Modulo Security Solutions" InstallPrivileges="elevated" InstallScope="perMachine"/>
+    <Package InstallerVersion="200" Compressed="yes" Description="$(var.ProductName)" Manufacturer="$(var.ProductManufacturer)" InstallPrivileges="elevated" InstallScope="perMachine"/>
+
+    <Upgrade Id='$(var.UpgradeCode)'>
+      <UpgradeVersion Minimum='$(var.ProductVersion)'
+                      IncludeMinimum='no'
+                      OnlyDetect='yes'
+                      Property='NEWPRODUCTFOUND' />
+      <UpgradeVersion Minimum='$(var.RTMProductVersion)'
+                      IncludeMinimum='yes'
+                      Maximum='$(var.ProductVersion)'
+                      IncludeMaximum='no'
+                      Property='UPGRADEFOUND' />
+    </Upgrade>
 
     <Media Id="1" Cabinet="file1.cab" EmbedCab="yes" />
 
@@ -260,6 +279,7 @@
       <Show Dialog="ExitDlg" OnExit="success">Not Installed</Show>
       <Custom Action="UpdateFQDN" Before="FindRelatedProducts">Not Installed</Custom>
       <Custom Action="UpdateSummary" After="ProgressDlg">Not Installed</Custom>
+      <Custom Action='PreventDowngrading' After='FindRelatedProducts'>NEWPRODUCTFOUND</Custom>
     </InstallUISequence>
 
     <InstallExecuteSequence>
@@ -268,7 +288,11 @@
       <Custom Action="InstallCollectService" Before="StartServices">Not Installed</Custom>
 
       <Custom Action="UninstallCollectService" After="StopServices">Installed</Custom>
+      <Custom Action='PreventDowngrading' After='FindRelatedProducts'>NEWPRODUCTFOUND</Custom>
+      <RemoveExistingProducts After='InstallFinalize' />
     </InstallExecuteSequence>
+    
+    <CustomAction Id='PreventDowngrading' Error='Newer version already installed' />
 
     <UIRef Id="ModSICCustomUI" />
   </Product>
