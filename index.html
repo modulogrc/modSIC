@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Modsic : Modulo&#39;s Open Distributed SCAP Infrastructure Collector, or modSIC, makes it easier for security analysts to scan an environment vulnerabilities based on OVAL-Definitions. It&#39;s an open-source service specialized in distributed network assessments.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Modsic</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/modulogrc/modSIC">View on GitHub</a>
+
+          <h1 id="project_title">Modsic</h1>
+          <h2 id="project_tagline">Modulo&#39;s Open Distributed SCAP Infrastructure Collector, or modSIC, makes it easier for security analysts to scan an environment vulnerabilities based on OVAL-Definitions. It&#39;s an open-source service specialized in distributed network assessments.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/modulogrc/modSIC/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/modulogrc/modSIC/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="the-modsic-project" class="anchor" href="#the-modsic-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>The modSIC Project</h1>
+
+<h2>
+<a id="modulo-open-distributed-scap-infrastructure-collector" class="anchor" href="#modulo-open-distributed-scap-infrastructure-collector" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modulo Open Distributed SCAP Infrastructure Collector</h2>
+
+<p>The initiative aims at providing a common platform for collecting security data, making it easier for solutions to automate policy compliance, audits, risk assessments, and more, using the industry-standard “Security Content Automation Protocol” (SCAP).</p>
+
+<p>Developed by the National Institute of Standards and Technology (NIST), SCAP is a common format for exchanging IT security data and maintaining a standards-based security posture across enterprise systems. By using SCAP-validated products, organizations automate critical tasks such as verifying the presence of patches, checking system security configurations, and examining systems for signs of compromise. SCAP also helps satisfy federal regulation mandates, such as FDCC and FISMA.</p>
+
+<p>Until now, however, the limited availability of SCAP tools has limited its adoption in the broader security and GRC community. Without these tools, organizations have to write their own APIs or export their data to Excel spreadsheets. By opening Modulo Risk Manager’s proven intelligent SCAP collection technology to the broader security and GRC domain, the open source SCAP initiative will provide a common platform that makes it easier for vendors and end-user organizations to create, improve, and test their own automated data collectors, leveraging:</p>
+
+<p>$Standardized formats
+$Distributed architectures
+$Transparent code
+$Crowd Testing</p>
+
+<p>Modulo Open Distributed SCAP Infrastructure Collector, or modSIC, uses OVAL (Open Vulnerability and Assessment Language) to lead an environment assessment. The use of SCAP standards allows for interoperability between many solutions and for the use of thousands of existing OVAL Definitions from the existing public repositories.
+ModSIC service works by receiving an OVAL Definitions XML file and some required information to perform data collection on a given target machine. It scans the machine through the network and retrieves he OVAL System Characteristics and the OVAL Results XML files.</p>
+
+<p>ModSIC can collect data from many infrastructures isolated by different networks in a distributed way. It is scalable and capable of performing multiple jobs simultaneously through its scheduler and a secure persistent database. Moreover, the service is adaptable and can integrate with third-party software using simple communications protocol.</p>
+
+<p>As its features are easily extensible, this project proposes to offer a finished tool for the community. All the probes (currently Windows and Unix) are written as plugins, and new probes can be developed using C#. All the information is stored using RavenDB, an open source document database.</p>
+
+<p>ModSIC can be used in a production environment. In fact, it is already used by Modulo Risk Manager 7 clients.</p>
+
+<p>The modSIC Project is released under a BSD 3-clause license.</p>
+
+<p>The source code for modSIC is available at:</p>
+
+<p><a href="https://github.com/modulogrc/modSIC">https://github.com/modulogrc/modSIC</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Modsic maintained by <a href="https://github.com/modulogrc">modulogrc</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
