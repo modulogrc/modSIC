@@ -27,3 +27,6 @@ packages/
 .DS_STORE
 */Modulo.Collect.Service.CustomAction.CA.dll
 *.VEIO
+*.ncrunchproject
+*.ncrunchsolution
+_NCrunch*
