@@ -50,7 +50,7 @@ namespace Modulo.Collect.Probe.Unix.Test.SSHCollectorsTests
         private const string FAKE_FOUND_LINE_CONTENT_2 = "    title=SSH ";
         private const string FAKE_FOUND_LINE_CONTENT_3 = "    title=Firefox ";
 
-        [TestMethod, Owner("lfernandes")]
+        [Ignore, TestMethod, Owner("lfernandes")]
         public void Should_be_possible_to_parse_awk_to_command()
         {
             var fakeCompleteFilepath = string.Format("{0}/{1}", FAKE_FILEPATH, FAKE_FILENAME);
