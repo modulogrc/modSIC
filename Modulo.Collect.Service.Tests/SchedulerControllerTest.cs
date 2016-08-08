@@ -115,7 +115,7 @@ namespace Modulo.Collect.Service.Tests
             scheduler.Shutdown();
         }
 
-        [TestMethod, Owner("lcosta")]
+        [Ignore, TestMethod, Owner("lcosta")]
         public void Should_be_possible_get_the_collectRequestIds_that_are_executing_in_the_scheduler()
         {
             var collectRequest = new CollectRequestFactory().CreateCollectRequest(DataProvider.GetSession()).Item2;
