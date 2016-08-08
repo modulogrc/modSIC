@@ -39,6 +39,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Modulo.Collect.GraphicalConsole
 {
@@ -49,6 +50,29 @@ namespace Modulo.Collect.GraphicalConsole
         const int IncY = 35;
         int ControlY = 0;
         IExternalVariable mainWindow;
+
+        float progress = 0;
+        public float Progress
+        {
+            get
+            {
+                return progress;
+            }
+
+            set
+            {
+                progress = value;
+
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(() => { Progress = value; }));
+                }
+                else
+                {
+                    progressBar1.Value = (int)(value * progressBar1.Maximum);
+                }
+            }
+        }
         #endregion
 
         #region Constructor
@@ -65,34 +89,36 @@ namespace Modulo.Collect.GraphicalConsole
         public event EventHandler<CreateControlsEventArgs> OnCreateControls;
         public event EventHandler<ExternalVariableEventArgs> OnGetExternalVariables;
         public event EventHandler<ValidateEventArgs> OnValidate;
+        public event EventHandler<OnXCCDFEventArgs> OnXCCDF;
 
         public void AddControl(Control control)
         {
-            control.Location = new Point(StartX, ControlY);
-            control.Width = panel.Width - 40;
+            //control.Location = new Point(StartX, ControlY);
+            //control.Width = panel.Width - 40;
 
-            ControlY += control.Height > IncY ? control.Height + 10 : IncY;
-            panel.Controls.Add(control);
+            //ControlY += control.Height > IncY ? control.Height + 10 : IncY;
+            //panel.Controls.Add(control);
+            flowLayoutPanel1.Controls.Add(control);
         }
 
-        public void AddControlWithLabel(Label label, Control control)
+        public void AddControlWithLabel(Label[] label, Control control)
         {
-            label.Location = new Point(StartX, ControlY);
-            ControlY += 20;
-            panel.Controls.Add(label);
-
-            control.Location = new Point(StartX, ControlY);
-            control.Width = panel.Width - 40;
-
-            ControlY += control.Height > IncY ? control.Height + 10 : IncY;
-            panel.Controls.Add(control);
-
-            if (!(control is ComboBox))
+            this.Invoke(new Action(() =>
             {
-                control.CausesValidation = true;
-                control.Validated += new EventHandler(control_Validated);
-                control.Validating += new CancelEventHandler(control_Validating);
-            }
+                foreach (var item in label)
+                {
+                    flowLayoutPanel1.Controls.Add(item);
+                }
+
+                flowLayoutPanel1.Controls.Add(control);
+
+                if (!(control is ComboBox))
+                {
+                    control.CausesValidation = true;
+                    control.Validated += new EventHandler(control_Validated);
+                    control.Validating += new CancelEventHandler(control_Validating);
+                }
+            }));
         }
 
         void control_Validating(object sender, CancelEventArgs e)
@@ -158,5 +184,21 @@ namespace Modulo.Collect.GraphicalConsole
             }
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Multiselect = false;
+
+            var result = dialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                OnXCCDF(this, new OnXCCDFEventArgs()
+                {
+                    Filename = dialog.FileName
+                });
+            }
+        }
     }
 }
