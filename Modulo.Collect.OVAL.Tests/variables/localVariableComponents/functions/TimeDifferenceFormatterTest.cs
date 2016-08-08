@@ -186,18 +186,13 @@ namespace Modulo.Collect.OVAL.Tests.variables.localVariableComponents.functions
         [TestMethod, Owner("lcosta")]
         public void Should_be_possible_to_get_a_date_given_win_filetime()
         {
-            string fileTime = "99900000000";
-            //string fileTime = "111900000000";
+            var expectedDate = DateTime.UtcNow;
+            string fileTime = expectedDate.ToFileTime().ToString();
+
             TimeDifferenceFormatter formatter = new TimeDifferenceFormatter();
-            DateTime formattedDate = formatter.GetDateInFormat(fileTime, DateTimeFormatEnumeration.win_filetime);
-            // the win_FileTime is 01/01/1601 00:00:00
-            DateTime expectedDate = new DateTime(1601, 01, 01, 00, 46, 30);
-            //DateTime expectedDate = new DateTime(1601, 01, 01, 00, 06, 30);
+            DateTime formattedDate = formatter.GetDateInFormat(fileTime, DateTimeFormatEnumeration.win_filetime).ToUniversalTime();
+
             Assert.AreEqual(expectedDate, formattedDate, "the date format is no expected.");
         }
-
-        
-
-
     }
 }
