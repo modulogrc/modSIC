@@ -5,9 +5,15 @@ before_build:
   - nuget restore
   - ps: gitversion /l console /output buildserver /updateAssemblyInfo
 
+after_build:
+  - 7z a Modulo.Collect.Client.Gui.zip '**\Modulo.Collect.GraphicalConsole\bin\$(configuration)\*.*'
+
 build:
   project: Modulo.Collect.Service.VS2010.sln
 
 artifacts:
   - path: '**\Modulo.Collect.Service.msi'
     name: modSicInstaller
+  
+  - path: '**\Modulo.Collect.Client.Gui.zip'
+    name: modSicClientGui
