@@ -219,7 +219,7 @@
     <Compile Include="Schema\BaseResourceSchemaResolver.cs" />
     <Compile Include="Schema\ExtensibleXmlResourceResolver.cs" />
     <Compile Include="Schema\IOvalSchemaResolver.cs" />
-    <Compile Include="Schema\OvalVersion511SchemaResolver.cs" />
+    <Compile Include="Schema\OvalVersion5111SchemaResolver.cs" />
     <Compile Include="Schema\OvalVersion510SchemaResolver.cs" />
     <Compile Include="SystemCharacteristics\comparators\GenericItemTypeComparator.cs" />
     <Compile Include="SystemCharacteristics\comparators\ItemTypeComparator.cs" />
@@ -373,144 +373,144 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Schema\resources\v5111\aix-definitions-schema.xsd">
+    <EmbeddedResource Include="Schema\resources\v5111\aix-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\aix-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\aix-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\android-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\android-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\android-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\android-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\apache-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\apache-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\apache-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\apache-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\apple-ios-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\apple-ios-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\apple-ios-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\apple-ios-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\asa-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\asa-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\asa-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\asa-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\catos-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\catos-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\catos-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\catos-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\esx-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\esx-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\esx-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\esx-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\freebsd-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\freebsd-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\freebsd-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\freebsd-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\hpux-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\hpux-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\hpux-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\hpux-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\independent-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\independent-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\independent-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\independent-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\ios-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\ios-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\ios-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\ios-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\iosxe-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\iosxe-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\iosxe-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\iosxe-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\junos-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\junos-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\junos-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\junos-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\linux-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\linux-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\linux-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\linux-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\macos-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\macos-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\macos-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\macos-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\netconf-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\netconf-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\netconf-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\netconf-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\oval-common-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\oval-common-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\oval-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\oval-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\oval-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\oval-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\pixos-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\pixos-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\pixos-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\pixos-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\sharepoint-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\sharepoint-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\sharepoint-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\sharepoint-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\solaris-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\solaris-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\solaris-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\solaris-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\unix-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\unix-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\unix-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\unix-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\windows-definitions-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\windows-definitions-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\windows-system-characteristics-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\windows-system-characteristics-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\resources\v5111\xmldsig-core-schema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\resources\v5111\xmldsig-core-schema.xsd">
       <SubType>Designer</SubType>
-    </None>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

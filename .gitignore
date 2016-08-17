@@ -30,3 +30,4 @@ packages/
 *.ncrunchproject
 *.ncrunchsolution
 _NCrunch*
+/UpgradeLog.htm
