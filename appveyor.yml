@@ -6,7 +6,7 @@ before_build:
   - ps: gitversion /l console /output buildserver /updateAssemblyInfo
 
 after_build:
-  - 7z a Modulo.Collect.Client.Gui.zip '**\Modulo.Collect.GraphicalConsole\bin\$(configuration)\*.*'
+  - 7z a Modulo.Collect.Client.Gui.zip %APPVEYOR_BUILD_FOLDER%\Modulo.Collect.GraphicalConsole\bin\$(configuration)\*.*
 
 build:
   project: Modulo.Collect.Service.VS2010.sln
