@@ -7,3 +7,7 @@ before_build:
 
 build:
   project: Modulo.Collect.Service.VS2010.sln
+
+artifacts:
+  - path: '**\Modulo.Collect.Service.msi'
+    name: modSicInstaller
