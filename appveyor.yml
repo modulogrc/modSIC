@@ -1,0 +1,23 @@
+install:
+  - choco install gitversion.portable -pre -y
+
+before_build:
+  - nuget restore
+  - ps: gitversion /l console /output buildserver /updateAssemblyInfo
+
+after_build:
+  - 7z a Modulo.Collect.Client.Gui.zip "%APPVEYOR_BUILD_FOLDER%\bin\client.gui\*.*"
+  - 7z a Modulo.Collect.Client.Console.zip "%APPVEYOR_BUILD_FOLDER%\bin\client.console\*.*"
+
+build:
+  project: Modulo.Collect.Service.VS2010.sln
+
+artifacts:
+  - path: '**\Modulo.Collect.Service.msi'
+    name: modSicInstaller
+  
+  - path: '**\Modulo.Collect.Client.Gui.zip'
+    name: modSicClientGui
+
+  - path: '**\Modulo.Collect.Client.Console.zip'
+    name: modSicClientConsole
