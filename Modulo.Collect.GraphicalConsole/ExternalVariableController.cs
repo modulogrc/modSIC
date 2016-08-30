@@ -40,6 +40,8 @@ using Modulo.Collect.OVAL.Common;
 using System.Windows.Forms;
 using System.Globalization;
 using Modulo.Collect.OVAL.Definitions.validators;
+using System.Xml;
+using System.Threading.Tasks;
 
 namespace Modulo.Collect.GraphicalConsole
 {
@@ -62,10 +64,82 @@ namespace Modulo.Collect.GraphicalConsole
             view.OnCreateControls += new EventHandler<CreateControlsEventArgs>(view_OnCreateControls);
             view.OnGetExternalVariables += new EventHandler<ExternalVariableEventArgs>(view_OnGetExternalVariables);
             view.OnValidate += new EventHandler<ValidateEventArgs>(view_OnValidate);
+            view.OnXCCDF += View_OnXCCDF;
         }
+
         #endregion
 
         #region View Events
+
+        private void View_OnXCCDF(object sender, OnXCCDFEventArgs e)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                var doc = new XmlDocument();
+                doc.Load(e.Filename);
+                var nav = doc.CreateNavigator();
+
+                var ns = new XmlNamespaceManager(doc.NameTable);
+                ns.AddNamespace("xccdf", "http://checklists.nist.gov/xccdf/1.2");
+
+                var helper = new ExternalVariableHelper();
+                var dic = new Dictionary<string, string>();
+
+                var controlDic = Controls.ToDictionary(c => c.Name, c => c);
+
+                GetValues(dic, helper);
+
+                float step = 1.0f / dic.Count;
+                foreach (var item in dic.ToArray())
+                {
+                    try
+                    {
+                        var value = nav.Evaluate("string(//xccdf:Value[@id= string(//xccdf:check-export[@export-name='" + item.Key + "']/@value-id)]/xccdf:value)", ns);
+                        dic[item.Key] = value.ToString();
+
+                        var control = controlDic[item.Key];
+
+                        if (control is NumericUpDown)
+                        {
+                            control.Invoke(new Action(() =>
+                            {
+                                (control as NumericUpDown).Value = decimal.Parse(value.ToString());
+                            }));
+                        }
+                        else if (control is TextBox)
+                        {
+                            control.Invoke(new Action(() =>
+                            {
+                                (control as TextBox).Text = value.ToString();
+                            }));
+                        }
+                        else if (control is CheckBox)
+                        {
+                            if (value.ToString() == "1") { value = "true"; }
+                            if (value.ToString() == "0") { value = "false"; }
+                            control.Invoke(new Action(() =>
+                            {
+                                (control as CheckBox).Checked = bool.Parse(value.ToString());
+                            }));
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+
+                    view.Progress += step;
+                }
+
+                int x = 10;
+            });
+        }
+
+
         public void view_OnCreateControls(object sender, CreateControlsEventArgs e)
         {
             var factory = new ExternalVariableEditorFactory();
@@ -80,11 +154,13 @@ namespace Modulo.Collect.GraphicalConsole
                 }
                 else
                 {
-                    var label = new Label() { Text = String.Format("{0}", variable.comment) };
-                    label.AutoSize = true;
-                    Controls.Add(label);
+                    var labelId = new Label() { Text = String.Format("{0}", variable.id) };
+                    var labelComment = new Label() { Text = String.Format("{0}", variable.comment) };
 
-                    view.AddControlWithLabel(label, control);
+                    labelId.AutoSize = true;
+                    labelComment.AutoSize = true;
+
+                    view.AddControlWithLabel(new[] { labelId, labelComment }, control);
                 }
 
                 Controls.Add(control);
@@ -96,6 +172,13 @@ namespace Modulo.Collect.GraphicalConsole
             var helper = new ExternalVariableHelper();
 
             e.Values = new Dictionary<string, string>();
+            GetValues(e.Values, helper);
+
+            e.Xml = helper.GetEvaluatedExternalVariables(e.Values, e.ExternalVariables);
+        }
+
+        private void GetValues(Dictionary<string, string> dic, ExternalVariableHelper helper)
+        {
             foreach (var control in Controls)
             {
                 if (control is Panel)
@@ -114,25 +197,32 @@ namespace Modulo.Collect.GraphicalConsole
                             }
                         }
                     }
-                    e.Values.Add(panel.Name, value);
+                    
+                    //e.Values.Add(panel.Name, value);
+                    dic.Add(panel.Name, value);
                 }
                 else if (control is CheckBox)
                 {
                     var check = (CheckBox)control;
-                    e.Values.Add(check.Name, check.Checked.ToString().ToLower());
+                    //e.Values.Add(check.Name, check.Checked.ToString().ToLower());
+
+                    dic.Add(check.Name, check.Checked.ToString().ToLower());
                 }
                 else if (control is ComboBox)
                 {
                     var value = helper.GetSelectItemValue((ComboBox)control);
-                    e.Values.Add(control.Name, value);
+                    //e.Values.Add(control.Name, value);
+
+                    dic.Add(control.Name, value);
                 }
                 else if (!(control is Label))
                 {
-                    e.Values.Add(control.Name, control.Text);
+                    //e.Values.Add(control.Name, control.Text);
+                    dic.Add(control.Name, control.Text);
                 }
             }
 
-            e.Xml = helper.GetEvaluatedExternalVariables(e.Values, e.ExternalVariables);
+            //e.Xml = helper.GetEvaluatedExternalVariables(e.Values, e.ExternalVariables);
         }
 
         public void view_OnValidate(object sender, ValidateEventArgs e)

@@ -43,11 +43,14 @@ namespace Modulo.Collect.GraphicalConsole
     public interface IExternalVariableView
     {
         void AddControl(Control control);
-        void AddControlWithLabel(Label label, Control control);
+        void AddControlWithLabel(Label[] label, Control control);
 
         event EventHandler<CreateControlsEventArgs> OnCreateControls;
         event EventHandler<ExternalVariableEventArgs> OnGetExternalVariables;
-        event EventHandler<ValidateEventArgs>OnValidate;
+        event EventHandler<ValidateEventArgs> OnValidate;
+        event EventHandler<OnXCCDFEventArgs> OnXCCDF;
+
+        float Progress { get; set; }
     }
 
     public class ValidateEventArgs : EventArgs
@@ -71,5 +74,10 @@ namespace Modulo.Collect.GraphicalConsole
         public IEnumerable<VariablesTypeVariableExternal_variable> ExternalVariables { get; set; }
         public Dictionary<String, String> Values { get; set; }
         public String Xml { get; set; }
+    }
+
+    public class OnXCCDFEventArgs : EventArgs
+    {
+        public string Filename { get; set; }
     }
 }

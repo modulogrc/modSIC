@@ -44,29 +44,29 @@ namespace Modulo.Collect.GraphicalConsole.Tests
             mocks.VerifyAll();
 
             Assert.IsNotNull(fakeController.Controls);
-            Assert.AreEqual(16, fakeController.Controls.Count);
+            Assert.AreEqual(9, fakeController.Controls.Count);
             
             var controls = fakeController.Controls.ToArray();           
-            Assert.AreEqual("Variable 1 (string)", controls[0].Text);
-            Assert.AreEqual("oval:tutorial:var:1", controls[1].Name);
+            //Assert.AreEqual("Variable 1 (string)", controls[0].Text);
+            Assert.AreEqual("oval:tutorial:var:1", controls[0].Name);
+            Assert.IsTrue(controls[0] is TextBox);
+
+            //Assert.AreEqual("Variable 2 (string)", controls[2].Text);
+            Assert.AreEqual("oval:tutorial:var:2", controls[1].Name);
             Assert.IsTrue(controls[1] is TextBox);
 
-            Assert.AreEqual("Variable 2 (string)", controls[2].Text);
-            Assert.AreEqual("oval:tutorial:var:2", controls[3].Name);
-            Assert.IsTrue(controls[3] is TextBox);
+            //Assert.AreEqual("Variable 3 (int)", controls[4].Text);
+            Assert.AreEqual("oval:tutorial:var:3", controls[2].Name);
+            Assert.IsTrue(controls[2] is NumericUpDown);
 
-            Assert.AreEqual("Variable 3 (int)", controls[4].Text);
-            Assert.AreEqual("oval:tutorial:var:3", controls[5].Name);
-            Assert.IsTrue(controls[5] is NumericUpDown);
+            //Assert.AreEqual("Variable 4 (int)", controls[6].Text);
+            Assert.AreEqual("oval:tutorial:var:4", controls[3].Name);
+            Assert.IsTrue(controls[3] is NumericUpDown);
 
-            Assert.AreEqual("Variable 4 (int)", controls[6].Text);
-            Assert.AreEqual("oval:tutorial:var:4", controls[7].Name);
-            Assert.IsTrue(controls[7] is NumericUpDown);
-
-            Assert.AreEqual("Variable 5 (string)", controls[8].Text);
-            Assert.AreEqual("oval:tutorial:var:5", controls[9].Name);
-            Assert.IsTrue(controls[9] is ComboBox);
-            var combo = controls[9] as ComboBox;
+            //Assert.AreEqual("Variable 5 (string)", controls[8].Text);
+            Assert.AreEqual("oval:tutorial:var:5", controls[4].Name);
+            Assert.IsTrue(controls[4] is ComboBox);
+            var combo = controls[4] as ComboBox;
             Assert.AreEqual("Value 1", ((ComboBoxItem) combo.Items[0]).Display);
             Assert.AreEqual("AUDIT_NONE", ((ComboBoxItem)combo.Items[0]).Value);
             Assert.AreEqual("Value 2", ((ComboBoxItem)combo.Items[1]).Display);
@@ -76,17 +76,17 @@ namespace Modulo.Collect.GraphicalConsole.Tests
             Assert.AreEqual("Value 4", ((ComboBoxItem)combo.Items[3]).Display);
             Assert.AreEqual("AUDIT_SUCCESS_FAILURE", ((ComboBoxItem) combo.Items[3]).Value);
 
-            Assert.AreEqual("Variable 6 (boolean)", controls[10].Text);
-            Assert.AreEqual("oval:tutorial:var:6", controls[10].Name);
-            Assert.IsTrue(controls[10] is CheckBox);
+            //Assert.AreEqual("Variable 6 (boolean)", controls[10].Text);
+            Assert.AreEqual("oval:tutorial:var:6", controls[5].Name);
+            Assert.IsTrue(controls[5] is CheckBox);
 
-            Assert.AreEqual("Variable 7 (binary)", controls[11].Text);
-            Assert.AreEqual("oval:tutorial:var:7", controls[12].Name);
-            Assert.IsTrue(controls[12] is TextBox);
+            //Assert.AreEqual("Variable 7 (binary)", controls[11].Text);
+            Assert.AreEqual("oval:tutorial:var:7", controls[6].Name);
+            Assert.IsTrue(controls[6] is TextBox);
 
-            Assert.AreEqual("oval:tutorial:var:8", controls[13].Name);
-            Assert.IsTrue(controls[13] is Panel);
-            var panelControls = controls[13].Controls;
+            //Assert.AreEqual("oval:tutorial:var:8", controls[13].Name);
+            Assert.IsTrue(controls[7] is Panel);
+            var panelControls = controls[7].Controls;
             Assert.AreEqual("Variable 8 (boolean)", panelControls[0].Text);
             Assert.IsTrue(panelControls[0] is Label);
             Assert.AreEqual("True", panelControls[1].Text);
@@ -94,10 +94,10 @@ namespace Modulo.Collect.GraphicalConsole.Tests
             Assert.AreEqual("False", panelControls[2].Text);
             Assert.IsTrue(panelControls[0] is Label);
 
-            Assert.AreEqual("Variable 9 (int)", controls[14].Text);
-            Assert.AreEqual("oval:tutorial:var:9", controls[15].Name);
-            Assert.IsTrue(controls[15] is ComboBox);
-            combo = controls[15] as ComboBox;
+            //Assert.AreEqual("Variable 9 (int)", controls[14].Text);
+            Assert.AreEqual("oval:tutorial:var:9", controls[8].Name);
+            Assert.IsTrue(controls[8] is ComboBox);
+            combo = controls[8] as ComboBox;
             Assert.AreEqual("Ignore", ((ComboBoxItem)combo.Items[0]).Display);
             Assert.AreEqual("0", ((ComboBoxItem)combo.Items[0]).Value);
             Assert.AreEqual("Warning", ((ComboBoxItem)combo.Items[1]).Display);

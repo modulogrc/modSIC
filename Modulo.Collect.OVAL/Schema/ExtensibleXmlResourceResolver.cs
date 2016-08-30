@@ -50,8 +50,9 @@ namespace Modulo.Collect.OVAL.Schema
         public ExtensibleXmlResourceResolver()
         {
             var _container = PluginContainer.GetOvalCompositionContainer();
-            SchemaResolvers = _container.GetExportedValues<IOvalSchemaResolver>();
-            //SchemaResolvers.Add(new OvalVersion59SchemaResolver()); 
+            SchemaResolvers = _container.GetExportedValues<IOvalSchemaResolver>()                
+                .OrderBy(x => x.GetType().Name)
+                .ToList();
         }
 
         /// <summary>

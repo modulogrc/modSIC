@@ -50,13 +50,20 @@ namespace Modulo.Collect.OVAL.Results
         {
             if (!bAnalyzed)
             {
-                var refTest = resultDocument.results[0].tests.Single(x => x.test_id == test_ref);
-                var currentResult = refTest.Analyze(resultDocument);
-                currentResult = oval_results.NegateResult(currentResult, negate);
-                result = currentResult;
+                var refTest = resultDocument.results[0].tests.SingleOrDefault(x => x.test_id == test_ref);
+                if (refTest != null)
+                {
+                    var currentResult = refTest.Analyze(resultDocument);
+                    currentResult = oval_results.NegateResult(currentResult, negate);
+                    result = currentResult;
+                }
+                else
+                {
+                    return ResultEnumeration.notevaluated;
+                }
             }
             return result;
         }
-        
+
     }
 }
