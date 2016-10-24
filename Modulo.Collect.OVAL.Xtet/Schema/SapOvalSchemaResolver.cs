@@ -44,7 +44,7 @@ namespace Modulo.Collect.OVAL.Schema
     public class SapOvalSchemaResolver : BaseResourceSchemaResolver
     {
         public SapOvalSchemaResolver()
-            : base("Schema", _exposedSchemas)
+            : base("Schema", "", _exposedSchemas)
         {
         }
 

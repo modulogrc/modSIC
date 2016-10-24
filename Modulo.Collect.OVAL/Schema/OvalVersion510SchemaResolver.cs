@@ -47,7 +47,7 @@ namespace Modulo.Collect.OVAL.Schema
     internal class OvalVersion510SchemaResolver : BaseResourceSchemaResolver
     {
         public OvalVersion510SchemaResolver()
-            : base("Schema.resources.v510", _exposedSchemas)
+            : base("Schema.resources.v510", "5.10", _exposedSchemas)
         {
         }
 
@@ -88,6 +88,5 @@ namespace Modulo.Collect.OVAL.Schema
                                                                  "windows-system-characteristics-schema.xsd",
                                                                  "xmldsig-core-schema.xsd"
                                                                 };
-
     }
 }

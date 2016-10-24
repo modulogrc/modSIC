@@ -135,6 +135,17 @@ namespace Modulo.Collect.OVAL.Tests
             AssertDefinitionsSolarisTests(solarisDefinitions.tests);
         }
 
+        [TestMethod, Owner("apinto")]
+        public void Should_be_possible_to_load_all_objects_from_windows_server_2012_from_versioned_xsd()
+        {
+            IEnumerable<string> errors;
+            var windowsDefinitionsDocument = GetOvalDocumentAsStream("samples.oval.org.mitre.oval.def.windows.xml");
+
+            var windowsDefinitions = oval_definitions.GetOvalDefinitionsFromStream(windowsDefinitionsDocument, out errors);
+            Assert.IsNotNull(windowsDefinitions);
+            Assert.AreEqual(0, errors.Count());
+        }
+
         private void AssertDefinitionsUnixTests(IEnumerable<TestType> tests)
         {
             Assert.AreEqual(10, tests.Count());

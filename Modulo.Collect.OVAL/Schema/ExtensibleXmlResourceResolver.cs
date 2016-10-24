@@ -50,7 +50,7 @@ namespace Modulo.Collect.OVAL.Schema
         public ExtensibleXmlResourceResolver()
         {
             var _container = PluginContainer.GetOvalCompositionContainer();
-            SchemaResolvers = _container.GetExportedValues<IOvalSchemaResolver>()                
+            SchemaResolvers = _container.GetExportedValues<IOvalSchemaResolver>()
                 .OrderBy(x => x.GetType().Name)
                 .ToList();
         }
@@ -63,17 +63,45 @@ namespace Modulo.Collect.OVAL.Schema
             set { throw new NotImplementedException(); }
         }
 
+        private string GetVersion(Uri absoluteUri)
+        {
+            return absoluteUri.Segments.FirstOrDefault(s => s.Contains("version"));
+        }
 
         public override object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn)
         {
-            return GetStream(absoluteUri.Segments[absoluteUri.Segments.GetUpperBound(0)]);
+            var version = GetVersion(absoluteUri);
+            var resourceName = absoluteUri.Segments[absoluteUri.Segments.GetUpperBound(0)];
+
+            if (!string.IsNullOrEmpty(version))
+                return GetStream(resourceName, version);
+
+            return GetStream(resourceName);
+        }
+
+        private IOvalSchemaResolver GetResolver(string resourceName)
+        {
+            return SchemaResolvers.FirstOrDefault(x => x.GetExposedSchemas().Contains(resourceName));
+        }
+
+        private IOvalSchemaResolver GetResolver(string resourceName, string version)
+        {
+            var resolver = SchemaResolvers.FirstOrDefault(x => version.Contains(x.SchemaVersion) && x.GetExposedSchemas().Contains(resourceName));
+
+            if (resolver == null)
+                return GetResolver(resourceName);
+
+            return resolver;
+        }
+
+        public Stream GetStream(string resourceName, string version)
+        {
+            return GetResolver(resourceName, version).GetResourceStreamForSchema(resourceName);
         }
 
         public Stream GetStream(string resourceName)
         {
-            var selectedResolver = SchemaResolvers.FirstOrDefault(x => x.GetExposedSchemas().Contains(resourceName));
-
-            return selectedResolver.GetResourceStreamForSchema(resourceName);
+            return GetResolver(resourceName).GetResourceStreamForSchema(resourceName);
         }
     }
 }

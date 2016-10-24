@@ -50,38 +50,37 @@ using Modulo.Collect.OVAL.Schema;
 
 namespace Modulo.Collect.OVAL.Definitions
 {
-	public partial class oval_definitions
-	{
-		public const int schemaMajorVersion = 5;
-		public const int schemaMinorVersion = 10;
+    public partial class oval_definitions
+    {
+        public const int schemaMajorVersion = 5;
+        public const int schemaMinorVersion = 10;
 
-		
-		static XmlSerializer xmlSerializer;
+        static XmlSerializer xmlSerializer;
         static XmlResolver xmlResolver;
         static object xmlSerializerSync = new object();
-		public static oval_definitions GetOvalDefinitionsFromStream(Stream definitionsDocument, out IEnumerable<string> schemaErrors)
-		{
-			var _schemaErrors = new List<string>();
+
+        public static oval_definitions GetOvalDefinitionsFromStream(Stream definitionsDocument, out IEnumerable<string> schemaErrors)
+        {
+            var _schemaErrors = new List<string>();
             PrepareSerializer();
 
-			
-			XmlReaderSettings settings = new XmlReaderSettings();
-			settings.ValidationType = ValidationType.Schema;
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.ValidationType = ValidationType.Schema;
             settings.XmlResolver = xmlResolver;
-			settings.ValidationFlags = XmlSchemaValidationFlags.ProcessSchemaLocation | XmlSchemaValidationFlags.AllowXmlAttributes;
-			settings.ValidationEventHandler += (o, args) => { if (args.Severity == XmlSeverityType.Error) _schemaErrors.Add(args.Message); };
-			XmlReader reader = XmlReader.Create(definitionsDocument, settings);
-			oval_definitions result = xmlSerializer.Deserialize(reader) as oval_definitions;
-			reader.Close();
+            settings.ValidationFlags = XmlSchemaValidationFlags.ProcessSchemaLocation | XmlSchemaValidationFlags.AllowXmlAttributes;
+            settings.ValidationEventHandler += (o, args) => { if (args.Severity == XmlSeverityType.Error) _schemaErrors.Add(args.Message); };
+            XmlReader reader = XmlReader.Create(definitionsDocument, settings);
+            oval_definitions result = xmlSerializer.Deserialize(reader) as oval_definitions;
+            reader.Close();
 
-			if (_schemaErrors.Count > 0)
-				result = null;
+            if (_schemaErrors.Count > 0)
+                result = null;
 
-			schemaErrors = _schemaErrors;
-			return result;
+            schemaErrors = _schemaErrors;
+            return result;
 
-		}
-
+        }
+       
         private static void PrepareSerializer()
         {
             lock (xmlSerializerSync)
@@ -91,83 +90,81 @@ namespace Modulo.Collect.OVAL.Definitions
                     XmlAttributeOverrides DefinitionsOverrides = GetExportedDefinitionsOverrides();
                     xmlSerializer = new XmlSerializer(typeof(oval_definitions), DefinitionsOverrides);
                     xmlResolver = new ExtensibleXmlResourceResolver();
-
                 }
             }
         }
 
-		public static XmlAttributeOverrides GetExportedDefinitionsOverrides()
-		{
-			return GetExportedDefinitionsOverrides(new XmlAttributeOverrides());
-		}
+        public static XmlAttributeOverrides GetExportedDefinitionsOverrides()
+        {
+            return GetExportedDefinitionsOverrides(new XmlAttributeOverrides());
+        }
 
-		public static XmlAttributeOverrides GetExportedDefinitionsOverrides(XmlAttributeOverrides DefinitionsOverrides)
-		{
+        public static XmlAttributeOverrides GetExportedDefinitionsOverrides(XmlAttributeOverrides DefinitionsOverrides)
+        {
+            var _container = PluginContainer.GetOvalCompositionContainer();
 
-		    var _container = PluginContainer.GetOvalCompositionContainer();
-
-			var testTypes = _container.GetExports<TestType>().Select(exp => exp.Value.GetType());
-			var objectTypes = _container.GetExports<ObjectType>().Select(exp => exp.Value.GetType());
-			var stateTypes = _container.GetExports<StateType>().Select(exp => exp.Value.GetType());
+            var testTypes = _container.GetExports<TestType>().Select(exp => exp.Value.GetType());
+            var objectTypes = _container.GetExports<ObjectType>().Select(exp => exp.Value.GetType());
+            var stateTypes = _container.GetExports<StateType>().Select(exp => exp.Value.GetType());
 
             XmlAttributes testAttributes = new XmlAttributes();
-			foreach (var testType in testTypes)
-			{
-				var xmlAttrs = (testType.GetCustomAttributes(typeof(XmlRootAttribute), false) as XmlRootAttribute[]).SingleOrDefault();
-				testAttributes.XmlArrayItems.Add(new XmlArrayItemAttribute(xmlAttrs.ElementName, testType) { Namespace = xmlAttrs.Namespace });
-			}
-			DefinitionsOverrides.Add(typeof(oval_definitions), "tests", testAttributes);
-			XmlAttributes objectAttributes = new XmlAttributes();
-			foreach (var objectType in objectTypes)
-			{
-				var xmlAttrs = (objectType.GetCustomAttributes(typeof(XmlRootAttribute), false) as XmlRootAttribute[]).SingleOrDefault();
-				objectAttributes.XmlArrayItems.Add(new XmlArrayItemAttribute(xmlAttrs.ElementName, objectType) { Namespace = xmlAttrs.Namespace });
-			}
-			DefinitionsOverrides.Add(typeof(oval_definitions), "objects", objectAttributes);
+            foreach (var testType in testTypes)
+            {
+                var xmlAttrs = (testType.GetCustomAttributes(typeof(XmlRootAttribute), false) as XmlRootAttribute[]).SingleOrDefault();
+                testAttributes.XmlArrayItems.Add(new XmlArrayItemAttribute(xmlAttrs.ElementName, testType) { Namespace = xmlAttrs.Namespace });
+            }
+            DefinitionsOverrides.Add(typeof(oval_definitions), "tests", testAttributes);
+            XmlAttributes objectAttributes = new XmlAttributes();
+            foreach (var objectType in objectTypes)
+            {
+                var xmlAttrs = (objectType.GetCustomAttributes(typeof(XmlRootAttribute), false) as XmlRootAttribute[]).SingleOrDefault();
+                objectAttributes.XmlArrayItems.Add(new XmlArrayItemAttribute(xmlAttrs.ElementName, objectType) { Namespace = xmlAttrs.Namespace });
+            }
+            DefinitionsOverrides.Add(typeof(oval_definitions), "objects", objectAttributes);
 
-			XmlAttributes stateAttributes = new XmlAttributes();
-			foreach (var stateType in stateTypes)
-			{
-				var xmlAttrs = (stateType.GetCustomAttributes(typeof(XmlRootAttribute), false) as XmlRootAttribute[]).SingleOrDefault();
-				stateAttributes.XmlArrayItems.Add(new XmlArrayItemAttribute(xmlAttrs.ElementName, stateType) { Namespace = xmlAttrs.Namespace });
-			}
-			DefinitionsOverrides.Add(typeof(oval_definitions), "states", stateAttributes);
+            XmlAttributes stateAttributes = new XmlAttributes();
+            foreach (var stateType in stateTypes)
+            {
+                var xmlAttrs = (stateType.GetCustomAttributes(typeof(XmlRootAttribute), false) as XmlRootAttribute[]).SingleOrDefault();
+                stateAttributes.XmlArrayItems.Add(new XmlArrayItemAttribute(xmlAttrs.ElementName, stateType) { Namespace = xmlAttrs.Namespace });
+            }
+            DefinitionsOverrides.Add(typeof(oval_definitions), "states", stateAttributes);
 
-			return DefinitionsOverrides;
-		}
+            return DefinitionsOverrides;
+        }
 
-		public string GetDefinitionsXml()
-		{
-			MemoryStream memoryStream = new MemoryStream();
+        public string GetDefinitionsXml()
+        {
+            MemoryStream memoryStream = new MemoryStream();
             PrepareSerializer();
-			xmlSerializer.Serialize(memoryStream, this);
-			memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
-			using (StreamReader streamReader = new System.IO.StreamReader(memoryStream))
-			{
-				return streamReader.ReadToEnd();
-			}
-		}
+            xmlSerializer.Serialize(memoryStream, this);
+            memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+            using (StreamReader streamReader = new System.IO.StreamReader(memoryStream))
+            {
+                return streamReader.ReadToEnd();
+            }
+        }
 
-		public bool VerifySignature(out X509Certificate2 certificate)
-		{
-			return XmlSignatureHelper.VerifySignature(GetDefinitionsXml(), out certificate);
-		}
+        public bool VerifySignature(out X509Certificate2 certificate)
+        {
+            return XmlSignatureHelper.VerifySignature(GetDefinitionsXml(), out certificate);
+        }
 
-		public bool VerifySignature(IEnumerable<X509Certificate2> trustedCertificates)
-		{
-			return XmlSignatureHelper.VerifySignature(GetDefinitionsXml(), trustedCertificates);
-		}
+        public bool VerifySignature(IEnumerable<X509Certificate2> trustedCertificates)
+        {
+            return XmlSignatureHelper.VerifySignature(GetDefinitionsXml(), trustedCertificates);
+        }
 
-		public void Sign(X509Certificate2 certificate)
-		{
-			string xml = GetDefinitionsXml();
-			var signatureElement = XmlSignatureHelper.Sign(xml, certificate);
+        public void Sign(X509Certificate2 certificate)
+        {
+            string xml = GetDefinitionsXml();
+            var signatureElement = XmlSignatureHelper.Sign(xml, certificate);
 
-			XmlSerializer xmlSerializer = new XmlSerializer(typeof(SignatureType));
-			using (StringReader stringReader = new StringReader(signatureElement.OuterXml))
-			{
-				Signature = ((SignatureType)(xmlSerializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
-			}
-		}
-	}
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(SignatureType));
+            using (StringReader stringReader = new StringReader(signatureElement.OuterXml))
+            {
+                Signature = ((SignatureType)(xmlSerializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+            }
+        }
+    }
 }

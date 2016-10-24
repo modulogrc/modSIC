@@ -30,6 +30,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * */
+using System;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Reflection;
@@ -45,11 +46,14 @@ namespace Modulo.Collect.OVAL.Schema
         private string _Folder;
         private Assembly m_container;
         private string[] _exposedSchemas;
-        public BaseResourceSchemaResolver(string folder, string[] resourceNames)
+        public string SchemaVersion { get; set; }
+
+        public BaseResourceSchemaResolver(string folder, string schemaVersion, string[] resourceNames)
         {
             _Folder = folder;
             m_container = GetType().Assembly;
             _exposedSchemas = resourceNames;
+            this.SchemaVersion = schemaVersion;
         }
 
         public string[] GetExposedSchemas()

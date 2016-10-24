@@ -322,6 +322,9 @@
   <ItemGroup>
     <EmbeddedResource Include="system_characteristics\system_characteristics_with_state_referencing_variable_with_multi_values.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="samples\oval.org.mitre.oval.def.windows.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

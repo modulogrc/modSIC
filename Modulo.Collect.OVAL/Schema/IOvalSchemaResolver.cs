@@ -38,6 +38,7 @@ namespace Modulo.Collect.OVAL.Schema
     public interface IOvalSchemaResolver
     {
         string[] GetExposedSchemas();
+        string SchemaVersion { get; set; }
         Stream GetResourceStreamForSchema(string schemaName);
     }
 }
