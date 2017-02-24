@@ -443,29 +443,38 @@ namespace Modulo.Collect.Probe.Windows.AuditEventPolicy
 
         public virtual Dictionary<AuditEventSubcategories, AuditEventStatus> GetAuditEventSubcategoriesPolicy(TargetInfo targetInfo)
         {
-            var policyData = GetPolAdtEv(targetInfo);
-            var structure = GetPositionValue(policyData, 8);
-            Dictionary<AuditEventSubcategories, int> positionsMap;
-
-            switch (structure)
+            try
             {
-                // Windows 2008 x86 & Vista
-                case 0x76:
-                    positionsMap = GetStructure76SubcategoriesPositions();
-                    break;
-                // Windows 7 & 2008 x64
-                case 0x78:
-                    positionsMap = GetStructure78SubcategoriesPositions();
-                    break;
-                // Windows 8
-                case 0x7E:
-                    positionsMap = GetStructure7ESubcategoriesPositions();
-                    break;
-                default:
-                    throw new Exception("Unexpected subcategories data");
-            }
+                var policyData = GetPolAdtEv(targetInfo);
+                var structure = GetPositionValue(policyData, 8);
+                Dictionary<AuditEventSubcategories, int> positionsMap;
 
-            return GetSubcategoriesStatus(policyData, positionsMap);
+                switch (structure)
+                {
+                    // Windows 2008 x86 & Vista
+                    case 0x76:
+                        positionsMap = GetStructure76SubcategoriesPositions();
+                        break;
+                    // Windows 7 & 2008 x64
+                    case 0x78:
+                        positionsMap = GetStructure78SubcategoriesPositions();
+                        break;
+                    // Windows 8
+                    case 0x7E:
+                        positionsMap = GetStructure7ESubcategoriesPositions();
+                        break;
+                    default:
+                        throw new Exception("Unexpected subcategories data");
+                }
+
+                return GetSubcategoriesStatus(policyData, positionsMap);
+            }
+            catch (GetPolAdtEvException)
+            {
+                // Try to read subcategories using auditpol when the registry access is denied.
+                var auditPolData = GetAuditPol(targetInfo);
+                return GetSubcategoriesStatus(auditPolData);
+            }
         }
 
         private string GetPolAdtEv(TargetInfo targetInfo)
@@ -492,7 +501,7 @@ namespace Modulo.Collect.Probe.Windows.AuditEventPolicy
             }
 
             if (error != string.Empty)
-                throw new Exception(error);
+                throw new GetPolAdtEvException(error);
 
             output = output.Replace(@"HKEY_LOCAL_MACHINE\Security\Policy\PolAdtEv", string.Empty);
             output = output.Replace("(Default)", string.Empty);
@@ -500,6 +509,136 @@ namespace Modulo.Collect.Probe.Windows.AuditEventPolicy
             output = output.Replace(Environment.NewLine, string.Empty);
 
             return output.Trim();
+        }
+
+        private string GetAuditPol(TargetInfo targetInfo)
+        {
+            string output = string.Empty;
+            string error = string.Empty;
+
+            var psi = new ProcessStartInfo("psexec.exe", @"\\" + targetInfo.GetAddress() + " -nobanner -accepteula auditpol.exe /get /r /category:*");
+
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardError = true;
+            psi.WindowStyle = ProcessWindowStyle.Hidden;
+            psi.UseShellExecute = false;
+            var reg = Process.Start(psi);
+            using (StreamReader myOutput = reg.StandardOutput)
+            {
+                output = myOutput.ReadToEnd();
+            }
+            using (StreamReader myError = reg.StandardError)
+            {
+                error = myError.ReadToEnd();
+            }
+
+            if (reg.ExitCode != 0)
+                throw new Exception(error);
+
+            return output;
+        }
+
+        public Dictionary<AuditEventSubcategories, AuditEventStatus> GetSubcategoriesStatus(string auditPolData)
+        {
+            var items = new Dictionary<AuditEventSubcategories, AuditEventStatus>();
+
+            var subcategories = GetAuditPolSubcategoriesDictionary();
+            var eventStatuses = GetAuditPolEventStatusesDictionary();
+
+            var lines = auditPolData.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            foreach (var line in lines)
+            {
+                var fields = line.Split(',');
+                if (fields.Length < 5)
+                    continue;
+                Guid subcategoryId;
+                if (Guid.TryParse(fields[3], out subcategoryId))
+                {
+                    if (subcategories.ContainsKey(subcategoryId) && eventStatuses.ContainsKey(fields[4]))
+                    {
+                        items.Add(subcategories[subcategoryId], eventStatuses[fields[4]]);
+                    }
+                }
+            }
+
+            return items;
+        }
+
+        private Dictionary<Guid, AuditEventSubcategories> GetAuditPolSubcategoriesDictionary()
+        {
+            return new Dictionary<Guid, AuditEventSubcategories>
+            {
+                { Guid.Parse("{0CCE9217-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.account_lockout },
+                { Guid.Parse("{0CCE9222-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.application_generated },
+                { Guid.Parse("{0CCE9239-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.application_group_management },
+                { Guid.Parse("{0CCE922F-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.audit_policy_change },
+                { Guid.Parse("{0CCE9230-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.authentication_policy_change },
+                { Guid.Parse("{0CCE9231-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.authorization_policy_change },
+                //{ Guid.Parse("{0CCE9246-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.#N/D }, // Central Policy Staging
+                { Guid.Parse("{0CCE9221-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.certification_services },
+                { Guid.Parse("{0CCE9236-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.computer_account_management },
+                { Guid.Parse("{0CCE923F-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.credential_validation },
+                { Guid.Parse("{0CCE923E-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.detailed_directory_service_replication },
+                { Guid.Parse("{0CCE9244-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.detailed_file_share },
+                { Guid.Parse("{0CCE923B-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.directory_service_access },
+                { Guid.Parse("{0CCE923C-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.directory_service_changes },
+                { Guid.Parse("{0CCE923D-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.directory_service_replication },
+                { Guid.Parse("{0CCE9238-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.distribution_group_management },
+                { Guid.Parse("{0CCE922D-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.dpapi_activity },
+                { Guid.Parse("{0CCE9224-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.file_share },
+                { Guid.Parse("{0CCE921D-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.file_system },
+                { Guid.Parse("{0CCE9226-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.filtering_platform_connection },
+                { Guid.Parse("{0CCE9225-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.filtering_platform_packet_drop },
+                { Guid.Parse("{0CCE9233-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.filtering_platform_policy_change },
+                //{ Guid.Parse("{0CCE9249-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.#N/D }, // Group Membership
+                { Guid.Parse("{0CCE9223-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.handle_manipulation },
+                { Guid.Parse("{0CCE9213-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.ipsec_driver },
+                { Guid.Parse("{0CCE921A-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.ipsec_extended_mode },
+                { Guid.Parse("{0CCE9218-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.ipsec_main_mode },
+                { Guid.Parse("{0CCE9219-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.ipsec_quick_mode },
+                { Guid.Parse("{0CCE9242-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.kerberos_authentication_service },
+                { Guid.Parse("{0CCE9240-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.kerberos_service_ticket_operations },
+                { Guid.Parse("{0CCE921F-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.kernel_object },
+                { Guid.Parse("{0CCE9216-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.logoff },
+                { Guid.Parse("{0CCE9215-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.logon },
+                { Guid.Parse("{0CCE9232-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.mpssvc_rule_level_policy_change },
+                { Guid.Parse("{0CCE9243-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.network_policy_server },
+                { Guid.Parse("{0CCE9229-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.non_sensitive_privilege_use },
+                { Guid.Parse("{0CCE9241-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.other_account_logon_events },
+                { Guid.Parse("{0CCE923A-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.other_account_management_events },
+                { Guid.Parse("{0CCE921C-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.other_logon_logoff_events },
+                { Guid.Parse("{0CCE9227-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.other_object_access_events },
+                { Guid.Parse("{0CCE9234-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.other_policy_change_events },
+                { Guid.Parse("{0CCE922A-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.other_privilege_use_events },
+                { Guid.Parse("{0CCE9214-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.other_system_events },
+                //{ Guid.Parse("{0CCE9248-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.#N/D }, // Plug and Play Events
+                { Guid.Parse("{0CCE922B-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.process_creation },
+                { Guid.Parse("{0CCE922C-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.process_termination },
+                { Guid.Parse("{0CCE921E-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.registry },
+                //{ Guid.Parse("{0CCE9245-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.#N/D }, // Removable Storage
+                { Guid.Parse("{0CCE922E-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.rpc_events },
+                { Guid.Parse("{0CCE9220-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.sam },
+                { Guid.Parse("{0CCE9237-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.security_group_management },
+                { Guid.Parse("{0CCE9210-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.security_state_change },
+                { Guid.Parse("{0CCE9211-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.security_system_extension },
+                { Guid.Parse("{0CCE9228-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.sensitive_privilege_use },
+                { Guid.Parse("{0CCE921B-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.special_logon },
+                { Guid.Parse("{0CCE9212-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.system_integrity },
+                //{ Guid.Parse("{0CCE924A-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.#N/D }, // Token Right Adjusted Events
+                //{ Guid.Parse("{0CCE9247-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.#N/D }, // User / Device Claims
+                { Guid.Parse("{0CCE9235-69AE-11D9-BED3-505054503030}"), AuditEventSubcategories.user_account_management },
+            };
+       }
+
+        private Dictionary<string, AuditEventStatus> GetAuditPolEventStatusesDictionary()
+        {
+            return new Dictionary<string, AuditEventStatus>
+            {
+                { "No Auditing", AuditEventStatus.AUDIT_NONE },
+                { "Success", AuditEventStatus.AUDIT_SUCCESS },
+                { "Failure", AuditEventStatus.AUDIT_FAILURE },
+                { "Success and Failure", AuditEventStatus.AUDIT_SUCCESS_FAILURE },
+            };
         }
 
         private short GetPositionValue(string policyData, int position)
@@ -793,5 +932,10 @@ namespace Modulo.Collect.Probe.Windows.AuditEventPolicy
         network_policy_server,
         kerberos_authentication_service,
         kerberos_service_ticket_operations,
+    }
+
+    public class GetPolAdtEvException: Exception
+    {
+        public GetPolAdtEvException(string message) : base(message) { }
     }
 }
