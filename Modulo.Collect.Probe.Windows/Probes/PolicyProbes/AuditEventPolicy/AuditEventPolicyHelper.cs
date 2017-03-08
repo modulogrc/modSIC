@@ -516,7 +516,7 @@ namespace Modulo.Collect.Probe.Windows.AuditEventPolicy
             string output = string.Empty;
             string error = string.Empty;
 
-            var psi = new ProcessStartInfo("psexec.exe", @"\\" + targetInfo.GetAddress() + " -nobanner -accepteula auditpol.exe /get /r /category:*");
+            var psi = new ProcessStartInfo("paexec.exe", @"\\" + targetInfo.GetAddress() + " auditpol.exe /get /r /category:*");
 
             psi.RedirectStandardOutput = true;
             psi.RedirectStandardError = true;
