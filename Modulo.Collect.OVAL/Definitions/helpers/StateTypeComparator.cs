@@ -175,31 +175,53 @@ namespace Modulo.Collect.OVAL.Helpers
 
         private bool CompareMultiplesEntities(PropertyInfo field, PropertyInfo fieldOfItemType)
         {
-            object valueOfState = field.GetValue(this.stateType, null);
+            var valueOfState = (EntityStateSimpleBaseType) field.GetValue(this.stateType, null);
             if (valueOfState == null)
                 return false;
 
             EntityItemSimpleBaseType[] valuesOfItemType = (EntityItemSimpleBaseType[])fieldOfItemType.GetValue(this.itemType, null);
 
+            var results = new System.Collections.Generic.List<bool>();
             foreach (EntityItemSimpleBaseType entityItemType in valuesOfItemType)
             {
-                if (this.Compare(entityItemType, (EntitySimpleBaseType)valueOfState))
-                    return true;
+                results.Add(this.Compare(entityItemType, valueOfState));
             }
-            return false;
+
+            return EvaluateEntityCheck(valueOfState.entity_check, results.ToArray());
         }
 
         private bool CompareTwoEntities(PropertyInfo field, PropertyInfo fieldOfItemType)
         {
-            var valueOfFieldStateType = field.GetValue(this.stateType, null);
+            var valueOfFieldStateType = (EntityStateSimpleBaseType) field.GetValue(this.stateType, null);
             var valueOfFieldItemType = fieldOfItemType.GetValue(this.itemType, null);
+            bool result;
             if ((valueOfFieldStateType != null) && (valueOfFieldItemType != null))
             {
-                return this.Compare((EntityItemSimpleBaseType)valueOfFieldItemType, (EntitySimpleBaseType)valueOfFieldStateType);
+                result = this.Compare((EntityItemSimpleBaseType)valueOfFieldItemType, valueOfFieldStateType);
             }
             else
             {
-                return this.CheckNullForEntities((EntityItemSimpleBaseType)valueOfFieldItemType, (EntitySimpleBaseType)valueOfFieldStateType);
+                result = this.CheckNullForEntities((EntityItemSimpleBaseType)valueOfFieldItemType, valueOfFieldStateType);
+            }
+
+            return EvaluateEntityCheck(valueOfFieldStateType.entity_check, result);
+        }
+
+        private bool EvaluateEntityCheck(CheckEnumeration entityCheck, params bool[] results)
+        {
+            switch (entityCheck)
+            {
+                case CheckEnumeration.all:
+                    return results.All(r => r);
+                case CheckEnumeration.atleastone:
+                    return results.Any(r => r);
+                case CheckEnumeration.noneexist:
+                case CheckEnumeration.nonesatisfy:
+                    return !results.Any(r => r);
+                case CheckEnumeration.onlyone:
+                    return results.Count(r => r) == 1;
+                default:
+                    throw new ArgumentException("Unexpected entityCheck value");
             }
         }
 
@@ -218,7 +240,9 @@ namespace Modulo.Collect.OVAL.Helpers
                 return true;
 
             // If one of objects to compare is null and another one is not null the compare result must be false.
-            if (this.IsOneOfTheseObjectsNullAndAnotherOneNotNull(itemValue, stateValue) && string.IsNullOrEmpty(valueOfFieldStateType.var_ref))
+            if (this.IsOneOfTheseObjectsNullAndAnotherOneNotNull(itemValue, stateValue) 
+                && string.IsNullOrEmpty(valueOfFieldStateType.var_ref)
+                && valueOfFieldStateType.datatype != SimpleDatatypeEnumeration.@string)
                 return false;
 
             var value = valueOfFieldStateType.Value;

@@ -78,7 +78,7 @@ namespace Modulo.Collect.OVAL.Common.comparators
 
         private bool processRegex(string firstElement, string secondElement)
         {
-            return Regex.IsMatch(firstElement, secondElement, RegexOptions.IgnoreCase);
+            return Regex.IsMatch(firstElement ?? string.Empty, secondElement, RegexOptions.IgnoreCase);
         }
      
         private bool  IsEqualsOperation(OperationEnumeration operation)
