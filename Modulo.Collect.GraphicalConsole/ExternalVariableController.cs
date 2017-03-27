@@ -135,7 +135,7 @@ namespace Modulo.Collect.GraphicalConsole
                     view.Progress += step;
                 }
 
-                int x = 10;
+                view.Progress = 0;
             });
         }
 
