@@ -303,23 +303,28 @@ namespace Modulo.Collect.Probe.Windows.WMI
 
         private IEnumerable<WmiObject> executeWQLCommandQuery(string wqlCommandQuery)
         {
-            ManagementObjectSearcher wmiObjectSearcher = this.createWmiObjectSearcher(wqlCommandQuery);
-            return this.createWmiObjectsFromObjectSearcher(wmiObjectSearcher);
+            using (ManagementObjectSearcher wmiObjectSearcher = this.createWmiObjectSearcher(wqlCommandQuery))
+            {
+                return this.createWmiObjectsFromObjectSearcher(wmiObjectSearcher);
+            }
         }
 
         private IEnumerable<WmiObject> createWmiObjectsFromObjectSearcher(ManagementObjectSearcher wmiObjectSearcher)
         {
             List<WmiObject> wmiObjects = new List<WmiObject>();
-            foreach (ManagementObject managementObject in wmiObjectSearcher.Get())
+            using (var managementObjects = wmiObjectSearcher.Get())
             {
-                WmiObject wmiObject = new WmiObject();
-                foreach (PropertyData property in managementObject.Properties)
+                foreach (ManagementObject managementObject in managementObjects)
                 {
-                    wmiObject.Add(property.Name, managementObject.GetPropertyValue(property.Name));
+                    WmiObject wmiObject = new WmiObject();
+                    foreach (PropertyData property in managementObject.Properties)
+                    {
+                        wmiObject.Add(property.Name, managementObject.GetPropertyValue(property.Name));
+                    }
+                    wmiObjects.Add(wmiObject);
                 }
-                wmiObjects.Add(wmiObject);
+                return wmiObjects;
             }
-            return wmiObjects;
         }
 
         private WmiObject createWmiObjectsFromSingleObject(ManagementObject managementObject)

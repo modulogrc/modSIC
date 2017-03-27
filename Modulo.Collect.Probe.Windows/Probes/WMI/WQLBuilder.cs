@@ -40,6 +40,7 @@ namespace Modulo.Collect.Probe.Windows.WMI
     {
         private const string WQL_TEMPLATE = " SELECT * FROM {0} ";
         private const string WQL_FILTER_TEMPLATE = "{0} = '{1}' ";
+        private const string WQL_FILTER_COMPONENT_TEMPLATE = "{0} = \"{1}\" ";
 
         private string filterWithOperator = null;
         private IList<String> WQLFilter = null;
@@ -60,6 +61,12 @@ namespace Modulo.Collect.Probe.Windows.WMI
         public WQLBuilder AddParameter(string wmiClassPropertyName, object wmiClassPropertyValue)
         {
             this.addParameter(wmiClassPropertyName, wmiClassPropertyValue);
+            return this;
+        }
+
+        public WQLBuilder AddComponentParameter(string wmiClassPropertyName, object wmiClassPropertyValue)
+        {
+            this.addComponentParameter(wmiClassPropertyName, wmiClassPropertyValue);
             return this;
         }
 
@@ -95,6 +102,13 @@ namespace Modulo.Collect.Probe.Windows.WMI
         private void addParameter(string parameterName, object parameterValue)
         {
             string filterClause = string.Format(WQL_FILTER_TEMPLATE, parameterName, parameterValue);
+            this.WQLFilter.Add(string.Format(this.filterWithOperator, filterClause));
+            this.filterWithOperator = " AND {0} ";
+        }
+
+        private void addComponentParameter(string parameterName, object parameterValue)
+        {
+            string filterClause = string.Format(WQL_FILTER_COMPONENT_TEMPLATE, parameterName, parameterValue);
             this.WQLFilter.Add(string.Format(this.filterWithOperator, filterClause));
             this.filterWithOperator = " AND {0} ";
         }

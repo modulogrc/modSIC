@@ -39,6 +39,8 @@ using Modulo.Collect.Probe.Common;
 using Modulo.Collect.Probe.Common.Extensions;
 using Modulo.Collect.Probe.Windows.Helpers;
 using System.Security.Principal;
+using System.Management;
+using System.Text.RegularExpressions;
 
 namespace Modulo.Collect.Probe.Windows.Providers
 {
@@ -171,9 +173,15 @@ namespace Modulo.Collect.Probe.Windows.Providers
         {
             var wqlToGetUserDetails = GetWqlToGetUserDetails(username);
 
-            var collectedUser = this.WmiProvider.ExecuteWQL(wqlToGetUserDetails);
+            IEnumerable<WmiObject> collectedUser = null;
+            foreach (var wql in wqlToGetUserDetails)
+            {
+                collectedUser = this.WmiProvider.ExecuteWQL(wql);
+                if (!collectedUser.IsEmpty())
+                    break;
+            }
 
-            if (collectedUser.IsEmpty())
+            if (collectedUser == null || collectedUser.IsEmpty())
                 throw new WindowsUserNotFound(username);
 
             var accountName = collectedUser.First().GetFieldValueAsString("Name");
@@ -192,23 +200,17 @@ namespace Modulo.Collect.Probe.Windows.Providers
         {
             var address = this.TargetInfo.GetAddress();
             var credentials = this.TargetInfo.credentials;
-            var principalContext = AccManUtils.accManConnect(address, credentials.GetUserName(), credentials.GetPassword());
 
             Principal user = null;
             var isSystemAccount = !username.Contains("\\");
 
             if (isSystemAccount)
             {
-                var wqlGetUserSID = GetWqlToGetUserDetails(username);
-                var wqlResult = this.WmiProvider.ExecuteWQL(wqlGetUserSID).FirstOrDefault();
-                if (wqlResult != null)
-                {
-                    var userSID = wqlResult.GetFieldValueAsString("SID");
-                    user = Principal.FindByIdentity(principalContext, IdentityType.Sid, userSID);
-                }
+                return GetAllGroupsFromUser(username, returnType);
             }
             else
             {
+                var principalContext = AccManUtils.accManConnect(address, credentials.GetUserName(), credentials.GetPassword());
                 user = Principal.FindByIdentity(principalContext, IdentityType.SamAccountName, username);
                 if (user == null)
                     user = Principal.FindByIdentity(principalContext, IdentityType.Name, username);
@@ -282,12 +284,13 @@ namespace Modulo.Collect.Probe.Windows.Providers
             return string.Empty;
         }
 
-        private string GetWqlToGetUserDetails(string sourceUsername)
+        private IEnumerable<string> GetWqlToGetUserDetails(string sourceUsername)
         {
             var usernameParts = sourceUsername.Split(new char[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
             if (String.IsNullOrWhiteSpace(sourceUsername) || usernameParts.Count() > 2)
                 throw new InvalidUsernameFormat(sourceUsername);
 
+            var wqls = new List<string>();
             if (usernameParts.Count() == 2)
             {
                 var domain = usernameParts.First();
@@ -297,10 +300,17 @@ namespace Modulo.Collect.Probe.Windows.Providers
                 wqlFilter.Add("Domain", domain);
                 wqlFilter.Add("Name", username);
                 
-                return new WQLBuilder().WithWmiClass("Win32_UserAccount").AddParameters(wqlFilter).Build();
+                wqls.Add(new WQLBuilder().WithWmiClass("Win32_UserAccount").AddParameters(wqlFilter).Build());
+                return wqls;
             }
 
-            return new WQLBuilder().WithWmiClass("Win32_SystemAccount").AddParameter("Name", sourceUsername).Build();
+            wqls.Add(new WQLBuilder().WithWmiClass("Win32_SystemAccount").AddParameter("Name", sourceUsername).Build());
+            wqls.Add(new WQLBuilder().WithWmiClass("Win32_UserAccount")
+                .AddParameter("Name", sourceUsername)
+                .AddParameter("LocalAccount", true)
+                .Build());
+
+            return wqls;
         }
 
         private string GetComputerSystemFromTarget()
@@ -331,6 +341,18 @@ namespace Modulo.Collect.Probe.Windows.Providers
                             g.GetFieldValueAsString("SID"),
                             AccountType.Group)
                  ).ToList();
+        }
+
+        private WmiObject GetGroup(string computer, string groupName)
+        {
+            var wqlToGetAllLocalGroups =
+                new WQLBuilder()
+                    .WithWmiClass("Win32_Group")
+                    .AddParameter("Domain", computer)
+                    .AddParameter("Name", groupName)
+                .Build();
+
+            return this.WmiProvider.ExecuteWQL(wqlToGetAllLocalGroups).FirstOrDefault();
         }
 
         private Dictionary<string, bool?> GetAllUsersFromGroup(string computerName, string groupName)
@@ -371,7 +393,37 @@ namespace Modulo.Collect.Probe.Windows.Providers
 
             return allGroupUsers;
         }
-        
+
+        private IEnumerable<string> GetAllGroupsFromUser(string userName, AccountSearchReturnType returnType)
+        {
+            var computerName = GetComputerSystemFromTarget();
+
+            var wqlToGetGroupsFromUser = BuildWqlToGetGroupsFromUser(computerName, userName);
+            var wqlResult = this.WmiProvider.ExecuteWQL(wqlToGetGroupsFromUser);
+            if (wqlResult.IsEmpty())
+                return new string[0];
+
+            var groupComponents = wqlResult.Select(gu => gu.GetFieldValueAsString("GroupComponent")).ToArray();
+
+            var groupInfos = groupComponents
+                .Select(gc => ExtractGroupFromGroupPart(gc))
+                .Where(g => g != null)
+                .ToArray();
+
+            if (returnType == AccountSearchReturnType.Name)
+                return groupInfos.Select(g => g.Item2);
+
+            var allUserGroups = new List<string>();
+
+            foreach (var groupInfo in groupInfos)
+            {
+                var group = GetGroup(groupInfo.Item1, groupInfo.Item2);
+                allUserGroups.Add(group.GetFieldValueAsString("SID"));
+            }
+
+            return allUserGroups;
+        }
+
         private string BuildWqlToGetUserDetails(string userCriteria, string domainCriteria)
         {
             var wqlGetUserWithoutFilter = new WQLBuilder().WithWmiClass("Win32_Account").Build();
@@ -393,6 +445,16 @@ namespace Modulo.Collect.Probe.Windows.Providers
             {
                 return "<Unable to get username>";
             }
+        }
+
+        private Tuple<string, string> ExtractGroupFromGroupPart(string groupPart)
+        {
+            var match = Regex.Match(groupPart, @"\\\\.*\\root\\cimv2:Win32_Group.Domain=""(.*)"",Name=""(.*)""");
+
+            if (match.Success)
+                return new Tuple<string, string>(match.Groups[1].Value, match.Groups[2].Value);
+
+            return null;
         }
 
         /// <summary>
@@ -425,6 +487,12 @@ namespace Modulo.Collect.Probe.Windows.Providers
                     .WithWmiClass("Win32_GroupUser")
                     .AddParameter("GroupComponent", groupComponentFilter)
                 .Build();
+        }
+        private string BuildWqlToGetGroupsFromUser(string computerName, string userName)
+        {
+            var partComponent = string.Format("Win32_UserAccount.Domain='{0}',Name='{1}'", computerName, userName);
+
+            return new WQLBuilder().WithWmiClass("Win32_GroupUser").AddComponentParameter("PartComponent", partComponent).Build();
         }
     }
 
