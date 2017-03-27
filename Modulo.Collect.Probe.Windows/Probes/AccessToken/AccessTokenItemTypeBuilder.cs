@@ -184,6 +184,9 @@ namespace Modulo.Collect.Probe.Windows.AccessToken
 
             if (accessTokenItemType.sedenyservicelogonright == null)
                 accessTokenItemType.sedenyservicelogonright = this.CreateFalseEntityItem();
+
+            if (accessTokenItemType.setrustedcredmanaccessnameright == null)
+                accessTokenItemType.setrustedcredmanaccessnameright = this.CreateFalseEntityItem();
         }
 
 
@@ -238,6 +241,7 @@ namespace Modulo.Collect.Probe.Windows.AccessToken
                     case "SeDenyNetworkLogonRight": accessTokenItemType.sedenynetworklogonright = CreateTrueEntityItem(); break;
                     case "SeDenyRemoteInteractiveLogonRight": accessTokenItemType.sedenyremoteInteractivelogonright = CreateTrueEntityItem(); break;
                     case "SeDenyServiceLogonRight": accessTokenItemType.sedenyservicelogonright = CreateTrueEntityItem(); break;
+                    case "SeTrustedCredManAccessPrivilege": accessTokenItemType.setrustedcredmanaccessnameright = CreateTrueEntityItem(); break;
                 }
             }
         }
