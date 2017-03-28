@@ -53,7 +53,7 @@
 
   <states>
     <xmlfilecontent_state id="oval:modulo:ste:1" comment="..." version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
-      <value_of var_ref="oval:modulo:var:3"></value_of>
+      <value_of entity_check="at least one" var_ref="oval:modulo:var:3"></value_of>
     </xmlfilecontent_state>
   </states>
   
