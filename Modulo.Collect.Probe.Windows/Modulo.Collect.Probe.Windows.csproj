@@ -131,6 +131,7 @@
     <Compile Include="Probes\FileProbes\FileEffectiveRights\FileEffectiveRightsVariableEvaluator.cs" />
     <Compile Include="Probes\PolicyProbes\LockoutPolicy\LockoutPolicyItemTypeGenerator.cs" />
     <Compile Include="Probes\PolicyProbes\PasswordPolicy\PasswordPolicyItemTypeGenerator.cs" />
+    <Compile Include="Probes\PolicyProbes\PasswordPolicy\PasswordPolicySamServer.cs" />
     <Compile Include="Probes\UserProbes\UserSID\UserSIDProber.cs" />
     <Compile Include="Probes\WMI\Wmi57\Wmi57ItemTypeGenerator.cs" />
     <Compile Include="Probes\WMI\Wmi57\Wmi57ObjectCollector.cs" />

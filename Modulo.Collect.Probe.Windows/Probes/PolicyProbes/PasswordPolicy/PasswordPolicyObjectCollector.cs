@@ -56,6 +56,18 @@ namespace Modulo.Collect.Probe.Windows.PasswordPolicy
             var collectedPasswordPolicies = PasswordPolicyHelper.getUserModalsInfo0(TargetHostName);
             this.MapPasswrodPolicyToPasswordPolicyItemType((passwordpolicy_item)systemItem, collectedPasswordPolicies);
 
+            PasswordPolicySamServer.DomainPasswordInformation? domainPasswordInfo;
+            try
+            {
+                domainPasswordInfo = PasswordPolicySamServer.GetDomainPasswordInformation(TargetHostName);
+            }
+            catch
+            {
+                domainPasswordInfo = null;
+            }
+
+            MapDomainPasswrodInformationToPasswordPolicyItemType((passwordpolicy_item)systemItem, domainPasswordInfo);
+
             return new ItemTypeHelper().CreateCollectedItemsWithOneItem(systemItem, base.BuildExecutionLog());
         }
 
@@ -70,6 +82,12 @@ namespace Modulo.Collect.Probe.Windows.PasswordPolicy
             passwordItemType.min_passwd_age = OvalHelper.CreateItemEntityWithIntegerValue(minPasswordAge);
             passwordItemType.min_passwd_len = OvalHelper.CreateItemEntityWithIntegerValue(minPasswordLength);
             passwordItemType.password_hist_len = OvalHelper.CreateItemEntityWithIntegerValue(passwordHistoryLength);
+        }
+
+        private void MapDomainPasswrodInformationToPasswordPolicyItemType(passwordpolicy_item passwordItemType, PasswordPolicySamServer.DomainPasswordInformation? passwordInfo)
+        {
+            passwordItemType.password_complexity = OvalHelper.CreateBooleanEntityItemFromBoolValue(passwordInfo.HasValue? (bool?) passwordInfo.Value.PasswordComplex: null);
+            passwordItemType.reversible_encryption = OvalHelper.CreateBooleanEntityItemFromBoolValue(passwordInfo.HasValue ? (bool?) passwordInfo.Value.PasswordReversibleEncryption : null);
         }
     }
 }

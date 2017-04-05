@@ -54,6 +54,8 @@ namespace Modulo.Collect.GraphicalConsole
         {
             NumericUpDown spinEdit = new NumericUpDown();
             spinEdit.Name = this.externalVariable.id;
+            spinEdit.Maximum = decimal.MaxValue;
+            spinEdit.Minimum = decimal.MinValue;
 
             Decimal result;
             if (Decimal.TryParse(value, out result))
