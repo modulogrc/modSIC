@@ -88,8 +88,8 @@ namespace Modulo.Collect.Probe.Independent.Tests.Probes.SQL
 
             var queryResult = collectedSqlItem.result;
             Assert.AreEqual(2, queryResult.Count());
-            AssertRecordField(queryResult.First().field, new string[] { "John", "1", "True" });
-            AssertRecordField(queryResult.Last().field, new string[] { "David", "2", "False" });
+            AssertRecordField(queryResult.First().field, new string[] { "John", "1", "1" });
+            AssertRecordField(queryResult.Last().field, new string[] { "David", "2", "0" });
             
 
         }

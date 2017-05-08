@@ -121,11 +121,11 @@ namespace Modulo.Collect.Probe.Independent.Probes.SQL.Tests
 
             AssertRecordFieldNames(
                 ovalRecords.ElementAt(0).field,
-                new string[] { "John Doe", "10", "True" });
+                new string[] { "John Doe", "10", "1" });
 
             AssertRecordFieldNames(
                 ovalRecords.ElementAt(1).field,
-                new string[] { "Barack Obama", "11", "False" });
+                new string[] { "Barack Obama", "11", "0" });
         }
 
         [TestMethod, Owner("lfernandes")]
