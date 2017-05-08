@@ -101,6 +101,9 @@ namespace Modulo.Collect.Probe.Independent.Common.Sql
             if (fieldValue == null)
                 newFieldType.status = StatusEnumeration.doesnotexist;
             else
+                if (fieldValue is bool)
+                newFieldType.Value = Convert.ToInt32(fieldValue).ToString();
+            else
                 newFieldType.Value = fieldValue.ToString();
 
             return newFieldType;

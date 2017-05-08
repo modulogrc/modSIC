@@ -14,6 +14,7 @@ namespace Modulo.Collect.GraphicalConsole
             switch (externalVariable.datatype)
             {
                 case SimpleDatatypeEnumeration.@string:
+                case SimpleDatatypeEnumeration.version:
                     return new StringExternalVariableEditor(externalVariable);
 
                 case SimpleDatatypeEnumeration.@int:
