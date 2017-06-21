@@ -37,11 +37,10 @@ using System.Data.Odbc;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.Common;
-using System.Data.OracleClient;
 using MySql.Data.MySqlClient;
 using Npgsql;
 using System.Data.OleDb;
-
+using Oracle.ManagedDataAccess.Client;
 
 namespace Modulo.Collect.Probe.Independent.Common.Sql
 {
@@ -59,10 +58,12 @@ namespace Modulo.Collect.Probe.Independent.Common.Sql
             this.DbConnection.ConnectionString = connectionString;
             this.DbConnection.Open();
 
-            var dataReader = GetDataReader(this.DbConnection, sqlQuery);
-            var sqlResult = new SqlQueryResult();
+            IDataReader dataReader = null;
             try
             {
+                dataReader = GetDataReader(this.DbConnection, sqlQuery);
+                var sqlResult = new SqlQueryResult();
+
                 while (dataReader.Read())
                 {
                     var currentRecord = new Dictionary<string, object>();
@@ -79,7 +80,8 @@ namespace Modulo.Collect.Probe.Independent.Common.Sql
             }
             finally
             {
-                dataReader.Close();
+                if (dataReader != null)
+                    dataReader.Close();
                 this.DbConnection.Close();
             }
         }
