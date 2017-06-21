@@ -135,6 +135,7 @@
               <File Id='Common.Logging.dll' Name='Common.Logging.dll' DiskId='1' Source='$(var.Modulo.Collect.Service.TargetDir)Common.Logging.dll'/>
               <File Id='Mono.Security.dll' Name='Mono.Security.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Independent.TargetDir)Mono.Security.dll'/>
               <File Id='MySql.Data.dll' Name='MySql.Data.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Independent.TargetDir)MySql.Data.dll'/>
+              <File Id='Oracle.ManagedDataAccess.dll' Name='Oracle.ManagedDataAccess.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Independent.TargetDir)Oracle.ManagedDataAccess.dll'/>
               <!-- Postgres Driver -->
               <File Id='Npgsql.dll' Name='Npgsql.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Independent.TargetDir)Npgsql.dll'/>
               <File Id='Renci.SshNet' Name='Renci.SshNet.dll' DiskId='1' Source='$(var.Modulo.Collect.Probe.Unix.TargetDir)Renci.SshNet.dll'/>
