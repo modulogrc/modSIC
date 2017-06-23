@@ -71,6 +71,18 @@ namespace Modulo.Collect.Probe.Unix.RunLevel
             var runLevelEntity = ((runlevel_object)objectType).GetItemValue("runlevel");
             var runLevelValues = this.EvaluateVariable((EntityObjectStringType)runLevelEntity, variables);
 
+            var runLevelOperation = ((EntitySimpleBaseType)runLevelEntity).operation;
+            if (runLevelOperation == OperationEnumeration.patternmatch)
+            {
+                var runlevelUniverse = GetRunlevelUniverse();
+                runLevelValues = this.DoPatternMatch(runLevelValues, runlevelUniverse);
+            }
+            else if (runLevelOperation == OperationEnumeration.notequal)
+            {
+                var runlevelUniverse = GetRunlevelUniverse();
+                runLevelValues = this.NotEqualOperation(runLevelValues, runlevelUniverse);
+            }
+
             var itemsToCollect = new List<ItemType>();
             foreach (var serviceName in serviceNameValues)
             {
@@ -92,6 +104,11 @@ namespace Modulo.Collect.Probe.Unix.RunLevel
                 this.RunLevelCollector = new RunLevelCollector() { CommandLineRunner = CommandLineRunner };
 
             return this.RunLevelCollector.GetTargetServices();
+        }
+
+        private IEnumerable<string> GetRunlevelUniverse()
+        {
+            return new string[] { "0", "1", "2", "3", "4", "5", "6" };
         }
 
         private IEnumerable<string> NotEqualOperation(IEnumerable<string> serviceNameValues, IEnumerable<string> universe)
