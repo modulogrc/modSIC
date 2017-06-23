@@ -67,7 +67,7 @@ namespace Modulo.Collect.OVAL.Definitions
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.ValidationType = ValidationType.Schema;
             settings.XmlResolver = xmlResolver;
-            settings.ValidationFlags = XmlSchemaValidationFlags.ProcessSchemaLocation | XmlSchemaValidationFlags.AllowXmlAttributes;
+            settings.ValidationFlags = XmlSchemaValidationFlags.AllowXmlAttributes;
             settings.ValidationEventHandler += (o, args) => { if (args.Severity == XmlSeverityType.Error) _schemaErrors.Add(args.Message); };
             XmlReader reader = XmlReader.Create(definitionsDocument, settings);
             oval_definitions result = xmlSerializer.Deserialize(reader) as oval_definitions;
