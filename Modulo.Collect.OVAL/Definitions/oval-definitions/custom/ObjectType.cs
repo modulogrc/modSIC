@@ -55,7 +55,7 @@ namespace Modulo.Collect.OVAL.Definitions
 
         public virtual IEnumerable<EntitySimpleBaseType> GetEntityBaseTypes()
         {
-            throw new NotImplementedException();
+            return new EntitySimpleBaseType[0];
         }
 
         /// <summary>
