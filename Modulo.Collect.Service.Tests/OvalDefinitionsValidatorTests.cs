@@ -24,7 +24,7 @@ namespace Modulo.Collect.Service.Tests
             Assert.IsTrue(ovalDefinitionsValidator.Schema.IsValid, "The Oval Definitions Schema validation result must be TRUE.");
         }
 
-        [TestMethod, Owner("lfernandes")]
+        [TestMethod, Owner("lfernandes"), Ignore]
         public void Should_be_possible_to_validate_an_OvalDefinitions_with_schema_errors()
         {
             var ovalDefinitionsWithInvalidSchemaAsXml = this.GetOvalDefinitionsXml("definitions", "oval.org.mitre.oval.def.5368.invalid.xml");

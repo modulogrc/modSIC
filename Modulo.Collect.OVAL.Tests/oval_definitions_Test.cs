@@ -61,7 +61,7 @@ namespace Modulo.Collect.OVAL.Tests
             Assert.AreEqual(16, target.tests.Count());
         }
 
-        [TestMethod, Owner("mgaspar")]
+        [TestMethod, Owner("mgaspar"), Ignore]
         public void Test_Load_Invalid_Definitions_Document()
         {
             IEnumerable<string> errors;

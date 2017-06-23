@@ -129,7 +129,7 @@ namespace Modulo.Collect.Service.Tests.Entities
         }
 
         [TestMethod, Owner("lcosta")]
-        [ExpectedException(typeof(InvalidXMLOvalDefinitionsException))]
+        [ExpectedException(typeof(InvalidXMLOvalDefinitionsException)), Ignore]
         public void Should_raise_an_exception_if_ovalDefinitions_xml_schema_is_invalid()
         {
             IDocumentSession fakeSession = this.GetSession();
@@ -138,7 +138,7 @@ namespace Modulo.Collect.Service.Tests.Entities
         }
 
         [TestMethod, Owner("lcosta")]
-        [ExpectedException(typeof(InvalidXMLOvalDefinitionsException))]
+        [ExpectedException(typeof(InvalidXMLOvalDefinitionsException)), Ignore]
         public void Should_raise_an_exception_if_the_list_of_errors_of_the_schema_validation_is_not_empty()
         {
             IDocumentSession fakeSession = this.GetSession();
