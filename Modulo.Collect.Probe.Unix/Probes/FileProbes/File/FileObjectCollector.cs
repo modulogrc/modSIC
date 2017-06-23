@@ -95,6 +95,9 @@ namespace Modulo.Collect.Probe.Unix.File
 
         private string GetCompleteFilepath(file_item fileItem) 
         {
+            if (fileItem.filepath != null && !string.IsNullOrWhiteSpace(fileItem.filepath.Value))
+                return fileItem.filepath.Value.Trim();
+
             var path = fileItem.path.Value.TrimStart();
             var pathSeparator = path.EndsWith("/") ? string.Empty : "/";
             
