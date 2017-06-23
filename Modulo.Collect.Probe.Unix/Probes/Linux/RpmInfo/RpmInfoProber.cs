@@ -70,7 +70,10 @@ namespace Modulo.Collect.Probe.Linux.RPMInfo
             }
 
             if (base.ItemTypeGenerator == null)
-                base.ItemTypeGenerator = new RPMInfoItemTypeGenerator();
+                base.ItemTypeGenerator = new RPMInfoItemTypeGenerator()
+                {
+                    CommandRunner = ((SSHConnectionProvider)ConnectionProvider).SshCommandLineRunner
+                };
         }
 
         protected override IEnumerable<Definitions.ObjectType> GetObjectsOfType(IEnumerable<Definitions.ObjectType> objectTypes)
